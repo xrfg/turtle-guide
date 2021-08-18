@@ -1,0 +1,22 @@
+{
+  "name": "turtle-guide",
+  "version": "1.0.0",
+  "description": "Museum project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dci-fbw44-2-team3/turtle-guide.git"
+  },
+  "author": "Marco,Henrique,Abdilkani,Abdullah and Georgis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dci-fbw44-2-team3/turtle-guide/issues"
+  },
+  "homepage": "https://github.com/dci-fbw44-2-team3/turtle-guide#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0"
+  }
+}
