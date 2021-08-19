@@ -27,9 +27,9 @@ app.use(cors());
  * @desc Routes
  */
 
-app.use("/test", (req, res, next) => {
-  res.send("<h1>HELLO</h1>");
-});
+// app.use("/api/auth", );
+// app.use("/api/users", );
+// app.use("/api/exhibitions", );
 
 /**
  * @desc page not found middleware
