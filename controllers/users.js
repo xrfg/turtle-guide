@@ -10,15 +10,7 @@ const User = require("../models/User");
 
 // Post
 exports.post = async (req, res, next) => {
-  const {
-    //     firstName,
-    //     lastName,
-    //     company,
-    accountName,
-    email,
-    isAdmin,
-    password,
-  } = req.body;
+  let { accountName, email, isAdmin, password } = req.body;
 
   try {
     // check if admin is TRUE or FALSE
@@ -70,6 +62,7 @@ exports.post = async (req, res, next) => {
     // return
     return res.json({ success: true, data: user });
   } catch (error) {
+    console.log("error", error);
     /**
      * @desc sends error to the global error middleware
      */
@@ -77,7 +70,7 @@ exports.post = async (req, res, next) => {
       success: false,
       message: error,
       status: 404,
-      error: error,
+      error: `${error}`,
     });
   }
 };

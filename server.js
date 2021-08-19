@@ -4,12 +4,15 @@ const cors = require("cors");
 
 // Mongo Connection
 
+const connectDB = require("./config/db");
+
 // PORT
 const PORT = process.env.PORT;
 
 /**
  * @desc Connect MONGO
  */
+connectDB();
 
 /**
  * @desc external middleware
@@ -28,7 +31,7 @@ app.use(cors());
  */
 
 // app.use("/api/auth", );
-// app.use("/api/users", );
+app.use("/api/users", require("./routes/users"));
 // app.use("/api/exhibitions", );
 
 /**
@@ -52,7 +55,7 @@ app.use((err, req, res, next) => {
     success: false,
     message: "Something went wrong!",
     status: err.status,
-    error: err.message,
+    error: err.error,
   });
 });
 
