@@ -10,7 +10,7 @@ const Router = express.Router();
 
 //  CTRLs
 
-//const {} = require("")
+const { get, post } = require("../controllers/auth");
 
 /**
  * @desc Routes
@@ -21,11 +21,14 @@ const Router = express.Router();
  * @desc  get info of the authenticated user
  * @access Private
  */
+Router.get("/", get);
 
 /**
  * @route POST /api/auth
  * @desc  to get a token
  * @access Private
  */
+
+Router.post("/", post);
 
 module.exports = Router;

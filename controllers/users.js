@@ -8,6 +8,10 @@ const crypto = require("crypto");
 // models
 const User = require("../models/User");
 
+/**
+ * @desc Routes
+ */
+
 // Post
 exports.post = async (req, res, next) => {
   let { accountName, email, isAdmin, password } = req.body;
@@ -62,7 +66,6 @@ exports.post = async (req, res, next) => {
     // return
     return res.json({ success: true, data: user });
   } catch (error) {
-    console.log("error", error);
     /**
      * @desc sends error to the global error middleware
      */
