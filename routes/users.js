@@ -10,7 +10,7 @@ const Router = express.Router();
 
 // CTRLs
 
-// const {} = require("")
+const { post } = require("../controllers/users");
 
 /**
  * @desc Routes
@@ -22,6 +22,6 @@ const Router = express.Router();
  * @access Private
  */
 
-// Router.post("/", validator, post)
+Router.post("/", post);
 
 module.exports = Router;
