@@ -11,7 +11,7 @@ const { auth } = require("../middleware/auth");
 // const { userEmailValidator } = require("../middleware/validators");
 
 // CTRLs
-const { post } = require("../controllers/guides");
+const { get, post } = require("../controllers/guides");
 
 /**
  * @desc Routes
@@ -23,7 +23,11 @@ const { post } = require("../controllers/guides");
  * @access Private OR Public
  */
 
-// Router.get("/", userEmailValidator, post);
+/**
+ * @TODO add auth
+ */
+
+Router.get("/:name", get);
 
 /**
  * @route POST /api/guides

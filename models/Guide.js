@@ -7,6 +7,12 @@
 const mongoose = require("mongoose");
 
 const guideSchema = mongoose.Schema({
+  // the name to get the guide on axios request i.e. "vangogh"
+  nameIdentifier: {
+    type: String,
+    require: true,
+  },
+  // the title showed to the visitor i.e. "The World of Van Gogh"
   title: {
     type: String,
     require: true,
