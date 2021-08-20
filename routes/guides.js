@@ -24,10 +24,6 @@ const { get, getGuide, post, put, del } = require("../controllers/guides");
  * @access Private OR Public
  */
 
-/**
- * @TODO add auth
- */
-
 Router.get("/", auth, get);
 
 /**
@@ -36,11 +32,7 @@ Router.get("/", auth, get);
  * @access Private OR Public
  */
 
-/**
- * @TODO add auth
- */
-
-Router.get("/:name", getGuide);
+Router.get("/:name", auth, getGuide);
 
 /**
  * @route POST /api/guides
@@ -48,11 +40,7 @@ Router.get("/:name", getGuide);
  * @access Private
  */
 
-/**
- * @TODO add auth
- */
-
-Router.post("/", post);
+Router.post("/", auth, post);
 
 /**
  * @route PUT /api/guides
@@ -60,19 +48,12 @@ Router.post("/", post);
  * @access Private
  */
 
-/**
- * @TODO add auth
- */
-Router.put("/:name", put);
+Router.put("/:name", auth, put);
 
 /**
  * @route DEL /api/guides
  * @desc  update a guide
  * @access Private
- */
-
-/**
- * @TODO add auth
  */
 
 Router.delete("/:name", del);

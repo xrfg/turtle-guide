@@ -14,6 +14,7 @@ exports.get = async (req, res, next) => {
   const { id } = req.user;
 
   try {
+    // find all the item with that account
     const accountGuides = await Guide.find({ account: id });
 
     // returns
@@ -82,9 +83,23 @@ exports.getGuide = async (req, res, next) => {
 };
 
 exports.post = async (req, res, next) => {
-  console.log(req.body);
-
   try {
+    // check if the nameIdentifier is already used
+    const { nameIdentifier } = req.body;
+
+    const findIdentifier = await Guide.findOne({
+      nameIdentifier: nameIdentifier,
+    });
+    // if TRUE means that the nameIdentifier is already used
+    if (findIdentifier) {
+      return next({
+        success: false,
+        message:
+          "The Name Identifier must be unique! Please enter another one.",
+        status: 409,
+      });
+    }
+
     // create obj
     const guide = new Guide({ ...req.body });
 
