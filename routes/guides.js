@@ -7,11 +7,11 @@ const express = require("express");
 const Router = express.Router();
 
 // middleware / validation
-const { auth } = require("../middleware/auth");
+const auth = require("../middleware/auth");
 // const { userEmailValidator } = require("../middleware/validators");
 
 // CTRLs
-const { get, post, put, del } = require("../controllers/guides");
+const { get, getGuide, post, put, del } = require("../controllers/guides");
 
 /**
  * @desc Routes
@@ -19,7 +19,8 @@ const { get, post, put, del } = require("../controllers/guides");
 
 /**
  * @route GET /api/guides
- * @desc  Get logged in user, requires a valid token
+ * @desc  Get all the guides of a specific account, requires a valid token
+ * @desc  The account ID will be decoded from the token
  * @access Private OR Public
  */
 
@@ -27,7 +28,19 @@ const { get, post, put, del } = require("../controllers/guides");
  * @TODO add auth
  */
 
-Router.get("/:name", get);
+Router.get("/", auth, get);
+
+/**
+ * @route GET /api/guides
+ * @desc  Get a specif guide, requires a valid token
+ * @access Private OR Public
+ */
+
+/**
+ * @TODO add auth
+ */
+
+Router.get("/:name", getGuide);
 
 /**
  * @route POST /api/guides

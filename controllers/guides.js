@@ -10,6 +10,31 @@ const Guide = require("../models/Guide");
  */
 
 exports.get = async (req, res, next) => {
+  // extract the id to find all the records of account
+  const { id } = req.user;
+
+  try {
+    const accountGuides = await Guide.find({ account: id });
+
+    // returns
+    return res.json({
+      success: true,
+      data: accountGuides,
+    });
+  } catch (error) {
+    /**
+     * @desc sends error to the global error middleware
+     */
+    return next({
+      success: false,
+      message: error,
+      status: 404,
+      error: `${error}`,
+    });
+  }
+};
+
+exports.getGuide = async (req, res, next) => {
   /**
    * @TODO revice sa name (i.e. "vangogh") and gives the guide
    * @TODO check owner to give the guide
