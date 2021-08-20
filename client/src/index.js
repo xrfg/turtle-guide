@@ -1,15 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 
-import App from './App';
+import React from "react"
+import App from "./App.js"
+import reactDOM from "react-dom"
 
-
-ReactDOM.render(
-  // <React.StrictMode>
-    <App />
-  // </React.StrictMode>
-  ,
-  document.getElementById('root')
-);
-
-
+reactDOM.render(<App/>,document.getElementById("root"))
