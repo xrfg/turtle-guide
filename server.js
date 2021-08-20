@@ -32,7 +32,7 @@ app.use(cors());
 
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/users", require("./routes/users"));
-// app.use("/api/exhibitions", );
+app.use("/api/guides", require("./routes/guides"));
 
 /**
  * @desc page not found middleware
@@ -46,7 +46,7 @@ app.use((req, res, next) => {
 });
 
 /**
- * @desc Global Error Handler middleware
+ * @desc Global Error Han dler middleware
  */
 
 app.use((err, req, res, next) => {

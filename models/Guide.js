@@ -1,12 +1,12 @@
 /**
- * @desc Mongo Schema for Exhibitions
- * create an exhibition
+ * @desc Mongo Schema for Guides
+ * create a guide
  * use userSchema
  */
 
 const mongoose = require("mongoose");
 
-const exhibitionSchema = mongoose.Schema({
+const guideSchema = mongoose.Schema({
   title: {
     type: String,
     require: true,
@@ -31,4 +31,4 @@ const exhibitionSchema = mongoose.Schema({
   },
 });
 
-module.exports("Exhibition", exhibitionSchema);
+module.exports = mongoose.model("Guide", guideSchema);

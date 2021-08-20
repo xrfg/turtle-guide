@@ -36,7 +36,7 @@ const signupValidator = [
         status: 400,
       });
     }
-    // if ok continues
+    // if OK continues
     next();
   },
 ];

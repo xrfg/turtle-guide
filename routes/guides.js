@@ -6,18 +6,19 @@
 const express = require("express");
 const Router = express.Router();
 
-// Validators
+// middleware / validation
+const { auth } = require("../middleware/auth");
 // const { userEmailValidator } = require("../middleware/validators");
 
 // CTRLs
-// const { post } = require("../controllers/exhibitions");
+const { post } = require("../controllers/guides");
 
 /**
  * @desc Routes
  */
 
 /**
- * @route GET /api/exhibitions
+ * @route GET /api/guides
  * @desc  Get logged in user, requires a valid token
  * @access Private OR Public
  */
@@ -25,11 +26,15 @@ const Router = express.Router();
 // Router.get("/", userEmailValidator, post);
 
 /**
- * @route POST /api/exhibitions
- * @desc  add a exhibitions
+ * @route POST /api/guides
+ * @desc  add a guides
  * @access Private
  */
 
-// Router.post("/", userEmailValidator, post);
+/**
+ * @TODO add auth
+ */
+
+Router.post("/", post);
 
 module.exports = Router;
