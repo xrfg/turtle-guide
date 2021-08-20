@@ -1,12 +1,24 @@
 import React from "react";
-import "App.scss";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import "./app.scss";
+import Guide from "./Components/Guide/Guide";
 
 function App() {
   return (
-    <div className="App">
-      <h1>My React App</h1>
-      <h2>if the route is GUIDE display Guide wraping component</h2>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Switch>
+          <Route exact path="/">
+            <h1>My React App</h1>
+            <h2>if the route is "/guide" display Guide wraping component</h2>
+          </Route>
+
+          <Route path="/guide">
+            <Guide />
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 
