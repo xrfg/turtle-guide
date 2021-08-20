@@ -83,8 +83,7 @@ exports.post = async (req, res, next) => {
 exports.put = async (req, res, next) => {
   // extract name from params
   const { name } = req.params;
-  console.log("name", name);
-  console.log("req.body", req.body);
+
   try {
     // find and update the item using nameIdentifier
     const guide = await Guide.findOneAndUpdate(
