@@ -56,6 +56,6 @@ Router.put("/:name", auth, put);
  * @access Private
  */
 
-Router.delete("/:name", del);
+Router.delete("/:name", auth, del);
 
 module.exports = Router;

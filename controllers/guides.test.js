@@ -120,6 +120,31 @@ const newGuideTwoRight = {
   account: "611e5aca56104a1c09f9d13e",
 };
 
+const newGuideOneUpdate = {
+  nameIdentifier: "testguideoneUPDATE",
+  title: "Title Test Guide One UPDATE",
+  description: "A test guide description UPDATE",
+  sections: [
+    {
+      room: "Room 1",
+    },
+    { room: "Room 2" },
+  ],
+  menuOne: [
+    {
+      title: "Item 1",
+    },
+    { title: "Item 2" },
+  ],
+  menuTwo: [
+    {
+      title: "Item 1",
+    },
+    { title: "Item 2" },
+  ],
+  account: "611e5aca56104a1c09f9d13e",
+};
+
 describe("/api/guides - POST - GET - PUT - DELETE", () => {
   // token to use for access
   let tokenToSend = "";
@@ -162,7 +187,9 @@ describe("/api/guides - POST - GET - PUT - DELETE", () => {
     expect(res.data.success).toBe(true);
 
     // check if title matches
-    expect(res.data.data.title).toMatch(newGuideOneRight.title);
+    expect(res.data.data.nameIdentifier).toMatch(
+      newGuideOneRight.nameIdentifier
+    );
   });
 
   // 3. POST the same guide the second time and get error
@@ -222,22 +249,164 @@ describe("/api/guides - POST - GET - PUT - DELETE", () => {
     expect(res.data.success).toBe(true);
 
     // check if title matches
-    expect(res.data.data.title).toMatch(newGuideTwoRight.title);
+    expect(res.data.data.nameIdentifier).toMatch(
+      newGuideTwoRight.nameIdentifier
+    );
   });
 
   // 6. GET a specifc guide the first posted
+  test(`6. GET a specifc guide the first posted - Must return {success:true}`, async () => {
+    const res = await getData(
+      createObj({
+        method: "GET",
+        url: BASEurl + "/" + newGuideOneRight.nameIdentifier,
+        token: tokenToSend,
+      })
+    );
+    expect.assertions(2);
+    // check length and test it
+    expect(res.data.success).toBe(true);
+
+    // check if title matches
+    expect(res.data.data.nameIdentifier).toMatch(
+      newGuideOneRight.nameIdentifier
+    );
+  });
 
   // 7. GET a specifc guide the second posted
+  test(`7. GET a specifc guide the second posted - Must return {success:true}`, async () => {
+    const res = await getData(
+      createObj({
+        method: "GET",
+        url: BASEurl + "/" + newGuideTwoRight.nameIdentifier,
+        token: tokenToSend,
+      })
+    );
+    expect.assertions(2);
+    // check length and test it
+    expect(res.data.success).toBe(true);
+
+    // check if title matches
+    expect(res.data.data.nameIdentifier).toMatch(
+      newGuideTwoRight.nameIdentifier
+    );
+  });
 
   // 8. GET all the guides of a user
+  test(`8. GET all the guides of a user - Must return {success:true}`, async () => {
+    const res = await getData(
+      createObj({
+        method: "GET",
+        url: BASEurl,
+        token: tokenToSend,
+      })
+    );
+    expect.assertions(2);
+    // check length and test it
+    expect(res.data.success).toBe(true);
 
-  // 9. PUT update the first posted guide
+    // check if title matches
+    expect(res.data.data).toHaveLength(res.data.data.length);
+  });
 
-  // 10. PUT update without permission
+  // 9. PUT update a guide the first posted guide
+  test(`9. PUT update a guide the first posted guide - Must return {success:true}`, async () => {
+    const res = await getData(
+      createObj({
+        method: "PUT",
+        url: BASEurl + "/" + newGuideOneRight.nameIdentifier,
+        token: tokenToSend,
+        data: newGuideOneUpdate,
+      })
+    );
 
-  // 11. DELETE without permission
+    expect.assertions(2);
+    // check length and test it
+    expect(res.data.success).toBe(true);
+
+    // check if title matches
+    expect(res.data.data.nameIdentifier).toMatch(
+      newGuideOneUpdate.nameIdentifier
+    );
+  });
+
+  // 10. PUT update a guide without permission
+  test(`10. PUT update a guide without permission - Must return {success:false}`, async () => {
+    const res = await getData(
+      createObj({
+        method: "PUT",
+        url: BASEurl + "/" + newGuideOneRight.nameIdentifier,
+        token: tokenToSend + "JKJ",
+        data: newGuideOneUpdate,
+      })
+    );
+    expect.assertions(3);
+
+    // false
+    expect(res.response.data.success).toBe(false);
+    // msg
+    expect(res.response.data.message).toBe("No valid Token!");
+    // status
+    expect(res.response.data.status).toBe(401);
+  });
+
+  // 11. DELETE guide without permission
+  test(`11. DELETE guide without permission - Must return {success:false}`, async () => {
+    const res = await getData(
+      createObj({
+        method: "DELETE",
+        url: BASEurl + "/" + newGuideOneRight.nameIdentifier,
+        token: tokenToSend + "JKJ",
+        data: newGuideOneUpdate,
+      })
+    );
+    expect.assertions(3);
+
+    // false
+    expect(res.response.data.success).toBe(false);
+    // msg
+    expect(res.response.data.message).toBe("No valid Token!");
+    // status
+    expect(res.response.data.status).toBe(401);
+  });
 
   // 12. DELETE the first guide
+  test(`12. DELETE the first UPDATED guide - Must return {success:true}`, async () => {
+    const res = await getData(
+      createObj({
+        method: "DELETE",
+        url: BASEurl + "/" + newGuideOneUpdate.nameIdentifier,
+        token: tokenToSend,
+      })
+    );
+
+    expect.assertions(2);
+    // check length and test it
+    expect(res.data.success).toBe(true);
+
+    // check if title matches
+    expect(res.data.data.nameIdentifier).toMatch(
+      newGuideOneUpdate.nameIdentifier
+    );
+  });
 
   // 13. DELETE the second guide
+  test(`13. DELETE the second guide - Must return {success:true}`, async () => {
+    const res = await getData(
+      createObj({
+        method: "DELETE",
+        url: BASEurl + "/" + newGuideTwoRight.nameIdentifier,
+        token: tokenToSend,
+      })
+    );
+
+    expect.assertions(2);
+    // check length and test it
+    expect(res.data.success).toBe(true);
+
+    // check if title matches
+    expect(res.data.data.nameIdentifier).toMatch(
+      newGuideTwoRight.nameIdentifier
+    );
+  });
 });
