@@ -14,11 +14,11 @@ const User = require("../models/User");
  */
 
 exports.get = async (req, res, next) => {
-  const { id } = req.user.id;
-
+  const { id } = req.user;
   try {
     // look for the user
     const user = await User.findById(id).select("-password");
+
     // return
     return res.json({ success: true, data: user });
   } catch (error) {

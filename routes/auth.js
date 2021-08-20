@@ -6,10 +6,10 @@
 const express = require("express");
 const Router = express.Router();
 
-//validators
+// middleware / validators
+const auth = require("../middleware/auth");
 
 //  CTRLs
-
 const { get, post } = require("../controllers/auth");
 
 /**
@@ -21,12 +21,12 @@ const { get, post } = require("../controllers/auth");
  * @desc  get info of the authenticated user
  * @access Private
  */
-Router.get("/", get);
+Router.get("/", auth, get);
 
 /**
  * @route POST /api/auth
  * @desc  to get a token
- * @access Private
+ * @access Public
  */
 
 Router.post("/", post);

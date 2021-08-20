@@ -6,7 +6,7 @@
 const express = require("express");
 const Router = express.Router();
 
-// validators
+// middleware / validators
 
 // CTRLs
 
