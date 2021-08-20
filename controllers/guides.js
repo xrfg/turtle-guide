@@ -114,7 +114,19 @@ exports.put = async (req, res, next) => {
 };
 
 exports.del = async (req, res, next) => {
+  // extract name from params
+  const { name } = req.params;
+
   try {
+    // find and update the item using nameIdentifier
+    const guide = await Guide.findOneAndDelete({ nameIdentifier: name });
+
+    // return
+    return res.json({
+      success: true,
+      msg: "Item Deleted sucessfully!",
+      data: guide,
+    });
   } catch (error) {
     /**
      * @desc sends error to the global error middleware
