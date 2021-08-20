@@ -11,7 +11,7 @@ const { auth } = require("../middleware/auth");
 // const { userEmailValidator } = require("../middleware/validators");
 
 // CTRLs
-const { get, post } = require("../controllers/guides");
+const { get, post, put, del } = require("../controllers/guides");
 
 /**
  * @desc Routes
@@ -40,5 +40,28 @@ Router.get("/:name", get);
  */
 
 Router.post("/", post);
+
+/**
+ * @route PUT /api/guides
+ * @desc  update a guide
+ * @access Private
+ */
+
+/**
+ * @TODO add auth
+ */
+Router.put("/:name", put);
+
+/**
+ * @route DEL /api/guides
+ * @desc  update a guide
+ * @access Private
+ */
+
+/**
+ * @TODO add auth
+ */
+
+Router.delete("/:name", del);
 
 module.exports = Router;

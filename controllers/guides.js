@@ -80,6 +80,51 @@ exports.post = async (req, res, next) => {
   }
 };
 
-exports.put = async (req, res, next) => {};
+exports.put = async (req, res, next) => {
+  // extract name from params
+  const { name } = req.params;
+  console.log("name", name);
+  console.log("req.body", req.body);
+  try {
+    // find and update the item using nameIdentifier
+    const guide = await Guide.findOneAndUpdate(
+      { nameIdentifier: name },
+      req.body,
+      {
+        new: true,
+      }
+    );
 
-exports.del = async (req, res, next) => {};
+    // return
+    return res.json({
+      success: true,
+      msg: "Item updated sucessfully!",
+      data: guide,
+    });
+  } catch (error) {
+    /**
+     * @desc sends error to the global error middleware
+     */
+    return next({
+      success: false,
+      message: error,
+      status: 404,
+      error: `${error}`,
+    });
+  }
+};
+
+exports.del = async (req, res, next) => {
+  try {
+  } catch (error) {
+    /**
+     * @desc sends error to the global error middleware
+     */
+    return next({
+      success: false,
+      message: error,
+      status: 404,
+      error: `${error}`,
+    });
+  }
+};
