@@ -7,9 +7,9 @@ const express = require("express");
 const Router = express.Router();
 
 // middleware / validators
+const { signupValidator } = require("../middleware/validators");
 
 // CTRLs
-
 const { post } = require("../controllers/users");
 
 /**
@@ -22,6 +22,6 @@ const { post } = require("../controllers/users");
  * @access Private
  */
 
-Router.post("/", post);
+Router.post("/", signupValidator, post);
 
 module.exports = Router;

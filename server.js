@@ -46,14 +46,14 @@ app.use((req, res, next) => {
 });
 
 /**
- * @desc Global erorr middleware
+ * @desc Global Error Handler middleware
  */
 
 app.use((err, req, res, next) => {
   // default 500
   res.status(err.status || 500).send({
     success: false,
-    message: "Something went wrong!",
+    message: err.message || "Something went wrong!",
     status: err.status,
     error: err.error,
   });
