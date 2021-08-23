@@ -31,6 +31,7 @@
     "mongoose": "^5.13.7",
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.1.6",
+    "win-node-env": "^0.4.0",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
