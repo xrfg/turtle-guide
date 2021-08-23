@@ -1,9 +1,9 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const swaggerUi = require("swagger-ui-express");
 
 // Mongo Connection
-
 const connectDB = require("./config/db");
 
 // PORT
@@ -13,6 +13,11 @@ const PORT = process.env.PORT;
  * @desc Connect MONGO
  */
 connectDB();
+
+/*
+ * @desc
+ */
+const YAML = require("yamljs");
 
 /**
  * @desc external middleware
@@ -33,6 +38,13 @@ app.use(cors());
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/users", require("./routes/users"));
 app.use("/api/guides", require("./routes/guides"));
+
+/**
+ * @desc Swagger UI
+ */
+
+const swaggerDocument = YAML.load("./config/guide.yml");
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 /**
  * @desc page not found middleware
