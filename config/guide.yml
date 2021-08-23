@@ -17,7 +17,7 @@ paths:
   /guides:
     get:
       description: Returns all the guides created by the owner. It gets the owner from the token.
-      # operationId: findPets
+      operationId: findPets
       responses:
         "200":
           description: data response
