@@ -12,7 +12,7 @@ const dbOptions = {
 const connectDB = async () => {
   try {
     await mongoose.connect(db, dbOptions);
-    await mongoose.connection.db.dropCollection("guides");
+    // await mongoose.connection.db.dropCollection("guides");
 
     console.log(`MongoDB connected...`);
   } catch (err) {

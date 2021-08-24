@@ -17,22 +17,28 @@ paths:
   /guides:
     get:
       description: Returns all the guides created by the owner. It gets the owner from the token.
-      operationId: findPets
+      operationId: getGuide
+      security:
+        - bearerAuth: []
       responses:
         "200":
-          description: data response
+          description: guide response
           content:
             application/json:
               schema:
-                type: object
-                items:
-                  $ref: "#/components/schemas/AllData"
+                $ref: "#/components/schemas/GuideAdd"
         default:
           description: unexpected error
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+        "401":
+          description: Invalid Token Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/UnauthorizedError"
     post:
       description: Creates a new guide.
       operationId: addGuide
@@ -140,3 +146,25 @@ components:
           format: int32
         message:
           type: string
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              error:
+                type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
