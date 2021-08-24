@@ -4,6 +4,7 @@ import "./app.scss";
 import Guide from "./Components/Guide/Guide";
 import Account from "./Pages/Account/Account";
 import Navbar from "./Components/Navbar/Navbar";
+import Footer from "./Components/Footer/Footer.js"
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Guide />
           </Route>
         </Switch>
+        <Footer />
       </div>
     </BrowserRouter>
   );
