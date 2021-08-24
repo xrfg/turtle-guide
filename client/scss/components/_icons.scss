@@ -1,0 +1,20 @@
+.icons-social {
+  padding: 10px;
+  font-size: 20px;
+  display: flex;
+  float: $menu-position;
+
+  & ul {
+    display: flex;
+    float: $menu-position;
+
+    & li {
+      padding-right: 10px;
+    }
+    & :hover {
+      cursor: pointer;
+      color: white;
+      transition: all 0.3s;
+    }
+  }
+}

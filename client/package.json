@@ -17,6 +17,7 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
+    "sass": "node-sass --source-map src/css/main.css.map --output-style compressed -w scss -o src/css --recursive",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

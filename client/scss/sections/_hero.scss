@@ -1,0 +1,90 @@
+.heroSection {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--primary-color);
+
+  &__header {
+    grid-template-columns: repeat(3, 1fr);
+    @include respond(phone) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__content {
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    padding-top: 100px;
+
+    @include respond(tablet) {
+      padding-bottom: 250px;
+    }
+
+    & > .imageBox {
+      @include respond(tablet) {
+        grid-row: 1;
+      }
+    }
+
+    & > .contentBox > .btn {
+      justify-content: center;
+      text-align: center;
+    }
+  }
+}
+
+.logo {
+  grid-column: 1 / 2;
+}
+.text-left {
+  text-align: left;
+}
+.text {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 178.7%;
+}
+.title {
+  font-family: 'Nunito', sans-serif;
+  font-size: 42px;
+  @include respond(tablet) {
+    text-align: center;
+  }
+}
+.menu {
+  grid-column: 2 / 4;
+  align-items: center;
+  justify-content: flex-end;
+
+  @include respond(phone) {
+    display: block;
+    margin: 0 auto;
+  }
+}
+.menu > ul > li > a {
+  margin: 10px;
+  @include respond(phone) {
+    margin: 40px;
+  }
+}
+// .heroSection__content > .contentBox > .btn {
+//   justify-content: center;
+//   text-align: center;
+// }
+
+.btn--hero {
+  @include respond(phone) {
+    margin-top: 20px;
+    margin-left: 170px;
+  }
+}
+
+.buttonsBox {
+  align-items: center;
+  justify-content: flex-end;
+  @include respond(tablet) {
+    justify-content: center;
+    padding: 40px;
+  }
+}

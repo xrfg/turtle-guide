@@ -1,9 +1,13 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import "./app.scss";
 import Guide from "./Components/Guide/Guide";
 import Account from "./Pages/Account/Account";
 import Navbar from "./Components/Navbar/Navbar";
+
+/**
+ * @description default CSS from SASS
+ */
+import "./css/main.css";
 
 function App() {
   return (

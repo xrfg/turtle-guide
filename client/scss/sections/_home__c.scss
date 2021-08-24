@@ -1,0 +1,43 @@
+.forms-example {
+  background-color: #6e7dab;
+}
+
+.row-1 {
+  & .col-12 {
+    & p {
+      color: white;
+    }
+  }
+}
+
+#home-c {
+  // height: 40vh;
+  max-height: 400px;
+  margin-bottom: 5rem;
+  .items > div {
+    @include center-x-y(100%, 100%);
+
+    & p {
+      font-size: 1.3rem;
+      font-weight: $thin;
+    }
+    & img {
+      @include center-x-y(100%, 90%);
+    }
+  }
+
+  & .stars {
+    width: 150px;
+  }
+  & .row {
+    &.item-columns {
+      & .col-12 {
+        margin-top: -45px;
+      }
+      & .col-8 {
+        color: orange;
+        margin-left: -30px;
+      }
+    }
+  }
+}

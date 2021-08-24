@@ -1,0 +1,35 @@
+@import "../variables/colors";
+
+:root {
+  font-weight: $thin;
+}
+
+h4 {
+  font-weight: $normal;
+  color: #575366;
+}
+
+.full-col {
+  // margin: 10px 0 10px 0;
+  // padding: 10px;
+  color: #32292f;
+  background-color: #d1e3dd;
+}
+.half-col {
+  // margin: 10px 0 10px 0;
+  // padding: 10px;
+  color: white;
+  background-color: #5762d5;
+}
+.third-col {
+  // margin: 10px 0 10px 0;
+  // padding: 10px;
+  color: white;
+  background-color: #6e7dab;
+}
+
+.multi-row {
+  & * {
+    background-color: #6977b6;
+  }
+}

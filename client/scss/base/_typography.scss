@@ -1,0 +1,58 @@
+body {
+  font-family: $font-family-primary;
+  overflow-x: hidden;
+}
+
+li {
+  list-style: none;
+}
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.4rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+h6 {
+  font-size: 0.8rem;
+}
+
+// TONES & WEIGHT
+.text- {
+  &white {
+    color: white;
+  }
+  &grey {
+    color: grey;
+  }
+  &black {
+    color: black;
+  }
+  &normal {
+    font-weight: $normal;
+  }
+  &bold {
+    font-weight: $bold;
+  }
+  &thin {
+    font-weight: $thin;
+  }
+}

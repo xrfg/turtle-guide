@@ -1,0 +1,51 @@
+@import "../variables/colors";
+
+.footer {
+}
+
+#footer-bottom {
+  background-color: $footer-bottom;
+  margin-top: 0;
+  // height: 20px;
+  // padding: 20px;
+
+  height: 60px;
+  .disclamer {
+    margin-top: 0;
+    height: 20px;
+    padding: 5px;
+    color: white;
+  }
+}
+
+#footer {
+  background-color: $footer;
+  margin-top: 0;
+  height: 30vh;
+  color: white;
+  // background-color: $bg-color-first-page;
+  @include center-x-y(100%, 100%);
+
+  & p {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: $thin;
+  }
+
+  & a {
+    color: white;
+    font-weight: $thin;
+  }
+
+  .icons-social i {
+    padding: 10px;
+    font-size: 20px;
+    display: flex;
+    float: $menu-position;
+    &:hover {
+      cursor: pointer;
+      color: orange;
+      transition: all 0.3s;
+    }
+  }
+}
