@@ -5,6 +5,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import { NavLink, Link, useHistory } from "react-router-dom";
 
+import Account from "../../Pages/Account/Account";
+
 // MatUI
 import Button from "@material-ui/core/Button";
 import MenuList from "@material-ui/core/MenuList";
@@ -25,13 +27,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Menu = () => {
-  // RRD
+  // React Router DOM
   const history = useHistory();
 
+  // Mat UI Classes
   const classes = useStyles();
+
+  // states
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
 
+  // Drop down handlers
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
@@ -69,7 +75,10 @@ const Menu = () => {
           ref={anchorRef}
           aria-controls="{open ? 'menu-list-grow' : undefined}"
           aria-haspopup="true"
-          onClick={handleToggle}
+          // FOR CLICK
+          // onClick={handleToggle}
+          // FOR OVER
+          onMouseOver={handleToggle}
         >
           Account
         </Button>
@@ -94,8 +103,12 @@ const Menu = () => {
                     autoFocusItem={open}
                     id="menu-list-grow"
                     onKeyDown={handleListKeyDown}
+                    // REMOVE
+                    // MenuListProps={{ onMouseLeave: handleClose }}
                   >
-                    <MenuItem onClick={handleClose}>Admin</MenuItem>
+                    <MenuItem>
+                      <Link to="/account">Admin</Link>
+                    </MenuItem>
                     <MenuItem onClick={handleClose}>Current Events</MenuItem>
                     <MenuItem onClick={handleClose}>New Events</MenuItem>
                   </MenuList>
