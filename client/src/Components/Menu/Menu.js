@@ -5,17 +5,23 @@
 import React, { useState, useRef, useEffect } from "react";
 import { NavLink, Link, useHistory } from "react-router-dom";
 
-import Account from "../../Pages/Account/Account";
-
 // MatUI
 import Button from "@material-ui/core/Button";
 import MenuList from "@material-ui/core/MenuList";
-import MenuItem from "@material-ui/core/MenuItem";
+// import MenuItem from "@material-ui/core/MenuItem";
+
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
 import Popper from "@material-ui/core/Popper";
 import { makeStyles } from "@material-ui/core/styles";
+
+/*
+ * @desc It Forwards the <MenuItem/> of Mat UI
+ * @desc PROPS: onClick (default: null), title (can a String or a Component)
+ *
+ */
+import MenuItem from "../MenuItem/MenuItem";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -106,11 +112,9 @@ const Menu = () => {
                     // REMOVE
                     // MenuListProps={{ onMouseLeave: handleClose }}
                   >
-                    <MenuItem>
-                      <Link to="/account">Admin</Link>
-                    </MenuItem>
-                    <MenuItem onClick={handleClose}>Current Events</MenuItem>
-                    <MenuItem onClick={handleClose}>New Events</MenuItem>
+                    <MenuItem title={<Link to="/account">Admin</Link>} />
+                    <MenuItem onClick={handleClose} title={"Current Events"} />
+                    <MenuItem onClick={handleClose} title={"New Events"} />
                   </MenuList>
                 </ClickAwayListener>
               </Paper>
