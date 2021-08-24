@@ -16,11 +16,13 @@ const Navbar = ({ user }) => {
   //
 
   /*
-  * @desc Menu array that will be rendered into <Menu/> 
-  * @this make it dynamic
-  */
-  
-  const arrMenu = [{ title: "", className: "dropdown-item", to: "/create-event" }];
+   * @desc Menu array that will be rendered into <Menu/>
+   * @this make it dynamic
+   */
+
+  // const arrMenu = [
+  //   { title: "", className: "dropdown-item", to: "/create-event" },
+  // ];
 
   return (
     <nav class="navbar navbar-expand-md navbar-light bg-light">
@@ -31,7 +33,7 @@ const Navbar = ({ user }) => {
         </Link>
       </div>
       {/* MENU */}
-      <Menu menu={ }/>
+      {/* <Menu menu={ }/> */}
     </nav>
   );
 };
