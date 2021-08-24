@@ -4,6 +4,7 @@ import "./app.scss";
 import Guide from "./Components/Guide/Guide";
 import Account from "./Pages/Account/Account";
 import Navbar from "./Components/Navbar/Navbar";
+import Form from "./Pages/SignUp/Form"
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
           <Route exact path="/">
             <h1>My React App</h1>
             <h2>if the route is "/guide" display Guide wraping component</h2>
+          </Route>
+          <Route exact path="/form">
+           <Form/>
           </Route>
           <Route path="/account" component={Account} />
 
