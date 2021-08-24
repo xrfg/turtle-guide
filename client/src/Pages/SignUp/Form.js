@@ -47,6 +47,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Form() {
+  const handleFormSubmit=(event)=>{
+    event.preventDefault();
+  }
+
   const classes = useStyles();
 
   return (
@@ -84,6 +88,30 @@ export default function Form() {
                 autoComplete="lname"
               />
             </Grid>
+            {/* company */}
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="company"
+                label="Company"
+                name="company"
+                autoComplete="com"
+              />
+            </Grid>
+            {/* account name */}
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="accountName"
+                label="Account Name"
+                name="accountName"
+                autoComplete="aname"
+              />
+            </Grid>
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -119,7 +147,8 @@ export default function Form() {
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}
+            className={classes.submit} 
+            onClick={handleFormSubmit}
           >
             Sign Up
           </Button>
