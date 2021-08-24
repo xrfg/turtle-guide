@@ -10,16 +10,6 @@ import { NavLink, Link, useHistory } from "react-router-dom";
 import Menu from "../Menu/Menu";
 
 const Navbar = ({ user }) => {
-  // decostruct
-  // const {} = user
-
-  //
-
-  /*
-   * @desc Menu array that will be rendered into <Menu/>
-   * @this make it dynamic
-   */
-
   const arrMenu = [
     { title: "", className: "dropdown-item", to: "/create-event" },
   ];
@@ -31,9 +21,9 @@ const Navbar = ({ user }) => {
         <Link className="navbar-brand" to="/">
           Turtle Guide
         </Link>
+        {/* MENU */}
       </div>
-      {/* MENU */}
-      {/* <Menu menu={ }/> */}
+      <Menu />
     </nav>
   );
 };

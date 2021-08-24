@@ -2,49 +2,112 @@
  * @desc Menu Component
  * @desc contains all the menu items
  */
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { NavLink, Link, useHistory } from "react-router-dom";
 
-const Menu = (props) => {
+// MatUI
+import Button from "@material-ui/core/Button";
+import MenuList from "@material-ui/core/MenuList";
+import MenuItem from "@material-ui/core/MenuItem";
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import Grow from "@material-ui/core/Grow";
+import Paper from "@material-ui/core/Paper";
+import Popper from "@material-ui/core/Popper";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+  },
+  paper: {
+    marginRight: theme.spacing(2),
+  },
+}));
+
+const Menu = () => {
   // RRD
   const history = useHistory();
+
+  const classes = useStyles();
+  const [open, setOpen] = useState(false);
+  const anchorRef = useRef(null);
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  function handleListKeyDown(event) {
+    if (event.key === "Tab") {
+      event.preventDefault();
+      setOpen(false);
+    }
+  }
+
+  // return focus to the button when we transitioned from !open -> open
+  const prevOpen = useRef(open);
+  useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current.focus();
+    }
+
+    prevOpen.current = open;
+  }, [open]);
+
   return (
-    <div className="container-fluid justify-content-sm-start justify-content-md-end justify-content-lg-end  ">
-      <ul className="navbar-nav">
-        <li className="nav-item dropdown">
-          <Link
-            className="nav-link dropdown-toggle"
-            to="/"
-            id="navbarDropdownMenuLink"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Account
-          </Link>
-          <ul
-            className="dropdown-menu"
-            aria-labelledby="navbarDropdownMenuLink"
-          >
-            <li>
-              <Link className="dropdown-item" to="/account">
-                Admin Page
-              </Link>
-            </li>
-            <li>
-              <Link className="dropdown-item" to="/current">
-                Current Events
-              </Link>
-            </li>
-            <li>
-              <Link className="dropdown-item" to="/create-event">
-                New Event
-              </Link>
-            </li>
-          </ul>
-        </li>
-        <li
-          className="nav-item"
+    <div className={classes.root}>
+      <div>
+        {/* DROP DOWN START */}
+        <Button
+          ref={anchorRef}
+          aria-controls="{open ? 'menu-list-grow' : undefined}"
+          aria-haspopup="true"
+          onClick={handleToggle}
+        >
+          Account
+        </Button>
+        <Popper
+          open={open}
+          anchorEl={anchorRef.current}
+          role={undefined}
+          transition
+          disablePortal
+        >
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                transformOrigin:
+                  placement === "bottom" ? "center top" : "center bottom",
+              }}
+            >
+              <Paper>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList
+                    autoFocusItem={open}
+                    id="menu-list-grow"
+                    onKeyDown={handleListKeyDown}
+                  >
+                    <MenuItem onClick={handleClose}>Admin</MenuItem>
+                    <MenuItem onClick={handleClose}>Current Events</MenuItem>
+                    <MenuItem onClick={handleClose}>New Events</MenuItem>
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+        {/* DROP DOWN END */}
+        <Button
+          aria-controls="simple-menu"
+          aria-haspopup="true"
           onClick={() => {
             localStorage.clear();
             history.push("/");
@@ -52,11 +115,9 @@ const Menu = (props) => {
             window.location.reload();
           }}
         >
-          <Link className="nav-link active" /* aria-current="page" */ to="/">
-            Log out
-          </Link>
-        </li>
-      </ul>
+          Log out
+        </Button>
+      </div>
     </div>
   );
 };
