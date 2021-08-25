@@ -75,7 +75,7 @@ const Menu = () => {
 
   return (
     <div className={classes.root}>
-      <div>
+      <div className="menu">
         {/* DROP DOWN START */}
         <Button
           ref={anchorRef}

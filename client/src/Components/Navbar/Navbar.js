@@ -17,13 +17,13 @@ const Navbar = ({ user }) => {
   return (
     <nav class="navbar navbar-expand-md navbar-light bg-light">
       {/* LOGO Clickable */}
-      <div className="container-fluid">
+      <div className="container-fluid menu">
         <Link className="navbar-brand" to="/">
           Turtle Guide
         </Link>
         {/* MENU */}
+        <Menu />
       </div>
-      <Menu />
     </nav>
   );
 };
