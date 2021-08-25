@@ -1,7 +1,13 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Guide from "./Components/Guide/Guide";
+
+// REDUX
+import { Provider } from "react-redux";
+import Store from "./store/index";
+
+// IMPORTS Pages/Componets
 import Account from "./Pages/Account/Account";
+import Guide from "./Components/Guide/Guide";
 import Navbar from "./Components/Navbar/Navbar";
 
 /**
@@ -11,22 +17,23 @@ import "./css/main.css";
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Navbar />
-        <Switch>
-          <Route exact path="/">
-            <h1>My React App</h1>
-            <h2>if the route is "/guide" display Guide wraping component</h2>
-          </Route>
-          <Route path="/account" component={Account} />
-
-          <Route path="/guide">
-            <Guide />
-          </Route>
-        </Switch>
-      </div>
-    </BrowserRouter>
+    <Provider store={Store}>
+      <BrowserRouter>
+        <div className="App">
+          <Navbar />
+          <Switch>
+            <Route exact path="/">
+              <h1>My React App</h1>
+              <h2>if the route is "/guide" display Guide wraping component</h2>
+            </Route>
+            <Route path="/account" component={Account} />
+            <Route path="/guide">
+              <Guide />
+            </Route>
+          </Switch>
+        </div>
+      </BrowserRouter>
+    </Provider>
   );
 }
 
