@@ -1,4 +1,10 @@
-import React, { useState, useEffect } from "react";
+/* 
+? Event Page at route /create-event either for creating a new event or editing an existing one
+*/
+
+import React, { useState } from "react";
+
+// * material UI imports
 import {
   Container,
   Grid,
@@ -11,61 +17,90 @@ import {
   TextField,
   Button,
   ButtonGroup,
-  FormControl,
   makeStyles,
 } from "@material-ui/core";
-import { Add, Delete } from "@material-ui/icons";
+import { Add, Delete, Save } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
+  nameInput: { width: "26rem" },
+  saveBtn: {
+    height: "100%",
+    alignSelf: "center",
+  },
+  deleteBtn: {},
+
   btnGrp: {
     display: "flex",
-    "& > *": {
-      margin: theme.spacing(1),
-    },
   },
+  card: {},
 }));
 
 export default function Event(props) {
-  let arr = []; /* making this arr to put inside of sections bc async */
-
-  const [sections, setSections] = useState(arr);
-  const [section, setSection] = useState({});
-  const [rerender, setRerender] = useState(false);
-
   const classes = useStyles(props);
 
-  /*  firing setState to re render components and show the sections*/
-  useEffect(() => {
-    setRerender(!rerender);
-  }, [sections]);
+  // * States
+  const [sections, setSections] = useState([]);
+  const [eventName, setEventName] = useState("");
+
+  // onClick for Button adds a section to the content-container
+
+  // * Functions
+  const addSection = (e) => {
+    setSections([
+      ...sections,
+      {
+        title: "title",
+        description: "content",
+        id: "Id",
+        time: e.timeStamp,
+      },
+    ]);
+    console.log(sections);
+  };
+
+  // ? saves the TextField input w/ event's name
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(eventName);
+  };
 
   return (
-    <Container>
-      <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-        spacing={2}
-      >
-        <Grid item xs={12}>
-          <FormControl fullWidth>
+    <Container maxWidth="md">
+      <Grid container direction="row" justifyContent="start" spacing={2}>
+        {/* * Name Input */}
+        <Grid item xs={9}>
+          <form
+            onSubmit={(e) => {
+              handleSubmit(e);
+            }}
+            style={{ display: "flex" }}
+          >
             <TextField
-              id="standard-full-width"
-              label="Name"
+              required
+              id="eventName"
+              label="eventName"
+              type="text"
               style={{ margin: 8 }}
               defaultValue="name coming from the database ? event : null"
               placeholder="Name for the Event"
               helperText="This will be the public name of the Event"
               margin="normal"
+              className={classes.nameInput}
               InputLabelProps={{
                 shrink: true,
               }}
+              onChange={(e) => setEventName(e.target.value)}
             />
-          </FormControl>
+            <Button className={classes.saveBtn} type="submit">
+              <Save />
+            </Button>
+          </form>
+        </Grid>
 
+        {/* Delete Event */}
+        <Grid item xs={3} className={classes.deleteBtn}>
           <Button
-            /* create a modal to make sure the admin wants to delete the event */
+            // TODO create a modal to make sure the admin wants to delete the event
             onClick={() => alert("are you sure?")}
             color="secondary"
             endIcon={<Delete />}
@@ -81,13 +116,7 @@ export default function Event(props) {
           >
             <Button
               onClick={(e) => {
-                arr.push({
-                  title: "title",
-                  description: "content",
-                  id: "Id",
-                });
-                setSections(arr);
-                console.log(sections);
+                addSection(e);
               }}
               endIcon={<Add />}
             >
@@ -107,14 +136,13 @@ export default function Event(props) {
         <Grid item xs={8}>
           <Card className={classes.card}>
             <CardContent>
-              <Typography variant="h6" component="span">
+              <Typography variant="h6" component="h4">
                 Your Guide
               </Typography>
-              {/* displaying the current sections */}
-              {sections &&
-                sections.map((section, i) => {
-                  return <Paper key={i}>{section.title}</Paper>;
-                })}
+              {/* Displaying the current sections */}
+              {sections.map((section, i) => {
+                return <Paper key={i}>{section.title}</Paper>;
+              })}
             </CardContent>
           </Card>
         </Grid>
