@@ -1,4 +1,4 @@
-/*
+/**
  * @desc Navbar Component
  *
  */
@@ -11,15 +11,6 @@ import "./navbar.scss";
 import Menu from "../Menu/Menu";
 
 const Navbar = ({ user }) => {
-  /*
-   * Title
-   * * IMP
-   * ? S
-   * TODO
-   * @param
-   * //
-   */
-
   const arrMenu = [
     { title: "", className: "dropdown-item", to: "/create-event" },
   ];
@@ -31,7 +22,6 @@ const Navbar = ({ user }) => {
         <Link className="navbar-brand" to="/">
           Turtle Guide
         </Link>
-        {/* MENU */}
         <Menu />
       </div>
     </nav>
