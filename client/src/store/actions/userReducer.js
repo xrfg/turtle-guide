@@ -55,7 +55,9 @@ export const googleSearch = (entry) => {
           `https://www.googleapis.com/books/v1/volumes?q=${entry.title}+inauthor:${entry.author}&maxResults=${entry.results}&key=${API}`,
           entry
         );
+
         await dispatch({ type: GOOGLE_SEARCH, payload: res.data.items });
+
         return res;
       } else if (entry.isbn) {
         const res = await axios.get(

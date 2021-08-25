@@ -3,6 +3,9 @@
 // } from "../types";
 
 const initialState = {
+  isAuthenticated: false,
+  token: null,
+  accountIdenti: null,
   loading: false,
   error: null,
 };

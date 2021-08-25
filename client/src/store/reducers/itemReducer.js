@@ -3,6 +3,7 @@
 // } from "../types";
 
 const initialState = {
+  events: [],
   loading: false,
   error: null,
 };
@@ -14,7 +15,7 @@ export default initialState;
 //   //   case GOOGLE_SEARCH:
 //   //     return {
 //   //       ...state,
-//   //       googleSearch: action.payload,
+//   //       googleSearch: [...action.payload],
 //   //       loading: true,
 //   //     };
 //   //   case GOOGLE_SEARCH_ERROR:
