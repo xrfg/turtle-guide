@@ -7,7 +7,7 @@ import Navbar from "./Components/Navbar/Navbar";
 /**
  * @description default CSS from SASS
  */
-import "./css/main.css";
+// import "./css/main.css";
 
 function App() {
   return (

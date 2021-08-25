@@ -4,6 +4,7 @@
  */
 import React, { useState, useRef, useEffect } from "react";
 import { NavLink, Link, useHistory } from "react-router-dom";
+import "./menu.scss";
 
 // MatUI
 import Button from "@material-ui/core/Button";
@@ -75,7 +76,7 @@ const Menu = () => {
 
   return (
     <div className={classes.root}>
-      <div className="menu">
+      <div className="">
         {/* DROP DOWN START */}
         <Button
           ref={anchorRef}

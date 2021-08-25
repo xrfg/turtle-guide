@@ -8,6 +8,6 @@ Then you can choose:
 
 `npm start` for a normal just React start
 
-`npm run sass` for a SASS Start
+## IMPORTANT
 
-`npm run startCon` for React and SASS
+At the moment the dir `scss` is just as reference
