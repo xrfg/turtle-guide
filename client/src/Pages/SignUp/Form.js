@@ -49,24 +49,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Form() {
 // form
-  // const submit=async(event)=>{
-  //   event.preventDefault()
-  //   const firstname=await event.target.firstname.value
-  //   const lastname=await event.target.lastname.value
-  //   const email=await event.target.email.value
-  //   const message=await event.target.message.value
-  //   const formData=await {
-  //     firstname,
-  //     lastname,
-  //     email,
-  //     message
-  //   }
-  //   console.log(formData);
-  //  axios.post("http://localhost:6000/forms",formData).then((res)=>{
-  //    console.log(res)
-  //   //  window.location.replace("/")
-  //   }).catch(err=>console.log(err))}
-
   const[values, setValues] = useState({});
 
   const changeHandler = function(e){
