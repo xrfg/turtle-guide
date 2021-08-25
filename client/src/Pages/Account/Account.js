@@ -76,15 +76,16 @@ const Account = (props) => {
         </Grid>
         <Grid item xs={6}>
           <Card className={classes.card}>
-            <CardContent>
-              <Link className={classes.link} href="/aboutadmin">
-                <Link className={classes.link} to="/aboutadmin">
-                  <Typography variant="h3" component="span">
-                    About
-                  </Typography>
-                </Link>
-              </Link>
-            </CardContent>
+            <Link className={classes.link} to="/aboutadmin">
+              <CardContent>
+                {/* // TODO Check if first LINK is needed */}
+                {/* <Link className={classes.link} href="/aboutadmin"> */}
+                <Typography variant="h3" component="span">
+                  About
+                </Typography>
+                {/* </Link> */}
+              </CardContent>
+            </Link>
           </Card>
         </Grid>
       </Grid>
