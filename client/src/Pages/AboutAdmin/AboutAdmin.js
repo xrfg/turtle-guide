@@ -1,6 +1,19 @@
+/*
+? Component that creates/edit the info of the account (i.e. the museum)
+*/
 import React, { useState } from "react";
+
+// * Mat UI
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-import { Button, Container, Grid, Card,CardContent,Typography } from "@material-ui/core";
+import {
+  Button,
+  Container,
+  Grid,
+  Card,
+  CardContent,
+  Typography,
+} from "@material-ui/core";
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -17,7 +30,7 @@ const useStyles = makeStyles((theme) =>
       flexWrap: "wrap",
     },
     overview: {
-      height:"fit-content",
+      height: "fit-content",
     },
     input: {
       display: "none",
@@ -26,9 +39,27 @@ const useStyles = makeStyles((theme) =>
 );
 
 export default function AboutAdmin() {
-  const [overview, setOverview] = useState([]);
-
   const classes = useStyles();
+
+  // * set array to contain the contents
+  let arrContents = [];
+
+  // * Obj Content
+  const objContent = {
+    id: 1, // sequential unique id
+    type: "text", // it can be whatever
+    // the content
+    content: {
+      title: "title",
+      text: "text",
+    },
+  };
+
+  // * States
+  // state that contains all the contents
+  const [contents, setContents] = useState(arrContents);
+
+  // const [overview, setOverview] = useState([]);
 
   return (
     <Container>
@@ -123,9 +154,7 @@ export default function AboutAdmin() {
         </Grid>
         <Grid xs={6}>
           <Card className={classes.overview}>
-            <CardContent>
-
-            </CardContent>
+            <CardContent>ss</CardContent>
           </Card>
         </Grid>
       </Container>
