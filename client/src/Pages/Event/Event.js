@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Grid,
@@ -26,9 +26,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Event(props) {
-  const [intro, setIntro] = useState(false);
-  const [section, setSection] = useState();
+  let arr = []; /* making this arr to put inside of sections bc async */
+
+  const [sections, setSections] = useState(arr);
+  const [section, setSection] = useState({});
+  const [rerender, setRerender] = useState(false);
+
   const classes = useStyles(props);
+
+  /*  firing setState to re render components and show the sections*/
+  useEffect(() => {
+    setRerender(!rerender);
+  }, [sections]);
+
   return (
     <Container>
       <Grid
@@ -55,6 +65,7 @@ export default function Event(props) {
           </FormControl>
 
           <Button
+            /* create a modal to make sure the admin wants to delete the event */
             onClick={() => alert("are you sure?")}
             color="secondary"
             endIcon={<Delete />}
@@ -68,10 +79,18 @@ export default function Event(props) {
             color="primary"
             aria-label="vertical outlined primary button group"
           >
-            <Button onClick={() => setIntro(true)} endIcon={<Add />}>
-              Intro
-            </Button>
-            <Button onClick={() => setSection("section")} endIcon={<Add />}>
+            <Button
+              onClick={(e) => {
+                arr.push({
+                  title: "title",
+                  description: "content",
+                  id: "Id",
+                });
+                setSections(arr);
+                console.log(sections);
+              }}
+              endIcon={<Add />}
+            >
               Section
             </Button>
           </ButtonGroup>
@@ -91,12 +110,11 @@ export default function Event(props) {
               <Typography variant="h6" component="span">
                 Your Guide
               </Typography>
-              {intro ? (
-                <>
-                  <Paper>paper1</Paper>
-                </>
-              ) : null}
-              {section ? "section" : null}
+              {/* displaying the current sections */}
+              {sections &&
+                sections.map((section, i) => {
+                  return <Paper key={i}>{section.title}</Paper>;
+                })}
             </CardContent>
           </Card>
         </Grid>
