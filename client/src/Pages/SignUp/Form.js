@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import axios from "axios"
 
 function Copyright() {
   return (
@@ -47,9 +48,54 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Form() {
-  const handleFormSubmit=(event)=>{
-    event.preventDefault();
+// form
+  // const submit=async(event)=>{
+  //   event.preventDefault()
+  //   const firstname=await event.target.firstname.value
+  //   const lastname=await event.target.lastname.value
+  //   const email=await event.target.email.value
+  //   const message=await event.target.message.value
+  //   const formData=await {
+  //     firstname,
+  //     lastname,
+  //     email,
+  //     message
+  //   }
+  //   console.log(formData);
+  //  axios.post("http://localhost:6000/forms",formData).then((res)=>{
+  //    console.log(res)
+  //   //  window.location.replace("/")
+  //   }).catch(err=>console.log(err))}
+
+  const[values, setValues] = useState({});
+
+  const changeHandler = function(e){
+    setValues({...values, [e.target.name]: e.target.value})
   }
+
+  const submitHandler = function(e){
+    e.preventDefault();
+console.log('request sent')
+    axios({
+      method: 'post',
+      url: 'http://localhost:5000/singup',
+      /* baseURL: 'http://localhost:5000',*/
+    
+      data: values 
+    }).then((res)=>{
+      console.log(res);
+    }).catch((err)=>{
+      console.log(err)
+    });
+    console.log(values);
+        window.location.replace("/")
+    
+  }
+
+
+// form
+
+
 
   const classes = useStyles();
 
@@ -63,7 +109,7 @@ export default function Form() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={submitHandler}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -74,7 +120,11 @@ export default function Form() {
                 fullWidth
                 id="firstName"
                 label="First Name"
-                autoFocus
+                autoFocus 
+                onChange={changeHandler}
+               
+            
+               
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -86,6 +136,8 @@ export default function Form() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+             
+                onChange={changeHandler}
               />
             </Grid>
             {/* company */}
@@ -98,6 +150,8 @@ export default function Form() {
                 label="Company"
                 name="company"
                 autoComplete="com"
+                
+                onChange={changeHandler}
               />
             </Grid>
             {/* account name */}
@@ -110,6 +164,8 @@ export default function Form() {
                 label="Account Name"
                 name="accountName"
                 autoComplete="aname"
+                
+                onChange={changeHandler}
               />
             </Grid>
             <Grid item xs={12}>
@@ -121,6 +177,8 @@ export default function Form() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+              
+                onChange={changeHandler}
               />
             </Grid>
             <Grid item xs={12}>
@@ -133,6 +191,7 @@ export default function Form() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={changeHandler}
               />
             </Grid>
             <Grid item xs={12}>
@@ -148,7 +207,7 @@ export default function Form() {
             variant="contained"
             color="primary"
             className={classes.submit} 
-            onClick={handleFormSubmit}
+            
           >
             Sign Up
           </Button>

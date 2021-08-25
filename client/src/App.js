@@ -20,7 +20,7 @@ function App() {
           <Route exact path="/singup">
            <Form/>
           </Route>
-          <Route exact path="/singin">
+          <Route exact path="/signin">
            <SignIn/>
           </Route>
           <Route path="/account" component={Account} />
