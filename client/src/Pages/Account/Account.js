@@ -78,7 +78,7 @@ const Account = (props) => {
           <Card className={classes.card}>
             <Link className={classes.link} to="/aboutadmin">
               <CardContent>
-                {/* // TODO Check if first LINK is needed */}
+                {/* // TODO Check if first LINK is needed or not */}
                 {/* <Link className={classes.link} href="/aboutadmin"> */}
                 <Typography variant="h3" component="span">
                   About
