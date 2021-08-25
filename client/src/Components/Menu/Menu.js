@@ -1,6 +1,6 @@
-/*
+/**
  * @desc Menu Component
- * @desc contains all the menu items
+ * contains all the menu items
  */
 import React, { useState, useRef, useEffect } from "react";
 import { NavLink, Link, useHistory } from "react-router-dom";
@@ -8,19 +8,19 @@ import "./menu.scss";
 
 // MatUI
 import Button from "@material-ui/core/Button";
-import MenuList from "@material-ui/core/MenuList";
+// import MenuList from "@material-ui/core/MenuList";
 // import MenuItem from "@material-ui/core/MenuItem";
 
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import Grow from "@material-ui/core/Grow";
-import Paper from "@material-ui/core/Paper";
-import Popper from "@material-ui/core/Popper";
+// import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+// import Grow from "@material-ui/core/Grow";
+// import Paper from "@material-ui/core/Paper";
+// import Popper from "@material-ui/core/Popper";
 import { makeStyles } from "@material-ui/core/styles";
 
-/*
- * @desc It Forwards the <MenuItem/> of Mat UI
- * @desc PROPS: onClick (default: null), title (can a String or a Component)
- *
+/**
+ * @desc It Forwards the <MenuItem/>
+ * @requires path i.e. path={"/admin"}
+ * @requires title i.e. title={"Admin Page"}
  */
 import MenuItem from "../MenuItem/MenuItem";
 
@@ -44,25 +44,25 @@ const Menu = () => {
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
 
-  // Drop down handlers
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
-  };
+  // // Drop down handlers
+  // const handleToggle = () => {
+  //   setOpen((prevOpen) => !prevOpen);
+  // };
 
-  const handleClose = (event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
+  // const handleClose = (event) => {
+  //   if (anchorRef.current && anchorRef.current.contains(event.target)) {
+  //     return;
+  //   }
 
-    setOpen(false);
-  };
+  //   setOpen(false);
+  // };
 
-  function handleListKeyDown(event) {
-    if (event.key === "Tab") {
-      event.preventDefault();
-      setOpen(false);
-    }
-  }
+  // function handleListKeyDown(event) {
+  //   if (event.key === "Tab") {
+  //     event.preventDefault();
+  //     setOpen(false);
+  //   }
+  // }
 
   // return focus to the button when we transitioned from !open -> open
   const prevOpen = useRef(open);
@@ -77,8 +77,10 @@ const Menu = () => {
   return (
     <div className={classes.root}>
       <div className="">
+        <MenuItem path={"account"} title={"Your Account"} />
+        {/* // ! IMPORTANT the old dropdown is still here in case we'll need it */}
         {/* DROP DOWN START */}
-        <Button
+        {/* <Button
           ref={anchorRef}
           aria-controls="{open ? 'menu-list-grow' : undefined}"
           aria-haspopup="true"
@@ -122,6 +124,7 @@ const Menu = () => {
             </Grow>
           )}
         </Popper>
+        {/* // ! IMPORTANT the old dropdown is still here in case we'll need it */}
         {/* DROP DOWN END */}
         <Button
           aria-controls="simple-menu"

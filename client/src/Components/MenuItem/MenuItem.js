@@ -1,20 +1,30 @@
-/*
+/**
  * @desc Single Menu Item for the Menu
- * @desc
  */
 
 import React from "react";
+import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
+
 import MenuItem from "@material-ui/core/MenuItem";
 
 const MenuItemCustom = (props) => {
-  /*
-   * @desc PROPS: onClick (default: null), title (can a String or a Component)
-   *
+  /**
+   * @desc PROPS: path, title (can a String or a Component)
    */
 
-  const { onClick = () => {}, title } = props;
+  const { path, title } = props;
 
-  return <MenuItem onClick={onClick}>{title}</MenuItem>;
+  return (
+    <Button
+      aria-controls="{open ? 'menu-list-grow' : undefined}"
+      aria-haspopup="true"
+      component={Link}
+      to={path}
+    >
+      {title}
+    </Button>
+  );
 };
 
 export default MenuItemCustom;

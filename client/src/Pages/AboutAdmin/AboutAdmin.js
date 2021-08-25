@@ -20,9 +20,8 @@ import ButtonBase from "@material-ui/core/ButtonBase";
 
 // * Pages
 
-// * Components
-
-// <ContentBlock />
+// ? Components
+// * <ContentBlock />
 // requires props "item" <ContentBlock item={}/>
 import ContentBlock from "../../Components/ContentBlock/ContentBlock";
 
