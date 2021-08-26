@@ -9,11 +9,11 @@ export default function Guide() {
   // Guide.js wraps all the VISITOR sees
   return (
     <BrowserRouter>
-    <Navbar/>
     {/* Wraping all the guide */}
       <div>
+    <Navbar/>
      
-         </div>;
+         </div>
       <Switch>
         <Route path="/">
           <Home />
