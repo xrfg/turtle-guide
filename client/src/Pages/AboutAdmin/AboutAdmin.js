@@ -70,45 +70,113 @@ export default function AboutAdmin() {
   // state that contains all the contents
   const [contents, setContents] = useState([]);
 
-  // TODO Integrate cloudinary
   // TODO Create Block with various options
   // TODO ICONS In block
+  // TODO Cloudinary authetication
+
+  //* Cloudinary setup
+  // setup for the widget cloudinary
+  let cloudinaryWidget = window.cloudinary.createUploadWidget(
+    {
+      cloudName: "dhdgj2ryu", // cloud name of the account
+      uploadPreset: "turtle_guide", // name of the created upload
+    },
+    (error, result) => {
+      // if error returns error
+      if (error) return console.log("Error on upload", error);
+      // calls function
+      checkCloudinaryUpload(result);
+    }
+  );
+  /**
+   * @function showCloudinaryWidget
+   * @desc Function that calls cloudinary
+   * @param widget i.e. showCloudinaryWidget(cloudinaryWidget)
+   */
+  const showCloudinaryWidget = (widget) => {
+    cloudinaryWidget.open();
+  };
+
+  /**
+   * @function checkCloudinaryUpload
+   * @desc Function that checks the results of cloudinary
+   * @param result i.e. checkCloudinaryUpload(result)
+   */
+  const checkCloudinaryUpload = async (result) => {
+    // if event ended
+    if (result.event === "queues-end") {
+      // temporary array to send into state
+      let arrTemp = [];
+      // map and send objects IMAGE
+      result.info.files.map((x, i) => {
+        // TODO TEST undefined
+        // if undefined
+        if (x == undefined) {
+          return console.log("Upload error");
+        }
+
+        // push objs created with the
+        // functions createObj AND objToSendImage
+        arrTemp.push(createObj(objToSendImage(x)));
+
+        // call function to set state
+        return addToContents(arrTemp);
+      });
+    }
+  };
+
+  // * Objects to send functions
+  // functions that are returning objs to create the content
+  // types: image, video,audio, text, qrcode
+
+  /**
+   * @function objToSendImage
+   * @param {obj}
+   * @desc creates an obj for the image
+   */
+  const objToSendImage = (obj) => {
+    const objToSend = {
+      type: "image",
+      content: {
+        url: obj.uploadInfo.url,
+        url_thumb: obj.uploadInfo.thumbnail_url,
+      },
+    };
+    return objToSend;
+  };
+
+  // * General Functions
 
   /**
    * @function createObj
-   * @param objType // image/text/video/
+   * @param {type:"image", content: {url:"http://...", url_thumb:"http://"}}
+   * @param {type:"text", content: {title:"Title", text:"text"}}
    * @return an obj
    * @desc create an obj to add
-   *
    */
 
-  const createObj = (objType) => {
+  const createObj = (obj) => {
     // create id based on the contents already into the array
     const id = contents.length === 0 ? 1 : contents[contents.length - 1].id + 1;
 
     // Obj Content
     const objContent = {
       id: id, // sequential unique id
-      type: objType, // it can be whatever
+      type: obj.type, // it can be whatever "text", "image", "video", "qrcode"
       // the content
-      content: {
-        title: "title",
-        text: "text",
-      },
+      content: obj.content,
     };
 
     return objContent;
   };
 
-  // * Functions
   /**
    * @function addToContents
-   * @param obj // obj to add
-   * @desc adds a content into the array "arr" and state "contents"
+   * @param newContentsArr // newContentsArr to add
+   * @desc adds a content into the state "contents" that will be mapped
    */
-
-  const addToContents = (obj) => {
-    setContents([...contents, obj]);
+  const addToContents = (newContentsArr) => {
+    setContents([...contents, ...newContentsArr]);
   };
 
   return (
@@ -131,7 +199,7 @@ export default function AboutAdmin() {
               variant="contained"
               color="primary"
               component="span"
-              onClick={() => addToContents(createObj("image"))}
+              onClick={() => showCloudinaryWidget(cloudinaryWidget)}
             >
               add Image
             </Button>
@@ -143,6 +211,15 @@ export default function AboutAdmin() {
               onClick={() => addToContents(createObj("video"))}
             >
               add Video
+            </Button>
+            <Button
+              size="small"
+              variant="contained"
+              color="primary"
+              component="span"
+              onClick={() => addToContents(createObj("audio"))}
+            >
+              add Audio
             </Button>
             <Button
               size="small"
@@ -162,10 +239,11 @@ export default function AboutAdmin() {
         <Grid container spacing={3}>
           <Grid xs={6} className={classes.gridContent}>
             <h3>Contents</h3>
+            {/* // ? map contents state */}
             {!contents
               ? null
               : contents.map((x, i) => {
-                  return <ContentBlock item={x} />;
+                  return <ContentBlock item={x} key={x.id} />;
                 })}
           </Grid>
           {/* // ? Preview */}

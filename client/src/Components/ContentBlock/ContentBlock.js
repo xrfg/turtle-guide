@@ -48,32 +48,30 @@ const ContentBlock = (props) => {
   const {
     id,
     type,
-    content: { title, text },
+    content: { url, url_thumb },
   } = props.item;
 
+  // console.log(props, url_thumb);
+
   return (
-    <Paper className={classes.paper}>
+    <Paper className={classes.paper} key={id}>
       <Grid container spacing={2}>
         <Grid item>
           <ButtonBase className={classes.image}>
-            <img
-              className={classes.img}
-              alt="complex"
-              src="/static/images/grid/complex.jpg"
-            />
+            <img className={classes.img} alt="complex" src={url_thumb} />
           </ButtonBase>
         </Grid>
         <Grid item xs={12} sm container>
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
               <Typography gutterBottom variant="subtitle1">
-                {title} {type}
+                {/* {title} {type} */}
               </Typography>
               <Typography variant="body2" gutterBottom>
-                {text}
+                {/* {text} */}
               </Typography>
               <Typography variant="body2" color="textSecondary">
-                {id}
+                {/* {id} */}
               </Typography>
             </Grid>
             <Grid item>
