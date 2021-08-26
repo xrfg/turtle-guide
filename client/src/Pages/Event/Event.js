@@ -2,7 +2,15 @@
 ? Event Page at route /create-event either for creating a new event or editing an existing one
 */
 
+// TODO ternary operator On each sections instead of a modal -> if editing SHOW INPUT : <span>title<span/>
+// TODO ADD A PEN(EDITING) icon to edit a sections title and desc
+// TODO do the same for NAME
+
 import React, { useState } from "react";
+
+// * Components Imports (children)
+import EventSection from "./EventSection";
+import EventName from "./EventName";
 
 // * material UI imports Components
 import {
@@ -18,20 +26,21 @@ import {
   Button,
   ButtonGroup,
   makeStyles,
+  Dialog,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  DialogTitle,
 } from "@material-ui/core";
 // * material UI imports Icons
 import { Add, Delete, Save, Forward } from "@material-ui/icons";
-
+// * material UI imports Theme CLASSES
+import { cardStyle } from "../../styles/Theme";
 const useStyles = makeStyles((theme) => ({
-  nameInput: { width: "26rem" },
-  saveBtn: {
-    height: "100%",
-    alignSelf: "center",
-  },
   deleteBtn: {
+    backgroundColor: theme.palette.common.purple,
     marginTop: 13,
   },
-
   btnGrp: {
     display: "flex",
     "& > *": {
@@ -39,14 +48,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   guide__header: { marginBottom: "1rem" },
-  card: { position: "relative", textAlign: "center", marginBottom: "1rem" },
-  card__title: {},
-  card__desc: {},
-  forwardIcon: {
-    position: "absolute",
-    top: 0,
-    right: 0,
-  },
 }));
 
 export default function Event(props) {
@@ -54,11 +55,21 @@ export default function Event(props) {
 
   // * States
   const [sections, setSections] = useState([]);
-  const [eventName, setEventName] = useState("");
+
+  const [openDeleteMsg, setOpenDeleteMsg] = useState(false);
 
   // onClick for Button adds a section to the content-container
 
   // * Functions
+
+  const handleClickDeleteOpen = () => {
+    setOpenDeleteMsg(true);
+  };
+
+  const handleClickDeleteClose = () => {
+    setOpenDeleteMsg(false);
+  };
+
   const addSection = (e) => {
     setSections([
       ...sections,
@@ -72,59 +83,52 @@ export default function Event(props) {
     console.log(sections);
   };
 
-  // ? saves the TextField input w/ event's name
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(eventName);
-  };
-
   return (
-    <Container maxWidth="md">
-      {/* 
-        // * Name of Event Input
-        */}
+    <Container style={{ padding: "2rem 0" }} maxWidth="md">
       <Grid container direction="row" spacing={2}>
         <Grid item xs={9}>
-          <form
-            onSubmit={(e) => {
-              handleSubmit(e);
-            }}
-            style={{ display: "flex" }}
-          >
-            <TextField
-              required
-              id="eventName"
-              label="eventName"
-              type="text"
-              style={{ margin: 8 }}
-              defaultValue="name coming from the database ? event : null"
-              placeholder="Name for the Event"
-              helperText="This will be the public name of the Event"
-              margin="normal"
-              className={classes.nameInput}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              onChange={(e) => setEventName(e.target.value)}
-            />
-            <Button className={classes.saveBtn} type="submit">
-              <Save />
-            </Button>
-          </form>
+          {/* 
+        // * Name of Event Input
+        */}
+          <EventName />
         </Grid>
 
         {/* 
         // * Delete Event 
         */}
-        <Grid item xs={3} className={classes.deleteBtn}>
-          <Button
-            // TODO create a modal to make sure the admin wants to delete the event
-            onClick={() => alert("are you sure?")}
-            endIcon={<Delete />}
-            className={classes.deleteBtn}
-          >
+        <Grid item xs={3}>
+          <Button className={classes.deleteBtn} onClick={handleClickDeleteOpen}>
             Delete Event
           </Button>
+          <Dialog
+            open={openDeleteMsg}
+            onClose={handleClickDeleteClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">
+              {`Are you sure you want to delete the EVENTNAME event?`}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Deleting an event will permanently erase it from the admin's
+                event collection. If you choose only to set it to private, check
+                settings.
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button
+                onClick={handleClickDeleteClose}
+                color="primary"
+                autoFocus
+              >
+                Cancel
+              </Button>
+              <Button onClick={handleClickDeleteClose} color="primary">
+                Delete
+              </Button>
+            </DialogActions>
+          </Dialog>
         </Grid>
 
         {/* 
@@ -168,37 +172,11 @@ export default function Event(props) {
                 Guide
               </Typography>
               {/* Displaying the current sections */}
-              {sections.map((section, i) => {
-                return (
-                  <Card className={classes.card} key={i}>
-                    <CardContent>
-                      <Typography
-                        className={classes.card__title}
-                        variant="h6"
-                        component="h6"
-                      >
-                        {section.title}
-                      </Typography>
-                      <Typography
-                        className={classes.card__desc}
-                        variant="subtitle1"
-                        component="p"
-                      >
-                        {section.description}
-                      </Typography>
-                    </CardContent>
-                    <CardActions>
-                      <Button
-                        href={`${section.url}`}
-                        className={classes.forwardIcon}
-                        size="small"
-                      >
-                        <Forward />
-                      </Button>
-                    </CardActions>
-                  </Card>
-                );
-              })}
+              <ul>
+                {sections.map((section, i) => {
+                  return <EventSection section={section} key={i} />;
+                })}
+              </ul>
             </CardContent>
           </Box>
         </Grid>
