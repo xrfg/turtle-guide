@@ -35,8 +35,12 @@ const useStyles = makeStyles((theme) =>
       maxWidth: 345,
     },
     // * Custom CSS
-    // Custom margins container
-    gridContainer: { marginTop: "10px", marginBottom: "10px" },
+    // Custom margins container buttons
+    gridContainer: {
+      marginTop: "10px",
+      marginBottom: "10px",
+      backgroundColor: theme.palette.common.blue,
+    },
     // Custom margins nested grid
     // ! Classes created but not styled yet
     containerGrids: {},
@@ -73,6 +77,7 @@ export default function AboutAdmin() {
   // TODO Create Block with various options
   // TODO ICONS In block
   // TODO Cloudinary authetication
+  // TODO Add widget cloudinary transformation
 
   //* Cloudinary setup
   // setup for the widget cloudinary
@@ -132,11 +137,15 @@ export default function AboutAdmin() {
   /**
    * @function objToSendImage
    * @param {obj}
-   * @desc creates an obj for the image
+   * @desc creates an obj for ad image OR a video
    */
   const objToSendImage = (obj) => {
+    console.log(obj);
+
+    // TODO add type image OR video
+
     const objToSend = {
-      type: "image",
+      type: "image", // video/mp4
       content: {
         url: obj.uploadInfo.url,
         url_thumb: obj.uploadInfo.thumbnail_url,
