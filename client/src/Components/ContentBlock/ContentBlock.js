@@ -18,23 +18,23 @@ const useStyles = makeStyles((theme) =>
       },
       maxWidth: 345,
     },
-    // mainContainer: {
-    //   display: "flex",
-    // },
-    // btnSection: {
-    //   display: "flex",
-    //   justifyContent: "space-between",
-    //   flexWrap: "wrap",
-    // },
-    // overview: {
-    //   height: "fit-content",
-    // },
-    // input: {
-    //   display: "none",
-    // },
-    // media: {
-    //   height: 140,
-    // },
+    mainContainer: {
+      display: "flex",
+    },
+    btnSection: {
+      display: "flex",
+      justifyContent: "space-between",
+      flexWrap: "wrap",
+    },
+    overview: {
+      height: "fit-content",
+    },
+    input: {
+      display: "none",
+    },
+    media: {
+      height: 140,
+    },
   })
 );
 

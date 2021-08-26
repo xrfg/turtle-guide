@@ -119,15 +119,19 @@ export default function AboutAdmin() {
       </Container>
       {/* // ? Contents container */}
       <Container maxWidth="sm">
+        {/* // ? Add content */}
         <Grid container spacing={3}>
           <Grid xs={6}>
+            <h3>Contents</h3>
             {!contents
               ? null
               : contents.map((x, i) => {
                   return <ContentBlock item={x} />;
                 })}
           </Grid>
+          {/* // ? Preview */}
           <Grid xs={6}>
+            <h3>Preview</h3>
             <Box bgcolor="text.primary" />
           </Grid>
         </Grid>

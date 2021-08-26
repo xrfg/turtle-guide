@@ -18,13 +18,19 @@ export const colors = {
 };
 
 export const theme = createTheme({
-  overrides: {
-    MuiFormLabel: {
-      root: {
-        lineHeight: "1.11",
-      },
-    },
-  },
+  // overrides: {
+  //   MuiFormLabel: {
+  //     root: {
+  //       lineHeight: "1.11",
+  //     },
+  //   },
+  // },
+  // root: {
+  //   fontFamily: "Raleway",
+  //   fontWeight: 800,
+  //   fontSize: "1.1rem",
+  //   textTransform: "uppercase",
+  // },
   palette: {
     common: {
       blue: `${colors.arcBlue}`,
