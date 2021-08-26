@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) =>
       },
       maxWidth: 345,
     },
+    paper: {
+      marginTop: "10px",
+    },
     mainContainer: {
       display: "flex",
     },

@@ -34,6 +34,15 @@ const useStyles = makeStyles((theme) =>
       },
       maxWidth: 345,
     },
+    // * Custom CSS
+    // Custom margins container
+    gridContainer: { marginTop: "10px", marginBottom: "10px" },
+    // Custom margins nested grid
+    // ! Classes created but not styled yet
+    containerGrids: {},
+    gridContent: {},
+    gridPreview: {},
+
     mainContainer: {
       display: "flex",
     },
@@ -103,8 +112,8 @@ export default function AboutAdmin() {
     <>
       <Container maxWidth="sm">
         {/* // ? Buttons container */}
-        <Grid container spacing={3}>
-          <Grid item xs={12} className={classes.btnSection}>
+        <Grid container spacing={3} className={classes.gridContainer}>
+          <Grid item xs={12}>
             <Button
               size="small"
               variant="contained"
@@ -118,10 +127,10 @@ export default function AboutAdmin() {
         </Grid>
       </Container>
       {/* // ? Contents container */}
-      <Container maxWidth="sm">
+      <Container maxWidth="sm" className={classes.containerGrids}>
         {/* // ? Add content */}
         <Grid container spacing={3}>
-          <Grid xs={6}>
+          <Grid xs={6} className={classes.gridContent}>
             <h3>Contents</h3>
             {!contents
               ? null
@@ -130,7 +139,7 @@ export default function AboutAdmin() {
                 })}
           </Grid>
           {/* // ? Preview */}
-          <Grid xs={6}>
+          <Grid xs={6} className={classes.gridPreview}>
             <h3>Preview</h3>
             <Box bgcolor="text.primary" />
           </Grid>
