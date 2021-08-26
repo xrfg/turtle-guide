@@ -9,6 +9,9 @@ import React from "react";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
+// * Components
+import VideoPlayerCloudHosted from "../VideoPlayerCloudHosted/VideoPlayerCloudHosted";
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -61,6 +64,12 @@ const SectionPreview = (props) => {
   // destru
   const { contents } = props;
 
+  // * Functions
+  //   var cld = window.cloudinary.Cloudinary.new({
+  //     cloud_name: "dhdgj2ryu",
+  //   });
+  //   var demoplayer = cld.videoPlayer("doc-player").width(600);
+
   return (
     <>
       <Container maxWidth="xs">
@@ -77,6 +86,26 @@ const SectionPreview = (props) => {
                 alt="complex"
                 src={x.content.url}
               />
+            );
+          }
+          {
+            /*  video */
+          }
+          if (x.type === "video") {
+            console.log(x);
+
+            const videoOptions = {
+              cloudName: "dhdgj2ryu",
+              url: x.content.url,
+            };
+
+            return (
+              <div className="video-card">
+                <h2>Video Player Cloud Hosted</h2>
+                <div>
+                  <VideoPlayerCloudHosted options={videoOptions} />
+                </div>
+              </div>
             );
           }
           return null;

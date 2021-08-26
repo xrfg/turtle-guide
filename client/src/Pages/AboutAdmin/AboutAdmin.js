@@ -95,6 +95,9 @@ export default function AboutAdmin() {
       checkCloudinaryUpload(result);
     }
   );
+
+  console.log("window.cloudinary", window.cloudinary);
+
   /**
    * @function showCloudinaryWidget
    * @desc Function that calls cloudinary
