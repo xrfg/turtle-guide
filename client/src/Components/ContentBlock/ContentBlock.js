@@ -50,12 +50,22 @@ const useStyles = makeStyles((theme) =>
 const ContentBlock = (props) => {
   const classes = useStyles();
 
-  // destructuring
+  // * Destructuring props
   let {
     id,
     type,
     content: { url, url_thumb },
   } = props.item;
+
+  // * Functions
+  /**
+   * @function removeContent
+   * @desc sends back the selected element to be deleted
+   * @param id
+   */
+  const removeContent = (id) => {
+    props.itemToDelete(id);
+  };
 
   return (
     <Paper className={classes.paper} key={id}>
@@ -75,7 +85,7 @@ const ContentBlock = (props) => {
             <Grid item xs>
               <Typography gutterBottom variant="subtitle1">
                 {/* {title} {type} */}
-                {type}
+                {type} id:{id}
               </Typography>
               <Typography variant="body2" gutterBottom>
                 {/* {text} */}
@@ -85,9 +95,12 @@ const ContentBlock = (props) => {
               </Typography>
             </Grid>
             <Grid item>
-              <Typography variant="body2" style={{ cursor: "pointer" }}>
+              {/* <Typography variant="body2" style={{ cursor: "pointer" }}> */}
+              {/* //* Sends the id to the parent */}
+              <ButtonBase onClick={() => removeContent(id)}>
                 <DeleteIcon fontSize="small" />
-              </Typography>
+              </ButtonBase>
+              {/* </Typography> */}
             </Grid>
           </Grid>
           <Grid item>

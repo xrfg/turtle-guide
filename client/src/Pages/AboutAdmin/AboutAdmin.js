@@ -122,7 +122,7 @@ export default function AboutAdmin() {
 
         // push objs created with the
         // functions createObj AND objToSendImage
-        arrTemp.push(createObj(objToSendImage(x)));
+        arrTemp.push(createObj(objToSendMedia(x)));
 
         // call function to set state
         return addToContents(arrTemp);
@@ -135,11 +135,11 @@ export default function AboutAdmin() {
   // types: image, video,audio, text, qrcode
 
   /**
-   * @function objToSendImage
+   * @function objToSendMedia
    * @param {obj}
    * @desc creates an obj for ad image OR a video
    */
-  const objToSendImage = (obj) => {
+  const objToSendMedia = (obj) => {
     // define type
     const type = (type) => {
       if (type.includes("image")) return "image";
@@ -168,12 +168,9 @@ export default function AboutAdmin() {
    */
 
   const createObj = (obj) => {
-    // create id based on the contents already into the array
-    const id = contents.length === 0 ? 1 : contents[contents.length - 1].id + 1;
-
-    // Obj Content
+    // Obj Content WITOUT id
+    // it will be added before setting the contents
     const objContent = {
-      id: id, // sequential unique id
       type: obj.type, // it can be whatever "text", "image", "video", "qrcode"
       // the content
       content: obj.content,
@@ -188,8 +185,30 @@ export default function AboutAdmin() {
    * @desc adds a content into the state "contents" that will be mapped
    */
   const addToContents = (newContentsArr) => {
+    // add ids
+    // create id based on the contents already into the array
+    // if [contents] s empty assigns the index
+    newContentsArr.forEach((x, i) => {
+      x["id"] =
+        contents.length === 0 ? i + 1 : contents[contents.length - 1].id + 1;
+    });
     setContents([...contents, ...newContentsArr]);
   };
+
+  /**
+   * @function itemToDelete
+   * @param id sent from the <Child />
+   * @desc returns the item to delete from the array
+   */
+  const itemToDelete = (id) => {
+    // IMPORTANT
+    //  filter returns an array so updates the contents
+    const newContents = contents.filter((x) => x.id !== id);
+    // set new content
+    setContents(newContents);
+  };
+
+  // console.log("contents", contents);
 
   return (
     <>
@@ -213,25 +232,7 @@ export default function AboutAdmin() {
               component="span"
               onClick={() => showCloudinaryWidget(cloudinaryWidget)}
             >
-              add Image
-            </Button>
-            <Button
-              size="small"
-              variant="contained"
-              color="primary"
-              component="span"
-              onClick={() => addToContents(createObj("video"))}
-            >
-              add Video
-            </Button>
-            <Button
-              size="small"
-              variant="contained"
-              color="primary"
-              component="span"
-              onClick={() => addToContents(createObj("audio"))}
-            >
-              add Audio
+              add Media
             </Button>
             <Button
               size="small"
@@ -255,7 +256,14 @@ export default function AboutAdmin() {
             {!contents
               ? null
               : contents.map((x, i) => {
-                  return <ContentBlock item={x} key={x.id} />;
+                  return (
+                    <ContentBlock
+                      item={x}
+                      key={x.id}
+                      // receives the id of the item to delete
+                      itemToDelete={itemToDelete}
+                    />
+                  );
                 })}
           </Grid>
           {/* // ? Preview */}
