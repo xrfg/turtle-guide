@@ -8,6 +8,7 @@ import AboutAdmin from "./Pages/AboutAdmin/AboutAdmin";
 // * Import Components
 import Guide from "./Components/Guide/Guide";
 import Navbar from "./Components/Navbar/Navbar";
+import Event from "./Pages/Event/Event";
 
 // * Mat UI
 import { theme } from "../src/styles/Theme";
@@ -29,6 +30,7 @@ function App() {
           // ! TEMPORARY LINK 
         */}
             <Route path="/aboutadmin" component={AboutAdmin} />
+            <Route path="/create-event" component={Event} />
 
             <Route path="/guide">
               <Guide />
