@@ -21,10 +21,13 @@ import ButtonBase from "@material-ui/core/ButtonBase";
 
 // * Pages
 
-// ? Components
-// * <ContentBlock />
+// * Components
+//  <ContentBlock />
 // requires props "item" <ContentBlock item={}/>
 import ContentBlock from "../../Components/ContentBlock/ContentBlock";
+// <SectionPreview />
+// requires props "contents" <SectionPreview contents={ }/>
+import SectionPreview from "../../Components/SectionPreview/SectionPreview";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -74,10 +77,9 @@ export default function AboutAdmin() {
   // state that contains all the contents
   const [contents, setContents] = useState([]);
 
-  // TODO Create Block with various options
-  // TODO ICONS In block
   // TODO Cloudinary authetication
   // TODO Add widget cloudinary transformation
+  // TODO Image description
 
   //* Cloudinary setup
   // setup for the widget cloudinary
@@ -190,7 +192,9 @@ export default function AboutAdmin() {
     // if [contents] s empty assigns the index
     newContentsArr.forEach((x, i) => {
       x["id"] =
-        contents.length === 0 ? i + 1 : contents[contents.length - 1].id + 1;
+        contents.length === 0
+          ? i + 1
+          : contents[contents.length - 1].id + i + 1;
     });
     setContents([...contents, ...newContentsArr]);
   };
@@ -268,8 +272,7 @@ export default function AboutAdmin() {
           </Grid>
           {/* // ? Preview */}
           <Grid xs={6} className={classes.gridPreview}>
-            <h3>Preview</h3>
-            <Box bgcolor="text.primary" />
+            <SectionPreview contents={contents} />
           </Grid>
         </Grid>
       </Container>
