@@ -96,8 +96,6 @@ export default function AboutAdmin() {
     }
   );
 
-  console.log("window.cloudinary", window.cloudinary);
-
   /**
    * @function showCloudinaryWidget
    * @desc Function that calls cloudinary
@@ -112,7 +110,7 @@ export default function AboutAdmin() {
    * @desc Function that checks the results of cloudinary
    * @param result i.e. checkCloudinaryUpload(result)
    */
-  const checkCloudinaryUpload = async (result) => {
+  const checkCloudinaryUpload = (result) => {
     // if event ended
     if (result.event === "queues-end") {
       // temporary array to send into state
@@ -155,6 +153,7 @@ export default function AboutAdmin() {
     const objToSend = {
       type: type(obj.type), // use function
       content: {
+        public_id: obj.uploadInfo.public_id,
         url: obj.uploadInfo.url,
         url_thumb: obj.uploadInfo.thumbnail_url,
       },

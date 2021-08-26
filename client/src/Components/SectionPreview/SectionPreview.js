@@ -3,14 +3,15 @@
  * renders the sections into the Guide/Event
  */
 
-import React from "react";
+import React, { useEffect } from "react";
 
 // * Mat UI
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
 // * Components
-import VideoPlayerCloudHosted from "../VideoPlayerCloudHosted/VideoPlayerCloudHosted";
+
+import VideoPlayerFunction from "../VideoPlayerFunction/VideoPlayerFunction";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -96,14 +97,14 @@ const SectionPreview = (props) => {
 
             const videoOptions = {
               cloudName: "dhdgj2ryu",
-              url: x.content.url,
+              public_id: x.content.public_id,
             };
 
             return (
               <div className="video-card">
-                <h2>Video Player Cloud Hosted</h2>
-                <div>
-                  <VideoPlayerCloudHosted options={videoOptions} />
+                <h2>Video Player in Function</h2>
+                <div className="vp">
+                  <VideoPlayerFunction options={videoOptions} />
                 </div>
               </div>
             );
