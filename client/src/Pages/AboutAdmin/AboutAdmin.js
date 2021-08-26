@@ -7,6 +7,7 @@ import React, { useState, useEffect } from "react";
 // * Mat UI
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import { Button, Container, Grid, Typography } from "@material-ui/core";
+import Box from "@material-ui/core/Box";
 
 // TODO
 // import Card from "@material-ui/core/Card";
@@ -99,121 +100,38 @@ export default function AboutAdmin() {
   };
 
   return (
-    <Container maxWidth="sm">
-      {/* // ? Buttons container */}
-      <Grid container spacing={3}>
-        <h1>customize how visitors will see your guide </h1>
-        <Grid item xs={3} className={classes.btnSection}>
-          <Button
-            size="small"
-            variant="contained"
-            color="primary"
-            component="span"
-            onClick={() => addToContents(createObj("text"))}
-          >
-            add Content
-          </Button>
+    <>
+      <Container maxWidth="sm">
+        {/* // ? Buttons container */}
+        <Grid container spacing={3}>
+          <Grid item xs={12} className={classes.btnSection}>
+            <Button
+              size="small"
+              variant="contained"
+              color="primary"
+              component="span"
+              onClick={() => addToContents(createObj("text"))}
+            >
+              add Content
+            </Button>
+          </Grid>
         </Grid>
-      </Grid>
-
+      </Container>
       {/* // ? Contents container */}
-      <Grid container spacing={3}>
-        <Grid item xs={3} className={classes.btnSection}>
-          {/* 
-          <input
-            accept="image/*"
-            className={classes.input}
-            id="contained-button-file"
-            multiple
-            type="file"
-          />
-          <label htmlFor="contained-button-file">
-            <Button
-              size="small"
-              variant="contained"
-              color="primary"
-              component="span"
-            >
-              add image
-            </Button>
-          </label>
-          <input
-            accept="vedio/*"
-            className={classes.input}
-            id="contained-button-file"
-            multiple
-            type="file"
-          />
-          <label htmlFor="contained-button-file">
-            <Button
-              size="small"
-              variant="contained"
-              color="primary"
-              component="span"
-            >
-              add vedio
-            </Button>
-          </label>
-          <input
-            accept="image/*"
-            className={classes.input}
-            id="contained-button-file"
-            multiple
-            type="file"
-          />
-          <label htmlFor="contained-button-file">
-            <Button
-              size="small"
-              variant="contained"
-              color="primary"
-              component="span"
-            >
-              add audio
-            </Button>
-          </label>
-          <input
-            accept="image/*"
-            className={classes.input}
-            id="contained-button-file"
-            multiple
-            type="file"
-          />
-          <label htmlFor="contained-button-file">
-            <Button
-              size="small"
-              variant="contained"
-              color="primary"
-              component="span"
-            >
-              add QR code link
-            </Button>
-          </label>
-          <input
-            accept="image/*"
-            className={classes.input}
-            id="contained-button-file"
-            multiple
-            type="file"
-          />
-          <label htmlFor="contained-button-file">
-            <Button
-              size="small"
-              variant="contained"
-              color="primary"
-              component="span"
-            >
-              add image description
-            </Button>
-          </label> */}
+      <Container maxWidth="sm">
+        <Grid container spacing={3}>
+          <Grid xs={6}>
+            {!contents
+              ? null
+              : contents.map((x, i) => {
+                  return <ContentBlock item={x} />;
+                })}
+          </Grid>
+          <Grid xs={6}>
+            <Box bgcolor="text.primary" />
+          </Grid>
         </Grid>
-        <Grid xs={9}>
-          {!contents
-            ? null
-            : contents.map((x, i) => {
-                return <ContentBlock item={x} />;
-              })}
-        </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </>
   );
 }

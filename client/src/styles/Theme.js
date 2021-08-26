@@ -1,4 +1,4 @@
-/*
+/**
  * @desc Main file for MatUI Styling
  *
  */
@@ -40,172 +40,172 @@ export const theme = createTheme({
     success: { main: `${colors.successMain}` },
   },
 
-  typography: {
-    tab: {
-      fontFamily: "Raleway",
-      fontWeight: 800,
-      fontSize: "1.1rem",
-      textTransform: "uppercase",
-    },
-  },
+  // typography: {
+  //   tab: {
+  //     fontFamily: "Raleway",
+  //     fontWeight: 800,
+  //     fontSize: "1.1rem",
+  //     textTransform: "uppercase",
+  //   },
+  // },
 
-  // special CSS
-  css: {
-    tab: {
-      minWidth: 10,
-      marginLeft: "50px",
-      marginRight: "50px",
-      textAlign: "center",
-      justifyContent: "center",
-      justifyItems: "center",
-      "&:hover": {
-        color: colors.primaryLight,
-      },
-    },
-  },
+  // // special CSS
+  // css: {
+  //   tab: {
+  //     minWidth: 10,
+  //     marginLeft: "50px",
+  //     marginRight: "50px",
+  //     textAlign: "center",
+  //     justifyContent: "center",
+  //     justifyItems: "center",
+  //     "&:hover": {
+  //       color: colors.primaryLight,
+  //     },
+  //   },
+  // },
 
-  "& .MuiButton-root": {
-    padding: "0px",
-  },
+  // "& .MuiButton-root": {
+  //   padding: "0px",
+  // },
 
-  // BUTTONS
-  buttons: {
-    btnAddDb: {
-      fontSize: "0.9rem",
-      textTransform: "uppercase",
-      backgroundColor: colors.primaryMain,
-      color: "white",
-      borderRadius: "5px",
-      padding: "5px",
-      paddingRight: "8px",
-      paddingLeft: "8px",
-      marginLeft: "20px",
-      "&:hover": {
-        backgroundColor: colors.btnOver,
-      },
-    },
-    btnUpdateItem: {
-      fontSize: "0.9rem",
-      textTransform: "uppercase",
-      backgroundColor: colors.primaryMain,
-      color: "white",
-      borderRadius: "5px",
-      marginBottom: "5px",
-      marginTop: "5px",
-      marginLeft: "20px",
-      "&:hover": {
-        backgroundColor: colors.btnOver,
-      },
-      "&:focus": {
-        backgroundColor: "red",
-      },
-    },
-  },
+  // // BUTTONS
+  // buttons: {
+  //   btnAddDb: {
+  //     fontSize: "0.9rem",
+  //     textTransform: "uppercase",
+  //     backgroundColor: colors.primaryMain,
+  //     color: "white",
+  //     borderRadius: "5px",
+  //     padding: "5px",
+  //     paddingRight: "8px",
+  //     paddingLeft: "8px",
+  //     marginLeft: "20px",
+  //     "&:hover": {
+  //       backgroundColor: colors.btnOver,
+  //     },
+  //   },
+  //   btnUpdateItem: {
+  //     fontSize: "0.9rem",
+  //     textTransform: "uppercase",
+  //     backgroundColor: colors.primaryMain,
+  //     color: "white",
+  //     borderRadius: "5px",
+  //     marginBottom: "5px",
+  //     marginTop: "5px",
+  //     marginLeft: "20px",
+  //     "&:hover": {
+  //       backgroundColor: colors.btnOver,
+  //     },
+  //     "&:focus": {
+  //       backgroundColor: "red",
+  //     },
+  //   },
+  // },
 
-  // TABLES
+  // // TABLES
 
-  // INSERT
+  // // INSERT
 
-  // FORM
-  insert: {
-    inputs: {
-      display: "flex",
-      flexDirection: "row",
-      width: "100%",
-      marginRight: 30,
-      "& > *": {
-        marginTop: 20,
-      },
-    },
-    titleauthor: {
-      width: "50%",
-      display: "flex",
-      flexDirection: "column",
-      marginRight: "30px",
-      "& > :first-child": {
-        marginRight: 20,
-      },
-      "& > div": {
-        width: "100%",
-        paddingRight: 30,
-        marginBottom: 20,
-      },
-      "& > :last-child": {
-        marginRight: 0,
-      },
-    },
-    isbn: {
-      width: "50%",
-      display: "flex",
-      flexDirection: "column",
-      marginLeft: "30px",
-      "& > *": {
-        width: "100%",
-      },
-      "& > :first-child": {},
-    },
+  // // FORM
+  // insert: {
+  //   inputs: {
+  //     display: "flex",
+  //     flexDirection: "row",
+  //     width: "100%",
+  //     marginRight: 30,
+  //     "& > *": {
+  //       marginTop: 20,
+  //     },
+  //   },
+  //   titleauthor: {
+  //     width: "50%",
+  //     display: "flex",
+  //     flexDirection: "column",
+  //     marginRight: "30px",
+  //     "& > :first-child": {
+  //       marginRight: 20,
+  //     },
+  //     "& > div": {
+  //       width: "100%",
+  //       paddingRight: 30,
+  //       marginBottom: 20,
+  //     },
+  //     "& > :last-child": {
+  //       marginRight: 0,
+  //     },
+  //   },
+  //   isbn: {
+  //     width: "50%",
+  //     display: "flex",
+  //     flexDirection: "column",
+  //     marginLeft: "30px",
+  //     "& > *": {
+  //       width: "100%",
+  //     },
+  //     "& > :first-child": {},
+  //   },
 
-    // BUTTONS
+  //   // BUTTONS
 
-    buttons: {
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "center",
-      marginTop: 20,
-      "& > *": {
-        width: 200,
-        marginBottom: 20,
-        marginRight: 50,
-        marginLeft: 50,
-      },
-      "& > :last-child": {},
-    },
+  //   buttons: {
+  //     display: "flex",
+  //     flexDirection: "row",
+  //     justifyContent: "center",
+  //     marginTop: 20,
+  //     "& > *": {
+  //       width: 200,
+  //       marginBottom: 20,
+  //       marginRight: 50,
+  //       marginLeft: 50,
+  //     },
+  //     "& > :last-child": {},
+  //   },
 
-    // Tables
-    tableFound: {
-      backgroundColor: colors.primaryMain,
-      display: "grid", // Overrides default theme
-    },
-  },
+  //   // Tables
+  //   tableFound: {
+  //     backgroundColor: colors.primaryMain,
+  //     display: "grid", // Overrides default theme
+  //   },
+  // },
 
-  database: {
-    blocks: {
-      display: "flex",
-      flexDirection: "row",
-      width: "100%",
-    },
-    block1: {
-      display: "flex",
-      flexDirection: "column",
-      width: 600,
-      marginRight: 30,
-      "& > *": {
-        marginTop: 20,
-      },
-    },
-    block2: {
-      display: "flex",
-      flexDirection: "column",
-      width: 300,
-      "& > *": {
-        marginTop: 20,
-      },
-    },
-    allfilters: {
-      display: "flex",
-      flexDirection: "row",
-      color: "red",
-      "&$checked": {
-        color: "blue",
-      },
-    },
-    clearbtn: {
-      display: "flex",
-      justifyContent: "center",
-      height: 130,
-      borderRadius: 10,
-    },
-  },
+  // database: {
+  //   blocks: {
+  //     display: "flex",
+  //     flexDirection: "row",
+  //     width: "100%",
+  //   },
+  //   block1: {
+  //     display: "flex",
+  //     flexDirection: "column",
+  //     width: 600,
+  //     marginRight: 30,
+  //     "& > *": {
+  //       marginTop: 20,
+  //     },
+  //   },
+  //   block2: {
+  //     display: "flex",
+  //     flexDirection: "column",
+  //     width: 300,
+  //     "& > *": {
+  //       marginTop: 20,
+  //     },
+  //   },
+  //   allfilters: {
+  //     display: "flex",
+  //     flexDirection: "row",
+  //     color: "red",
+  //     "&$checked": {
+  //       color: "blue",
+  //     },
+  //   },
+  //   clearbtn: {
+  //     display: "flex",
+  //     justifyContent: "center",
+  //     height: 130,
+  //     borderRadius: 10,
+  //   },
+  // },
 });
 
 // CARD INSERT STYLE
