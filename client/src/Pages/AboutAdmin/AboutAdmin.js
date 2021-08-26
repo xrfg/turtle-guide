@@ -66,6 +66,10 @@ const useStyles = makeStyles((theme) =>
 export default function AboutAdmin() {
   const classes = useStyles();
 
+  // * States
+  // state that contains all the contents
+  const [contents, setContents] = useState([]);
+
   // TODO Integrate cloudinary
   // TODO Create Block with various options
   // TODO ICONS In block
@@ -79,9 +83,12 @@ export default function AboutAdmin() {
    */
 
   const createObj = (objType) => {
+    // create id based on the contents already into the array
+    const id = contents.length === 0 ? 1 : contents[contents.length - 1].id + 1;
+
     // Obj Content
     const objContent = {
-      id: 1, // sequential unique id
+      id: id, // sequential unique id
       type: objType, // it can be whatever
       // the content
       content: {
@@ -92,10 +99,6 @@ export default function AboutAdmin() {
 
     return objContent;
   };
-
-  // * States
-  // state that contains all the contents
-  const [contents, setContents] = useState([]);
 
   // * Functions
   /**
@@ -113,7 +116,7 @@ export default function AboutAdmin() {
       <Container maxWidth="sm">
         {/* // ? Buttons container */}
         <Grid container spacing={3} className={classes.gridContainer}>
-          <Grid item xs={12}>
+          <Grid item xs={12} className={classes.btnSection}>
             <Button
               size="small"
               variant="contained"
@@ -121,7 +124,34 @@ export default function AboutAdmin() {
               component="span"
               onClick={() => addToContents(createObj("text"))}
             >
-              add Content
+              add Text
+            </Button>
+            <Button
+              size="small"
+              variant="contained"
+              color="primary"
+              component="span"
+              onClick={() => addToContents(createObj("image"))}
+            >
+              add Image
+            </Button>
+            <Button
+              size="small"
+              variant="contained"
+              color="primary"
+              component="span"
+              onClick={() => addToContents(createObj("video"))}
+            >
+              add Video
+            </Button>
+            <Button
+              size="small"
+              variant="contained"
+              color="primary"
+              component="span"
+              onClick={() => addToContents(createObj("qrcode"))}
+            >
+              add QrCode
             </Button>
           </Grid>
         </Grid>
