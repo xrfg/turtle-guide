@@ -6,9 +6,15 @@
 
 import React from "react";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
+
+// * Mat UI
 import { Button, Container, Grid, Typography } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import ButtonBase from "@material-ui/core/ButtonBase";
+
+// * Icons
+import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -45,20 +51,23 @@ const ContentBlock = (props) => {
   const classes = useStyles();
 
   // destructuring
-  const {
+  let {
     id,
     type,
     content: { url, url_thumb },
   } = props.item;
-
-  // console.log(props, url_thumb);
 
   return (
     <Paper className={classes.paper} key={id}>
       <Grid container spacing={2}>
         <Grid item>
           <ButtonBase className={classes.image}>
-            <img className={classes.img} alt="complex" src={url_thumb} />
+            {/* // * Sets icon if the file is audio */}
+            {type === "audio" ? (
+              <PlayCircleOutlineIcon fontSize="large" />
+            ) : (
+              <img className={classes.img} alt="complex" src={url_thumb} />
+            )}
           </ButtonBase>
         </Grid>
         <Grid item xs={12} sm container>
@@ -66,6 +75,7 @@ const ContentBlock = (props) => {
             <Grid item xs>
               <Typography gutterBottom variant="subtitle1">
                 {/* {title} {type} */}
+                {type}
               </Typography>
               <Typography variant="body2" gutterBottom>
                 {/* {text} */}
@@ -76,12 +86,12 @@ const ContentBlock = (props) => {
             </Grid>
             <Grid item>
               <Typography variant="body2" style={{ cursor: "pointer" }}>
-                Remove
+                <DeleteIcon fontSize="small" />
               </Typography>
             </Grid>
           </Grid>
           <Grid item>
-            <Typography variant="subtitle1">$19.00</Typography>
+            <Typography variant="subtitle1"></Typography>
           </Grid>
         </Grid>
       </Grid>

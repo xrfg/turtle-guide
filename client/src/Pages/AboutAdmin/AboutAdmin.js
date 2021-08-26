@@ -140,12 +140,15 @@ export default function AboutAdmin() {
    * @desc creates an obj for ad image OR a video
    */
   const objToSendImage = (obj) => {
-    console.log(obj);
-
-    // TODO add type image OR video
+    // define type
+    const type = (type) => {
+      if (type.includes("image")) return "image";
+      if (type.includes("video")) return "video";
+      if (type.includes("audio")) return "audio";
+    };
 
     const objToSend = {
-      type: "image", // video/mp4
+      type: type(obj.type), // use function
       content: {
         url: obj.uploadInfo.url,
         url_thumb: obj.uploadInfo.thumbnail_url,
