@@ -1,0 +1,92 @@
+@import "functions";
+
+// ROW FOR DESKTOP DEFAULT: 12 columns
+.row {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+
+  // OPTIONAL
+  gap: 1rem;
+  // REMOVE FOR DEVELOP //
+  // margin-bottom: 20px;
+}
+
+@include media($tablet) {
+  :root {
+    // REMOVE FOR DEVELOP //
+    // background-color: purple;
+  }
+
+  // !!! IMPORTANT ROW FOR TABLET >> CHANGE IN VARIABLES
+
+  .row {
+    display: grid;
+    grid-template-columns: repeat($columns-tablet, 1fr);
+    gap: 1rem;
+
+    // REMOVE FOR DEVELOP //
+    // margin-bottom: 20px;
+  }
+
+  @for $i from 1 through $columns-tablet {
+    .col-m-#{$i} {
+      grid-column: span $i;
+
+      // REMOVE FOR DEVELOP //
+      // padding: 20px 15px;
+      // color: white;
+      // background-color: orange;
+    }
+
+    // // REMOVE FOR DEVELOP //
+    // .col-m-#{$i}::after {
+    //   content: "For Tablet use: .col-m-#{$i}";
+    // }
+  }
+  .hide-tablet {
+    display: none;
+  }
+}
+
+@include media($phone) {
+  :root {
+    background-color: dodgerblue;
+  }
+  // !!! IMPORTANT ROW FOR PHONE >> CHANGE IN VARIABLES
+
+  .row {
+    display: grid;
+    grid-template-columns: repeat($columns-phone, 1fr);
+    gap: 1rem;
+
+    // REMOVE FOR DEVELOP //
+    // margin-bottom: 20px;
+  }
+
+  @for $i from 1 through $columns-phone {
+    .col-lg-#{$i} {
+      grid-column: span $i;
+
+      // REMOVE FOR DEVELOP //
+      // padding: 20px 15px;
+      // color: white;
+      // background-color: gray;
+    }
+    // REMOVE FOR DEVELOP //
+
+    // .col-lg-#{$i}::after {
+    //   content: "For Phone use:  .col-lg-#{$i}";
+    // }
+  }
+
+  .hide {
+    display: block;
+  }
+
+  .hide-tablet {
+    display: none;
+  }
+  .hide-phone {
+    display: none;
+  }
+}

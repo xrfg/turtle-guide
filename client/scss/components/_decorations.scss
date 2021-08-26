@@ -1,0 +1,21 @@
+@for $i from 1 through 3 {
+  .line-white-#{$i}px {
+    height: 1px;
+    color: white;
+    background-color: white;
+  }
+}
+@for $i from 1 through 3 {
+  .line-black-#{$i}px {
+    height: 1px;
+    color: black;
+    background-color: black;
+  }
+}
+@for $i from 1 through 3 {
+  .line-grey-#{$i}px {
+    height: 1px;
+    color: grey;
+    background-color: grey;
+  }
+}

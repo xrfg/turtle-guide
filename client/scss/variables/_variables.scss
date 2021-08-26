@@ -1,0 +1,39 @@
+$website-width-desktop: 960px;
+$website-width-tablet: 768px;
+$website-width-phone: 960px;
+
+$page-max-height: 800px;
+
+$columns: 12;
+$columns-tablet: 6;
+$columns-phone: 3;
+
+// MQ
+$tablet: 768px;
+$phone: 480px;
+
+// FONTS SITE
+
+$font-family-primary: "Lato", sans-serif;
+$ultra-thin: 100;
+$thin: 300;
+$normal: 400;
+$bold: 700;
+$ultra-bold: 900;
+
+$font-family-code: "Source Code Pro", monospace;
+
+// MENU
+$menu-position: right;
+$menu-font-color: grey;
+$menu-font-color-hover: red;
+$menu-font-color-curr: red;
+$menu-size: 1.2rem;
+
+//
+$bg-color-first-page: rgb(255, 186, 161);
+
+// BUTTONS SIZES
+$button-size-big: 1.6rem;
+$button-size-normal: 1.2rem;
+$button-size-small: 0.8rem;

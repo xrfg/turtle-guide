@@ -1,0 +1,56 @@
+@mixin media($max) {
+  @media (max-width: $max) {
+    @content;
+  }
+}
+
+@for $i from 1 through $columns {
+  .col-#{$i} {
+    grid-column: span $i;
+
+    // REMOVE FOR DEVELOP //
+    // padding: 20px 15px;
+
+    // color: set-text-color(red);
+    // background-color: red;
+  }
+  // REMOVE FOR DEVELOP //
+  // .col-#{$i}::after {
+  //   content: "For Desktop use: .col-#{$i}";
+  // }
+}
+
+@for $i from 1 through 12 {
+  .row-#{$i} {
+    display: grid;
+    grid-template-columns: repeat($i, 1fr);
+
+    // OPTIONAL
+    gap: 1rem;
+    // REMOVE FOR DEVELOP //
+    margin-bottom: 20px;
+  }
+}
+
+@function set-text-color($color) {
+  @if (lightness($color) > 50) {
+    @return #000;
+  } @else {
+    @return #fff;
+  }
+}
+
+@mixin center-x-y($height, $width) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: $width;
+  height: $height;
+
+  margin: 0 auto;
+  // left: 0;
+  // right: 0;
+
+  /** Position should be absolute */
+  // position: absolute;
+}

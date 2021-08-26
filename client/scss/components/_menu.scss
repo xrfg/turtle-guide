@@ -1,0 +1,41 @@
+.menu {
+  & ul {
+    display: flex;
+    float: $menu-position;
+
+    & li {
+      list-style-type: none;
+      margin-right: 20px;
+      & a {
+        transition: all 0.3s;
+        color: $menu-font-color;
+        text-decoration: none;
+
+        &:hover {
+          color: $menu-font-color-hover;
+        }
+      }
+    }
+  }
+}
+.current {
+  & ul {
+    display: flex;
+    float: $menu-position;
+
+    & li {
+      list-style-type: none;
+      margin-right: 20px;
+      & a {
+        transition: all 0.3s;
+        color: $menu-font-color-curr;
+        text-decoration: none;
+        border: 3px black solid;
+
+        // &:hover {
+        //   color: $menu-font-color-hover;
+        // }
+      }
+    }
+  }
+}
