@@ -4,7 +4,7 @@
 
 import React, { useState } from "react";
 
-// * material UI imports
+// * material UI imports Components
 import {
   Container,
   Grid,
@@ -19,7 +19,8 @@ import {
   ButtonGroup,
   makeStyles,
 } from "@material-ui/core";
-import { Add, Delete, Save } from "@material-ui/icons";
+// * material UI imports Icons
+import { Add, Delete, Save, Forward } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   nameInput: { width: "26rem" },
@@ -27,12 +28,25 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     alignSelf: "center",
   },
-  deleteBtn: {},
+  deleteBtn: {
+    marginTop: 13,
+  },
 
   btnGrp: {
     display: "flex",
+    "& > *": {
+      margin: theme.spacing(1),
+    },
   },
-  card: {},
+  guide__header: { marginBottom: "1rem" },
+  card: { position: "relative", textAlign: "center", marginBottom: "1rem" },
+  card__title: {},
+  card__desc: {},
+  forwardIcon: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+  },
 }));
 
 export default function Event(props) {
@@ -66,8 +80,10 @@ export default function Event(props) {
 
   return (
     <Container maxWidth="md">
-      <Grid container direction="row" justifyContent="start" spacing={2}>
-        {/* * Name Input */}
+      {/* 
+        // * Name of Event Input
+        */}
+      <Grid container direction="row" spacing={2}>
         <Grid item xs={9}>
           <form
             onSubmit={(e) => {
@@ -97,21 +113,26 @@ export default function Event(props) {
           </form>
         </Grid>
 
-        {/* Delete Event */}
+        {/* 
+        // * Delete Event 
+        */}
         <Grid item xs={3} className={classes.deleteBtn}>
           <Button
             // TODO create a modal to make sure the admin wants to delete the event
             onClick={() => alert("are you sure?")}
-            color="secondary"
             endIcon={<Delete />}
+            className={classes.deleteBtn}
           >
             Delete Event
           </Button>
         </Grid>
+
+        {/* 
+        // * Button Group
+        */}
         <Grid item xs={4} className={classes.btnGrp}>
           <ButtonGroup
             orientation="vertical"
-            color="primary"
             aria-label="vertical outlined primary button group"
           >
             <Button
@@ -125,7 +146,6 @@ export default function Event(props) {
           </ButtonGroup>
           <ButtonGroup
             orientation="vertical"
-            color="primary"
             aria-label="vertical outlined primary button group"
           >
             <Button endIcon={<Add />}>Pay-wall</Button>
@@ -133,18 +153,54 @@ export default function Event(props) {
             <Button endIcon={<Add />}>Map</Button>
           </ButtonGroup>
         </Grid>
+
+        {/* 
+        // * SECTIONS CONTAINER -> GUIDE
+        */}
         <Grid item xs={8}>
-          <Card className={classes.card}>
+          <Box filled>
             <CardContent>
-              <Typography variant="h6" component="h4">
-                Your Guide
+              <Typography
+                variant="h5"
+                component="h3"
+                className={classes.guide__header}
+              >
+                Guide
               </Typography>
               {/* Displaying the current sections */}
               {sections.map((section, i) => {
-                return <Paper key={i}>{section.title}</Paper>;
+                return (
+                  <Card className={classes.card} key={i}>
+                    <CardContent>
+                      <Typography
+                        className={classes.card__title}
+                        variant="h6"
+                        component="h6"
+                      >
+                        {section.title}
+                      </Typography>
+                      <Typography
+                        className={classes.card__desc}
+                        variant="subtitle1"
+                        component="p"
+                      >
+                        {section.description}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button
+                        href={`${section.url}`}
+                        className={classes.forwardIcon}
+                        size="small"
+                      >
+                        <Forward />
+                      </Button>
+                    </CardActions>
+                  </Card>
+                );
               })}
             </CardContent>
-          </Card>
+          </Box>
         </Grid>
       </Grid>
     </Container>
