@@ -203,11 +203,11 @@ export default function AboutAdmin() {
   };
 
   /**
-   * @function itemToDelete
+   * @function deleteItem
    * @param id sent from the <Child />
    * @desc returns the item to delete from the array
    */
-  const itemToDelete = (id) => {
+  const deleteItem = (id) => {
     // IMPORTANT
     //  filter returns an array so updates the contents
     const newContents = contents.filter((x) => x.id !== id);
@@ -215,8 +215,24 @@ export default function AboutAdmin() {
     setContents(newContents);
   };
 
-  // console.log("contents", contents);
+  /**
+   * @function addMediaCaption
+   * @param id element id
+   * @param caption the caption to add
+   * @desc add media caption to the element into the array (state)
+   */
+  const addMediaCaption = (id, caption) => {
+    console.log("addMediaCaption", id, caption);
 
+    contents.forEach((x) => {
+      if (x.id === id) {
+        console.log("found");
+        x.content["caption"] = caption;
+      }
+    });
+  };
+
+  console.log("contents", contents);
   return (
     <>
       <Container maxWidth="sm">
@@ -266,7 +282,8 @@ export default function AboutAdmin() {
                       item={x}
                       key={x.id}
                       // receives the id of the item to delete
-                      itemToDelete={itemToDelete}
+                      itemToDelete={deleteItem}
+                      mediaCaption={addMediaCaption}
                     />
                   );
                 })}

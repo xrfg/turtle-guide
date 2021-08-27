@@ -4,7 +4,7 @@
  * @param props item
  */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 
 // * Mat UI
@@ -97,6 +97,15 @@ const ContentBlock = (props) => {
   };
 
   /**
+   * @function sendMediaCaption
+   * @desc sends back the selected element to be deleted
+   * @param id
+   */
+  const sendMediaCaption = () => {
+    props.mediaCaption(id, mediaCaption);
+  };
+
+  /**
    * @function editContent
    * @desc enables edit mode
    * @param id
@@ -104,13 +113,20 @@ const ContentBlock = (props) => {
   const editContent = (id) => {
     // togle editing
     setIsEditing((prev) => !prev);
+  };
+
+  // to save if the caption is added/edited
+  useEffect(() => {
     if (
       (!isEditing && mediaCaption.title.length !== 0) ||
       mediaCaption.description.length !== 0
     ) {
-      console.log("SAVE", mediaCaption);
+      // send mediacaptio and id to the parent
+      // the function will pass it as a prop
+      sendMediaCaption();
     }
-  };
+    // eslint-disable-next-line
+  }, [isEditing]);
 
   /**
    * @function handleChange
@@ -175,8 +191,6 @@ const ContentBlock = (props) => {
             ) : (
               <h6>Add a Description (optional)</h6>
             )}
-
-            {/* {text} */}
           </Typography>
           <Typography variant="body2" color="textSecondary"></Typography>
         </Grid>
@@ -184,12 +198,7 @@ const ContentBlock = (props) => {
           {/*  // * editing title/description */}
           <ButtonBase onClick={() => editContent(id)}>
             {isEditing ? (
-              mediaCaption.title.length === 0 ||
-              mediaCaption.description.length === 0 ? (
-                <UndoIcon fontSize="small" />
-              ) : (
-                <SaveIcon fontSize="small" />
-              )
+              <SaveIcon fontSize="small" />
             ) : (
               <EditIcon fontSize="small" />
             )}
