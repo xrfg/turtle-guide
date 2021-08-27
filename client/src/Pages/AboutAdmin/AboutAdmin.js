@@ -8,6 +8,9 @@ import React, { useState, useEffect } from "react";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import { Button, Container, Grid, Typography } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
+import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop";
+import Fade from "@material-ui/core/Fade";
 
 // TODO
 // import Card from "@material-ui/core/Card";
@@ -36,6 +39,18 @@ const useStyles = makeStyles((theme) =>
         margin: theme.spacing(1),
       },
       maxWidth: 345,
+    },
+    // * Modal CSS
+    modal: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    paper: {
+      backgroundColor: theme.palette.background.paper,
+      border: "2px solid #000",
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
     },
     // * Custom CSS
     // Custom margins container buttons
@@ -70,16 +85,27 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
+// TODO Cloudinary authetication
+// TODO Add widget cloudinary transformation
+// TODO Image description
+// TODO move menus to external component that takes props
+
 export default function AboutAdmin() {
   const classes = useStyles();
 
   // * States
   // state that contains all the contents
   const [contents, setContents] = useState([]);
+  const [open, setOpen] = React.useState(false);
 
-  // TODO Cloudinary authetication
-  // TODO Add widget cloudinary transformation
-  // TODO Image description
+  // * Modal CTRLs
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   //* Cloudinary setup
   // setup for the widget cloudinary
@@ -222,20 +248,39 @@ export default function AboutAdmin() {
    * @desc add media caption to the element into the array (state)
    */
   const addMediaCaption = (id, caption) => {
-    console.log("addMediaCaption", id, caption);
-
     contents.forEach((x) => {
       if (x.id === id) {
-        console.log("found");
         x.content["caption"] = caption;
       }
     });
   };
 
-  console.log("contents", contents);
   return (
     <>
       <Container maxWidth="sm">
+        {/* // * MODAL START */}
+        <Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          className={classes.modal}
+          open={open}
+          onClose={handleClose}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+        >
+          <Fade in={open}>
+            <div className={classes.paper}>
+              <h2 id="transition-modal-title">Transition modal</h2>
+              <p id="transition-modal-description">
+                react-transition-group animates me.
+              </p>
+            </div>
+          </Fade>
+        </Modal>
+        {/* // * MODAL END */}
         {/* // ? Buttons Top container */}
         <Grid container spacing={3} className={classes.gridContainer}>
           <Grid item xs={12} className={classes.btnSection}>
@@ -244,7 +289,7 @@ export default function AboutAdmin() {
               variant="contained"
               color="primary"
               component="span"
-              onClick={() => addToContents(createObj("text"))}
+              onClick={handleOpen}
             >
               add Text
             </Button>
