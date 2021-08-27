@@ -4,7 +4,7 @@
  * @param props item
  */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 
 // * Mat UI
@@ -92,18 +92,26 @@ const ContentBlock = (props) => {
    * @desc sends back the selected element to be deleted
    * @param id
    */
-  const removeContent = (id) => {
-    props.itemToDelete(id);
-  };
+  const removeContent = useCallback(
+    (id) => {
+      props.itemToDelete(id);
+    },
+    //eslint-disable-next-line
+    [props.itemToDelete]
+  );
 
   /**
    * @function sendMediaCaption
    * @desc sends back the selected element to be deleted
    * @param id
    */
-  const sendMediaCaption = () => {
-    props.mediaCaption(id, mediaCaption);
-  };
+  const sendMediaCaption = useCallback(
+    (id) => {
+      props.mediaCaption(id, mediaCaption);
+    },
+    //eslint-disable-next-line
+    [props.mediaCaption]
+  );
 
   /**
    * @function editContent

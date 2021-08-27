@@ -137,6 +137,7 @@ export default function AboutAdmin() {
   /**
    * @function checkCloudinaryUpload
    * @desc Function that checks the results of cloudinary
+   * and sends to add content
    * @param result i.e. checkCloudinaryUpload(result)
    */
   const checkCloudinaryUpload = (result) => {
@@ -170,13 +171,26 @@ export default function AboutAdmin() {
    * @types image, video, audio, text, qrcode
    */
   const objToSendMedia = (obj) => {
-    // define type
+    // define type to create the content
     const type = (type) => {
       if (type.includes("image")) return "image";
       if (type.includes("video")) return "video";
       if (type.includes("audio")) return "audio";
+      if (type.includes("text")) return "text";
     };
 
+    // if is a text send a different obj
+    if (obj.type.includes("text")) {
+      const objToSend = {
+        type: type(obj.type), // use function
+        content: obj.content,
+      };
+      // put it into an array
+      // so the function addToContents can loop and add id
+      return [objToSend];
+    }
+
+    // Or create obj for the media types
     const objToSend = {
       type: type(obj.type), // use function
       content: {
@@ -194,7 +208,7 @@ export default function AboutAdmin() {
   /**
    * @function createObj
    * @param {type:"image", content: {url:"http://...", url_thumb:"http://"}}
-   * @param {type:"text", content: {title:"Title", text:"text"}}
+   * @param {type:"text", content: "Text about something"}
    * @return an obj
    * @desc create an obj to add
    */
@@ -257,37 +271,73 @@ export default function AboutAdmin() {
   };
 
   /**
-   * @desc
+   * @function setMediaText
+   * @param obj that come from <TextInput />
+   * @desc gets text and add to content
    */
 
   const setMediaText = (obj) => {
-    console.log("setMediaText", obj);
+    const objToSend = { type: "text", content: obj };
+
+    addToContents(objToSendMedia(createObj(objToSend)));
   };
+
   // * WYSIWYG Editor
   // <DefaultEditor /> is into a component to avoid re-renders
 
   const TextInput = (props) => {
     // state into function
     const [html, setHtml] = useState("Insert Your Text Here");
-    // useCallback to
+
+    // onChange does not sent to parent
+    // updates just the function
+    // useCallback to avoid re.renders
     const onChange = useCallback(
       (e) => {
         setHtml(e.target.value);
-        props.setText(html);
       },
       // eslint-disable-next-line
-      [html]
+      [html, props.setText]
     );
 
+    // send data to the parent through props
+    const sendTextToParent = (text) => {
+      props.setText(text);
+    };
+
+    // TODO Remove
+    const handleSubmit = () => console.log("SUB");
+
     return (
-      <DefaultEditor
-        value={html}
-        onChange={onChange}
-        // ! test onSubmit
-        onSubmit={() => console.log("onSubmit EDITOR")}
-      />
+      <form onSubmit={handleSubmit}>
+        <DefaultEditor
+          value={html}
+          onChange={onChange}
+          // ! test onSubmit
+          // onSubmit={() => console.log("onSubmit EDITOR")}
+        />
+
+        <Button
+          size="small"
+          variant="contained"
+          color="primary"
+          component="span"
+          onClick={() => {
+            sendTextToParent();
+            handleOpen();
+          }}
+        >
+          Close and Insert
+        </Button>
+        <input type="submit" value="JUST A TEST" />
+      </form>
     );
   };
+
+  /**
+* @desc Modal component
+// TODO try to add props and make external
+*/
 
   const ModalCustom = () => {
     return (
@@ -307,13 +357,6 @@ export default function AboutAdmin() {
           <div className={classes.paper}>
             <h2 id="transition-modal-title">Insert Text</h2>
             <p id="transition-modal-description">
-              {/* <DefaultEditor
-                value={html}
-                onChange={onChange}
-                onSubmit={() => console.log("onSubmit EDITOR")}
-                  // ! test onSubmit
-
-              /> */}
               <TextInput setText={setMediaText} />
             </p>
           </div>
@@ -327,30 +370,6 @@ export default function AboutAdmin() {
       <Container maxWidth="sm">
         {/* // * MODAL */}
         <ModalCustom />
-        {/* <Modal
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          className={classes.modal}
-          open={openModal}
-          onClose={handleClose}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
-        >
-          <Fade in={openModal}>
-            <div className={classes.paper}>
-              <h2 id="transition-modal-title">Insert Text</h2>
-              <p id="transition-modal-description">
-                <DefaultEditor
-                  value={html}
-                  onChange={onChange}
-                />
-              </p>
-            </div>
-          </Fade>
-        </Modal> */}
         {/* // * Buttons Top container */}
         <Grid container spacing={3} className={classes.gridContainer}>
           <Grid item xs={12} className={classes.btnSection}>
