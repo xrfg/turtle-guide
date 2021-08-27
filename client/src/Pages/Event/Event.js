@@ -2,10 +2,6 @@
 ? Event Page at route /create-event either for creating a new event or editing an existing one
 */
 
-// TODO ternary operator On each sections instead of a modal -> if editing SHOW INPUT : <span>title<span/>
-// TODO ADD A PEN(EDITING) icon to edit a sections title and desc
-// TODO do the same for NAME
-
 import React, { useState } from "react";
 
 // * Components Imports (children)
@@ -16,13 +12,9 @@ import EventName from "./EventName";
 import {
   Container,
   Grid,
-  Card,
   CardContent,
   Typography,
-  CardActions,
-  Paper,
   Box,
-  TextField,
   Button,
   ButtonGroup,
   makeStyles,
@@ -33,9 +25,8 @@ import {
   DialogTitle,
 } from "@material-ui/core";
 // * material UI imports Icons
-import { Add, Delete, Save, Forward } from "@material-ui/icons";
-// * material UI imports Theme CLASSES
-import { cardStyle } from "../../styles/Theme";
+import { Add } from "@material-ui/icons";
+
 const useStyles = makeStyles((theme) => ({
   deleteBtn: {
     backgroundColor: theme.palette.common.purple,
@@ -62,25 +53,45 @@ export default function Event(props) {
 
   // * Functions
 
+  /**
+   * @function addToContents
+   * @param newContentsArr // newContentsArr to add
+   * @desc adds a content into the state "contents" that will be mapped
+   */
+  const addToContents = (newSectionsArr) => {
+    // add ids
+    // create id based on the contents already into the array
+    // if [contents] s empty assigns the index
+    newSectionsArr.forEach((item, index) => {
+      if (sections.length === 0) {
+        item["id"] = index + 1;
+      } else {
+        item["id"] = sections[sections.length - 1].id + index + 1;
+      }
+    });
+
+    setSections([...sections, ...newSectionsArr]);
+  };
+
+  /**
+   * @function deleteSection
+   * @param id sent from the <Child />
+   * @desc returns the section to delete from the sections Arr
+   */
+  const deleteSection = (id) => {
+    // IMPORTANT
+    //  filter returns an array so updates the sections
+    const newSections = sections.filter((section) => section.id !== id);
+    // set new sections
+    setSections(newSections);
+  };
+
   const handleClickDeleteOpen = () => {
     setOpenDeleteMsg(true);
   };
 
   const handleClickDeleteClose = () => {
     setOpenDeleteMsg(false);
-  };
-
-  const addSection = (e) => {
-    setSections([
-      ...sections,
-      {
-        title: "title",
-        description: "content",
-        id: "Id",
-        time: e.timeStamp,
-      },
-    ]);
-    console.log(sections);
   };
 
   return (
@@ -140,8 +151,16 @@ export default function Event(props) {
             aria-label="vertical outlined primary button group"
           >
             <Button
-              onClick={(e) => {
-                addSection(e);
+              onClick={() => {
+                addToContents([
+                  {
+                    type: "section",
+                    id: 0,
+                    url: "",
+                    title: "Title",
+                    description: "Description",
+                  },
+                ]);
               }}
               endIcon={<Add />}
             >
@@ -149,6 +168,7 @@ export default function Event(props) {
             </Button>
           </ButtonGroup>
           <ButtonGroup
+            disabled
             orientation="vertical"
             aria-label="vertical outlined primary button group"
           >
@@ -173,8 +193,13 @@ export default function Event(props) {
               </Typography>
               {/* Displaying the current sections */}
               <ul>
-                {sections.map((section, i) => {
-                  return <EventSection section={section} key={i} />;
+                {sections.map((section) => {
+                  return (
+                    <EventSection
+                      section={section}
+                      sectionToDelete={deleteSection}
+                    />
+                  );
                 })}
               </ul>
             </CardContent>

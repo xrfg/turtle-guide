@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 
 // * material UI imports Icons
-import { TextField, Typography, Button, makeStyles } from "@material-ui/core";
+import { TextField, Typography, makeStyles } from "@material-ui/core";
 // * material UI imports Icons
-import { Save, Edit } from "@material-ui/icons";
 
 // * React Components
 import EditSaveButton from "../../Components/Buttons/EditSaveButton";
@@ -24,12 +23,20 @@ export default function EventName(props) {
   const [editing, setEditing] = useState(false);
 
   // * Functions
+
+  // * submits the btn
+  // ! maybe not necessary -> test!
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(eventName);
   };
 
-  // * goes into button child component and gets info back wether editing is toggled or not
+  /**
+   * @function handleSaveEditBtn
+   * @param val boolean
+   * @desc goes into button child component and gets info back wether editing is toggled or not
+   *
+   */
   const handleSaveEditBtn = (val) => {
     if (val) {
       setEditing(true);
@@ -63,7 +70,9 @@ export default function EventName(props) {
           onChange={(e) => setEventName(e.target.value)}
         />
       ) : (
-        <Typography className={classes.nameInput}>Van Gogh</Typography>
+        <Typography className={classes.nameInput}>
+          {eventName ? eventName : "Event Name"}
+        </Typography>
       )}
       <EditSaveButton editStatus={editing} editHandler={handleSaveEditBtn} />
     </form>

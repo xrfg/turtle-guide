@@ -1,8 +1,7 @@
-// TODO Save the inputs onChange on save
-// TODO Add Delete BTN
 // TODO Add Drag and Rearrange BTN
+// TODO Add Cover Photo -> Thumbnail taking from the section
+// TODO Add Map image goes into specific MAP SECTION
 
-// TODO Handle the Pay-wall
 // TODO Handle the Pay-wall
 // TODO Handle the Feedback
 // TODO Handle the Map
@@ -22,7 +21,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 // * material UI imports Icons
-import { Forward } from "@material-ui/icons";
+import { Forward, Delete } from "@material-ui/icons";
 
 // * React Components
 import EditSaveButton from "../../Components/Buttons/EditSaveButton";
@@ -40,10 +39,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 export default function EventSection(props) {
   const classes = useStyles(props);
+
+  // * Destructuring props
+  let { id, title, description, url } = props.section;
+
   // * States
   const [editing, setEditing] = useState(false);
 
-  // * goes into button child component and gets info back wether editing is toggled or not
+  // * Functions
+
+  /**
+   * @function handleSaveEditBtn
+   * @param val boolean
+   * @desc goes into button child component and gets info back wether editing is toggled or not
+   *
+   */
+
   const handleSaveEditBtn = (val) => {
     if (val) {
       setEditing(true);
@@ -54,9 +65,20 @@ export default function EventSection(props) {
     }
   };
 
+  const removeSection = (id) => {
+    props.sectionToDelete(id);
+  };
+
+  const handleTitle = (title) => {
+    props.section.title = title;
+  };
+  const handleDescription = (description) => {
+    props.section.description = description;
+  };
+
   return (
     <div>
-      <Card className={classes.card} key={props.key}>
+      <Card className={classes.card} key={props.section.key}>
         <CardContent>
           {editing ? (
             <Box>
@@ -64,25 +86,27 @@ export default function EventSection(props) {
                 id="eventName"
                 type="text"
                 className={classes.textField}
-                defaultValue=""
+                defaultValue={title === "Title" ? null : title}
                 placeholder="Title"
                 InputLabelProps={{
                   shrink: true,
                 }}
-                onChange={(e) => console.log("imok")}
+                onChange={(e) => handleTitle(e.target.value)}
               />
               <TextField
                 id="eventName"
                 type="text"
                 className={classes.textField}
                 fullWidth
-                defaultValue=""
+                defaultValue={
+                  description === "Description" ? null : description
+                }
                 placeholder="Description"
                 multiline={true}
                 InputLabelProps={{
                   shrink: true,
                 }}
-                onChange={(e) => console.log("imok")}
+                onChange={(e) => handleDescription(e.target.value)}
               />
             </Box>
           ) : (
@@ -92,19 +116,21 @@ export default function EventSection(props) {
                 variant="h6"
                 component="h6"
               >
-                {props.section.title}
+                {title}
               </Typography>
               <Typography
                 className={classes.card__desc}
                 variant="subtitle1"
                 component="p"
               >
-                {props.section.description}
+                {description}
               </Typography>{" "}
             </Box>
           )}
         </CardContent>
-        <CardActions>
+        <CardActions
+          style={{ display: "flex", justifyContent: "space-between" }}
+        >
           <ButtonGroup
             orientation="horizontal"
             aria-label="horizontal button group"
@@ -114,10 +140,13 @@ export default function EventSection(props) {
               editStatus={editing}
               editHandler={handleSaveEditBtn}
             />
-            <Button href={`${props.section.url}`} size="small">
+            <Button href={`${url}`} size="small">
               <Forward />
             </Button>
           </ButtonGroup>
+          <Button size="small" onClick={() => removeSection(id)}>
+            <Delete />
+          </Button>
         </CardActions>
       </Card>
     </div>
