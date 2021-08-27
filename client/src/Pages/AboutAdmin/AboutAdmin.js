@@ -219,7 +219,7 @@ export default function AboutAdmin() {
   return (
     <>
       <Container maxWidth="sm">
-        {/* // ? Buttons container */}
+        {/* // ? Buttons Top container */}
         <Grid container spacing={3} className={classes.gridContainer}>
           <Grid item xs={12} className={classes.btnSection}>
             <Button
@@ -251,12 +251,10 @@ export default function AboutAdmin() {
             </Button>
           </Grid>
         </Grid>
-      </Container>
-      {/* // ? Contents container */}
-      <Container maxWidth="sm" className={classes.containerGrids}>
+        {/* // ? Contents container */}
         {/* // ? Add content */}
         <Grid container spacing={3}>
-          <Grid xs={6} className={classes.gridContent}>
+          <Grid xs={12} className={classes.gridContent}>
             <h3>Contents</h3>
             {/* // ? map contents state */}
             {!contents
@@ -272,12 +270,30 @@ export default function AboutAdmin() {
                   );
                 })}
           </Grid>
-          {/* // ? Preview */}
-          <Grid xs={6} className={classes.gridPreview}>
-            <SectionPreview contents={contents} />
+        </Grid>
+        {/* // ? Buttons Bottom container */}
+        <Grid container spacing={3} className={classes.gridContainer}>
+          <Grid item xs={12} className={classes.btnSection}>
+            <Button
+              size="small"
+              variant="contained"
+              color="primary"
+              component="span"
+              onClick={() => addToContents(createObj("text"))}
+            >
+              Preview{" "}
+            </Button>
           </Grid>
         </Grid>
       </Container>
     </>
   );
+}
+
+// ? Preview
+{
+  /* <Grid xs={6} className={classes.gridPreview}>
+            <SectionPreview contents={contents} />
+          </Grid>
+        </Grid> */
 }

@@ -44,6 +44,24 @@ const useStyles = makeStyles((theme) =>
     media: {
       height: 140,
     },
+    mediaContainer: {
+      textAlign: "center",
+      justifyContent: "center",
+    },
+    mediaCaption: {
+      textAlign: "center",
+      justifyContent: "center",
+    },
+    img: {
+      width: "100%",
+    },
+    iconsContainer: {
+      marginLeft: "auto",
+      marginRight: "20px",
+    },
+    descriptionContainer: {
+      marginLeft: "20px",
+    },
   })
 );
 
@@ -69,43 +87,41 @@ const ContentBlock = (props) => {
 
   return (
     <Paper className={classes.paper} key={id}>
-      <Grid container spacing={2}>
+      <Grid item xs={12} sm container className={classes.mediaContainer}>
         <Grid item>
-          <ButtonBase className={classes.image}>
-            {/* // * Sets icon if the file is audio */}
-            {type === "audio" ? (
-              <PlayCircleOutlineIcon fontSize="large" />
-            ) : (
-              <img className={classes.img} alt="complex" src={url_thumb} />
-            )}
+          {/* <ButtonBase className={classes.image}> */}
+          {/* // * Sets icon if the file is audio */}
+          {type === "audio" ? (
+            <PlayCircleOutlineIcon fontSize="large" />
+          ) : (
+            <img className={classes.img} alt="complex" src={url} />
+          )}
+          {/* </ButtonBase> */}
+        </Grid>
+      </Grid>
+
+      <Grid item xs={12} sm container className={classes.mediaCaption}>
+        <Grid item className={classes.descriptionContainer}>
+          <Typography gutterBottom variant="subtitle1">
+            {/* {title} {type} */}
+            {type} id:{id}
+          </Typography>
+          <Typography variant="body2" gutterBottom>
+            {/* {text} */}
+          </Typography>
+          <Typography variant="body2" color="textSecondary">
+            {/* {id} */}
+          </Typography>
+        </Grid>
+        <Grid item className={classes.iconsContainer}>
+          {/* //* Sends the id to the parent */}
+          <ButtonBase onClick={() => removeContent(id)}>
+            <DeleteIcon fontSize="small" />
           </ButtonBase>
         </Grid>
-        <Grid item xs={12} sm container>
-          <Grid item xs container direction="column" spacing={2}>
-            <Grid item xs>
-              <Typography gutterBottom variant="subtitle1">
-                {/* {title} {type} */}
-                {type} id:{id}
-              </Typography>
-              <Typography variant="body2" gutterBottom>
-                {/* {text} */}
-              </Typography>
-              <Typography variant="body2" color="textSecondary">
-                {/* {id} */}
-              </Typography>
-            </Grid>
-            <Grid item>
-              {/* <Typography variant="body2" style={{ cursor: "pointer" }}> */}
-              {/* //* Sends the id to the parent */}
-              <ButtonBase onClick={() => removeContent(id)}>
-                <DeleteIcon fontSize="small" />
-              </ButtonBase>
-              {/* </Typography> */}
-            </Grid>
-          </Grid>
-          <Grid item>
-            <Typography variant="subtitle1"></Typography>
-          </Grid>
+
+        <Grid item>
+          <Typography variant="subtitle1"></Typography>
         </Grid>
       </Grid>
     </Paper>
