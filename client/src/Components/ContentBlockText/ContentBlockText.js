@@ -18,7 +18,7 @@ import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import SaveIcon from "@material-ui/icons/Save";
-import UndoIcon from "@material-ui/icons/Undo";
+import ShortTextIcon from "@material-ui/icons/ShortText";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -69,22 +69,14 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const ContentBlock = (props) => {
+const ContentBlockText = (props) => {
   const classes = useStyles();
 
   // * Destructuring props
-  let {
-    id,
-    type,
-    content: { url, url_thumb, original_filename },
-  } = props.item;
-
+  let { id, type, content } = props.item;
   // * State
   const [isEditing, setIsEditing] = useState(false);
-  const [mediaCaption, setMediaCaption] = useState({
-    title: "",
-    description: "",
-  });
+  const [newContent, setNewContent] = useState({ content: "" });
 
   // * Functions
   /**
@@ -101,16 +93,16 @@ const ContentBlock = (props) => {
   );
 
   /**
-   * @function sendMediaCaption
+   * @function sendNewContent
    * @desc sends back the selected element to be deleted
    * @param id
    */
-  const sendMediaCaption = useCallback(
-    (id) => {
-      props.mediaCaption(id, mediaCaption);
+  const sendNewContent = useCallback(
+    () => {
+      props.newContent(id, newContent);
     },
     //eslint-disable-next-line
-    [props.mediaCaption]
+    [props.newContent]
   );
 
   /**
@@ -125,82 +117,56 @@ const ContentBlock = (props) => {
 
   // to save if the caption is added/edited
   useEffect(() => {
-    if (
-      (!isEditing && mediaCaption.title.length !== 0) ||
-      mediaCaption.description.length !== 0
-    ) {
+    if (!isEditing && newContent.length !== 0) {
       // send mediacaptio and id to the parent
       // the function will pass it as a prop
-      sendMediaCaption();
+      sendNewContent();
     }
     // eslint-disable-next-line
   }, [isEditing]);
 
+  {
+    /* // ! IMPORTANT - Make modals that opens with the editor */
+  }
+
   /**
    * @function handleChange
-   * @desc handles mediacaption state
+   * @desc handles newContent state
    * @param e
    */
   const handleChange = (e) => {
+    console.log(e.target.value);
     // set media caption obj
-    setMediaCaption({ ...mediaCaption, [e.target.name]: e.target.value });
+    setNewContent({ [e.target.name]: e.target.value });
   };
+
+  console.log("newcontent", newContent);
 
   return (
     <Paper className={classes.paper} key={id}>
       <Grid item xs={12} sm container className={classes.mediaContainer}>
         <Grid item>
-          {/* <ButtonBase className={classes.image}> */}
-          {/* // * Sets icon if the file is audio */}
-          {type === "audio" ? (
-            <PlayCircleOutlineIcon fontSize="large" />
-          ) : type === "video" ? (
-            <img
-              className={classes.img}
-              alt={original_filename}
-              src={url_thumb}
-            />
-          ) : (
-            <img className={classes.img} alt={original_filename} src={url} />
-          )}
-          {/* </ButtonBase> */}
+          <ShortTextIcon fontSize="large" />
         </Grid>
       </Grid>
 
       <Grid item xs={12} sm container className={classes.mediaCaption}>
         <Grid item className={classes.descriptionContainer}>
           <Typography gutterBottom variant="subtitle1">
+            {/* // ! IMPORTANT - Make modals that opens with the editor */}
             {/* {type} id:{id} */}
             {isEditing ? (
               <TextField
                 id="standard-basic-title"
-                label="Title"
-                name="title"
+                label="Content"
+                name="content"
                 onChange={handleChange}
-                value={mediaCaption.title}
+                value={content}
               />
-            ) : !isEditing && mediaCaption.title.length !== 0 ? (
-              <h5>{mediaCaption.title}</h5>
             ) : (
-              <h5>Add a Title (optional)</h5>
+              <h5>{content}</h5>
             )}
           </Typography>
-          <Typography variant="body2" gutterBottom>
-            {isEditing ? (
-              <TextField
-                id="standard-basic-description"
-                label="Description"
-                name="description"
-                onChange={handleChange}
-                value={mediaCaption.description}
-              />
-            ) : !isEditing && mediaCaption.description.length !== 0 ? (
-              <h6>{mediaCaption.description}</h6>
-            ) : (
-              <h6>Add a Description (optional)</h6>
-            )}
-          </Typography>
-          <Typography variant="body2" color="textSecondary"></Typography>
         </Grid>
         <Grid item className={classes.iconsContainer}>
           {/*  // * editing title/description */}
@@ -223,34 +189,6 @@ const ContentBlock = (props) => {
       </Grid>
     </Paper>
   );
-
-  // return (
-  //   <Card className={classes.root}>
-  //     <CardActionArea>
-  //       <CardMedia
-  //         className={classes.media}
-  //         image="/static/images/cards/contemplative-reptile.jpg"
-  //         title="Contemplative Reptile"
-  //       />
-  //       <CardContent>
-  //         <Typography gutterBottom variant="h5" component="h2">
-  //           {title}
-  //         </Typography>
-  //         <Typography variant="body2" color="textSecondary" component="p">
-  //           {text}
-  //         </Typography>
-  //       </CardContent>
-  //     </CardActionArea>
-  //     <CardActions>
-  //       <Button size="small" color="primary">
-  //         Share
-  //       </Button>
-  //       <Button size="small" color="primary">
-  //         Learn More
-  //       </Button>
-  //     </CardActions>
-  //   </Card>
-  // );
 };
 
-export default ContentBlock;
+export default ContentBlockText;

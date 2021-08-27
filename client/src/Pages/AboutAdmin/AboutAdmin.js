@@ -25,9 +25,10 @@ import ButtonBase from "@material-ui/core/ButtonBase";
 // * Pages
 
 // * Components
-//  <ContentBlock />
-// requires props "item" <ContentBlock item={}/>
-import ContentBlock from "../../Components/ContentBlock/ContentBlock";
+//  <ContentBlockMedia />
+// requires props "item" <ContentBlockMedia item={}/>
+import ContentBlockMedia from "../../Components/ContentBlockMedia/ContentBlockMedia";
+import ContentBlockText from "../../Components/ContentBlockText/ContentBlockText";
 // <SectionPreview />
 // requires props "contents" <SectionPreview contents={ }/>
 import SectionPreview from "../../Components/SectionPreview/SectionPreview";
@@ -277,11 +278,17 @@ export default function AboutAdmin() {
    */
 
   const setMediaText = (obj) => {
+    console.log("setMediaText", obj);
     const objToSend = { type: "text", content: obj };
 
     addToContents(objToSendMedia(createObj(objToSend)));
   };
 
+  /**
+   * @desc
+   */
+  const addNewContent = (id, newContent) =>
+    console.log("new content", id, newContent);
   // * WYSIWYG Editor
   // <DefaultEditor /> is into a component to avoid re-renders
 
@@ -301,20 +308,16 @@ export default function AboutAdmin() {
     );
 
     // send data to the parent through props
-    const sendTextToParent = (text) => {
-      props.setText(text);
+    const sendTextToParent = () => {
+      props.setText(html);
     };
 
-    // TODO Remove
-    const handleSubmit = () => console.log("SUB");
-
     return (
-      <form onSubmit={handleSubmit}>
+      <>
         <DefaultEditor
           value={html}
           onChange={onChange}
           // ! test onSubmit
-          // onSubmit={() => console.log("onSubmit EDITOR")}
         />
 
         <Button
@@ -324,13 +327,12 @@ export default function AboutAdmin() {
           component="span"
           onClick={() => {
             sendTextToParent();
-            handleOpen();
+            handleClose();
           }}
         >
           Close and Insert
         </Button>
-        <input type="submit" value="JUST A TEST" />
-      </form>
+      </>
     );
   };
 
@@ -411,8 +413,19 @@ export default function AboutAdmin() {
             {!contents
               ? null
               : contents.map((x, i) => {
+                  if (x.type === "text") {
+                    return (
+                      <ContentBlockText
+                        item={x}
+                        key={x.id}
+                        // receives the id of the item to delete
+                        itemToDelete={deleteItem}
+                        newContent={addNewContent}
+                      />
+                    );
+                  }
                   return (
-                    <ContentBlock
+                    <ContentBlockMedia
                       item={x}
                       key={x.id}
                       // receives the id of the item to delete
@@ -441,12 +454,4 @@ export default function AboutAdmin() {
       </Container>
     </>
   );
-}
-
-// ? Preview
-{
-  /* <Grid xs={6} className={classes.gridPreview}>
-            <SectionPreview contents={contents} />
-          </Grid>
-        </Grid> */
 }
