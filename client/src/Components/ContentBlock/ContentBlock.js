@@ -4,17 +4,20 @@
  * @param props item
  */
 
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 
 // * Mat UI
 import { Button, Container, Grid, Typography } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import ButtonBase from "@material-ui/core/ButtonBase";
+import TextField from "@material-ui/core/TextField";
 
 // * Icons
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
+import SaveIcon from "@material-ui/icons/Save";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -75,6 +78,13 @@ const ContentBlock = (props) => {
     content: { url, url_thumb },
   } = props.item;
 
+  // * States
+  const [isEditing, setIsEditing] = useState(false);
+  const [mediaCaption, setMediaCaption] = useState({
+    title: "",
+    description: "",
+  });
+
   // * Functions
   /**
    * @function removeContent
@@ -85,6 +95,28 @@ const ContentBlock = (props) => {
     props.itemToDelete(id);
   };
 
+  /**
+   * @function editContent
+   * @desc enables edit mode
+   * @param id
+   */
+  const editContent = (id) => {
+    // togle editing
+    setIsEditing((prev) => !prev);
+    if (!isEditing && mediaCaption.length !== 0) {
+      console.log("media Caption", mediaCaption);
+    }
+  };
+
+  /**
+   * @function handleChange
+   * @desc handles mediacaption state
+   * @param e
+   */
+  const handleChange = (e) => {
+    // set media caption obj
+    setMediaCaption({ ...mediaCaption, [e.target.name]: e.target.value });
+  };
   return (
     <Paper className={classes.paper} key={id}>
       <Grid item xs={12} sm container className={classes.mediaContainer}>
@@ -103,17 +135,49 @@ const ContentBlock = (props) => {
       <Grid item xs={12} sm container className={classes.mediaCaption}>
         <Grid item className={classes.descriptionContainer}>
           <Typography gutterBottom variant="subtitle1">
-            {/* {title} {type} */}
-            {type} id:{id}
+            {/* {type} id:{id} */}
+            {isEditing ? (
+              <TextField
+                id="standard-basic"
+                label="Title"
+                name="title"
+                onChange={handleChange}
+                value={mediaCaption.title}
+              />
+            ) : !isEditing && mediaCaption.title.length !== 0 ? (
+              <h5>{mediaCaption.title}</h5>
+            ) : (
+              <h5>Add a Title (optional)</h5>
+            )}
           </Typography>
           <Typography variant="body2" gutterBottom>
+            {isEditing ? (
+              <TextField
+                id="standard-basic"
+                label="Description"
+                name="description"
+                onChange={handleChange}
+                value={mediaCaption.description}
+              />
+            ) : !isEditing && mediaCaption.description.length !== 0 ? (
+              <h6>{mediaCaption.description}</h6>
+            ) : (
+              <h6>Add a Description (optional)</h6>
+            )}
+
             {/* {text} */}
           </Typography>
-          <Typography variant="body2" color="textSecondary">
-            {/* {id} */}
-          </Typography>
+          <Typography variant="body2" color="textSecondary"></Typography>
         </Grid>
         <Grid item className={classes.iconsContainer}>
+          {/*  // * editing title/description */}
+          <ButtonBase onClick={() => editContent(id)}>
+            {isEditing ? (
+              <SaveIcon fontSize="small" />
+            ) : (
+              <EditIcon fontSize="small" />
+            )}
+          </ButtonBase>
           {/* //* Sends the id to the parent */}
           <ButtonBase onClick={() => removeContent(id)}>
             <DeleteIcon fontSize="small" />
