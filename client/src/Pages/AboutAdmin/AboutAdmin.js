@@ -153,6 +153,7 @@ export default function AboutAdmin() {
     const objToSend = {
       type: type(obj.type), // use function
       content: {
+        filename: obj.uploadInfo.original_filename,
         public_id: obj.uploadInfo.public_id,
         url: obj.uploadInfo.url,
         url_thumb: obj.uploadInfo.thumbnail_url,
@@ -274,7 +275,8 @@ export default function AboutAdmin() {
         {/* // ? Buttons Bottom container */}
         <Grid container spacing={3} className={classes.gridContainer}>
           <Grid item xs={12} className={classes.btnSection}>
-            <Button
+            {/* // ! TEMPORARLY DISABLED */}
+            {/* <Button
               size="small"
               variant="contained"
               color="primary"
@@ -282,7 +284,7 @@ export default function AboutAdmin() {
               onClick={() => addToContents(createObj("text"))}
             >
               Preview{" "}
-            </Button>
+            </Button> */}
           </Grid>
         </Grid>
       </Container>

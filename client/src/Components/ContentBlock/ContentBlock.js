@@ -18,6 +18,7 @@ import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import SaveIcon from "@material-ui/icons/Save";
+import UndoIcon from "@material-ui/icons/Undo";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -75,10 +76,10 @@ const ContentBlock = (props) => {
   let {
     id,
     type,
-    content: { url, url_thumb },
+    content: { url, url_thumb, original_filename },
   } = props.item;
 
-  // * States
+  // * State
   const [isEditing, setIsEditing] = useState(false);
   const [mediaCaption, setMediaCaption] = useState({
     title: "",
@@ -103,8 +104,11 @@ const ContentBlock = (props) => {
   const editContent = (id) => {
     // togle editing
     setIsEditing((prev) => !prev);
-    if (!isEditing && mediaCaption.length !== 0) {
-      console.log("media Caption", mediaCaption);
+    if (
+      (!isEditing && mediaCaption.title.length !== 0) ||
+      mediaCaption.description.length !== 0
+    ) {
+      console.log("SAVE", mediaCaption);
     }
   };
 
@@ -117,6 +121,7 @@ const ContentBlock = (props) => {
     // set media caption obj
     setMediaCaption({ ...mediaCaption, [e.target.name]: e.target.value });
   };
+
   return (
     <Paper className={classes.paper} key={id}>
       <Grid item xs={12} sm container className={classes.mediaContainer}>
@@ -125,8 +130,14 @@ const ContentBlock = (props) => {
           {/* // * Sets icon if the file is audio */}
           {type === "audio" ? (
             <PlayCircleOutlineIcon fontSize="large" />
+          ) : type === "video" ? (
+            <img
+              className={classes.img}
+              alt={original_filename}
+              src={url_thumb}
+            />
           ) : (
-            <img className={classes.img} alt="complex" src={url} />
+            <img className={classes.img} alt={original_filename} src={url} />
           )}
           {/* </ButtonBase> */}
         </Grid>
@@ -138,7 +149,7 @@ const ContentBlock = (props) => {
             {/* {type} id:{id} */}
             {isEditing ? (
               <TextField
-                id="standard-basic"
+                id="standard-basic-title"
                 label="Title"
                 name="title"
                 onChange={handleChange}
@@ -153,7 +164,7 @@ const ContentBlock = (props) => {
           <Typography variant="body2" gutterBottom>
             {isEditing ? (
               <TextField
-                id="standard-basic"
+                id="standard-basic-description"
                 label="Description"
                 name="description"
                 onChange={handleChange}
@@ -173,7 +184,12 @@ const ContentBlock = (props) => {
           {/*  // * editing title/description */}
           <ButtonBase onClick={() => editContent(id)}>
             {isEditing ? (
-              <SaveIcon fontSize="small" />
+              mediaCaption.title.length === 0 ||
+              mediaCaption.description.length === 0 ? (
+                <UndoIcon fontSize="small" />
+              ) : (
+                <SaveIcon fontSize="small" />
+              )
             ) : (
               <EditIcon fontSize="small" />
             )}
