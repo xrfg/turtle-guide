@@ -2,7 +2,7 @@
  * @desc Component that creates/edit the info of
  * the account (i.e. the museum)
  */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 // * Mat UI
 import { makeStyles, createStyles } from "@material-ui/core/styles";
@@ -31,6 +31,9 @@ import ContentBlock from "../../Components/ContentBlock/ContentBlock";
 // <SectionPreview />
 // requires props "contents" <SectionPreview contents={ }/>
 import SectionPreview from "../../Components/SectionPreview/SectionPreview";
+
+// * Other Imports
+import { DefaultEditor } from "react-simple-wysiwyg";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -96,15 +99,15 @@ export default function AboutAdmin() {
   // * States
   // state that contains all the contents
   const [contents, setContents] = useState([]);
-  const [open, setOpen] = React.useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   // * Modal CTRLs
   const handleOpen = () => {
-    setOpen(true);
+    setOpenModal(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setOpenModal(false);
   };
 
   //* Cloudinary setup
@@ -160,13 +163,11 @@ export default function AboutAdmin() {
   };
 
   // * Objects to send functions
-  // functions that are returning objs to create the content
-  // types: image, video,audio, text, qrcode
-
   /**
    * @function objToSendMedia
    * @param {obj}
-   * @desc creates an obj for ad image OR a video
+   * @desc creates an obj for ad image OR a video to create the content
+   * @types image, video, audio, text, qrcode
    */
   const objToSendMedia = (obj) => {
     // define type
@@ -255,15 +256,82 @@ export default function AboutAdmin() {
     });
   };
 
+  /**
+   * @desc
+   */
+
+  const setMediaText = (obj) => {
+    console.log("setMediaText", obj);
+  };
+  // * WYSIWYG Editor
+  // <DefaultEditor /> is into a component to avoid re-renders
+
+  const TextInput = (props) => {
+    // state into function
+    const [html, setHtml] = useState("Insert Your Text Here");
+    // useCallback to
+    const onChange = useCallback(
+      (e) => {
+        setHtml(e.target.value);
+        props.setText(html);
+      },
+      // eslint-disable-next-line
+      [html]
+    );
+
+    return (
+      <DefaultEditor
+        value={html}
+        onChange={onChange}
+        // ! test onSubmit
+        onSubmit={() => console.log("onSubmit EDITOR")}
+      />
+    );
+  };
+
+  const ModalCustom = () => {
+    return (
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={openModal}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={openModal}>
+          <div className={classes.paper}>
+            <h2 id="transition-modal-title">Insert Text</h2>
+            <p id="transition-modal-description">
+              {/* <DefaultEditor
+                value={html}
+                onChange={onChange}
+                onSubmit={() => console.log("onSubmit EDITOR")}
+                  // ! test onSubmit
+
+              /> */}
+              <TextInput setText={setMediaText} />
+            </p>
+          </div>
+        </Fade>
+      </Modal>
+    );
+  };
+
   return (
     <>
       <Container maxWidth="sm">
-        {/* // * MODAL START */}
-        <Modal
+        {/* // * MODAL */}
+        <ModalCustom />
+        {/* <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
           className={classes.modal}
-          open={open}
+          open={openModal}
           onClose={handleClose}
           closeAfterTransition
           BackdropComponent={Backdrop}
@@ -271,17 +339,19 @@ export default function AboutAdmin() {
             timeout: 500,
           }}
         >
-          <Fade in={open}>
+          <Fade in={openModal}>
             <div className={classes.paper}>
-              <h2 id="transition-modal-title">Transition modal</h2>
+              <h2 id="transition-modal-title">Insert Text</h2>
               <p id="transition-modal-description">
-                react-transition-group animates me.
+                <DefaultEditor
+                  value={html}
+                  onChange={onChange}
+                />
               </p>
             </div>
           </Fade>
-        </Modal>
-        {/* // * MODAL END */}
-        {/* // ? Buttons Top container */}
+        </Modal> */}
+        {/* // * Buttons Top container */}
         <Grid container spacing={3} className={classes.gridContainer}>
           <Grid item xs={12} className={classes.btnSection}>
             <Button
