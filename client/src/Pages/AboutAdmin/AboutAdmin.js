@@ -29,6 +29,7 @@ import ButtonBase from "@material-ui/core/ButtonBase";
 // requires props "item" <ContentBlockMedia item={}/>
 import ContentBlockMedia from "../../Components/ContentBlockMedia/ContentBlockMedia";
 import ContentBlockText from "../../Components/ContentBlockText/ContentBlockText";
+import TextEditor from "../../Components/Inputs/TextEditor";
 // <SectionPreview />
 // requires props "contents" <SectionPreview contents={ }/>
 import SectionPreview from "../../Components/SectionPreview/SectionPreview";
@@ -287,61 +288,67 @@ export default function AboutAdmin() {
   /**
    * @desc
    */
-  const addNewContent = (id, newContent) =>
+  const addNewContent = (id, newContent) => {
     console.log("new content", id, newContent);
+    handleClose();
+  };
+
   // * WYSIWYG Editor
   // <DefaultEditor /> is into a component to avoid re-renders
 
-  const TextInput = (props) => {
-    // state into function
-    const [html, setHtml] = useState("Insert Your Text Here");
+  // const TextInput = (props) => {
+  //   // state into function
+  //   const [html, setHtml] = useState("Insert Your Text Here");
 
-    // onChange does not sent to parent
-    // updates just the function
-    // useCallback to avoid re.renders
-    const onChange = useCallback(
-      (e) => {
-        setHtml(e.target.value);
-      },
-      // eslint-disable-next-line
-      [html, props.setText]
-    );
+  //   // onChange does not sent to parent
+  //   // updates just the function
+  //   // useCallback to avoid re.renders
+  //   const onChange = useCallback(
+  //     (e) => {
+  //       setHtml(e.target.value);
+  //     },
+  //     // eslint-disable-next-line
+  //     [html, props.setText]
+  //   );
 
-    // send data to the parent through props
-    const sendTextToParent = () => {
-      props.setText(html);
-    };
+  //   // send data to the parent through props
+  //   const sendTextToParent = () => {
+  //     props.setText(html);
+  //   };
 
-    return (
-      <>
-        <DefaultEditor
-          value={html}
-          onChange={onChange}
-          // ! test onSubmit
-        />
+  //   return (
+  //     <>
+  //       <DefaultEditor
+  //         value={html}
+  //         onChange={onChange}
+  //         // ! test onSubmit
+  //       />
 
-        <Button
-          size="small"
-          variant="contained"
-          color="primary"
-          component="span"
-          onClick={() => {
-            sendTextToParent();
-            handleClose();
-          }}
-        >
-          Close and Insert
-        </Button>
-      </>
-    );
-  };
+  //       <Button
+  //         size="small"
+  //         variant="contained"
+  //         color="primary"
+  //         component="span"
+  //         onClick={() => {
+  //           sendTextToParent();
+  //           handleClose();
+  //         }}
+  //       >
+  //         Close and Insert
+  //       </Button>
+  //     </>
+  //   );
+  // };
 
   /**
 * @desc Modal component
 // TODO try to add props and make external
 */
 
-  const ModalCustom = () => {
+  const ModalCustom = (props) => {
+    // destru
+    const { content } = props;
+
     return (
       <Modal
         aria-labelledby="transition-modal-title"
@@ -358,9 +365,7 @@ export default function AboutAdmin() {
         <Fade in={openModal}>
           <div className={classes.paper}>
             <h2 id="transition-modal-title">Insert Text</h2>
-            <p id="transition-modal-description">
-              <TextInput setText={setMediaText} />
-            </p>
+            <p id="transition-modal-description">{content}</p>
           </div>
         </Fade>
       </Modal>
@@ -371,10 +376,10 @@ export default function AboutAdmin() {
     <>
       <Container maxWidth="sm">
         {/* // * MODAL */}
-        <ModalCustom />
-        {/* // * Buttons Top container */}
-        <Grid container spacing={3} className={classes.gridContainer}>
-          <Grid item xs={12} className={classes.btnSection}>
+        <ModalCustom content={<TextEditor setText={setMediaText} />} />
+        <Grid item xs={12} className={classes.btnSection}>
+          <Grid container spacing={3} className={classes.gridContainer}>
+            {/* // * Buttons Top container */}
             <Button
               size="small"
               variant="contained"
