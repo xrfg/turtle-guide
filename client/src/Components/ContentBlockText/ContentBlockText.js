@@ -24,6 +24,8 @@ import ShortTextIcon from "@material-ui/icons/ShortText";
 import TextEditor from "../Inputs/TextEditor";
 // requires props "item" "isOpen" <ModalCuston content={} isOpen={state}/>
 import ModalCustom from "../../Components/Modal/ModalCustom";
+// needed to render Rich text
+import ReactQuill from "react-quill"; // ES6
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -187,7 +189,7 @@ const ContentBlockText = (props) => {
                 <html>{content}</html>
               </div>
             ) : (
-              <html>{content}</html>
+              <ReactQuill value={content} readOnly={true} theme={"bubble"} />
             )}
           </Typography>
         </Grid>

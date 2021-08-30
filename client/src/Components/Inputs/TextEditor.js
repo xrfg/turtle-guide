@@ -82,7 +82,6 @@ const TextEditor = (props) => {
 
   return (
     <>
-      {/* <DefaultEditor value={html} onChange={onChange} /> */}
       <ReactQuill
         theme="snow"
         modules={modules}
@@ -90,8 +89,6 @@ const TextEditor = (props) => {
         value={html}
         onChange={onChange}
       />
-      {/* <div className="my-editing-area" /> */}
-      {/* </ReactQuill> */}
       <Button
         size="small"
         variant="contained"
