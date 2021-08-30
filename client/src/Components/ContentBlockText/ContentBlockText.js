@@ -187,7 +187,7 @@ const ContentBlockText = (props) => {
                 <html>{content}</html>
               </div>
             ) : (
-              <pre>{content}</pre>
+              <html>{content}</html>
             )}
           </Typography>
         </Grid>
