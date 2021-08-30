@@ -56,31 +56,45 @@ export default function Event(props) {
   // * Functions
 
   /**
+   * @function findBiggestId
+   * @desc returns a Number -> biggest existing integer of an "id" from the sections array
+   * is aiding the assigning of id's to new sections in function addToContents
+   */
+
+  const findBiggestId = (e) => {
+    let biggestId = 1;
+    sections.forEach((section) => {
+      if (section.id > biggestId) {
+        biggestId = section.id;
+      }
+    });
+    return biggestId;
+  };
+
+  /**
    * @function addToContents
-   * @param newContentsArr // newContentsArr to add
+   * @param newContentsArr
    * @desc adds a content into the state "contents" that will be mapped
    */
 
-  // TODO REDO this func so that id and order are given different to not mess up once the user adds a new section with already RE-Arranged sections!
   const addToContents = (newSectionsArr) => {
     // add ids
-    // create id based on the contents already into the array
+    // create "id" based on the contents already into the array, from the biggestId present on
     // if [contents] s empty assigns the index
 
-    // let biggestId = 1;
+    const bigId = findBiggestId();
+
     newSectionsArr.forEach((section, i) => {
       if (sections.length === 0) {
         section["id"] = i + 1;
         section["order"] = i + 1;
       } else {
         // find the section with the biggest id
-        section["id"] = sections[sections.length - 1].id + i + 1;
-        section["order"] = sections[sections.length - 1].id + i + 1;
+        const lastSection = sections.find((section) => section.id === bigId);
+
+        section["id"] = lastSection.id + i + 1;
+        section["order"] = lastSection.id + i + 1;
       }
-      /* if (section.id > biggestId) {
-        biggestId = section.id;
-        console.log("biggestID", biggestId);
-      } */
     });
 
     setSections([...sections, ...newSectionsArr]);
