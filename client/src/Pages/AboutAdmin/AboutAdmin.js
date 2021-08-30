@@ -2,6 +2,11 @@
  * @desc Component that creates/edit the info of
  * the account (i.e. the museum)
  */
+
+// TODO Cloudinary authetication
+// TODO Add widget cloudinary transformation
+// TODO move menus to external component that takes props
+// TODO Externalize funcitions
 import React, { useState, useEffect, useCallback } from "react";
 
 // * Mat UI
@@ -87,10 +92,6 @@ const useStyles = makeStyles((theme) =>
     },
   })
 );
-
-// TODO Cloudinary authetication
-// TODO Add widget cloudinary transformation
-// TODO move menus to external component that takes props
 
 export default function AboutAdmin() {
   const classes = useStyles();
@@ -308,8 +309,6 @@ export default function AboutAdmin() {
       }
     });
   };
-
-  const openPreview = () => {};
 
   return (
     <>
