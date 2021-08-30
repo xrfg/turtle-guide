@@ -4,13 +4,7 @@ import { Container,Box,Grid } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 
 
-export default function Footer() {
- 
-    // let currentYear=new Date().getFullYear()
-    {/* <p> Powered By Turtle Team .</p>
-        <p> © Turtle App @ {currentYear} </p>
-         */}
-  
+export default function Footer() { 
   return (
       <footer>
       <Box 
@@ -47,7 +41,7 @@ export default function Footer() {
             </Grid>
             {/* 3 */}
             <Grid item xs={12} sm={4}>
-              <Box borderBottom={1}> Message </Box>
+              <Box borderBottom={1}> Turtle App </Box>
               <Box>
                 <Link href="/" color="inherit">API</Link>
               </Box>
@@ -61,7 +55,7 @@ export default function Footer() {
 
           </Grid>
           <Box textAlign="center" pt={{xs:5,sm:10}} pb={{xs:5,sm:0}}>
-            Turtle App Team &reg; {new Date().getFullYear()}
+           © Turtle App Team &reg; {new Date().getFullYear()}
           </Box>
 
         </Container>
