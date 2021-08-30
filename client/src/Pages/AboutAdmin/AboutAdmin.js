@@ -31,7 +31,7 @@ import ContentBlockMedia from "../../Components/ContentBlockMedia/ContentBlockMe
 import ContentBlockText from "../../Components/ContentBlockText/ContentBlockText";
 import TextEditor from "../../Components/Inputs/TextEditor";
 
-// requires props "item" <ModalCuston content={}/>
+// requires props "item" "isOpen" <ModalCuston content={} isOpen={state}/>
 import ModalCustom from "../../Components/Modal/ModalCustom";
 
 // <SectionPreview />
@@ -102,12 +102,12 @@ export default function AboutAdmin() {
 
   // * Modal CTRLs
   const handleOpen = () => {
-    setOpenModal(true);
+    setOpenModal((prev) => !prev);
   };
 
-  const handleClose = () => {
-    setOpenModal(false);
-  };
+  // const handleClose = () => {
+  //   setOpenModal(false);
+  // };
 
   //* Cloudinary setup
   // setup for the widget cloudinary
@@ -287,7 +287,8 @@ export default function AboutAdmin() {
    */
   const addNewContent = (id, newContent) => {
     // Close the modal
-    handleClose();
+    // handleClose();
+    setOpenModal(false);
 
     console.log("new content", id, newContent);
   };
@@ -296,7 +297,10 @@ export default function AboutAdmin() {
     <>
       <Container maxWidth="sm">
         {/* // * MODAL */}
-        <ModalCustom content={<TextEditor setText={setMediaText} />} />
+        <ModalCustom
+          content={<TextEditor setText={setMediaText} />}
+          isOpen={openModal}
+        />
         <Grid item xs={12} className={classes.btnSection}>
           <Grid container spacing={3} className={classes.gridContainer}>
             {/* // * Buttons Top container */}

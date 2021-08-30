@@ -55,17 +55,22 @@ const ModalCustom = (props) => {
   const classes = useStyles();
 
   // destru
-  const { content } = props;
+  let { content, isOpen } = props;
 
   // States
   const [openModal, setOpenModal] = useState(false);
 
-  // * Modal CTRLs
-  const handleOpen = () => {
-    setOpenModal(true);
-  };
+  useEffect(() => {
+    setOpenModal(isOpen);
+    // eslint-disable-next-line
+  }, [isOpen]);
 
+  // ! does not update to false once close it clicking out
+  // TODO Solve it!
+
+  // * Modal CTRLs
   const handleClose = () => {
+    isOpen = false;
     setOpenModal(false);
   };
 
