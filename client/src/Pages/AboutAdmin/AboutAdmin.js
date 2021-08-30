@@ -98,16 +98,23 @@ export default function AboutAdmin() {
   // * States
   // state that contains all the contents
   const [contents, setContents] = useState([]);
-  const [openModal, setOpenModal] = useState(false);
+  const [openModalInsertText, setopenModalInsertTextInsertText] =
+    useState(false);
+  const [openModalPreview, setOpenModalPreview] = useState(false);
 
-  // * Modal CTRLs
-  const handleOpen = () => {
-    setOpenModal((prev) => !prev);
+  // * Modals CTRLs
+  const handleOpen = (modal) => {
+    if (modal === "insertText") {
+      return setopenModalInsertTextInsertText(true);
+    }
+    if (modal === "preview") {
+      return setOpenModalPreview(true);
+    }
   };
 
   const handleClose = () => {
-    console.log("close modal");
-    setOpenModal(false);
+    setopenModalInsertTextInsertText(false);
+    setOpenModalPreview(false);
   };
 
   //* Cloudinary setup
@@ -275,7 +282,6 @@ export default function AboutAdmin() {
    * @param obj that come from <TextInput />
    * @desc gets text and add to content
    */
-
   const setMediaText = (obj) => {
     // create obj
     const objToSend = { type: "text", content: obj };
@@ -303,13 +309,21 @@ export default function AboutAdmin() {
     });
   };
 
+  const openPreview = () => {};
+
   return (
     <>
       <Container maxWidth="sm">
         {/* // * MODAL */}
         <ModalCustom
           content={<TextEditor setText={setMediaText} />}
-          isOpen={openModal}
+          isOpen={openModalInsertText}
+          // handles the state when the modal is clickes outside the area
+          isClose={handleClose}
+        />
+        <ModalCustom
+          content={<SectionPreview contents={contents} />}
+          isOpen={openModalPreview}
           // handles the state when the modal is clickes outside the area
           isClose={handleClose}
         />
@@ -321,7 +335,7 @@ export default function AboutAdmin() {
               variant="contained"
               color="primary"
               component="span"
-              onClick={handleOpen}
+              onClick={() => handleOpen("insertText")}
             >
               add Text
             </Button>
@@ -342,6 +356,16 @@ export default function AboutAdmin() {
               onClick={() => addToContents(createObj("qrcode"))}
             >
               add QrCode
+            </Button>
+            <Button
+              size="small"
+              variant="contained"
+              color="primary"
+              component="span"
+              //
+              onClick={() => handleOpen("preview")}
+            >
+              Preview{" "}
             </Button>
           </Grid>
         </Grid>

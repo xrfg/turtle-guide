@@ -40,7 +40,7 @@ const TextEditor = (props) => {
       [{ header: [1, 2, false] }],
       ["bold", "italic", "underline", "strike", "blockquote"],
       [{ list: "ordered" }, { list: "bullet" }],
-      ["link", "image"],
+      ["link"],
     ],
     // mention: {
     //   allowedChars: /^[A-Za-z\sÅÄÖåäö]*$/,

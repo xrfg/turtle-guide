@@ -4,6 +4,8 @@
  // * How to i.e.:
  * <ModalCustom content={a content} isOpen={state} isClose={function}/>
  */
+
+// TODO create modal title
 import React, { useState, useEffect } from "react";
 
 // * Mat UI
@@ -94,7 +96,9 @@ const ModalCustom = (props) => {
     >
       <Fade in={openModal}>
         <div className={classes.paper}>
-          <h2 id="transition-modal-title">Insert Text</h2>
+          <h2 id="transition-modal-title">
+            MODAL Title to change to section NAME or function name
+          </h2>
           <p id="transition-modal-description">{content}</p>
         </div>
       </Fade>

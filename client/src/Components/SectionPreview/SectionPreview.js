@@ -1,7 +1,11 @@
 /**
  * @desc Component that preview the Sections or
  * renders the sections into the Guide/Event
+ * @requires props "contents" <SectionPreview contents={ }/>
  */
+
+// TODO Add video render from cloudinary
+// TODO clean code
 
 import React, { useEffect } from "react";
 
@@ -10,8 +14,9 @@ import { makeStyles, createStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
 // * Components
-
 import VideoPlayerFunction from "../VideoPlayerFunction/VideoPlayerFunction";
+// needed to render Rich text
+import ReactQuill from "react-quill"; // ES6
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -65,21 +70,12 @@ const SectionPreview = (props) => {
   // destru
   const { contents } = props;
 
-  // * Functions
-  //   var cld = window.cloudinary.Cloudinary.new({
-  //     cloud_name: "dhdgj2ryu",
-  //   });
-  //   var demoplayer = cld.videoPlayer("doc-player").width(600);
-
   return (
     <>
       <Container maxWidth="xs">
-        <div>PREVIEW</div>
-        {/* // * mapping to render divided by genre */}
+        {/* // * mapping to render divided by types */}
         {contents.map((x) => {
-          {
-            /*  image */
-          }
+          /* images */
           if (x.type === "image") {
             return (
               <img
@@ -89,17 +85,13 @@ const SectionPreview = (props) => {
               />
             );
           }
-          {
-            /*  video */
-          }
-          if (x.type === "video") {
-            console.log(x);
 
+          /*  video */
+          if (x.type === "video") {
             const videoOptions = {
               cloudName: "dhdgj2ryu",
               public_id: x.content.public_id,
             };
-
             return (
               <div className="video-card">
                 <h2>Video Player in Function</h2>
@@ -107,6 +99,13 @@ const SectionPreview = (props) => {
                   <VideoPlayerFunction options={videoOptions} />
                 </div>
               </div>
+            );
+          }
+
+          /*  text */
+          if (x.type === "text") {
+            return (
+              <ReactQuill value={x.content} readOnly={true} theme={"bubble"} />
             );
           }
           return null;
