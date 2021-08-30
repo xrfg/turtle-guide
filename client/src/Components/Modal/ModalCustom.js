@@ -1,6 +1,8 @@
 /**
  * @desc Modal component created with MatUI Modal
- * takes props "content"
+ * takes props "content", "isOpen", "isClose"
+ // * How to i.e.:
+ * <ModalCustom content={a content} isOpen={state} isClose={function}/>
  */
 import React, { useState, useEffect } from "react";
 
@@ -65,12 +67,15 @@ const ModalCustom = (props) => {
     // eslint-disable-next-line
   }, [isOpen]);
 
-  // ! does not update to false once close it clicking out
-  // TODO Solve it!
-
   // * Modal CTRLs
+  /**
+   * @function handleClose
+   * @desc handles the close state if the windows
+   * is closed clicking out of the area
+   */
   const handleClose = () => {
-    isOpen = false;
+    // sends is Close state
+    props.isClose(true);
     setOpenModal(false);
   };
 

@@ -20,6 +20,11 @@ import EditIcon from "@material-ui/icons/Edit";
 import SaveIcon from "@material-ui/icons/Save";
 import ShortTextIcon from "@material-ui/icons/ShortText";
 
+// * Components
+import TextEditor from "../Inputs/TextEditor";
+// requires props "item" "isOpen" <ModalCuston content={} isOpen={state}/>
+import ModalCustom from "../../Components/Modal/ModalCustom";
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -77,6 +82,7 @@ const ContentBlockText = (props) => {
   // * State
   const [isEditing, setIsEditing] = useState(false);
   const [newContent, setNewContent] = useState({ content: "" });
+  const [openModal, setOpenModal] = useState(false);
 
   // * Functions
   /**
@@ -141,6 +147,22 @@ const ContentBlockText = (props) => {
   };
 
   console.log("newcontent", newContent);
+  // * Modal CTRLs
+  const handleOpen = () => {
+    setOpenModal((prev) => !prev);
+  };
+
+  /**
+   * @function doSomething
+   * @desc checks the state isClosed and does something
+   */
+  const doSomething = (state) => {
+    if (state) {
+      setIsEditing(false);
+      setOpenModal((prev) => !prev);
+    }
+    console.log("do some", state);
+  };
 
   return (
     <Paper className={classes.paper} key={id}>
@@ -156,15 +178,16 @@ const ContentBlockText = (props) => {
             {/* // ! IMPORTANT - Make modals that opens with the editor */}
             {/* {type} id:{id} */}
             {isEditing ? (
-              <TextField
-                id="standard-basic-title"
-                label="Content"
-                name="content"
-                onChange={handleChange}
-                value={content}
-              />
+              <div>
+                <ModalCustom
+                  content={<TextEditor content={content}></TextEditor>}
+                  isOpen={true}
+                  isClose={doSomething}
+                />
+                <html>{content}</html>
+              </div>
             ) : (
-              <h5>{content}</h5>
+              <pre>{content}</pre>
             )}
           </Typography>
         </Grid>

@@ -31,7 +31,7 @@ import ContentBlockMedia from "../../Components/ContentBlockMedia/ContentBlockMe
 import ContentBlockText from "../../Components/ContentBlockText/ContentBlockText";
 import TextEditor from "../../Components/Inputs/TextEditor";
 
-// requires props "item" "isOpen" <ModalCuston content={} isOpen={state}/>
+// <ModalCustom content={a content} isOpen={state} isClose={function}/>
 import ModalCustom from "../../Components/Modal/ModalCustom";
 
 // <SectionPreview />
@@ -105,9 +105,9 @@ export default function AboutAdmin() {
     setOpenModal((prev) => !prev);
   };
 
-  // const handleClose = () => {
-  //   setOpenModal(false);
-  // };
+  const handleClose = () => {
+    setOpenModal(false);
+  };
 
   //* Cloudinary setup
   // setup for the widget cloudinary
@@ -276,7 +276,6 @@ export default function AboutAdmin() {
    */
 
   const setMediaText = (obj) => {
-    console.log("setMediaText", obj);
     const objToSend = { type: "text", content: obj };
 
     addToContents(objToSendMedia(createObj(objToSend)));
@@ -287,8 +286,8 @@ export default function AboutAdmin() {
    */
   const addNewContent = (id, newContent) => {
     // Close the modal
-    // handleClose();
-    setOpenModal(false);
+    handleClose();
+    // setOpenModal(false);
 
     console.log("new content", id, newContent);
   };
@@ -300,6 +299,8 @@ export default function AboutAdmin() {
         <ModalCustom
           content={<TextEditor setText={setMediaText} />}
           isOpen={openModal}
+          // handles the state when the modal is clickes outside the area
+          isClose={handleClose}
         />
         <Grid item xs={12} className={classes.btnSection}>
           <Grid container spacing={3} className={classes.gridContainer}>

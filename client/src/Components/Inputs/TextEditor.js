@@ -10,8 +10,10 @@ import { Button } from "@material-ui/core";
 import { DefaultEditor } from "react-simple-wysiwyg";
 
 const TextEditor = (props) => {
+  const { content } = props;
+
   // state into function
-  const [html, setHtml] = useState("Insert Your Text Here");
+  const [html, setHtml] = useState(content || "Insert Your Text Here");
 
   // onChange does not sent to parent
   // updates just the function
