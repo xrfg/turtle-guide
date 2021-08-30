@@ -12,7 +12,6 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 
-// TODO
 // import Card from "@material-ui/core/Card";
 // import CardActionArea from "@material-ui/core/CardActionArea";
 // import CardActions from "@material-ui/core/CardActions";
@@ -28,8 +27,13 @@ import ButtonBase from "@material-ui/core/ButtonBase";
 //  <ContentBlockMedia />
 // requires props "item" <ContentBlockMedia item={}/>
 import ContentBlockMedia from "../../Components/ContentBlockMedia/ContentBlockMedia";
+// requires props "item" <ContentBlockText item={}/>
 import ContentBlockText from "../../Components/ContentBlockText/ContentBlockText";
 import TextEditor from "../../Components/Inputs/TextEditor";
+
+// requires props "item" <ModalCuston content={}/>
+import ModalCustom from "../../Components/Modal/ModalCustom";
+
 // <SectionPreview />
 // requires props "contents" <SectionPreview contents={ }/>
 import SectionPreview from "../../Components/SectionPreview/SectionPreview";
@@ -44,12 +48,6 @@ const useStyles = makeStyles((theme) =>
         margin: theme.spacing(1),
       },
       maxWidth: 345,
-    },
-    // * Modal CSS
-    modal: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
     },
     paper: {
       backgroundColor: theme.palette.background.paper,
@@ -92,7 +90,6 @@ const useStyles = makeStyles((theme) =>
 
 // TODO Cloudinary authetication
 // TODO Add widget cloudinary transformation
-// TODO Image description
 // TODO move menus to external component that takes props
 
 export default function AboutAdmin() {
@@ -289,87 +286,10 @@ export default function AboutAdmin() {
    * @desc
    */
   const addNewContent = (id, newContent) => {
-    console.log("new content", id, newContent);
+    // Close the modal
     handleClose();
-  };
 
-  // * WYSIWYG Editor
-  // <DefaultEditor /> is into a component to avoid re-renders
-
-  // const TextInput = (props) => {
-  //   // state into function
-  //   const [html, setHtml] = useState("Insert Your Text Here");
-
-  //   // onChange does not sent to parent
-  //   // updates just the function
-  //   // useCallback to avoid re.renders
-  //   const onChange = useCallback(
-  //     (e) => {
-  //       setHtml(e.target.value);
-  //     },
-  //     // eslint-disable-next-line
-  //     [html, props.setText]
-  //   );
-
-  //   // send data to the parent through props
-  //   const sendTextToParent = () => {
-  //     props.setText(html);
-  //   };
-
-  //   return (
-  //     <>
-  //       <DefaultEditor
-  //         value={html}
-  //         onChange={onChange}
-  //         // ! test onSubmit
-  //       />
-
-  //       <Button
-  //         size="small"
-  //         variant="contained"
-  //         color="primary"
-  //         component="span"
-  //         onClick={() => {
-  //           sendTextToParent();
-  //           handleClose();
-  //         }}
-  //       >
-  //         Close and Insert
-  //       </Button>
-  //     </>
-  //   );
-  // };
-
-  /**
-* @desc Modal component
-// TODO try to add props and make external
-*/
-
-  const ModalCustom = (props) => {
-    // destru
-    const { content } = props;
-
-    return (
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        className={classes.modal}
-        open={openModal}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={openModal}>
-          <div className={classes.paper}>
-            <h2 id="transition-modal-title">Insert Text</h2>
-            <p id="transition-modal-description">{content}</p>
-          </div>
-        </Fade>
-      </Modal>
-    );
+    console.log("new content", id, newContent);
   };
 
   return (
