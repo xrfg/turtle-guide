@@ -105,13 +105,14 @@ const ContentBlockText = (props) => {
    * @desc sends back the selected element to be deleted
    * @param id
    */
-  const sendNewContent = useCallback(
-    () => {
-      props.newContent(id, newContent);
-    },
-    //eslint-disable-next-line
-    [props.newContent]
-  );
+  // const sendNewContent = useCallback(
+  //   () => {
+  //     console.log("sendNewContent", "id", id, newContent);
+  //     props.newContent(id, newContent);
+  //   },
+  //   //eslint-disable-next-line
+  //   [props.newContent]
+  // );
 
   /**
    * @function editContent
@@ -124,14 +125,14 @@ const ContentBlockText = (props) => {
   };
 
   // to save if the caption is added/edited
-  useEffect(() => {
-    if (!isEditing && newContent.length !== 0) {
-      // send mediacaptio and id to the parent
-      // the function will pass it as a prop
-      sendNewContent();
-    }
-    // eslint-disable-next-line
-  }, [isEditing]);
+  // useEffect(() => {
+  //   if (!isEditing && newContent.length !== 0) {
+  //     // send mediacaptio and id to the parent
+  //     // the function will pass it as a prop
+  //     sendNewContent();
+  //   }
+  //   // eslint-disable-next-line
+  // }, [isEditing]);
 
   {
     /* // ! IMPORTANT - Make modals that opens with the editor */
@@ -148,7 +149,6 @@ const ContentBlockText = (props) => {
     setNewContent({ [e.target.name]: e.target.value });
   };
 
-  console.log("newcontent", newContent);
   // * Modal CTRLs
   const handleOpen = () => {
     setOpenModal((prev) => !prev);
@@ -163,7 +163,21 @@ const ContentBlockText = (props) => {
       setIsEditing(false);
       setOpenModal((prev) => !prev);
     }
-    console.log("do some", state);
+  };
+
+  // ! TEST
+  /**
+   * @function setMediaText
+   * @desc sends back the updated text
+   * @param contentToUpdate
+   */
+  const setMediaText = (contentToUpdate) => {
+    // set the new content to props
+    props.newContent(id, contentToUpdate);
+    // set the local state
+    setNewContent(contentToUpdate);
+    // fires just the state that with useEffect will send the prop back
+    setIsEditing((prev) => !prev);
   };
 
   return (
@@ -182,7 +196,10 @@ const ContentBlockText = (props) => {
             {isEditing ? (
               <div>
                 <ModalCustom
-                  content={<TextEditor content={content}></TextEditor>}
+                  content={
+                    <TextEditor setText={setMediaText} content={content} />
+                  }
+                  // content={<TextEditor content={content}></TextEditor>}
                   isOpen={true}
                   isClose={doSomething}
                 />

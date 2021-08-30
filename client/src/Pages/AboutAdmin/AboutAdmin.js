@@ -277,19 +277,26 @@ export default function AboutAdmin() {
 
   const setMediaText = (obj) => {
     const objToSend = { type: "text", content: obj };
-
     addToContents(objToSendMedia(createObj(objToSend)));
   };
 
   /**
-   * @desc
+   * @function addNewContent
+   * @desc for the text field to update
+   * @param id coming from the prop
+   * @param newContent coming from the prop
    */
   const addNewContent = (id, newContent) => {
     // Close the modal
     handleClose();
-    // setOpenModal(false);
+    setOpenModal(false);
 
-    console.log("new content", id, newContent);
+    // updates into state/array
+    contents.forEach((x, i) => {
+      if (x.id === id) {
+        return (x.content = newContent);
+      }
+    });
   };
 
   return (
@@ -350,6 +357,7 @@ export default function AboutAdmin() {
                         key={x.id}
                         // receives the id of the item to delete
                         itemToDelete={deleteItem}
+                        // gets the new content to update
                         newContent={addNewContent}
                       />
                     );
