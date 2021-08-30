@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import Event from "./Pages/Event/Event";
 import Navbar from "./Components/Navbar/Navbar";
-import Footer from "./Components/footer/Footer";
+import Footer from "./Components/footer/Footer.jsx";
 
 
 

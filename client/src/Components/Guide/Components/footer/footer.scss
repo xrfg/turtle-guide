@@ -1,7 +1,10 @@
 footer{
-  height: 100px;
+  height: 200px;
   width: 100%;
   background-color: gray;
+  padding: 20px;
+  text-align: center;
+  margin: 40px;
 }
 .footer-div {
   background-color: #F3F3F3;
@@ -10,4 +13,25 @@ footer{
   position:fixed;
   bottom:0;
   width:100%;
+  // display: flex;
+  // flex-direction: column;
+ 
+}
+.footer-links{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+ 
+}
+
+@media only screen and (max-width:599px) {
+	.footer-div {
+	
+    
+	}
+  .footer-links{
+    display: flex;
+    flex-direction: column;
+  }
+  
 }
