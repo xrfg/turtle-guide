@@ -101,20 +101,6 @@ const ContentBlockText = (props) => {
   );
 
   /**
-   * @function sendNewContent
-   * @desc sends back the selected element to be deleted
-   * @param id
-   */
-  // const sendNewContent = useCallback(
-  //   () => {
-  //     console.log("sendNewContent", "id", id, newContent);
-  //     props.newContent(id, newContent);
-  //   },
-  //   //eslint-disable-next-line
-  //   [props.newContent]
-  // );
-
-  /**
    * @function editContent
    * @desc enables edit mode
    * @param id
@@ -124,48 +110,18 @@ const ContentBlockText = (props) => {
     setIsEditing((prev) => !prev);
   };
 
-  // to save if the caption is added/edited
-  // useEffect(() => {
-  //   if (!isEditing && newContent.length !== 0) {
-  //     // send mediacaptio and id to the parent
-  //     // the function will pass it as a prop
-  //     sendNewContent();
-  //   }
-  //   // eslint-disable-next-line
-  // }, [isEditing]);
-
-  {
-    /* // ! IMPORTANT - Make modals that opens with the editor */
-  }
-
-  /**
-   * @function handleChange
-   * @desc handles newContent state
-   * @param e
-   */
-  const handleChange = (e) => {
-    console.log(e.target.value);
-    // set media caption obj
-    setNewContent({ [e.target.name]: e.target.value });
-  };
-
   // * Modal CTRLs
-  const handleOpen = () => {
-    setOpenModal((prev) => !prev);
-  };
-
   /**
-   * @function doSomething
+   * @function closeEditingModal
    * @desc checks the state isClosed and does something
    */
-  const doSomething = (state) => {
+  const closeEditingModal = (state) => {
     if (state) {
       setIsEditing(false);
       setOpenModal((prev) => !prev);
     }
   };
 
-  // ! TEST
   /**
    * @function setMediaText
    * @desc sends back the updated text
@@ -191,8 +147,6 @@ const ContentBlockText = (props) => {
       <Grid item xs={12} sm container className={classes.mediaCaption}>
         <Grid item className={classes.descriptionContainer}>
           <Typography gutterBottom variant="subtitle1">
-            {/* // ! IMPORTANT - Make modals that opens with the editor */}
-            {/* {type} id:{id} */}
             {isEditing ? (
               <div>
                 <ModalCustom
@@ -201,7 +155,7 @@ const ContentBlockText = (props) => {
                   }
                   // content={<TextEditor content={content}></TextEditor>}
                   isOpen={true}
-                  isClose={doSomething}
+                  isClose={closeEditingModal}
                 />
                 <html>{content}</html>
               </div>
