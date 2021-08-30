@@ -47,9 +47,11 @@ export default function Event(props) {
   // * States
   const [sections, setSections] = useState([]);
 
+  // for the "Delete Event" modal handlers
   const [openDeleteMsg, setOpenDeleteMsg] = useState(false);
 
-  // onClick for Button adds a section to the content-container
+  // for the drag and drop sections re-ordering
+  const [dragId, setDragId] = useState();
 
   // * Functions
 
@@ -58,19 +60,31 @@ export default function Event(props) {
    * @param newContentsArr // newContentsArr to add
    * @desc adds a content into the state "contents" that will be mapped
    */
+
+  // TODO REDO this func so that id and order are given different to not mess up once the user adds a new section with already RE-Arranged sections!
   const addToContents = (newSectionsArr) => {
     // add ids
     // create id based on the contents already into the array
     // if [contents] s empty assigns the index
-    newSectionsArr.forEach((item, index) => {
+
+    // let biggestId = 1;
+    newSectionsArr.forEach((section, i) => {
       if (sections.length === 0) {
-        item["id"] = index + 1;
+        section["id"] = i + 1;
+        section["order"] = i + 1;
       } else {
-        item["id"] = sections[sections.length - 1].id + index + 1;
+        // find the section with the biggest id
+        section["id"] = sections[sections.length - 1].id + i + 1;
+        section["order"] = sections[sections.length - 1].id + i + 1;
       }
+      /* if (section.id > biggestId) {
+        biggestId = section.id;
+        console.log("biggestID", biggestId);
+      } */
     });
 
     setSections([...sections, ...newSectionsArr]);
+    console.log([...sections, ...newSectionsArr]);
   };
 
   /**
@@ -86,12 +100,76 @@ export default function Event(props) {
     setSections(newSections);
   };
 
+  // * ----------- Functions to handle the "Delete Event" Modal
+
+  /**
+   * @function handleClickDeleteOpen
+   * @desc sets state to true to pop up the modal
+   */
   const handleClickDeleteOpen = () => {
     setOpenDeleteMsg(true);
   };
 
+  /**
+   * @function handleClickDeleteClose
+   * @desc sets state to false to close up the modal
+   */
   const handleClickDeleteClose = () => {
     setOpenDeleteMsg(false);
+  };
+
+  // * ----------- Functions for the Drag and Re-order of <EventSection/>s
+
+  /**
+   * @function handleDrag
+   * @desc gets the id of the Section which is being dragged
+   * * is passed into the <Child />
+   */
+
+  const handleDrag = (e) => {
+    // IMPORTANT
+    // e.currentTarget.id needs to be parsed otherwise later in handleDrop FUNC, "===" will not work since types are Num and String -> after parsing will be: Num === Num
+    setDragId(parseInt(e.currentTarget.id));
+  };
+
+  /**
+   * @function handleDrop
+   * @desc handles the drop and drag function, using section's keys "id" and "order", which by default are the same once the section is created
+   * * * is passed into the <Child />
+   */
+
+  const handleDrop = (e) => {
+    console.log("sections", sections);
+    console.log("dragID", dragId);
+
+    // * Finding the drag section with the same id as the one the user is trying to drag from
+    const dragSection = sections.find((section) => {
+      console.log(typeof section.id, typeof dragId, section.id === dragId);
+      return section.id === dragId;
+    });
+
+    // * Finding the drop section with the same id as the one the user is trying to drop at
+    const dropSection = sections.find(
+      // parsing again because section.id is a Num and e.currentTarget.id is a String
+      (section) => section.id === parseInt(e.currentTarget.id)
+    );
+
+    // from order x to order y, from one place to another
+    const dragSectionOrder = dragSection.order;
+    const dropSectionOrder = dropSection.order;
+
+    // setting a new state with the updated order
+    const newSectionState = sections.map((section) => {
+      if (section.id === dragId) {
+        section.order = dropSectionOrder;
+      }
+      if (section.id === parseInt(e.currentTarget.id)) {
+        section.order = dragSectionOrder;
+      }
+      return section;
+    });
+
+    setSections(newSectionState);
   };
 
   return (
@@ -156,6 +234,7 @@ export default function Event(props) {
                   {
                     type: "section",
                     id: 0,
+                    order: 0,
                     url: "",
                     title: "Title",
                     description: "Description",
@@ -193,14 +272,18 @@ export default function Event(props) {
               </Typography>
               {/* Displaying the current sections */}
               <ul>
-                {sections.map((section) => {
-                  return (
-                    <EventSection
-                      section={section}
-                      sectionToDelete={deleteSection}
-                    />
-                  );
-                })}
+                {sections
+                  .sort((a, b) => a.order - b.order)
+                  .map((section) => {
+                    return (
+                      <EventSection
+                        section={section}
+                        sectionToDelete={deleteSection}
+                        handleDrag={handleDrag}
+                        handleDrop={handleDrop}
+                      />
+                    );
+                  })}
               </ul>
             </CardContent>
           </Box>

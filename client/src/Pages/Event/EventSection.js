@@ -41,7 +41,7 @@ export default function EventSection(props) {
   const classes = useStyles(props);
 
   // * Destructuring props
-  let { id, title, description, url } = props.section;
+  let { id, order, title, description, url } = props.section;
 
   // * States
   const [editing, setEditing] = useState(false);
@@ -77,78 +77,81 @@ export default function EventSection(props) {
   };
 
   return (
-    <div>
-      <Card className={classes.card} key={props.section.key}>
-        <CardContent>
-          {editing ? (
-            <Box>
-              <TextField
-                id="eventName"
-                type="text"
-                className={classes.textField}
-                defaultValue={title === "Title" ? null : title}
-                placeholder="Title"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                onChange={(e) => handleTitle(e.target.value)}
-              />
-              <TextField
-                id="eventName"
-                type="text"
-                className={classes.textField}
-                fullWidth
-                defaultValue={
-                  description === "Description" ? null : description
-                }
-                placeholder="Description"
-                multiline={true}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                onChange={(e) => handleDescription(e.target.value)}
-              />
-            </Box>
-          ) : (
-            <Box>
-              <Typography
-                className={classes.card__title}
-                variant="h6"
-                component="h6"
-              >
-                {title}
-              </Typography>
-              <Typography
-                className={classes.card__desc}
-                variant="subtitle1"
-                component="p"
-              >
-                {description}
-              </Typography>{" "}
-            </Box>
-          )}
-        </CardContent>
-        <CardActions
-          style={{ display: "flex", justifyContent: "space-between" }}
-        >
-          <ButtonGroup
-            orientation="horizontal"
-            aria-label="horizontal button group"
-          >
-            <EditSaveButton
-              size={"small"}
-              editStatus={editing}
-              editHandler={handleSaveEditBtn}
+    <Card
+      id={id}
+      className={classes.card}
+      key={id}
+      // the attributes below are for the drag and drop function
+      draggable={true}
+      onDragOver={(e) => e.preventDefault()}
+      onDragStart={props.handleDrag}
+      onDrop={props.handleDrop}
+    >
+      <CardContent>
+        {editing ? (
+          <Box>
+            <TextField
+              id="eventName"
+              type="text"
+              className={classes.textField}
+              defaultValue={title === "Title" ? null : title}
+              placeholder="Title"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              onChange={(e) => handleTitle(e.target.value)}
             />
-            <Button href={`${url}`} size="small">
-              <Forward />
-            </Button>
-          </ButtonGroup>
-          <Button size="small" onClick={() => removeSection(id)}>
-            <Delete />
+            <TextField
+              id="eventName"
+              type="text"
+              className={classes.textField}
+              fullWidth
+              defaultValue={description === "Description" ? null : description}
+              placeholder="Description"
+              multiline={true}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              onChange={(e) => handleDescription(e.target.value)}
+            />
+          </Box>
+        ) : (
+          <Box>
+            <Typography
+              className={classes.card__title}
+              variant="h6"
+              component="h6"
+            >
+              {title}
+            </Typography>
+            <Typography
+              className={classes.card__desc}
+              variant="subtitle1"
+              component="p"
+            >
+              {description}
+            </Typography>
+          </Box>
+        )}
+      </CardContent>
+      <CardActions style={{ display: "flex", justifyContent: "space-between" }}>
+        <ButtonGroup
+          orientation="horizontal"
+          aria-label="horizontal button group"
+        >
+          <EditSaveButton
+            size={"small"}
+            editStatus={editing}
+            editHandler={handleSaveEditBtn}
+          />
+          <Button href={`${url}`} size="small">
+            <Forward />
           </Button>
-        </CardActions>
-      </Card>
-    </div>
+        </ButtonGroup>
+        <Button size="small" onClick={() => removeSection(id)}>
+          <Delete />
+        </Button>
+      </CardActions>
+    </Card>
   );
 }
