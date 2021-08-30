@@ -106,6 +106,7 @@ export default function AboutAdmin() {
   };
 
   const handleClose = () => {
+    console.log("close modal");
     setOpenModal(false);
   };
 
@@ -276,20 +277,23 @@ export default function AboutAdmin() {
    */
 
   const setMediaText = (obj) => {
+    // create obj
     const objToSend = { type: "text", content: obj };
+    // Add to contents
     addToContents(objToSendMedia(createObj(objToSend)));
+    // close modal
+    handleClose();
   };
 
   /**
-   * @function addNewContent
+   * @function updateMediaText
    * @desc for the text field to update
-   * @param id coming from the prop
-   * @param newContent coming from the prop
+   * @param id coming from the prop of <ContentBlockText />
+   * @param newContent coming from the prop of <ContentBlockText />
    */
-  const addNewContent = (id, newContent) => {
-    // Close the modal
+  const updateMediaText = (id, newContent) => {
+    // close modal
     handleClose();
-    setOpenModal(false);
 
     // updates into state/array
     contents.forEach((x, i) => {
@@ -358,7 +362,7 @@ export default function AboutAdmin() {
                         // receives the id of the item to delete
                         itemToDelete={deleteItem}
                         // gets the new content to update
-                        newContent={addNewContent}
+                        newContent={updateMediaText}
                       />
                     );
                   }
