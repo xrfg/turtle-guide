@@ -21,7 +21,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 // * material UI imports Icons
-import { Forward, Delete } from "@material-ui/icons";
+import { Forward, Delete, DragIndicator } from "@material-ui/icons";
 
 // * React Components
 import EditSaveButton from "../../Components/Buttons/EditSaveButton";
@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
     top: 0,
     right: 0,
   },
+  onDrag: { backgroundColor: "green" },
   textField: { display: "block" },
 }));
 export default function EventSection(props) {
@@ -148,9 +149,17 @@ export default function EventSection(props) {
             <Forward />
           </Button>
         </ButtonGroup>
-        <Button size="small" onClick={() => removeSection(id)}>
-          <Delete />
-        </Button>
+        <ButtonGroup
+          orientation="horizontal"
+          aria-label="horizontal button group"
+        >
+          <Button style={{ cursor: "grab" }} size="small">
+            <DragIndicator />
+          </Button>{" "}
+          <Button size="small" onClick={() => removeSection(id)}>
+            <Delete />
+          </Button>
+        </ButtonGroup>
       </CardActions>
     </Card>
   );
