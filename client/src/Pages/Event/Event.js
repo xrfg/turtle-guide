@@ -41,10 +41,14 @@ const useStyles = makeStyles((theme) => ({
   guide__header: { marginBottom: "1rem" },
 }));
 
+// TODO insert a modal that opens the event naming if the event does not exists
+
 export default function Event(props) {
   const classes = useStyles(props);
 
   // * States
+  const [event, setEvent] = useState({});
+
   const [sections, setSections] = useState([]);
 
   // for the "Delete Event" modal handlers
@@ -186,6 +190,19 @@ export default function Event(props) {
     setSections(newSectionState);
   };
 
+  /**
+   * @function createEvent
+   * @param eventName comming from the props "getEventName"
+   * @desc saves the event name and creates event obj
+   */
+
+  const createEvent = (eventName) => {
+    console.log("the event name is", eventName);
+    setEvent({
+      title: eventName, // evenIdentifier: vangogh
+    });
+  };
+
   return (
     <Container style={{ padding: "2rem 0" }} maxWidth="md">
       <Grid container direction="row" spacing={2}>
@@ -193,7 +210,8 @@ export default function Event(props) {
           {/* 
         // * Name of Event Input
         */}
-          <EventName />
+          <EventName getEventName={createEvent} />
+          <EventName getEventName={createEvent} />
         </Grid>
 
         {/* 

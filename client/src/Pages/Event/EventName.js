@@ -15,12 +15,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// TODO insert a modal that opens the event naming if the event does not exists
+
 export default function EventName(props) {
   const classes = useStyles(props);
 
   // * States
   const [eventName, setEventName] = useState("");
-  const [editing, setEditing] = useState(false);
+  // true cause it starts with filling the name
+  const [editing, setEditing] = useState(true);
 
   // * Functions
 
@@ -39,11 +42,12 @@ export default function EventName(props) {
    */
   const handleSaveEditBtn = (val) => {
     if (val) {
-      setEditing(true);
+      setEditing((prev) => !prev);
+      props.getEventName(val);
       console.log("editing");
     } else {
-      setEditing(false);
-      console.log("editing closed");
+      setEditing((prev) => !prev);
+      console.log("editing closed", val);
     }
   };
 
