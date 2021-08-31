@@ -1,32 +1,6 @@
-// import {
-//   GOOGLE_SEARCH,
-//   GOOGLE_SEARCH_ERROR,
-//   GOOGLE_SEARCH_CLEAR,
-//   GOOGLE_SEARCH_CLEAR_ERROR,
-//   GOOGLE_SEARCH_SEARCHED,
-//   GOOGLE_SEARCH_SEARCHED_ERROR,
-//   ADD_TO_WOO_DB_ERROR,
-//   UPDATE_WOO_DB_ERROR,
-//   WOO_DB_ALL,
-//   WOO_DB_IN,
-//   WOO_DB_OUT,
-//   WOO_DB_ERROR,
-//   WOO_DB_DELETE_ALL,
-//   WOO_DB_DELETE_IN,
-//   WOO_DB_DELETE_OUT,
-//   WOO_DB_DELETE_ERROR,
-//   WOO_DB_SEARCH_STATE,
-//   WOO_DB_SEARCH_STATE_ERROR,
-//   WOO_DB_SEARCH_TERM,
-//   WOO_DB_SEARCH_TERM_ERROR,
-//   WOO_DB_SEARCH_CLEAR,
-//   WOO_DB_SEARCH_CLEAR_ERROR,
-//   WOO_DB_DATA_READY,
-//   WOO_DB_DATA_READY_ERROR,
-//   SET_LOADING,
-//   SET_LOADING_ERROR,
-// } from "../types";
+import { SIGN_UP } from "../types";
 
+// *
 import axios from "axios";
 /**
  * @desc Variables
@@ -37,9 +11,22 @@ import axios from "axios";
 // const WOO_CS = process.env.REACT_APP_WOO_CS;
 
 /**
- * @desc cals the Google Books APIs
- * and searches based on title/author or ISBN
+ * @userSignUp
+ * @desc action to register a user
  */
+
+export const userSignUp = (obj) => {
+  // destru
+  const {
+    firstName,
+    lastName,
+    company,
+    accountName,
+    email,
+    isAdmin, // ghost parameter
+    password,
+  } = obj;
+};
 
 export const googleSearch = (entry) => {
   return async (dispatch) => {

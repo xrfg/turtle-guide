@@ -1,6 +1,4 @@
-// import {
-
-// } from "../types";
+import { SIGN_UP } from "../types";
 
 const initialState = {
   isAuthenticated: false,

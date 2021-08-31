@@ -5,11 +5,11 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Account from "./Pages/Account/Account";
 import AboutAdmin from "./Pages/AboutAdmin/AboutAdmin";
 import Guide from "./Components/Guide/Guide";
-import Navbar from "./Components/Navbar/Navbar";
-<<<<<<< HEAD
 import Event from "./Pages/Event/Event";
+import SignUp from "./Pages/SignUp/SignUp";
 
 // * Import Components
+import Navbar from "./Components/Navbar/Navbar";
 // REDUX
 import { Provider } from "react-redux";
 import Store from "./store/index";
@@ -17,9 +17,6 @@ import Store from "./store/index";
 // * Mat UI
 import { theme } from "../src/styles/Theme";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-=======
-import Footer from "./Components/Footer/Footer.js"
->>>>>>> origin/giorg_FE_footer_0.2
 
 function App() {
   return (
@@ -35,15 +32,13 @@ function App() {
                   if the route is "/guide" display Guide wraping component
                 </h2>
               </Route>
+              <Route path="/admin" component={SignUp} />
               <Route path="/account" component={Account} />
               {/*
           // ! TEMPORARY LINK 
         */}
               <Route path="/aboutadmin" component={AboutAdmin} />
-              <Route path="/aboutadmin" component={AboutAdmin} />
               <Route path="/create-event" component={Event} />
-
-<<<<<<< HEAD
               <Route path="/guide">
                 <Guide />
               </Route>
@@ -52,15 +47,6 @@ function App() {
         </BrowserRouter>
       </MuiThemeProvider>
     </Provider>
-=======
-          <Route path="/guide">
-            <Guide />
-          </Route>
-        </Switch>
-        <Footer />
-      </div>
-    </BrowserRouter>
->>>>>>> origin/giorg_FE_footer_0.2
   );
 }
 

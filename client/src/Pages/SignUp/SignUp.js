@@ -1,65 +1,219 @@
-import React,{useState,useEffect} from 'react'
-import validation from './validation';
-import "../SignUp/signUp.scss";
+/**
+ * @desc Component for the user SignUp
+ */
+import React, { useState } from "react";
 
-export default function SignUp({submitForm}) {
+// * Imports
+import axios from "axios";
 
-  const [values,setValues]=useState({
-    fullname:"",
-    email:"",
-    password:""
-  })
-  const [errors,setErrors]=useState({})
-  const [dataIsCorrect,setDataIsCorrect]=useState(false)
-  const handleChange=(event)=>{
-    setValues({
-      ...values,[event.target.name]:event.target.value
-    })
-  }
-  // const {handleChange,handleFormSubmit,values,errors}=use
-  const handleFormSubmit=(event)=>{
-    event.preventDefault()
-    setErrors(validation(values))
-    setDataIsCorrect(true)
+// * Mat UI
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
 
-  }
-  useEffect(()=>{
-    if(Object.keys(errors).length===0 && dataIsCorrect){
-      submitForm(true)
-    }
+// * REDUX
+import { useDispatch, connect } from "react-redux";
 
-  })
+// * Functions
+/**
+ * @component Copyright
+ * @desc returns the copyright
+ */
+function Copyright() {
   return (
-    <div className="container">
-      <div className="app-wrapper">
-        <div>
-          <h2 className="title"> Create Account</h2>
-        </div>
-        <form action="" className="form-wrapper">
-          <div className="name">
-            <label htmlFor="" className="label">Full Name</label>
-            <input type="text" className="input" name="fullname" value={values.fullname} onChange={handleChange} />
-            {errors.fullname && <p className="error">{errors.fullname}</p>}
-          </div>
-          <div className="email">
-            <label htmlFor="" className="label">Email</label>
-            <input type="email" className="input" name="email" value={values.email} onChange={handleChange}  />
-            {errors.email && <p className="error">{errors.email}</p>}
-          </div>
-          <div className="password">
-            <label htmlFor="" className="label">Password</label>
-            <input type="password" className="input" name="password" value={values.password} onChange={handleChange} />
-            {errors.password && <p className="error">{errors.password}</p>}
-          </div>
-          <div>
-            <button className="submit" onClick={handleFormSubmit}>Sing Up</button>
-          </div>
+    <Typography variant="body2" color="textSecondary" align="center">
+      {"Copyright © "}
+      <Link color="inherit" href="https://google.com/">
+        Turtle App
+      </Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
+
+const SignUp = ({}) => {
+  const classes = useStyles();
+
+  // form
+  const [values, setValues] = useState({});
+
+  const changeHandler = function (e) {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+  const submitHandler = function (e) {
+    e.preventDefault();
+    console.log("request sent");
+    axios({
+      method: "post",
+      url: "http://localhost:5000/singup",
+      /* baseURL: 'http://localhost:5000',*/
+
+      data: values,
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    console.log(values);
+    window.location.replace("/");
+  };
+
+  return (
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign up
+        </Typography>
+        <form className={classes.form} noValidate onSubmit={submitHandler}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                autoComplete="fname"
+                name="firstName"
+                variant="outlined"
+                required
+                fullWidth
+                id="firstName"
+                label="First Name"
+                autoFocus
+                onChange={changeHandler}
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="lastName"
+                label="Last Name"
+                name="lastName"
+                autoComplete="lname"
+                onChange={changeHandler}
+              />
+            </Grid>
+            {/* company */}
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="company"
+                label="Company"
+                name="company"
+                autoComplete="com"
+                onChange={changeHandler}
+              />
+            </Grid>
+            {/* account name */}
+            <Grid item xs={12} sm={6}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="accountName"
+                label="Account Name"
+                name="accountName"
+                autoComplete="aname"
+                onChange={changeHandler}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                onChange={changeHandler}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                onChange={changeHandler}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <FormControlLabel
+                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                label="Subscribe our News Letter"
+              />
+            </Grid>
+          </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Sign Up
+          </Button>
+          <Grid container justifyContent="flex-end">
+            <Grid item>
+              <Link href="#" variant="body2">
+                Already have an account? Sign in
+              </Link>
+            </Grid>
+          </Grid>
         </form>
       </div>
+      <Box mt={5}>
+        <Copyright />
+      </Box>
+    </Container>
+  );
+};
 
+const mapStateToProps = (state) => ({
+  //  states
+});
 
-      
-      
-    </div>
-  )
-}
+export default connect(mapStateToProps, null)(SignUp);
