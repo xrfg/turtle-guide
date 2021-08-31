@@ -63,18 +63,113 @@ paths:
               schema:
                 $ref: "#/components/schemas/Error"
   /users:
-    get:
-      description: Route to manage users
+    post:
+      description: Route to create a user
+      operationId: addUser
+      requestBody:
+        description: Add a user to the database.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewUser"
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NewUserCreated"
+        "409":
+          description: Email  OR AccountName already exists!
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/EmailExists"
+                  - $ref: "#/components/schemas/AccountNameExists"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
   /auth:
     get:
       responses:
         "200":
           description: OK
+    post:
+      description: Route to login and get a valid token
+      operationId: userLogin
+      requestBody:
+        description: Login user into backend
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserLogin"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NewToken"
+        "404":
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
 components:
   schemas:
+    UserLogin:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    Token:
+      type: object
+      properties:
+        token:
+          type: string
+    NewToken:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          $ref: "#/components/schemas/Token"
+          type: object
+    NewUserCreated:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          $ref: "#/components/schemas/NewUser"
+          type: object
+    NewUser:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        company:
+          type: string
+        accountName:
+          type: string
+        email:
+          type: string
+        isAdmin:
+          type: boolean
+        password:
+          type: string
     AllData:
       allOf:
         - $ref: "#/components/schemas/Data"
@@ -138,13 +233,46 @@ components:
     Error:
       type: object
       required:
-        - code
+        - success
+        - error
+        - status
         - message
       properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: string
+        status:
+          type: integer
+          format: int32
+          example: 404
+        message:
+          type: string
+    EmailExists:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
         code:
           type: integer
           format: int32
         message:
+          type: string
+        error:
+          type: string
+    AccountNameExists:
+      type: object
+      properties:
+        success:
+          type: boolean
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        error:
           type: string
   responses:
     UnauthorizedError:
