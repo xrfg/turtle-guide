@@ -27,11 +27,13 @@ export default function EventName(props) {
 
   // * Functions
 
-  // * submits the btn
-  // ! maybe not necessary -> test!
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(eventName);
+  /**
+   * @function onChange
+   * @desc handles onchange
+   */
+
+  const onChange = (e) => {
+    setEventName(e.target.value);
   };
 
   /**
@@ -43,21 +45,14 @@ export default function EventName(props) {
   const handleSaveEditBtn = (val) => {
     if (val) {
       setEditing((prev) => !prev);
-      props.getEventName(val);
-      console.log("editing");
     } else {
+      props.getEventName(eventName);
       setEditing((prev) => !prev);
-      console.log("editing closed", val);
     }
   };
 
   return (
-    <form
-      onSubmit={(e) => {
-        handleSubmit(e);
-      }}
-      style={{ display: "flex" }}
-    >
+    <>
       {" "}
       {editing ? (
         <TextField
@@ -71,7 +66,7 @@ export default function EventName(props) {
           InputLabelProps={{
             shrink: true,
           }}
-          onChange={(e) => setEventName(e.target.value)}
+          onChange={onChange}
         />
       ) : (
         <Typography className={classes.nameInput}>
@@ -79,6 +74,6 @@ export default function EventName(props) {
         </Typography>
       )}
       <EditSaveButton editStatus={editing} editHandler={handleSaveEditBtn} />
-    </form>
+    </>
   );
 }

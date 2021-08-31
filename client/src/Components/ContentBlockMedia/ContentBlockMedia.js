@@ -121,11 +121,7 @@ const ContentBlockMedia = (props) => {
   const editContent = (id) => {
     // togle editing
     setIsEditing((prev) => !prev);
-  };
-
-  // * UseEffect
-  // to save if the caption is added/edited
-  useEffect(() => {
+    // to save if the caption is added/edited
     if (
       (!isEditing && mediaCaption.title.length !== 0) ||
       mediaCaption.description.length !== 0
@@ -134,8 +130,7 @@ const ContentBlockMedia = (props) => {
       // the function will pass it as a prop
       sendMediaCaption();
     }
-    // eslint-disable-next-line
-  }, [isEditing]);
+  };
 
   /**
    * @function handleChange

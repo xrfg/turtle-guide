@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // TODO insert a modal that opens the event naming if the event does not exists
+// TODO ternary opeartor for button disable/enable
 
 export default function Event(props) {
   const classes = useStyles(props);
@@ -198,10 +199,22 @@ export default function Event(props) {
 
   const createEvent = (eventName) => {
     console.log("the event name is", eventName);
+
+    // ! the event will be save into mongo and the will check the existence
+    // ! of the indentifier / slug
+    // ! and in case will throw errors
+    // TODO create slug with a regex or a library
+
     setEvent({
-      title: eventName, // evenIdentifier: vangogh
+      title: eventName,
+      eventIdentifierSlug: eventName, // fucntion to make the slug
+      sections: [],
     });
+
+    // TODO POST it into mongo with an action
   };
+
+  console.log("event", event);
 
   return (
     <Container style={{ padding: "2rem 0" }} maxWidth="md">
@@ -210,7 +223,6 @@ export default function Event(props) {
           {/* 
         // * Name of Event Input
         */}
-          <EventName getEventName={createEvent} />
           <EventName getEventName={createEvent} />
         </Grid>
 
