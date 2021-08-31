@@ -1,0 +1,298 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Turtle Guide API
+  description: The API of the Project Turtle Guide
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: Turtles Team
+    email: api@turtles-team.io
+    url: http://turtles-team.io
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: http://http://localhost:5000/api
+paths:
+  /guides:
+    get:
+      description: Returns all the guides created by the owner. It gets the owner from the token.
+      operationId: getGuide
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: guide response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GuideAdd"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "401":
+          description: Invalid Token Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/UnauthorizedError"
+    post:
+      description: Creates a new guide.
+      operationId: addGuide
+      requestBody:
+        description: Guide to add to the exhibitor.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Guide"
+      responses:
+        "200":
+          description: pet response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GuideAdd"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /users:
+    post:
+      description: Route to create a user
+      operationId: addUser
+      requestBody:
+        description: Add a user to the database.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewUser"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NewUserCreated"
+        "409":
+          description: Email  OR AccountName already exists!
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/EmailExists"
+                  - $ref: "#/components/schemas/AccountNameExists"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /auth:
+    get:
+      responses:
+        "200":
+          description: OK
+    post:
+      description: Route to login and get a valid token
+      operationId: userLogin
+      requestBody:
+        description: Login user into backend
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserLogin"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NewToken"
+        "404":
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    UserLogin:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    Token:
+      type: object
+      properties:
+        token:
+          type: string
+    NewToken:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          $ref: "#/components/schemas/Token"
+          type: object
+    NewUserCreated:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          $ref: "#/components/schemas/NewUser"
+          type: object
+    NewUser:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        company:
+          type: string
+        accountName:
+          type: string
+        email:
+          type: string
+        isAdmin:
+          type: boolean
+        password:
+          type: string
+    AllData:
+      allOf:
+        - $ref: "#/components/schemas/Data"
+        - type: array
+          required:
+            - id
+          properties:
+            id:
+              type: integer
+              format: int64
+    Data:
+      type: object
+      required:
+        - token
+      properties:
+        success:
+          type: boolean
+        data:
+          type: array
+        allOf:
+          $ref: "#/components/schemas/Guide"
+          type: object
+    GuideAdd:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          $ref: "#/components/schemas/Guide"
+    Guide:
+      type: object
+      required:
+        - nameIdentifier
+        - title
+        - description
+        - account
+      properties:
+        nameIdentifier:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        sections:
+          type: array
+        menuOne:
+          type: array
+        menuTwo:
+          type: array
+        account:
+          type: object
+    NewPet:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        tag:
+          type: string
+    Error:
+      type: object
+      required:
+        - success
+        - error
+        - status
+        - message
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: string
+        status:
+          type: integer
+          format: int32
+          example: 404
+        message:
+          type: string
+    EmailExists:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        error:
+          type: string
+    AccountNameExists:
+      type: object
+      properties:
+        success:
+          type: boolean
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        error:
+          type: string
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              success:
+                type: boolean
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              error:
+                type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
