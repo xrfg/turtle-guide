@@ -10,6 +10,7 @@ import axios from "axios";
  */
 // url TO create a User
 const BASEurlUser = "http://localhost:5000/api/users/";
+const BASEurlAuth = "http://localhost:5000/api/auth/";
 
 /**
  * @function createObj
@@ -51,7 +52,6 @@ const createObj = (objCall) => {
  */
 
 export const userSignUp = (obj) => {
-  console.log(obj);
   return async (dispatch) => {
     // uses a function to create an object for axios
     const objToSend = createObj({
@@ -66,6 +66,10 @@ export const userSignUp = (obj) => {
 
       // if success keeps going
       if (results.data.success === true) {
+        /**
+         * @desc add the fucntion to login
+         *
+         */
         // const resLogin = await userLogin({
         //   email: obj.email,
         //   password: obj.password,
@@ -96,8 +100,13 @@ export const userSignUp = (obj) => {
  * @desc action to login a user and get a token
  */
 
-export const userLogin = (obj) => {
+export const signIn = (obj) => {
   console.log("userLogin", obj);
+  // http://localhost:5000/api-docs
+  // dispatch a POST request to /api/auth
+  // and get  token
+  // try catch
+  // Dispatch
 };
 
 // export const googleSearch = (entry) => {

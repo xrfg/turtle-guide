@@ -73,11 +73,6 @@ const SignUp = () => {
   // const user = useSelector((state) => state.user);
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
-  console.log("state from reducer", isAuthenticated);
-
-  // if the signup is succeful
-  // dispatch an token a POST request to /api/auth
-
   // form
   const [userData, setUserData] = useState({});
 

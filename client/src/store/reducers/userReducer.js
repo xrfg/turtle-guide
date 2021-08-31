@@ -4,7 +4,7 @@ const initialState = {
   isAuthenticated: false,
   userProfile: {},
   token: null,
-  accountIdenti: null,
+  accountIdentier: null,
   loading: true,
   error: null,
 };
@@ -16,7 +16,6 @@ export default (state = initialState, action) => {
    */
   switch (action.type) {
     case SIGN_UP:
-      console.log("REDUCER PAYLOAD", action.payload);
       return {
         ...state, // ! IMPORTANT spreads the actual state
         isAuthenticated: true,
