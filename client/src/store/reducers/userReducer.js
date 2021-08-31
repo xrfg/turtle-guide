@@ -9,8 +9,11 @@ const initialState = {
   error: null,
 };
 
+/* eslint import/no-anonymous-default-export: [2, {"allowArrowFunction": true}] */
 export default (state = initialState, action) => {
-  // Switches the action besed on the types i.e. SIGN_UP
+  /**
+   * @desc Switches the action besed on the types i.e. SIGN_UP
+   */
   switch (action.type) {
     case SIGN_UP:
       console.log("REDUCER PAYLOAD", action.payload);

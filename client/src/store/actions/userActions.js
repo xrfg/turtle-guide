@@ -9,7 +9,7 @@ import axios from "axios";
  * @desc BASE URLs
  */
 // url TO create a User
-const BASEurlUser = "http://localhost:5000/api/users";
+const BASEurlUser = "http://localhost:5000/api/users/";
 
 /**
  * @function createObj
@@ -51,6 +51,7 @@ const createObj = (objCall) => {
  */
 
 export const userSignUp = (obj) => {
+  console.log(obj);
   return async (dispatch) => {
     // uses a function to create an object for axios
     const objToSend = createObj({
@@ -65,6 +66,11 @@ export const userSignUp = (obj) => {
 
       // if success keeps going
       if (results.data.success === true) {
+        // const resLogin = await userLogin({
+        //   email: obj.email,
+        //   password: obj.password,
+        // });
+
         // creater a payload to send
         const payload = {
           firstName: results.data.data.firstName,
@@ -85,6 +91,15 @@ export const userSignUp = (obj) => {
     }
   };
 };
+
+/**
+ * @desc action to login a user and get a token
+ */
+
+export const userLogin = (obj) => {
+  console.log("userLogin", obj);
+};
+
 // export const googleSearch = (entry) => {
 //   return async (dispatch) => {
 //     const config = {
