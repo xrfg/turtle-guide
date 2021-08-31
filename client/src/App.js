@@ -6,6 +6,7 @@ import Account from "./Pages/Account/Account";
 import AboutAdmin from "./Pages/AboutAdmin/AboutAdmin";
 import Guide from "./Components/Guide/Guide";
 import Navbar from "./Components/Navbar/Navbar";
+import Event from "./Pages/Event/Event";
 
 // * Import Components
 // REDUX
@@ -35,6 +36,8 @@ function App() {
           // ! TEMPORARY LINK 
         */}
               <Route path="/aboutadmin" component={AboutAdmin} />
+              <Route path="/aboutadmin" component={AboutAdmin} />
+              <Route path="/create-event" component={Event} />
 
               <Route path="/guide">
                 <Guide />
