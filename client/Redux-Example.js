@@ -44,18 +44,19 @@ import { useDispatch, connect, useSelector } from "react-redux";
 import { userSignUp } from "./store/action/userActions";
 
 // pass the states and the functions
-const SignUp = ({ state, userSignUp }) => {
-  const count = useSelector(selectCount);
-  // ! IMPORTANT
-  const dispatch = useDispatch();
+const SignUp = () => {
+                        // ! IMPORTANT
+                        const dispatch = useDispatch();
+
+// I get the state I want
+  const stateIWant = useSelector(state=> state.STATE_I_WANT);
+
+                        <button
+                        onClick={()=>dispatch(SignUp{objectWithCredentials})}
+                        >
+                          Click to fire the function
+  </button>
 };
 
-// ? with this I can get the states I want
 
-const mapStateToProps = (state) => ({
-  //  states
-});
-
-// I Connect Redux
-// ! IMPORTANT I add the function
-export default connect(mapStateToProps, { userSignUp })(SignUp);
+export default SignUp;
