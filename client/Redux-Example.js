@@ -45,18 +45,15 @@ import { userSignUp } from "./store/action/userActions";
 
 // pass the states and the functions
 const SignUp = () => {
-                        // ! IMPORTANT
-                        const dispatch = useDispatch();
+  // ! IMPORTANT
+  const dispatch = useDispatch();
 
-// I get the state I want
-  const stateIWant = useSelector(state=> state.STATE_I_WANT);
+  // I get the state I want
+  const stateIWant = useSelector((state) => state.STATE_I_WANT);
 
-                        <button
-                        onClick={()=>dispatch(SignUp{objectWithCredentials})}
-                        >
-                          Click to fire the function
-  </button>
+  <button onClick={() => dispatch(SignUp(objectWithCredentials))}>
+    Click to fire the function
+  </button>;
 };
-
 
 export default SignUp;

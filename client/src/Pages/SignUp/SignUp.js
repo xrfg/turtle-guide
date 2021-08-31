@@ -22,7 +22,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
 // * REDUX
-import { useDispatch, connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { userSignUp } from "../../store/actions/userActions";
 
 // * Functions
 /**
@@ -62,34 +63,42 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignUp = ({}) => {
+const SignUp = () => {
   const classes = useStyles();
 
-  // form
-  const [values, setValues] = useState({});
+  // Redux
+  const dispatch = useDispatch();
 
-  const changeHandler = function (e) {
-    setValues({ ...values, [e.target.name]: e.target.value });
+  // getting states from REDUX
+  // const user = useSelector((state) => state.user);
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+
+  console.log("state from reducer", isAuthenticated);
+
+  // if the signup is succeful
+  // dispatch an token a POST request to /api/auth
+
+  // form
+  const [userData, setUserData] = useState({});
+
+  /**
+   * @function onChange
+   * @desc grabs inputs changes while user types
+   */
+  const onChange = function (e) {
+    setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
-  const submitHandler = function (e) {
-    e.preventDefault();
-    console.log("request sent");
-    axios({
-      method: "post",
-      url: "http://localhost:5000/singup",
-      /* baseURL: 'http://localhost:5000',*/
+  /**
+   * @function submitUserData
+   * @desc sends the data
+   */
 
-      data: values,
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    console.log(values);
-    window.location.replace("/");
+  const submitUserData = function (e) {
+    e.preventDefault();
+
+    // dispatch to REDUX
+    dispatch(userSignUp(userData));
   };
 
   return (
@@ -102,7 +111,7 @@ const SignUp = ({}) => {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate onSubmit={submitHandler}>
+        <form className={classes.form} noValidate onSubmit={submitUserData}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -114,7 +123,7 @@ const SignUp = ({}) => {
                 id="firstName"
                 label="First Name"
                 autoFocus
-                onChange={changeHandler}
+                onChange={onChange}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -126,7 +135,7 @@ const SignUp = ({}) => {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
-                onChange={changeHandler}
+                onChange={onChange}
               />
             </Grid>
             {/* company */}
@@ -139,7 +148,7 @@ const SignUp = ({}) => {
                 label="Company"
                 name="company"
                 autoComplete="com"
-                onChange={changeHandler}
+                onChange={onChange}
               />
             </Grid>
             {/* account name */}
@@ -152,7 +161,7 @@ const SignUp = ({}) => {
                 label="Account Name"
                 name="accountName"
                 autoComplete="aname"
-                onChange={changeHandler}
+                onChange={onChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -164,7 +173,7 @@ const SignUp = ({}) => {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
-                onChange={changeHandler}
+                onChange={onChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -177,7 +186,7 @@ const SignUp = ({}) => {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                onChange={changeHandler}
+                onChange={onChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -193,6 +202,7 @@ const SignUp = ({}) => {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={(e) => submitUserData(e)}
           >
             Sign Up
           </Button>
@@ -212,8 +222,4 @@ const SignUp = ({}) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  //  states
-});
-
-export default connect(mapStateToProps, null)(SignUp);
+export default SignUp;
