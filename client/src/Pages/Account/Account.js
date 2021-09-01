@@ -75,7 +75,8 @@ const Account = (props) => {
                       variant="text"
                       color="primary"
                     >
-                      {/* // ! go to section <Event id={EVENT ID}/> giving the id   */}
+                      {/* // ! go to section <Event id={EVENT ID from mongo array}/> giving the id   */}
+                      {/* // ! send the obj <Event id={events[i]} */}
                       <Link className={classes.link} to={`/${urls[i]}`}>
                         {event.title}
                       </Link>
