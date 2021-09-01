@@ -1,10 +1,10 @@
-import { SIGN_UP, SIGN_UP_ERROR } from "../types";
+import { SIGN_UP, SIGN_UP_ERROR, SIGN_IN, SIGN_IN_ERROR } from "../types";
 
 const initialState = {
   isAuthenticated: false,
   userProfile: {},
   token: null,
-  accountIdentier: null,
+  accountIdentifier: {},
   loading: true,
   error: null,
 };
@@ -27,6 +27,24 @@ export default (state = initialState, action) => {
       return {
         ...state, // ! IMPORTANT spreads the actual state
         isAuthenticated: false,
+        token: null,
+        error: action.payload,
+        loading: false,
+      };
+
+    case SIGN_IN:
+      return {
+        ...state,
+        isAuthenticated: true,
+        token: action.payload,
+        loading: false,
+      };
+
+    case SIGN_IN_ERROR:
+      return {
+        ...state, // ! IMPORTANT spreads the actual state
+        isAuthenticated: false,
+        token: null,
         error: action.payload,
         loading: false,
       };

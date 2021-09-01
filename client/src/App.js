@@ -7,6 +7,7 @@ import AboutAdmin from "./Pages/AboutAdmin/AboutAdmin";
 import Guide from "./Components/Guide/Guide";
 import Event from "./Pages/Event/Event";
 import SignUp from "./Pages/SignUp/SignUp";
+import SignIn from "./Pages/SignIn/SignIn";
 
 // * Import Components
 import Navbar from "./Components/Navbar/Navbar";
@@ -33,6 +34,7 @@ function App() {
                 </h2>
               </Route>
               <Route path="/admin" component={SignUp} />
+              <Route path="/signin" component={SignIn} />
               <Route path="/account" component={Account} />
               {/*
           // ! TEMPORARY LINK 

@@ -1,6 +1,8 @@
 import {
   SIGN_UP,
   SIGN_UP_ERROR,
+  SIGN_IN,
+  SIGN_IN_ERROR,
   EVENT_CREATE,
   EVENT_CREATE_ERROR,
   EVENT_UPDATE,
@@ -74,13 +76,14 @@ export const userSignUp = (obj) => {
       // if success keeps going
       if (results.data.success === true) {
         /**
-         * @desc add the fucntion to login
-         *
+         * @desc add the fucntion to login and get a token
          */
-        // const resLogin = await userLogin({
-        //   email: obj.email,
-        //   password: obj.password,
-        // });
+        await dispatch(
+          signIn({
+            email: obj.email,
+            password: obj.password,
+          })
+        );
 
         // creater a payload to send
         const payload = {
@@ -108,12 +111,30 @@ export const userSignUp = (obj) => {
  */
 
 export const signIn = (obj) => {
-  console.log("userLogin", obj);
-  // http://localhost:5000/api-docs
-  // dispatch a POST request to /api/auth
-  // and get  token
-  // try catch
-  // Dispatch
+  return async (dispatch) => {
+    // uses a function to create an object for axios
+    const objToSend = createObj({
+      method: "POST",
+      url: BASEurlAuth,
+      data: obj,
+      // user and password
+      //     obj:  {
+      //   "email": "string",
+      //   "password": "string"
+      // }
+    });
+
+    try {
+      // API Call
+      const res = await axios(objToSend);
+
+      // dispatch to the reducer (update state)
+      await dispatch({ type: SIGN_IN, payload: res.data.data.token });
+    } catch (error) {
+      console.error(error);
+      await dispatch({ type: SIGN_IN_ERROR, payload: error });
+    }
+  };
 };
 
 // export const googleSearch = (entry) => {
