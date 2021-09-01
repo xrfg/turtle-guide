@@ -50,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
 // TODO insert a modal that opens the event naming if the event does not exists
 // TODO ternary opeartor for button disable/enable
 
+// ! takes event id
 export default function Event(props) {
   const classes = useStyles(props);
   const dispatch = useDispatch();

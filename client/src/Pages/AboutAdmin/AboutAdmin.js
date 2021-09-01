@@ -92,7 +92,8 @@ const useStyles = makeStyles((theme) =>
     },
   })
 );
-
+// ! takes ID as prop and looks into state (to get with useSelector)
+// ! and maps contents
 export default function AboutAdmin() {
   const classes = useStyles();
 

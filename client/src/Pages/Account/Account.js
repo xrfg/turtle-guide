@@ -75,6 +75,7 @@ const Account = (props) => {
                       variant="text"
                       color="primary"
                     >
+                      {/* // ! go to section <Event id={EVENT ID}/> giving the id   */}
                       <Link className={classes.link} to={`/${urls[i]}`}>
                         {event.title}
                       </Link>
