@@ -1,5 +1,15 @@
-import React from "react";
+/**
+ * @desc Home page of the admin part
+ * retrives all the account info
+ */
+
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+
+// * REDUX
+import { useSelector, useDispatch } from "react-redux";
+import { eventsFetch } from "../../store/actions/eventsActions";
+// * MAT UI
 import {
   Container,
   Grid,
@@ -25,10 +35,21 @@ const useStyles = makeStyles((theme) => ({
 
 const Account = (props) => {
   const classes = useStyles(props);
+  const dispatch = useDispatch();
+  const events = useSelector((state) => state.events.events);
 
   // this are only examples of what we would get from the database (events, urls)
-  const events = ["Van Gogh"];
+  // const events = ["Van Gogh"];
   const urls = ["van-gogh"];
+
+  // useEffect that check retrives all the account's info
+  // ? should be the models user and event linked in MONGO
+  useEffect(() => {
+    dispatch(eventsFetch()); // for user events
+    // dispatch() // for user data
+    //eslint-disable-next-line
+  }, []);
+  console.log("events", events);
   return (
     <Container>
       <Grid
@@ -55,7 +76,7 @@ const Account = (props) => {
                       color="primary"
                     >
                       <Link className={classes.link} to={`/${urls[i]}`}>
-                        {event}
+                        {event.title}
                       </Link>
                     </Button>
                   );

@@ -13,6 +13,11 @@ const guideSchema = mongoose.Schema({
     require: true,
     unique: true,
   },
+  slug: {
+    type: String,
+    require: true,
+    unique: true,
+  },
   // the title showed to the visitor i.e. "The World of Van Gogh"
   title: {
     type: String,

@@ -3,6 +3,8 @@ import {
   EVENT_CREATE_ERROR,
   EVENT_UPDATE,
   EVENT_UPDATE_ERROR,
+  EVENTS_FETCH,
+  EVENTS_FETCH_ERROR,
 } from "../types";
 
 const initialState = {
@@ -18,6 +20,27 @@ export default (state = initialState, action) => {
       return {
         ...state,
         events: [...state.events, action.payload],
+        loading: false,
+      };
+
+    case EVENT_CREATE_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+
+    case EVENTS_FETCH:
+      return {
+        ...state,
+        events: action.payload,
+        loading: false,
+      };
+
+    case EVENTS_FETCH_ERROR:
+      return {
+        ...state,
+        error: action.payload,
         loading: false,
       };
 

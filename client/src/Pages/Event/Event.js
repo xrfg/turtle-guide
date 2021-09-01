@@ -8,7 +8,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // * ACTIONS
-import { eventCreate } from "../../store/actions/userActions";
+import { eventCreate } from "../../store/actions/eventsActions";
 
 // * Components Imports (children)
 import EventSection from "./EventSection";
@@ -218,11 +218,11 @@ export default function Event(props) {
       slug: eventName, // will be the same
       description: "description", // ? is to do?
       sections: [],
-
+      // TODO CHANGE ACCOUNT
+      // WILL BET SENT ONCe IS LOGGED IN
+      account: "611e5aca56104a1c09f9d13e",
       // ! spread obj
     });
-
-    // TODO POST it into mongo with an action
   };
 
   // fires when the state event is created/updated

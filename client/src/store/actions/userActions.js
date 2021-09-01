@@ -5,12 +5,12 @@ import {
   EVENT_CREATE_ERROR,
   EVENT_UPDATE,
   EVENT_UPDATE_ERROR,
+  EVENTS_FETCH,
+  EVENTS_FETCH_ERROR,
 } from "../types";
 
 import axios from "axios";
-/**
- * @desc Variables
- */
+import { createObj } from "../functions/functions";
 
 /**
  * @desc BASE URLs
@@ -18,45 +18,40 @@ import axios from "axios";
 // url TO create a User
 const BASEurlUser = "http://localhost:5000/api/users/";
 const BASEurlAuth = "http://localhost:5000/api/auth/";
-const BASEurlEvents = "http://localhost:5000/api/events/";
 
-// ! IMPORTANT TO REMOVE
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjExZTVhY2E1NjEwNGExYzA5ZjlkMTNlIn0sImlhdCI6MTYzMDQ4NTU4OCwiZXhwIjoxNjMzMDc3NTg4fQ.-PpbSoenUfmDFMsII1ALNvj7OUIm19PuJYa4GD5xJfI";
+// /**
+//  * @function createObj
+//  * @param objCall
+//  * @desc create OBJ to send
+//  */
+// const createObj = (objCall) => {
+//   const { method, url, data = {}, token = "", params = "" } = objCall;
 
-/**
- * @function createObj
- * @param objCall
- * @desc create OBJ to send
- */
-const createObj = (objCall) => {
-  const { method, url, data = {}, token = "", params = "" } = objCall;
+//   // if token is not empty returns header with token
+//   // else header with out
+//   if (token) {
+//     return {
+//       method: method,
+//       url: url,
+//       // params: params,
+//       data: data,
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${token}`,
+//       },
+//     };
+//   }
 
-  // if token is not empty returns header with token
-  // else header with out
-  if (token) {
-    return {
-      method: method,
-      url: url,
-      // params: params,
-      data: data,
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    };
-  }
-
-  return {
-    method: method,
-    url: url,
-    data: data,
-    // params: params,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-};
+//   return {
+//     method: method,
+//     url: url,
+//     data: data,
+//     // params: params,
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//   };
+// };
 
 /**
  * @userSignUp
@@ -120,41 +115,6 @@ export const signIn = (obj) => {
   // try catch
   // Dispatch
 };
-
-/**
- * @desc action to create a new event
- */
-
-export const eventCreate = (obj) => {
-  return async (dispatch) => {
-    // uses a function to create an object for axios
-    const objToSend = createObj({
-      method: "POST",
-      url: BASEurlEvents,
-      data: obj,
-      token: token,
-    });
-
-    try {
-      // call api
-      const res = await axios(objToSend);
-
-      // res.data.data sends just the event
-      await dispatch({ type: EVENT_CREATE, payload: res.data.data });
-
-      return res;
-    } catch (error) {
-      console.error(error);
-      await dispatch({ type: EVENT_CREATE_ERROR, payload: error });
-    }
-  };
-};
-
-/**
- * @desc action to update an event
- */
-
-export const eventUpdate = () => {};
 
 // export const googleSearch = (entry) => {
 //   return async (dispatch) => {
