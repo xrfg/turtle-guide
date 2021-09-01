@@ -34,11 +34,16 @@ function App() {
               </Route>
               <Route path="/admin" component={SignUp} />
               <Route path="/account" component={Account} />
+
               {/*
           // ! TEMPORARY LINK 
         */}
               <Route path="/aboutadmin" component={AboutAdmin} />
-              <Route path="/create-event" component={Event} />
+              {/* <Route
+                path="/create-event"
+                render={(props) => <Event {...props} id={1} />}
+              /> */}
+              <Route path="/:id" component={Event} />
               <Route path="/guide">
                 <Guide />
               </Route>
