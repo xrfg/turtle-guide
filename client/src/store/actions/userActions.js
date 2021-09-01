@@ -20,6 +20,10 @@ const BASEurlUser = "http://localhost:5000/api/users/";
 const BASEurlAuth = "http://localhost:5000/api/auth/";
 const BASEurlEvents = "http://localhost:5000/api/events/";
 
+// ! IMPORTANT TO REMOVE
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjExZTVhY2E1NjEwNGExYzA5ZjlkMTNlIn0sImlhdCI6MTYzMDQ4NTU4OCwiZXhwIjoxNjMzMDc3NTg4fQ.-PpbSoenUfmDFMsII1ALNvj7OUIm19PuJYa4GD5xJfI";
+
 /**
  * @function createObj
  * @param objCall
@@ -128,18 +132,20 @@ export const eventCreate = (obj) => {
       method: "POST",
       url: BASEurlEvents,
       data: obj,
+      token: token,
     });
 
     try {
       // call api
       const res = await axios(objToSend);
 
-      await dispatch({ type: EVENT_CREATE, payload: res });
+      // res.data.data sends just the event
+      await dispatch({ type: EVENT_CREATE, payload: res.data.data });
 
       return res;
     } catch (error) {
       console.error(error);
-      await dispatch({ type: SIGN_UP_ERROR, payload: error });
+      await dispatch({ type: EVENT_CREATE_ERROR, payload: error });
     }
   };
 };

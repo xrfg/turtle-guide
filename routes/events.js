@@ -11,7 +11,7 @@ const auth = require("../middleware/auth");
 // const { userEmailValidator } = require("../middleware/validators");
 
 // CTRLs
-const { get, getGuide, post, put, del } = require("../controllers/guides");
+const { get, getGuide, post, put, del } = require("../controllers/events");
 
 /**
  * @desc Routes

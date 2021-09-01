@@ -2,7 +2,7 @@
 ? Event Page at route /create-event either for creating a new event or editing an existing one
 */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // * REDUX
 import { useSelector, useDispatch } from "react-redux";
@@ -223,10 +223,14 @@ export default function Event(props) {
     });
 
     // TODO POST it into mongo with an action
+  };
 
+  // fires when the state event is created/updated
+  useEffect(() => {
     // dispatch the event to redux
     dispatch(eventCreate(event));
-  };
+    //eslint-disable-next-line
+  }, [event]);
 
   console.log("event", event);
 
