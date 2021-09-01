@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 // * material UI imports Icons
-import { TextField, Typography, makeStyles } from "@material-ui/core";
+import { TextField, Typography, makeStyles, Box } from "@material-ui/core";
 // * material UI imports Icons
 
 // * React Components
@@ -19,6 +19,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function EventName(props) {
   const classes = useStyles(props);
+
+  // * gives the path we're on -> using it to deal with redirect in the Account page
+  const pathName = window.location.pathname;
+  console.log(pathName);
 
   // * States
   const [eventName, setEventName] = useState("");
@@ -47,18 +51,23 @@ export default function EventName(props) {
       setEditing((prev) => !prev);
     } else {
       props.getEventName(eventName);
-      setEditing((prev) => !prev);
+      // if we are on the account page, auto redirect to the newly created event
+      // otherwise we are inside of the event page already and just updating the current name
+      pathName === "/account"
+        ? // ! should we create a func to make a automatic slug here(on this component)?
+          window.location.replace(`/${eventName}`)
+        : setEditing((prev) => !prev);
     }
   };
 
   return (
-    <>
-      {" "}
+    <Box>
       {editing ? (
         <TextField
           disabled={editing ? false : true}
           id="eventName"
           type="text"
+          required
           defaultValue={eventName}
           placeholder="Name for the Event"
           helperText="This will be the public name of the Event"
@@ -74,6 +83,6 @@ export default function EventName(props) {
         </Typography>
       )}
       <EditSaveButton editStatus={editing} editHandler={handleSaveEditBtn} />
-    </>
+    </Box>
   );
 }

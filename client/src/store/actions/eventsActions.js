@@ -22,7 +22,7 @@ const token =
 /**
  * @desc action to create a new event
  */
-// TODO CNAHGE TOKEN to be sent from the client
+// TODO CHANGE TOKEN to be sent from the client
 export const eventCreate = (obj) => {
   return async (dispatch) => {
     // uses a function to create an object for axios

@@ -3,12 +3,18 @@
  * retrives all the account info
  */
 
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+
+// * react-router-dom
+import { Link, NavLink } from "react-router-dom";
 
 // * REDUX
 import { useSelector, useDispatch } from "react-redux";
 import { eventsFetch } from "../../store/actions/eventsActions";
+
+// * ACTIONS
+import { eventCreate } from "../../store/actions/eventsActions";
+
 // * MAT UI
 import {
   Container,
@@ -21,6 +27,9 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
+
+// * Component Imports
+import EventName from "../Event/EventName";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -38,9 +47,9 @@ const Account = (props) => {
   const dispatch = useDispatch();
   const events = useSelector((state) => state.events.events);
 
-  // this are only examples of what we would get from the database (events, urls)
-  // const events = ["Van Gogh"];
-  const urls = ["van-gogh"];
+  //* States
+  const [isAddingEvent, setIsAddingEvent] = useState(false);
+  const [event, setEvent] = useState({});
 
   // useEffect that check retrives all the account's info
   // ? should be the models user and event linked in MONGO
@@ -50,6 +59,42 @@ const Account = (props) => {
     //eslint-disable-next-line
   }, []);
   console.log("events", events);
+
+  // * add an event on click "+"
+  const addEvent = () => {
+    setIsAddingEvent((prev) => !prev);
+  };
+
+  const createAndSendEvent = (eventName) => {
+    console.log("the event name is", eventName);
+
+    // ! the event will be save into mongo and the will check the existence
+    // ! of the indentifier / slug
+    // ! and in case will throw errors
+    // TODO create slug with a regex or a library
+
+    setEvent({
+      title: eventName,
+      nameIdentifier: eventName, // fucntion to make the slug
+      slug: eventName, // will be the same
+      description: "description", // ? is to do?
+      sections: [],
+      // TODO CHANGE ACCOUNT
+      // WILL BET SENT ONCe IS LOGGED IN
+      account: "611e5aca56104a1c09f9d13e",
+      // ! spread obj
+    });
+  };
+
+  // fires when the state event is created/updated
+  useEffect(() => {
+    // dispatch the event to redux
+    dispatch(eventCreate(event));
+    //eslint-disable-next-line
+  }, [event]);
+
+  console.log("event", event);
+
   return (
     <Container>
       <Grid
@@ -77,23 +122,25 @@ const Account = (props) => {
                     >
                       {/* // ! go to section <Event id={EVENT ID from mongo array}/> giving the id   */}
                       {/* // ! send the obj <Event id={events[i]} */}
-                      <Link className={classes.link} to={`/${urls[i]}`}>
+                      <NavLink className={classes.link} to={`/${event.slug}`}>
                         {event.title}
-                      </Link>
+                      </NavLink>
                     </Button>
                   );
                 })}
 
-              <Button
-                href="/create-event"
-                className={classes.btn}
-                variant="text"
-                color="primary"
-              >
-                <Link className={classes.link} to="/create-event">
+              {isAddingEvent ? (
+                <EventName getEventName={createAndSendEvent} />
+              ) : (
+                <Button
+                  className={classes.btn}
+                  variant="text"
+                  color="primary"
+                  onClick={addEvent}
+                >
                   <Add />
-                </Link>
-              </Button>
+                </Button>
+              )}
             </CardActions>
           </Card>
         </Grid>

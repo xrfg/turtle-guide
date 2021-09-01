@@ -2,6 +2,8 @@
 ? Event Page at route /create-event either for creating a new event or editing an existing one
 */
 
+// TODO Fetch Event using the pathname????
+
 import React, { useState, useEffect } from "react";
 
 // * REDUX
@@ -205,6 +207,9 @@ export default function Event(props) {
    * @desc saves the event name and creates event obj
    */
 
+  // if params === new then show name modal
+  // else fetch event
+
   const createAndSendEvent = (eventName) => {
     console.log("the event name is", eventName);
 
@@ -239,9 +244,6 @@ export default function Event(props) {
     <Container style={{ padding: "2rem 0" }} maxWidth="md">
       <Grid container direction="row" spacing={2}>
         {/* // * if undefined shows just the title input field */}
-        {event.title === undefined || "" ? (
-          <Typography>Insert a Event Name to create the event</Typography>
-        ) : null}
         <Grid item xs={9}>
           {/* 
         // * Name of Event Input
@@ -249,120 +251,108 @@ export default function Event(props) {
           <EventName getEventName={createAndSendEvent} />
         </Grid>
 
-        {/* // * if undefined shows just the title input field */}
-        {event.title === undefined || "" ? null : (
-          <>
-            {/* 
-        // * Delete Event 
-        */}
-            <Grid item xs={3}>
+        {/* Delete Event */}
+        <Grid item xs={3}>
+          <Button className={classes.deleteBtn} onClick={handleClickDeleteOpen}>
+            Delete Event
+          </Button>
+          <Dialog
+            open={openDeleteMsg}
+            onClose={handleClickDeleteClose}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+          >
+            <DialogTitle id="alert-dialog-title">
+              {`Are you sure you want to delete the EVENTNAME event?`}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Deleting an event will permanently erase it from the admin's
+                event collection. If you choose only to set it to private, check
+                settings.
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
               <Button
-                className={classes.deleteBtn}
-                onClick={handleClickDeleteOpen}
+                onClick={handleClickDeleteClose}
+                color="primary"
+                autoFocus
               >
-                Delete Event
+                Cancel
               </Button>
-              <Dialog
-                open={openDeleteMsg}
-                onClose={handleClickDeleteClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-              >
-                <DialogTitle id="alert-dialog-title">
-                  {`Are you sure you want to delete the EVENTNAME event?`}
-                </DialogTitle>
-                <DialogContent>
-                  <DialogContentText id="alert-dialog-description">
-                    Deleting an event will permanently erase it from the admin's
-                    event collection. If you choose only to set it to private,
-                    check settings.
-                  </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                  <Button
-                    onClick={handleClickDeleteClose}
-                    color="primary"
-                    autoFocus
-                  >
-                    Cancel
-                  </Button>
-                  <Button onClick={handleClickDeleteClose} color="primary">
-                    Delete
-                  </Button>
-                </DialogActions>
-              </Dialog>
-            </Grid>
-
-            {/* 
+              <Button onClick={handleClickDeleteClose} color="primary">
+                Delete
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </Grid>
+        {/* 
         // * Button Group
         */}
-            <Grid item xs={4} className={classes.btnGrp}>
-              <ButtonGroup
-                orientation="vertical"
-                aria-label="vertical outlined primary button group"
-              >
-                <Button
-                  onClick={() => {
-                    addToContents([
-                      {
-                        type: "section",
-                        id: 0,
-                        order: 0,
-                        url: "",
-                        title: "Title",
-                        description: "Description",
-                      },
-                    ]);
-                  }}
-                  endIcon={<Add />}
-                >
-                  Section
-                </Button>
-              </ButtonGroup>
-              <ButtonGroup
-                disabled
-                orientation="vertical"
-                aria-label="vertical outlined primary button group"
-              >
-                <Button endIcon={<Add />}>Pay-wall</Button>
-                <Button endIcon={<Add />}>Feedback</Button>
-                <Button endIcon={<Add />}>Map</Button>
-              </ButtonGroup>
-            </Grid>
-
-            {/* 
+        <Grid item xs={4} className={classes.btnGrp}>
+          <ButtonGroup
+            orientation="vertical"
+            aria-label="vertical outlined primary button group"
+          >
+            <Button
+              onClick={() => {
+                addToContents([
+                  {
+                    type: "section",
+                    id: 0,
+                    order: 0,
+                    url: "",
+                    title: "Title",
+                    description: "Description",
+                  },
+                ]);
+              }}
+              endIcon={<Add />}
+            >
+              Section
+            </Button>
+          </ButtonGroup>
+          <ButtonGroup
+            disabled
+            orientation="vertical"
+            aria-label="vertical outlined primary button group"
+          >
+            <Button endIcon={<Add />}>Pay-wall</Button>
+            <Button endIcon={<Add />}>Feedback</Button>
+            <Button endIcon={<Add />}>Map</Button>
+          </ButtonGroup>
+        </Grid>
+        {/* 
         // * SECTIONS CONTAINER -> GUIDE
         */}
-            <Grid item xs={8}>
-              <Box filled>
-                <CardContent>
-                  <Typography
-                    variant="h5"
-                    component="h3"
-                    className={classes.guide__header}
-                  >
-                    Guide
-                  </Typography>
-                  {/* Displaying the current sections */}
-                  <ul>
-                    {sections
-                      .sort((a, b) => a.order - b.order)
-                      .map((section) => {
-                        return (
-                          <EventSection
-                            section={section}
-                            sectionToDelete={deleteSection}
-                            handleDrag={handleDrag}
-                            handleDrop={handleDrop}
-                          />
-                        );
-                      })}
-                  </ul>
-                </CardContent>
-              </Box>
-            </Grid>
-          </>
-        )}
+        <Grid item xs={8}>
+          <Box filled>
+            <CardContent>
+              <Typography
+                variant="h5"
+                component="h3"
+                className={classes.guide__header}
+              >
+                Guide
+              </Typography>
+              {/* Displaying the current sections */}
+              <ul>
+                {sections
+                  .sort((a, b) => a.order - b.order)
+                  .map((section) => {
+                    return (
+                      <EventSection
+                        section={section}
+                        sectionToDelete={deleteSection}
+                        handleDrag={handleDrag}
+                        handleDrop={handleDrop}
+                      />
+                    );
+                  })}
+              </ul>
+            </CardContent>
+          </Box>
+        </Grid>
       </Grid>
     </Container>
   );
