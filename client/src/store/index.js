@@ -5,11 +5,11 @@
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import ReduxThunk from "redux-thunk";
 
-import itemReducer from "./reducers/itemReducer";
+import eventsReducer from "./reducers/eventsReducer";
 import userReducer from "./reducers/userReducer";
 
 const rootReducer = combineReducers({
-  guides: itemReducer, // change names
+  events: eventsReducer, // change names
   user: userReducer,
 });
 

@@ -1,4 +1,11 @@
-import { SIGN_UP, SIGN_UP_ERROR } from "../types";
+import {
+  SIGN_UP,
+  SIGN_UP_ERROR,
+  EVENT_CREATE,
+  EVENT_CREATE_ERROR,
+  EVENT_UPDATE,
+  EVENT_UPDATE_ERROR,
+} from "../types";
 
 import axios from "axios";
 /**
@@ -11,6 +18,7 @@ import axios from "axios";
 // url TO create a User
 const BASEurlUser = "http://localhost:5000/api/users/";
 const BASEurlAuth = "http://localhost:5000/api/auth/";
+const BASEurlEvents = "http://localhost:5000/api/events/";
 
 /**
  * @function createObj
@@ -108,6 +116,39 @@ export const signIn = (obj) => {
   // try catch
   // Dispatch
 };
+
+/**
+ * @desc action to create a new event
+ */
+
+export const eventCreate = (obj) => {
+  return async (dispatch) => {
+    // uses a function to create an object for axios
+    const objToSend = createObj({
+      method: "POST",
+      url: BASEurlEvents,
+      data: obj,
+    });
+
+    try {
+      // call api
+      const res = await axios(objToSend);
+
+      await dispatch({ type: EVENT_CREATE, payload: res });
+
+      return res;
+    } catch (error) {
+      console.error(error);
+      await dispatch({ type: SIGN_UP_ERROR, payload: error });
+    }
+  };
+};
+
+/**
+ * @desc action to update an event
+ */
+
+export const eventUpdate = () => {};
 
 // export const googleSearch = (entry) => {
 //   return async (dispatch) => {

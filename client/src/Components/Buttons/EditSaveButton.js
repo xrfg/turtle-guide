@@ -7,15 +7,17 @@ import { Edit, Save } from "@material-ui/icons";
 
 export default function EditSaveButton(props) {
   // * Functions
+  // changes the editStatus from
+  // "editing" true to "non-editing" false
 
-  // * changes the editStatus from "editing" true to "non-editing" false
   const handleSaveEditBtn = (e) => {
     if (props.editStatus === false) {
-      props.editHandler(true);
+      props.editHandler((prev) => !prev);
     } else {
       props.editHandler(false);
     }
   };
+
   return (
     <Button
       variant="outlined"
@@ -23,8 +25,6 @@ export default function EditSaveButton(props) {
       onClick={() => {
         handleSaveEditBtn();
       }}
-      type={props.editStatus ? "submit" : "text"}
-      // type is not really working as it should, i.e: not submitting if we click on Edit icon
     >
       {props.editStatus ? <Save /> : <Edit />}
     </Button>

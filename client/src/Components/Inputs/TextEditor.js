@@ -9,7 +9,6 @@ import React, { useState, useCallback } from "react";
 import { Button } from "@material-ui/core";
 
 // * Components
-import { DefaultEditor } from "react-simple-wysiwyg";
 import ReactQuill, { Quill, Mixin, Toolbar } from "react-quill"; // ES6
 import "react-quill/dist/quill.snow.css"; // ES6
 

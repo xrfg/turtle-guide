@@ -1,14 +1,30 @@
-// import {
-
-// } from "../types";
+import {
+  EVENT_CREATE,
+  EVENT_CREATE_ERROR,
+  EVENT_UPDATE,
+  EVENT_UPDATE_ERROR,
+} from "../types";
 
 const initialState = {
   events: [],
-  loading: false,
+  loading: true,
   error: null,
 };
 
-export default initialState;
+/* eslint import/no-anonymous-default-export: [2, {"allowArrowFunction": true}] */
+export default (state = initialState, action) => {
+  switch (action.type) {
+    case EVENT_CREATE:
+      return {
+        ...state,
+        events: [...state.events, action.payload],
+        loading: false,
+      };
+
+    default:
+      return state;
+  }
+};
 
 // export default (state = initialState, action) => {
 //   switch (action.type) {
