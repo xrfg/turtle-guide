@@ -1,8 +1,6 @@
 /* 
-? Event Page at route /create-event either for creating a new event or editing an existing one
+? Event Page at route /admin/event/:slug either for creating a new event or editing an existing one
 */
-
-// TODO Fetch Event using the pathname????
 
 import React, { useState, useEffect } from "react";
 
@@ -49,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   guide__header: { marginBottom: "1rem" },
 }));
 
-// ! takes event id
+// ! takes event slug
 export default function Event(props) {
   const classes = useStyles(props);
   const dispatch = useDispatch();
@@ -65,6 +63,7 @@ export default function Event(props) {
   // for the drag and drop sections re-ordering
   const [dragId, setDragId] = useState();
 
+  // * Hooks
   // loads event from reducer
   const events = useSelector((state) => state.events.events);
 
@@ -73,6 +72,8 @@ export default function Event(props) {
   // to allow if is a new event
   let isNewEvent = props.location.state?.isNew === true ? true : false;
   console.log("props.location.state", props);
+
+  // * LifeCycles -> UseEffect
 
   useEffect(() => {
     // create a new event
@@ -221,7 +222,7 @@ export default function Event(props) {
 
   /**
    * @function createEvent
-   * @param eventName comming from the props "getEventName"
+   * @param eventName coming from the props "getEventName"
    * @desc saves the event name and creates event obj
    */
 
@@ -234,7 +235,7 @@ export default function Event(props) {
 
     setEvent({
       title: title,
-      nameIdentifier: title, // fucntion to make the slug
+      nameIdentifier: title, // function to make the slug
       slug: slug, // will be the same
       description: "description", // ? is to do?
       sections: [],
@@ -264,7 +265,6 @@ export default function Event(props) {
       {/* // TODO ERROR IF EVENT IS UNDEFINED */}
       {event === undefined ? null : (
         <Grid container direction="row" spacing={2}>
-          {/* // * if undefined shows just the title input field */}
           <Grid item xs={9}>
             {/* 
         // * Name of Event Input
