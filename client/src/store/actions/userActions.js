@@ -3,6 +3,7 @@ import {
   SIGN_UP_ERROR,
   SIGN_IN,
   SIGN_IN_ERROR,
+  SIGN_OUT,
   EVENT_CREATE,
   EVENT_CREATE_ERROR,
   EVENT_UPDATE,
@@ -136,6 +137,14 @@ export const signIn = (obj) => {
     }
   };
 };
+
+
+export const signOut =()=>{
+  return async(dispatch)=>{
+    await dispatch({type:SIGN_OUT,})
+  }
+ 
+}
 
 // export const googleSearch = (entry) => {
 //   return async (dispatch) => {

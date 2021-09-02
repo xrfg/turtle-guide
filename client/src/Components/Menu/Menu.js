@@ -17,12 +17,18 @@ import Button from "@material-ui/core/Button";
 // import Popper from "@material-ui/core/Popper";
 import { makeStyles } from "@material-ui/core/styles";
 
+
+import {signOut}from "../../store/actions/userActions"
+
 /**
  * @desc It Forwards the <MenuItem/>
  * @requires path i.e. path={"/admin"}
  * @requires title i.e. title={"Admin Page"}
  */
 import MenuItem from "../MenuItem/MenuItem";
+
+
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,6 +49,8 @@ const Menu = () => {
   // states
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
+
+  const dispatch= useDispatch()
 
   // // Drop down handlers
   // const handleToggle = () => {
@@ -130,10 +138,8 @@ const Menu = () => {
           aria-controls="simple-menu"
           aria-haspopup="true"
           onClick={() => {
-            localStorage.clear();
-            history.push("/");
-            console.log("user logged out");
-            window.location.reload();
+            dispatch(signOut())
+            history.push("/")
           }}
         >
           Log out

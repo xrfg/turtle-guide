@@ -1,6 +1,11 @@
-import { SIGN_UP, SIGN_UP_ERROR, SIGN_IN, SIGN_IN_ERROR } from "../types";
+import { SIGN_UP, SIGN_UP_ERROR, SIGN_IN, SIGN_IN_ERROR, SIGN_OUT } from "../types";
 
-const initialState = {
+
+import {loadState} from "../localStorage"
+
+const persistedState = loadState();
+
+const initialState = persistedState ? persistedState : {
   isAuthenticated: false,
   userProfile: {},
   token: null,
@@ -48,6 +53,14 @@ export default (state = initialState, action) => {
         error: action.payload,
         loading: false,
       };
+
+      case SIGN_OUT:
+        return{
+          ...state,
+          isAuthenticated:false,
+          token:null,
+          loading:false,
+        };
 
     default:
       return state;
