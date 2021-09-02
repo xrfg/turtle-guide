@@ -1,3 +1,7 @@
+/**
+ * @desc Component to insert the name of the event from <Account/>
+ */
+
 import React, { useState, useEffect } from "react";
 
 // * material UI imports Icons
@@ -20,10 +24,6 @@ const useStyles = makeStyles((theme) => ({
 // TODO insert a modal that opens the event naming if the event does not exists
 
 const EventName = (props) => {
-  // decostru
-  const { title } = props;
-
-  // HOOKS
   const classes = useStyles(props);
   let history = useHistory();
 
@@ -31,9 +31,9 @@ const EventName = (props) => {
   const pathName = window.location.pathname;
 
   // * States
-  const [eventName, setEventName] = useState(title);
+  const [eventName, setEventName] = useState("");
   // true cause it starts with filling the name
-  const [editing, setEditing] = useState(false);
+  const [editing, setEditing] = useState(true);
 
   // * Functions
 

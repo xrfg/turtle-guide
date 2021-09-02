@@ -29,7 +29,7 @@ import {
 import { Add } from "@material-ui/icons";
 
 // * Component Imports
-import EventName from "../Event/EventName";
+import EventName from "./EventNameInsert";
 
 const useStyles = makeStyles((theme) => ({
   card: {

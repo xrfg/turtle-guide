@@ -264,118 +264,124 @@ export default function Event(props) {
 
   return (
     <Container style={{ padding: "2rem 0" }} maxWidth="md">
-      <Grid container direction="row" spacing={2}>
-        {/* // * if undefined shows just the title input field */}
-        <Grid item xs={9}>
-          {/* 
+      {/* // TODO ERROR IF EVENT IS UNDEFINED */}
+      {event === undefined ? null : (
+        <Grid container direction="row" spacing={2}>
+          {/* // * if undefined shows just the title input field */}
+          <Grid item xs={9}>
+            {/* 
         // * Name of Event Input
         */}
-          <EventName getEventName={createAndSendEvent} />
-        </Grid>
+            <EventName title={event.title} getEventName={createAndSendEvent} />
+          </Grid>
 
-        {/* Delete Event */}
-        <Grid item xs={3}>
-          <Button className={classes.deleteBtn} onClick={handleClickDeleteOpen}>
-            Delete Event
-          </Button>
-          <Dialog
-            open={openDeleteMsg}
-            onClose={handleClickDeleteClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <DialogTitle id="alert-dialog-title">
-              {`Are you sure you want to delete the EVENTNAME event?`}
-            </DialogTitle>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                Deleting an event will permanently erase it from the admin's
-                event collection. If you choose only to set it to private, check
-                settings.
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button
-                onClick={handleClickDeleteClose}
-                color="primary"
-                autoFocus
-              >
-                Cancel
-              </Button>
-              <Button onClick={handleClickDeleteClose} color="primary">
-                Delete
-              </Button>
-            </DialogActions>
-          </Dialog>
-        </Grid>
-        {/* 
+          {/* Delete Event */}
+          <Grid item xs={3}>
+            <Button
+              className={classes.deleteBtn}
+              onClick={handleClickDeleteOpen}
+            >
+              Delete Event
+            </Button>
+            <Dialog
+              open={openDeleteMsg}
+              onClose={handleClickDeleteClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                {`Are you sure you want to delete the EVENTNAME event?`}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  Deleting an event will permanently erase it from the admin's
+                  event collection. If you choose only to set it to private,
+                  check settings.
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button
+                  onClick={handleClickDeleteClose}
+                  color="primary"
+                  autoFocus
+                >
+                  Cancel
+                </Button>
+                <Button onClick={handleClickDeleteClose} color="primary">
+                  Delete
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </Grid>
+          {/* 
         // * Button Group
         */}
-        <Grid item xs={4} className={classes.btnGrp}>
-          <ButtonGroup
-            orientation="vertical"
-            aria-label="vertical outlined primary button group"
-          >
-            <Button
-              onClick={() => {
-                addToContents([
-                  {
-                    type: "section",
-                    id: 0,
-                    order: 0,
-                    url: "",
-                    title: "Title",
-                    description: "Description",
-                  },
-                ]);
-              }}
-              endIcon={<Add />}
+          <Grid item xs={4} className={classes.btnGrp}>
+            <ButtonGroup
+              orientation="vertical"
+              aria-label="vertical outlined primary button group"
             >
-              Section
-            </Button>
-          </ButtonGroup>
-          <ButtonGroup
-            disabled
-            orientation="vertical"
-            aria-label="vertical outlined primary button group"
-          >
-            <Button endIcon={<Add />}>Pay-wall</Button>
-            <Button endIcon={<Add />}>Feedback</Button>
-            <Button endIcon={<Add />}>Map</Button>
-          </ButtonGroup>
-        </Grid>
-        {/* 
+              <Button
+                onClick={() => {
+                  addToContents([
+                    {
+                      type: "section",
+                      id: 0,
+                      order: 0,
+                      url: "",
+                      title: "Title",
+                      description: "Description",
+                    },
+                  ]);
+                }}
+                endIcon={<Add />}
+              >
+                Section
+              </Button>
+            </ButtonGroup>
+            <ButtonGroup
+              disabled
+              orientation="vertical"
+              aria-label="vertical outlined primary button group"
+            >
+              <Button endIcon={<Add />}>Pay-wall</Button>
+              <Button endIcon={<Add />}>Feedback</Button>
+              <Button endIcon={<Add />}>Map</Button>
+            </ButtonGroup>
+          </Grid>
+          {/* 
         // * SECTIONS CONTAINER -> GUIDE
         */}
-        <Grid item xs={8}>
-          <Box filled>
-            <CardContent>
-              <Typography
-                variant="h5"
-                component="h3"
-                className={classes.guide__header}
-              >
-                Guide
-              </Typography>
-              {/* Displaying the current sections */}
-              <ul>
-                {sections
-                  .sort((a, b) => a.order - b.order)
-                  .map((section) => {
-                    return (
-                      <EventSection
-                        section={section}
-                        sectionToDelete={deleteSection}
-                        handleDrag={handleDrag}
-                        handleDrop={handleDrop}
-                      />
-                    );
-                  })}
-              </ul>
-            </CardContent>
-          </Box>
+          <Grid item xs={8}>
+            <Box filled>
+              <CardContent>
+                <Typography
+                  variant="h5"
+                  component="h3"
+                  className={classes.guide__header}
+                >
+                  Guide
+                </Typography>
+                {/* Displaying the current sections */}
+                <ul>
+                  {sections
+                    .sort((a, b) => a.order - b.order)
+                    .map((section) => {
+                      return (
+                        <EventSection
+                          section={section}
+                          sectionToDelete={deleteSection}
+                          handleDrag={handleDrag}
+                          handleDrop={handleDrop}
+                        />
+                      );
+                    })}
+                </ul>
+              </CardContent>
+            </Box>
+          </Grid>
         </Grid>
-      </Grid>
+      )}
     </Container>
   );
 }
