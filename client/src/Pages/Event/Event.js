@@ -233,7 +233,8 @@ export default function Event(props) {
     //eslint-disable-next-line
   }, [event]);
 
-  console.log("event", event);
+  // console.log("event", event);
+  // console.log("props", props?.query.comments);
 
   return (
     <Container style={{ padding: "2rem 0" }} maxWidth="md">

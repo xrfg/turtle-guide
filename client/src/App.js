@@ -40,7 +40,10 @@ function App() {
           // ! TEMPORARY LINK 
         */}
               <Route path="/aboutadmin" component={AboutAdmin} />
-              <Route path="/create-event" component={Event} />
+              <Route
+                path="/create-event"
+                render={(props) => <Event {...props} />}
+              />
               <Route path="/guide">
                 <Guide />
               </Route>

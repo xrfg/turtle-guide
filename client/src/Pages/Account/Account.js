@@ -4,7 +4,7 @@
  */
 
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 // * REDUX
 import { useSelector, useDispatch } from "react-redux";
@@ -21,6 +21,8 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
+
+import Event from "../../Pages/Event/Event";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -49,7 +51,11 @@ const Account = (props) => {
     // dispatch() // for user data
     //eslint-disable-next-line
   }, []);
-  console.log("events", events);
+
+
+
+
+  
   return (
     <Container>
       <Grid
@@ -77,7 +83,7 @@ const Account = (props) => {
                     >
                       {/* // ! go to section <Event id={EVENT ID from mongo array}/> giving the id   */}
                       {/* // ! send the obj <Event id={events[i]} */}
-                      <Link className={classes.link} to={`/${urls[i]}`}>
+                      <Link className={classes.link} to="/create-event/">
                         {event.title}
                       </Link>
                     </Button>
