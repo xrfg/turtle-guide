@@ -32,7 +32,7 @@ function App() {
                   if the route is "/guide" display Guide wraping component
                 </h2>
               </Route>
-              <Route path="/admin" component={SignUp} />
+              <Route exact path="/admin" component={SignUp} />
               <Route path="/account" component={Account} />
 
               {/*
@@ -43,7 +43,7 @@ function App() {
                 path="/create-event"
                 render={(props) => <Event {...props} id={1} />}
               /> */}
-              <Route path="/:id" component={Event} />
+              <Route path="/admin/event/:name" component={Event} />
               <Route path="/guide">
                 <Guide />
               </Route>

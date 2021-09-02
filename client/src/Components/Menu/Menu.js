@@ -77,7 +77,7 @@ const Menu = () => {
   return (
     <div className={classes.root}>
       <div className="">
-        <MenuItem path={"account"} title={"Your Account"} />
+        <MenuItem path={"/account"} title={"Your Account"} />
         {/* // ! IMPORTANT the old dropdown is still here in case we'll need it */}
         {/* DROP DOWN START */}
         {/* <Button

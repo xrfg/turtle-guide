@@ -22,7 +22,6 @@ export default function EventName(props) {
 
   // * gives the path we're on -> using it to deal with redirect in the Account page
   const pathName = window.location.pathname;
-  console.log(pathName);
 
   // * States
   const [eventName, setEventName] = useState("");

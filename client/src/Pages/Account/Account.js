@@ -49,7 +49,7 @@ const Account = (props) => {
 
   //* States
   const [isAddingEvent, setIsAddingEvent] = useState(false);
-  const [event, setEvent] = useState({});
+  const [event, setEvent] = useState();
 
   // useEffect that check retrives all the account's info
   // ? should be the models user and event linked in MONGO
@@ -58,7 +58,6 @@ const Account = (props) => {
     // dispatch() // for user data
     //eslint-disable-next-line
   }, []);
-  console.log("events", events);
 
   // * add an event on click "+"
   const addEvent = () => {
@@ -88,12 +87,14 @@ const Account = (props) => {
 
   // fires when the state event is created/updated
   useEffect(() => {
+    // if event is empty do not dispatch
+    if (!event) {
+      return null;
+    }
     // dispatch the event to redux
     dispatch(eventCreate(event));
     //eslint-disable-next-line
   }, [event]);
-
-  console.log("event", event);
 
   return (
     <Container>
@@ -122,9 +123,12 @@ const Account = (props) => {
                     >
                       {/* // ! go to section <Event id={EVENT ID from mongo array}/> giving the id   */}
                       {/* // ! send the obj <Event id={events[i]} */}
-                      <NavLink className={classes.link} to={`/${event.slug}`}>
+                      <Link
+                        className={classes.link}
+                        to={`/admin/event/${event.slug}`}
+                      >
                         {event.title}
-                      </NavLink>
+                      </Link>
                     </Button>
                   );
                 })}

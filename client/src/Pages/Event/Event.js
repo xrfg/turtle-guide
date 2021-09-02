@@ -68,6 +68,20 @@ export default function Event(props) {
   // for the drag and drop sections re-ordering
   const [dragId, setDragId] = useState();
 
+  // loads event from reducer
+  const events = useSelector((state) => state.events.events);
+
+  // get the slug to search for the event
+  const slug = props.match.params.name;
+
+  useEffect(() => {
+    const getEvent = events.find((x) => x.slug === slug);
+    console.log("getEvent", getEvent);
+    setEvent(getEvent);
+
+    //eslint-disable-next-line
+  }, []);
+
   // * Functions
 
   /**
@@ -232,13 +246,15 @@ export default function Event(props) {
   };
 
   // fires when the state event is created/updated
-  useEffect(() => {
-    // dispatch the event to redux
-    dispatch(eventCreate(event));
-    //eslint-disable-next-line
-  }, [event]);
-
-  console.log("event", event);
+  // useEffect(() => {
+  //   // if event is empty do not dispatch
+  //   if (!event) {
+  //     return null;
+  //   }
+  //   // dispatch the event to redux
+  //   dispatch(eventCreate(event));
+  //   //eslint-disable-next-line
+  // }, [event]);
 
   return (
     <Container style={{ padding: "2rem 0" }} maxWidth="md">
