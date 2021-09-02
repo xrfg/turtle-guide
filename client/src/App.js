@@ -4,7 +4,7 @@ import "./app.scss";
 import Guide from "./Components/Guide/Guide";
 import Account from "./Pages/Account/Account";
 import Navbar from "./Components/Navbar/Navbar";
-import Form from "./Pages/SignUp/Form"
+import SignUp from "./Pages/SignUp/SignUp"
 import SignIn from "./Pages/SignIn/SignIn";
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
             <h2>if the route is "/guide" display Guide wraping component</h2>
           </Route>
           <Route exact path="/singup">
-           <Form/>
+           <SignUp/>
           </Route>
           <Route exact path="/signin">
            <SignIn/>
