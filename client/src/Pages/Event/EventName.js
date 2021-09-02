@@ -56,15 +56,7 @@ const EventName = (props) => {
     if (val) {
       setEditing((prev) => !prev);
     } else {
-      // props.getEventName(eventName);
-      // if we are on the account page, auto redirect to the newly created event
-      // otherwise we are inside of the event page already and just
-      // updating the current name
-      pathName === "/account"
-        ? // ! should we create a func to make a automatic
-          // ! slug here(on this component) ?
-          history.push(`/admin/event/${eventName}`, "new")
-        : setEditing((prev) => !prev);
+      setEditing((prev) => !prev);
     }
   };
 

@@ -3,6 +3,7 @@
  */
 
 import React, { useState, useEffect } from "react";
+import slugify from "react-slugify";
 
 // * material UI imports Icons
 import { TextField, Typography, makeStyles, Box } from "@material-ui/core";
@@ -56,16 +57,28 @@ const EventName = (props) => {
     if (val) {
       setEditing((prev) => !prev);
     } else {
-      // props.getEventName(eventName);
+      // TODO REMOVE TOGGLE
+
       // if we are on the account page, auto redirect to the newly created event
       // otherwise we are inside of the event page already and just
       // updating the current name
       pathName === "/account"
-        ? // ! should we create a func to make a automatic
-          // ! slug here(on this component) ?
-          history.push(`/admin/event/${eventName}`, "new")
+        ? goToAndSlugify(eventName)
         : setEditing((prev) => !prev);
     }
+  };
+
+  /**
+   * @function goToAndSlugify
+   * @param eventName
+   * @desc redirects and creates an object to create the event
+   */
+  const goToAndSlugify = (eventName) => {
+    history.push(`/admin/event/${slugify(eventName)}`, {
+      isNew: true,
+      slug: slugify(eventName),
+      title: eventName,
+    });
   };
 
   return (

@@ -49,9 +49,6 @@ const useStyles = makeStyles((theme) => ({
   guide__header: { marginBottom: "1rem" },
 }));
 
-// TODO insert a modal that opens the event naming if the event does not exists
-// TODO ternary opeartor for button disable/enable
-
 // ! takes event id
 export default function Event(props) {
   const classes = useStyles(props);
@@ -74,12 +71,14 @@ export default function Event(props) {
   // get the slug to search for the event
   const slug = props.match.params.name;
   // to allow if is a new event
-  let isNewEvent = props.location.state === "new" ? true : false;
+  let isNewEvent = props.location.state?.isNew === true ? true : false;
+  console.log("props.location.state", props);
 
   useEffect(() => {
     // create a new event
     if (isNewEvent) {
-      return createAndSendEvent(slug);
+      const obj = props.location.state;
+      return createAndSendEvent(obj);
     }
     // search for the event into redux
     const getEvent = events.find((x) => x.slug === slug);
@@ -229,16 +228,14 @@ export default function Event(props) {
   // if params === new then show name modal
   // else fetch event
 
-  const createAndSendEvent = (eventName) => {
-    // ! the event will be save into mongo and the will check the existence
-    // ! of the indentifier / slug
-    // ! and in case will throw errors
-    // TODO create slug with a regex or a library
+  const createAndSendEvent = (obj) => {
+    // destruct
+    const { title, slug } = obj;
 
     setEvent({
-      title: eventName,
-      nameIdentifier: eventName, // fucntion to make the slug
-      slug: eventName, // will be the same
+      title: title,
+      nameIdentifier: title, // fucntion to make the slug
+      slug: slug, // will be the same
       description: "description", // ? is to do?
       sections: [],
       // TODO CHANGE ACCOUNT
@@ -277,6 +274,12 @@ export default function Event(props) {
 
           {/* Delete Event */}
           <Grid item xs={3}>
+            <Button
+              className={classes.deleteBtn}
+              onClick={handleClickDeleteOpen}
+            >
+              Save Event
+            </Button>
             <Button
               className={classes.deleteBtn}
               onClick={handleClickDeleteOpen}
