@@ -64,37 +64,38 @@ const Account = (props) => {
     setIsAddingEvent((prev) => !prev);
   };
 
-  const createAndSendEvent = (eventName) => {
-    console.log("the event name is", eventName);
+  // const createAndSendEvent = (eventName) => {
+  //   console.log("the event name is", eventName);
 
-    // ! the event will be save into mongo and the will check the existence
-    // ! of the indentifier / slug
-    // ! and in case will throw errors
-    // TODO create slug with a regex or a library
+  //   // ! the event will be save into mongo and the will check the existence
+  //   // ! of the indentifier / slug
+  //   // ! and in case will throw errors
+  //   // TODO create slug with a regex or a library
 
-    setEvent({
-      title: eventName,
-      nameIdentifier: eventName, // fucntion to make the slug
-      slug: eventName, // will be the same
-      description: "description", // ? is to do?
-      sections: [],
-      // TODO CHANGE ACCOUNT
-      // WILL BET SENT ONCe IS LOGGED IN
-      account: "611e5aca56104a1c09f9d13e",
-      // ! spread obj
-    });
-  };
+  //   setEvent({
+  //     title: eventName,
+  //     nameIdentifier: eventName, // fucntion to make the slug
+  //     slug: eventName, // will be the same
+  //     description: "description", // ? is to do?
+  //     sections: [],
+  //     // TODO CHANGE ACCOUNT
+  //     // WILL BET SENT ONCe IS LOGGED IN
+  //     account: "611e5aca56104a1c09f9d13e",
+  //     // ! spread obj
+  //   });
+  // };
 
-  // fires when the state event is created/updated
-  useEffect(() => {
-    // if event is empty do not dispatch
-    if (!event) {
-      return null;
-    }
-    // dispatch the event to redux
-    dispatch(eventCreate(event));
-    //eslint-disable-next-line
-  }, [event]);
+  // // fires when the state event is created/updated
+  // useEffect(() => {
+  //   console.log("event", event);
+  //   // if event is empty do not dispatch
+  //   if (!event) {
+  //     return null;
+  //   }
+  //   // dispatch the event to redux
+  //   dispatch(eventCreate(event));
+  //   //eslint-disable-next-line
+  // }, [event]);
 
   return (
     <Container>
@@ -134,8 +135,9 @@ const Account = (props) => {
                 })}
 
               {isAddingEvent ? (
-                <EventName getEventName={createAndSendEvent} />
+                <EventName />
               ) : (
+                // <EventName getEventName={createAndSendEvent} />
                 <Button
                   className={classes.btn}
                   variant="text"

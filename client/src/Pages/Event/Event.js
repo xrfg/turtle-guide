@@ -58,7 +58,7 @@ export default function Event(props) {
   const dispatch = useDispatch();
 
   // * States
-  const [event, setEvent] = useState({});
+  const [event, setEvent] = useState();
 
   const [sections, setSections] = useState([]);
 
@@ -73,12 +73,17 @@ export default function Event(props) {
 
   // get the slug to search for the event
   const slug = props.match.params.name;
+  // to allow if is a new event
+  let isNewEvent = props.location.state === "new" ? true : false;
 
   useEffect(() => {
+    // create a new event
+    if (isNewEvent) {
+      return createAndSendEvent(slug);
+    }
+    // search for the event into redux
     const getEvent = events.find((x) => x.slug === slug);
-    console.log("getEvent", getEvent);
     setEvent(getEvent);
-
     //eslint-disable-next-line
   }, []);
 
@@ -225,8 +230,6 @@ export default function Event(props) {
   // else fetch event
 
   const createAndSendEvent = (eventName) => {
-    console.log("the event name is", eventName);
-
     // ! the event will be save into mongo and the will check the existence
     // ! of the indentifier / slug
     // ! and in case will throw errors
@@ -243,18 +246,21 @@ export default function Event(props) {
       account: "611e5aca56104a1c09f9d13e",
       // ! spread obj
     });
+    // to stop useEffect after the creation of a new event
+    isNewEvent = false;
   };
 
   // fires when the state event is created/updated
-  // useEffect(() => {
-  //   // if event is empty do not dispatch
-  //   if (!event) {
-  //     return null;
-  //   }
-  //   // dispatch the event to redux
-  //   dispatch(eventCreate(event));
-  //   //eslint-disable-next-line
-  // }, [event]);
+  useEffect(() => {
+    console.log("useEff", event);
+    // if event is empty do not dispatch
+    if (!event) {
+      return null;
+    }
+    // dispatch the event to redux
+    dispatch(eventCreate(event));
+    //eslint-disable-next-line
+  }, [event]);
 
   return (
     <Container style={{ padding: "2rem 0" }} maxWidth="md">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // * material UI imports Icons
 import { TextField, Typography, makeStyles, Box } from "@material-ui/core";
@@ -6,6 +6,8 @@ import { TextField, Typography, makeStyles, Box } from "@material-ui/core";
 
 // * React Components
 import EditSaveButton from "../../Components/Buttons/EditSaveButton";
+
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   nameInput: { width: "24rem", margin: 8 },
@@ -17,8 +19,9 @@ const useStyles = makeStyles((theme) => ({
 
 // TODO insert a modal that opens the event naming if the event does not exists
 
-export default function EventName(props) {
+const EventName = (props) => {
   const classes = useStyles(props);
+  let history = useHistory();
 
   // * gives the path we're on -> using it to deal with redirect in the Account page
   const pathName = window.location.pathname;
@@ -49,12 +52,14 @@ export default function EventName(props) {
     if (val) {
       setEditing((prev) => !prev);
     } else {
-      props.getEventName(eventName);
+      // props.getEventName(eventName);
       // if we are on the account page, auto redirect to the newly created event
-      // otherwise we are inside of the event page already and just updating the current name
+      // otherwise we are inside of the event page already and just
+      // updating the current name
       pathName === "/account"
-        ? // ! should we create a func to make a automatic slug here(on this component)?
-          window.location.replace(`/${eventName}`)
+        ? // ! should we create a func to make a automatic
+          // ! slug here(on this component) ?
+          history.push(`/admin/event/${eventName}`, "new")
         : setEditing((prev) => !prev);
     }
   };
@@ -84,4 +89,6 @@ export default function EventName(props) {
       <EditSaveButton editStatus={editing} editHandler={handleSaveEditBtn} />
     </Box>
   );
-}
+};
+
+export default EventName;
