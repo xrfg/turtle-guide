@@ -13,6 +13,7 @@ import { eventCreate, eventUpdate } from "../../store/actions/eventsActions";
 // * Components Imports (children)
 import EventSection from "./EventSection";
 import EventName from "./EventName";
+import Section from "../Section/Section";
 
 // * material UI imports Components
 import {
@@ -66,6 +67,10 @@ export default function Event(props) {
 
   // for the drag and drop sections re-ordering
   const [dragId, setDragId] = useState();
+
+  // for the editing of an entire section
+  const [editSection, setEditSection] = useState(false);
+  const [editSectionId, setEditSectionId] = useState(null);
 
   // * Refs
   // just to skip the first render
@@ -305,10 +310,24 @@ export default function Event(props) {
     // setNeedsToSave(false) is into useEffect
   };
 
+  /**
+   * @function editSectionMode
+   * @param id comes from <EventSection /> props
+   * @desc enter in edit mode of the section
+   */
+
+  const editSectionMode = (id) => {
+    console.log("editSectionMode", id);
+    setEditSection(true);
+    setEditSectionId(id);
+  };
+
   return (
     <Container style={{ padding: "2rem 0" }} maxWidth="md">
       {/* // TODO ERROR IF EVENT IS UNDEFINED */}
-      {event === undefined ? null : (
+      {editSection ? (
+        <Section id={editSectionId} />
+      ) : event === undefined ? null : (
         <Grid container direction="row" spacing={2}>
           <Grid item xs={9}>
             {/* 
@@ -431,6 +450,7 @@ export default function Event(props) {
                           sectionToDelete={deleteSection}
                           handleDrag={handleDrag}
                           handleDrop={handleDrop}
+                          editSection={editSectionMode}
                         />
                       );
                     })}

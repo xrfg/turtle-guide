@@ -77,6 +77,15 @@ export default function EventSection(props) {
     props.section.description = description;
   };
 
+  /**
+   * @function editSection
+   * @desc sends the edit mode of the ENTIRE section
+   */
+
+  const editSection = () => {
+    props.editSection(id);
+  };
+
   return (
     <Card
       id={id}
@@ -145,7 +154,7 @@ export default function EventSection(props) {
             editStatus={editing}
             editHandler={handleSaveEditBtn}
           />
-          <Button href={`${url}`} size="small">
+          <Button href={`${url}`} size="small" onClick={editSection}>
             <Forward />
           </Button>
         </ButtonGroup>
