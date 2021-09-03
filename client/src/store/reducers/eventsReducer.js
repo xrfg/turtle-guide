@@ -35,7 +35,7 @@ export default (state = initialState, action) => {
       const findIndex = state.events.findIndex(
         (x) => x.nameIdentifier === action.payload.nameIdentifier
       );
-      // replace before passing state
+      // replace before passing states
       state.events.splice(findIndex, 1, action.payload);
 
       return {
