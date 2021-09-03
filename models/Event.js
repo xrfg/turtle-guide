@@ -1,13 +1,13 @@
 /**
  * @desc Mongo Schema for Guides
- * create a guide
+ * create an event
  * use userSchema
  */
 
 const mongoose = require("mongoose");
 
-const guideSchema = mongoose.Schema({
-  // the name to get the guide on axios request i.e. "vangogh"
+const eventSchema = mongoose.Schema({
+  // the name to get the event on axios request i.e. "vangogh"
   nameIdentifier: {
     type: String,
     require: true,
@@ -43,4 +43,4 @@ const guideSchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Guide", guideSchema);
+module.exports = mongoose.model("Event", eventSchema);

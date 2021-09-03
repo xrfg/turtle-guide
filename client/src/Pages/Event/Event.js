@@ -96,7 +96,11 @@ export default function Event(props) {
   // fires when the state event is created/ updated
   useEffect(() => {
     if (needsToSave) {
+      // set save to false to disable the button
       setNeedsToSave(false);
+
+      // dispatch the event to REDUX
+
       return console.log("dispacth event saving");
     }
 
