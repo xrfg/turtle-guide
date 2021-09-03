@@ -7,7 +7,7 @@
 // TODO Handle the Map
 
 /**
- * @desc To map existing sections block
+ * @desc To add a new Section Block
  */
 
 import React, { useState } from "react";
@@ -55,9 +55,9 @@ export default function EventSection(props) {
   let { id, order, title, description, url } = props.section;
 
   // * States
-  const [editing, setEditing] = useState(false);
-
-  // * Functions
+  const [editing, setEditing] = useState(true);
+  // to disable the button on first editing
+  const [titleMsg, setTitleMsg] = useState("Title"); // * Functions
 
   /**
    * @function handleSaveEditBtn
@@ -101,13 +101,22 @@ export default function EventSection(props) {
    * @param eventName
    * @desc redirects and creates an object to create the event
    */
-  const goToAndSlugify = (eventName) => {
-    history.push(`/admin/event/${slugify(eventName)}`, {
-      // isNew: true,
-      slug: slugify(eventName),
-      title: title,
-    });
-  };
+  //   const goToAndSlugify = (eventName) => {
+  //     history.push(`/admin/event/${slugify(eventName)}`, {
+  //       // isNew: true,
+  //       slug: slugify(eventName),
+  //       title: title,
+  //     });
+  //   };
+
+  //   /**
+  //    * @desc
+  //    */
+
+  //   const setTitleErrorMsg = (msg) => {
+  //     console.log("setTitleErrorMsg", msg);
+  //     setTitleMsg(msg);
+  //   };
 
   return (
     <Card
@@ -127,8 +136,8 @@ export default function EventSection(props) {
               id="eventName"
               type="text"
               className={classes.textField}
-              defaultValue={title === "Title" ? null : title}
-              placeholder="Title"
+              //               defaultValue={titleMsg}
+              placeholder="Please insert a valid title"
               InputLabelProps={{
                 shrink: true,
               }}
@@ -175,7 +184,10 @@ export default function EventSection(props) {
           <EditSaveButton
             size={"small"}
             editStatus={editing}
+            title={title}
             editHandler={handleSaveEditBtn}
+            //             errorMsg={setTitleErrorMsg}
+            //             isFirstEditing={isFirstEditing}
           />
           <Button href={`${url}`} size="small" onClick={editSection}>
             <Forward />

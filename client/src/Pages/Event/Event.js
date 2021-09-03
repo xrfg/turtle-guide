@@ -3,6 +3,7 @@
 */
 
 import React, { useState, useEffect, useRef } from "react";
+import slugify from "react-slugify";
 
 // * REDUX
 import { useSelector, useDispatch } from "react-redux";
@@ -12,6 +13,7 @@ import { eventCreate, eventUpdate } from "../../store/actions/eventsActions";
 
 // * Components Imports (children)
 import EventSection from "./EventSection";
+import EventSectionNew from "./EventSectionNew";
 import EventName from "./EventName";
 import Section from "../Section/Section";
 
@@ -161,7 +163,6 @@ export default function Event(props) {
 
   /**
    * @function addToContents
-   * @param newContentsArr
    * @desc adds a content into the state "contents" that will be mapped
    */
 
@@ -172,6 +173,7 @@ export default function Event(props) {
         id: 0,
         order: 0,
         url: "",
+        slug: "title",
         contents: [],
         title: "Title",
         description: "Description",
@@ -474,6 +476,19 @@ export default function Event(props) {
                   {sections
                     .sort((a, b) => a.order - b.order)
                     .map((section) => {
+                      // is the slug is new it renders the new container
+                      if (section.slug === "title") {
+                        return (
+                          <EventSectionNew
+                            section={section}
+                            sectionToDelete={deleteSection}
+                            // handleDrag={handleDrag}
+                            // handleDrop={handleDrop}
+                            editSection={editSectionMode}
+                          />
+                        );
+                      }
+
                       return (
                         <EventSection
                           section={section}

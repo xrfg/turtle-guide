@@ -6,6 +6,7 @@ import Account from "./Pages/Account/Account";
 import AboutAdmin from "./Pages/AboutAdmin/AboutAdmin";
 import Guide from "./Components/Guide/Guide";
 import Event from "./Pages/Event/Event";
+import Section from "./Pages/Section/Section";
 import SignUp from "./Pages/SignUp/SignUp";
 
 // * Import Components
@@ -44,6 +45,7 @@ function App() {
                 render={(props) => <Event {...props} id={1} />}
               /> */}
               <Route path="/admin/event/:name" component={Event} />
+              <Route path="/admin/event/sections/:name" component={Section} />
               <Route path="/guide">
                 <Guide />
               </Route>
