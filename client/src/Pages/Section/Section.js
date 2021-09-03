@@ -7,10 +7,15 @@ import AboutAdmin from "../AboutAdmin/AboutAdmin";
 
 const Section = (props) => {
   // destru
-  const { id } = props;
+  const { sectionId, eventNameIdentifier } = props;
 
   // ! SEND ID
-  return <AboutAdmin id={id} />;
+  return (
+    <AboutAdmin
+      eventNameIdentifier={eventNameIdentifier}
+      sectionId={sectionId}
+    />
+  );
 };
 
 export default Section;

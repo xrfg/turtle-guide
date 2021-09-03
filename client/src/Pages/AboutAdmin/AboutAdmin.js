@@ -46,6 +46,9 @@ import SectionPreview from "../../Components/SectionPreview/SectionPreview";
 // * Other Imports
 import { DefaultEditor } from "react-simple-wysiwyg";
 
+// * REDUX
+import { useSelector } from "react-redux";
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -97,23 +100,42 @@ const useStyles = makeStyles((theme) =>
 // ! and maps contents
 export default function AboutAdmin(props) {
   // * Destruc
-  const { id } = props;
-  console.log("AboutAdmin", id);
+  const { sectionId, eventNameIdentifier } = props;
+  console.log("AboutAdmin", sectionId, eventNameIdentifier);
 
   // * Hooks
   const classes = useStyles();
+  const events = useSelector((state) => state.events.events);
 
   // * States
   // state that contains all the contents
   const [contents, setContents] = useState([]);
-  const [openModalInsertText, setopenModalInsertTextInsertText] =
-    useState(false);
+  // section
+  const [section, setSection] = useState({});
+
+  // for modal
+  const [openModalInsertText, setOpenModalInsertText] = useState(false);
   const [openModalPreview, setOpenModalPreview] = useState(false);
+
+  // * Life cycles Methods
+  // set the section
+  useEffect(() => {
+    // find the event
+    const getEvent = events.find(
+      (x) => x.nameIdentifier === eventNameIdentifier
+    );
+    // get the section with the id
+    const getSection = getEvent.sections.find((x) => x.id === sectionId);
+    setSection(getSection);
+    //eslint-disable-next-line
+  }, []);
+
+  console.log("section", section);
 
   // * Modals CTRLs
   const handleOpen = (modal) => {
     if (modal === "insertText") {
-      return setopenModalInsertTextInsertText(true);
+      return setOpenModalInsertText(true);
     }
     if (modal === "preview") {
       return setOpenModalPreview(true);
@@ -121,7 +143,7 @@ export default function AboutAdmin(props) {
   };
 
   const handleClose = () => {
-    setopenModalInsertTextInsertText(false);
+    setOpenModalInsertText(false);
     setOpenModalPreview(false);
   };
 

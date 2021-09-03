@@ -161,9 +161,21 @@ export default function Event(props) {
    * @desc adds a content into the state "contents" that will be mapped
    */
 
-  const addToContents = (newSectionsArr) => {
+  const addToContents = () => {
+    const newSectionsArr = [
+      {
+        type: "section",
+        id: 0,
+        order: 0,
+        url: "",
+        contents: [],
+        title: "Title",
+        description: "Description",
+      },
+    ];
     // add ids
-    // create "id" based on the contents already into the array, from the biggestId present on
+    // create "id" based on the contents already into the array,
+    // from the biggestId present on
     // if [contents] s empty assigns the index
 
     const bigId = findBiggestId();
@@ -322,11 +334,16 @@ export default function Event(props) {
     setEditSectionId(id);
   };
 
+  // * Objects
+
   return (
     <Container style={{ padding: "2rem 0" }} maxWidth="md">
       {/* // TODO ERROR IF EVENT IS UNDEFINED */}
       {editSection ? (
-        <Section id={editSectionId} />
+        <Section
+          eventNameIdentifier={event.nameIdentifier}
+          sectionId={editSectionId}
+        />
       ) : event === undefined ? null : (
         <Grid container direction="row" spacing={2}>
           <Grid item xs={9}>
@@ -400,16 +417,7 @@ export default function Event(props) {
             >
               <Button
                 onClick={() => {
-                  addToContents([
-                    {
-                      type: "section",
-                      id: 0,
-                      order: 0,
-                      url: "",
-                      title: "Title",
-                      description: "Description",
-                    },
-                  ]);
+                  addToContents();
                 }}
                 endIcon={<Add />}
               >
