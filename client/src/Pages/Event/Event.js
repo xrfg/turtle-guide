@@ -56,6 +56,7 @@ export default function Event(props) {
   // single event
   const [event, setEvent] = useState();
   // all sections
+  // the sections are always upadated here before the save
   const [sections, setSections] = useState([]);
   // for saving
   const [needsToSave, setNeedsToSave] = useState(false);
@@ -89,7 +90,12 @@ export default function Event(props) {
     }
     // search for the event into redux
     const getEvent = events.find((x) => x.slug === slug);
+    // set the whole event
     setEvent(getEvent);
+
+    // set the sections state for mapping
+    setSections(getEvent.sections);
+
     //eslint-disable-next-line
   }, []);
 
