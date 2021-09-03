@@ -100,7 +100,6 @@ export default function Event(props) {
       setNeedsToSave(false);
 
       // dispatch the event to REDUX
-      console.log("dispatch");
       return dispatch(eventUpdate(event));
     }
 

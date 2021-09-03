@@ -77,7 +77,7 @@ export const eventUpdate = (obj) => {
     // uses a function to create an object for axios
     const objToSend = createObj({
       method: "PUT",
-      url: BASEurlEvents,
+      url: BASEurlEvents + obj.nameIdentifier, // ? better slug ?
       data: obj,
       token: token,
     });

@@ -31,11 +31,16 @@ export default (state = initialState, action) => {
       };
 
     case EVENT_UPDATE:
-      console.log("state.events", state.events);
-      console.log("action.payload", action.payload);
+      // find index to replace
+      const findIndex = state.events.findIndex(
+        (x) => x.nameIdentifier === action.payload.nameIdentifier
+      );
+      // replace before passing state
+      state.events.splice(findIndex, 1, action.payload);
+
       return {
         ...state,
-        // events: [...state.events, ]
+        events: state.events,
         loading: false,
       };
 
