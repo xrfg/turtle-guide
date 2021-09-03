@@ -24,8 +24,6 @@ const token =
  */
 // TODO CHANGE TOKEN to be sent from the client
 export const eventCreate = (obj) => {
-  console.log("eventCreate", obj);
-
   return async (dispatch) => {
     // uses a function to create an object for axios
     const objToSend = createObj({

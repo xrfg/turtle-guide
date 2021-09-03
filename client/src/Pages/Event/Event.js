@@ -2,7 +2,7 @@
 ? Event Page at route /admin/event/:slug either for creating a new event or editing an existing one
 */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 // * REDUX
 import { useSelector, useDispatch } from "react-redux";
@@ -53,15 +53,22 @@ export default function Event(props) {
   const dispatch = useDispatch();
 
   // * States
+  // single event
   const [event, setEvent] = useState();
-
+  // all sections
   const [sections, setSections] = useState([]);
+  // for saving
+  const [needsToSave, setNeedsToSave] = useState(false);
 
   // for the "Delete Event" modal handlers
   const [openDeleteMsg, setOpenDeleteMsg] = useState(false);
 
   // for the drag and drop sections re-ordering
   const [dragId, setDragId] = useState();
+
+  // * Refs
+  // just to skip the first render
+  const firstUpdate = useRef(true);
 
   // * Hooks
   // loads event from reducer
@@ -71,7 +78,6 @@ export default function Event(props) {
   const slug = props.match.params.name;
   // to allow if is a new event
   let isNewEvent = props.location.state?.isNew === true ? true : false;
-  console.log("props.location.state", props);
 
   // * LifeCycles -> UseEffect
 
@@ -86,6 +92,36 @@ export default function Event(props) {
     setEvent(getEvent);
     //eslint-disable-next-line
   }, []);
+
+  // fires when the state event is created/ updated
+  useEffect(() => {
+    if (needsToSave) {
+      setNeedsToSave(false);
+      return console.log("dispacth event saving");
+    }
+
+    console.log("useEff", event, isNewEvent);
+    // if event is empty do not dispatch
+    // ! isNewevent Stops it from a recreating of an existing event
+    // ! keep as an option
+    if (!event || !isNewEvent) {
+      return null;
+    }
+    // dispatch the event to redux
+    return dispatch(eventCreate(event));
+    //eslint-disable-next-line
+  }, [event]);
+
+  // handles the save button
+  useEffect(() => {
+    // if true skips the first render
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+    } else {
+      // do things after first render
+      setNeedsToSave(true);
+    }
+  }, [sections]);
 
   // * Functions
 
@@ -248,17 +284,17 @@ export default function Event(props) {
     isNewEvent = false;
   };
 
-  // fires when the state event is created/updated
-  useEffect(() => {
-    console.log("useEff", event);
-    // if event is empty do not dispatch
-    if (!event) {
-      return null;
-    }
-    // dispatch the event to redux
-    dispatch(eventCreate(event));
-    //eslint-disable-next-line
-  }, [event]);
+  /**
+   * @function saveEvent
+   * @desc saves the event
+   */
+
+  const saveEvent = () => {
+    console.log("save", sections);
+    // push new data into event
+    setEvent({ ...event, sections: [...sections] });
+    // setNeedsToSave(false) is into useEffect
+  };
 
   return (
     <Container style={{ padding: "2rem 0" }} maxWidth="md">
@@ -276,9 +312,19 @@ export default function Event(props) {
           <Grid item xs={3}>
             <Button
               className={classes.deleteBtn}
-              onClick={handleClickDeleteOpen}
+              onClick={saveEvent}
+              disabled={!needsToSave}
             >
               Save Event
+            </Button>
+            {/* // ?  temporarly disabled, to implement? */}
+            {/* // TODO add check saving */}
+            <Button
+              className={classes.deleteBtn}
+              onClick={() => {}}
+              disabled={true}
+            >
+              Go Back
             </Button>
             <Button
               className={classes.deleteBtn}
