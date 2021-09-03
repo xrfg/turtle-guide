@@ -108,10 +108,14 @@ export default function Event(props) {
   useEffect(() => {
     if (needsToSave) {
       // set save to false to disable the button
-      setNeedsToSave(false);
-
+      const res = dispatch(eventUpdate(event));
+      res.then((x) => {
+        if (x.status === 200) {
+          return setNeedsToSave(false);
+        }
+      });
       // dispatch the event to REDUX
-      return dispatch(eventUpdate(event));
+      return res;
     }
 
     console.log("useEff", event, isNewEvent);
@@ -320,6 +324,8 @@ export default function Event(props) {
     // push new data into event
     setEvent({ ...event, sections: [...sections] });
     // setNeedsToSave(false) is into useEffect
+
+    console.log("saveEvent", event);
   };
 
   /**
@@ -328,11 +334,27 @@ export default function Event(props) {
    * @desc enter in edit mode of the section
    */
 
-  const editSectionMode = (id) => {
+  const editSectionMode = async (id) => {
     console.log("editSectionMode", id);
-    setEditSection(true);
-    setEditSectionId(id);
+    // saves before going to section
+    // saveEvent();
+    // const res = await setNeedsToSaveFalse;
+    // console.log(res);
+    if (!needsToSave) {
+      console.log("setEditsections");
+      setEditSection(true);
+      setEditSectionId(id);
+    }
   };
+
+  /**
+   * @desc Promise to set needsToSave to false
+   */
+
+  // const setNeedsToSaveFalse = new Promise((res, rej) => {
+  //   res(() => setNeedsToSave(false));
+  // });
+  // const setNeedsToSaveFalse = Promise.resolve(33);
 
   // * Objects
 
