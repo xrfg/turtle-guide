@@ -8,7 +8,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 // * ACTIONS
-import { eventCreate } from "../../store/actions/eventsActions";
+import { eventCreate, eventUpdate } from "../../store/actions/eventsActions";
 
 // * Components Imports (children)
 import EventSection from "./EventSection";
@@ -100,8 +100,8 @@ export default function Event(props) {
       setNeedsToSave(false);
 
       // dispatch the event to REDUX
-
-      return console.log("dispacth event saving");
+      console.log("dispatch");
+      return dispatch(eventUpdate(event));
     }
 
     console.log("useEff", event, isNewEvent);

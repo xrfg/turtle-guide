@@ -30,6 +30,22 @@ export default (state = initialState, action) => {
         loading: false,
       };
 
+    case EVENT_UPDATE:
+      console.log("state.events", state.events);
+      console.log("action.payload", action.payload);
+      return {
+        ...state,
+        // events: [...state.events, ]
+        loading: false,
+      };
+
+    case EVENT_UPDATE_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+
     case EVENTS_FETCH:
       return {
         ...state,
