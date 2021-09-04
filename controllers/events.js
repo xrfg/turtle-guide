@@ -3,7 +3,7 @@
  */
 
 // models
-const Guide = require("../models/Guide");
+const Event = require("../models/Event");
 
 /**
  * @desc Routes
@@ -15,12 +15,12 @@ exports.get = async (req, res, next) => {
 
   try {
     // find all the item with that account
-    const accountGuides = await Guide.find({ account: id });
+    const accountEvents = await Event.find({ account: id });
 
     // returns
     return res.json({
       success: true,
-      data: accountGuides,
+      data: accountEvents,
     });
   } catch (error) {
     /**
@@ -35,25 +35,25 @@ exports.get = async (req, res, next) => {
   }
 };
 
-exports.getGuide = async (req, res, next) => {
+exports.getEvent = async (req, res, next) => {
   /**
-   * @TODO revice sa name (i.e. "vangogh") and gives the guide
-   * @TODO check owner to give the guide
+   * @TODO revice sa name (i.e. "vangogh") and gives the Event
+   * @TODO check owner to give the Event
    */
 
   const { name } = req.params;
 
   try {
-    // search fir the requested guide with the name
+    // search fir the requested event with the name
     // i.e. "vangogh"
-    const guide = await Guide.findOne({
+    const event = await Event.findOne({
       nameIdentifier: name,
     });
 
-    // if the requested guide does not exist
+    // if the requested event does not exist
     // returns error
 
-    if (!guide) {
+    if (!event) {
       /**
        * @desc sends error to the global error middleware
        */
@@ -67,7 +67,7 @@ exports.getGuide = async (req, res, next) => {
     // returns
     return res.json({
       success: true,
-      data: guide,
+      data: event,
     });
   } catch (error) {
     /**
@@ -87,7 +87,7 @@ exports.post = async (req, res, next) => {
     // check if the nameIdentifier is already used
     const { nameIdentifier } = req.body;
 
-    const findIdentifier = await Guide.findOne({
+    const findIdentifier = await Event.findOne({
       nameIdentifier: nameIdentifier,
     });
     // if TRUE means that the nameIdentifier is already used
@@ -101,12 +101,12 @@ exports.post = async (req, res, next) => {
     }
 
     // create obj
-    const guide = new Guide({ ...req.body });
+    const event = new Event({ ...req.body });
 
     // save obj
-    await guide.save();
+    await event.save();
     //
-    return res.json({ success: true, data: guide });
+    return res.json({ success: true, data: event });
   } catch (error) {
     /**
      * @desc sends error to the global error middleware
@@ -126,7 +126,7 @@ exports.put = async (req, res, next) => {
 
   try {
     // find and update the item using nameIdentifier
-    const guide = await Guide.findOneAndUpdate(
+    const event = await Event.findOneAndUpdate(
       { nameIdentifier: name },
       req.body,
       {
@@ -138,7 +138,7 @@ exports.put = async (req, res, next) => {
     return res.json({
       success: true,
       msg: "Item updated sucessfully!",
-      data: guide,
+      data: event,
     });
   } catch (error) {
     /**
@@ -159,13 +159,13 @@ exports.del = async (req, res, next) => {
 
   try {
     // find and update the item using nameIdentifier
-    const guide = await Guide.findOneAndDelete({ nameIdentifier: name });
+    const event = await Event.findOneAndDelete({ nameIdentifier: name });
 
     // return
     return res.json({
       success: true,
       msg: "Item Deleted sucessfully!",
-      data: guide,
+      data: event,
     });
   } catch (error) {
     /**

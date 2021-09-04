@@ -11,7 +11,7 @@ const auth = require("../middleware/auth");
 // const { userEmailValidator } = require("../middleware/validators");
 
 // CTRLs
-const { get, getGuide, post, put, del } = require("../controllers/guides");
+const { get, getEvent, post, put, del } = require("../controllers/events");
 
 /**
  * @desc Routes
@@ -32,7 +32,7 @@ Router.get("/", auth, get);
  * @access Private OR Public
  */
 
-Router.get("/:name", auth, getGuide);
+Router.get("/:name", auth, getEvent);
 
 /**
  * @route POST /api/guides

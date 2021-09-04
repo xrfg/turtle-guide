@@ -37,7 +37,7 @@ app.use(cors());
 
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/users", require("./routes/users"));
-app.use("/api/guides", require("./routes/guides"));
+app.use("/api/events", require("./routes/events"));
 
 /**
  * @desc Swagger UI

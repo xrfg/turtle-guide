@@ -4,9 +4,11 @@
   "description": "Museum project",
   "main": "index.js",
   "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=production node -r dotenv/config server.js",
-    "server": "NODE_ENV=development nodemon -r dotenv/config server.js",
+    "start": "node -r dotenv/config server.js",
+    "server": "nodemon -r dotenv/config server.js",
+    "client": "npm start --prefix client",
     "testwatch": "jest --watchAll --testTimeout=5000"
   },
   "repository": {
@@ -35,11 +37,11 @@
     "mongoose": "^5.13.7",
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.1.6",
-    "win-node-env": "^0.4.0",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "axios": "^0.21.1",
+    "concurrently": "^6.2.1",
     "jest": "^27.0.6",
     "nodemon": "^2.0.12"
   }
