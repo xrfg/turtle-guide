@@ -1,40 +1,39 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import React from 'react'
+import "./Navbar.scss"
+import { Box } from '@material-ui/core'
+import { Link } from 'react-router-dom'
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
-
-export default function ButtonAppBar() {
-  const classes = useStyles();
-
+export default function Navbar() {
+  function submit(){
+    
+  }
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            News
-          </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
+    <div className="menu-wrap">
+    <input type="checkbox" className="toggler"/>
+    <div className="hamburger"><div></div></div>
+    <div className="menu">
+      <div>
+        <div>
+          <ul>
+          <Box >
+                <Link  className="links" href="/" color="inherit">Home</Link>
+          </Box>
+          <Box>
+                <Link className="links" href="/map" color="inherit">Map</Link>
+          </Box>
+          <Box>
+                <Link className="links" href="/settings" color="inherit" onClick={submit}>Settings</Link>
+          </Box>
+          <Box>
+                <Link className="links" href="/exihibtions" color="inherit">All Exihibtions</Link>
+          </Box>
+          </ul>
+        </div>
+      </div>
     </div>
-  );
+    </div>
+  
+      
+   
+  )
 }

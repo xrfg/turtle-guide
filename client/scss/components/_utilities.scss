@@ -1,0 +1,22 @@
+.container {
+  // Option to give a width to the container
+  // width: $website-width-desktop;
+  padding: 1rem 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+}
+
+//z-index
+.z-index-1 {
+  z-index: 1;
+}
+
+//
+.hide {
+  visibility: hidden;
+}
+
+.items-w-100 {
+  width: 100%;
+}

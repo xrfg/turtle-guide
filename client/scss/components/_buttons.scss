@@ -1,0 +1,159 @@
+@import "../variables/variables";
+
+%btn-shared {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif; // or variable
+  text-transform: uppercase;
+  border-radius: 5px;
+}
+
+@mixin button(
+  $color: "",
+  $color-hover: "",
+  $border-color: "",
+  $text-norm: "",
+  $text-hover: "",
+  $type: "",
+  $border: "",
+  $size: ""
+) {
+  // SHARED
+  @extend %btn-shared;
+
+  @if $type == solid {
+    border: none;
+    border-radius: $border;
+    background: $color;
+    color: $text-norm;
+
+    &:hover {
+      background: $color-hover;
+      color: $text-hover;
+    }
+  }
+  @if $type == outlined {
+    border: $border-color 1px solid;
+    text-transform: capitalize;
+    background: rgba($color, 0.5);
+    color: $text-norm;
+
+    &:hover {
+      opacity: 1;
+      background: $color-hover;
+      color: $text-hover;
+    }
+  }
+  @if $size == small {
+    font-size: $button-size-small;
+  }
+  @if $size == normal {
+    font-size: $button-size-normal;
+  }
+  @if $size == big {
+    font-size: $button-size-big;
+  }
+}
+
+// DEFINE BUTTONS
+
+.btn {
+  &-blue {
+    @include button(
+      $light-blue,
+      $light-blue-hover,
+      $light-blue,
+      $light-blue-text-norm,
+      $light-blue-text-hover,
+      solid,
+      5px,
+      normal
+    );
+  }
+
+  &-blue-out {
+    @include button(
+      $light-blue,
+      $light-blue-hover,
+      $light-blue,
+      $light-blue-text-norm,
+      $light-blue-text-hover,
+      outlined,
+      20px,
+      small
+    );
+  }
+  &-test-solid-big {
+    @include button(
+      $light-blue,
+      $light-blue-hover,
+      $light-blue,
+      $light-blue-text-norm,
+      $light-blue-text-hover,
+      solid,
+      10px,
+      big
+    );
+  }
+
+  &-light-blue {
+    @extend %btn-shared;
+    color: $light-blue-text;
+    background-color: $light-blue;
+    text-transform: capitalize;
+    // &:hover {
+    //   background-color: blue;
+    //   color: white;
+    // }
+  }
+}
+
+.btn {
+  &-outline-light-blue {
+    @extend %btn-shared;
+    color: $outline-light-blue-text;
+    background-color: $outline-light-blue;
+    border: $outline-light-blue 1px solid;
+    text-transform: capitalize;
+    // &:hover {
+    //   background-color: blue;
+    //   color: white;
+    // }
+  }
+}
+.btn {
+  &-yellow {
+    @extend %btn-shared;
+    color: $yellow-text;
+    background-color: $yellow;
+
+    text-transform: uppercase;
+
+    & :hover {
+      background-color: red;
+    }
+  }
+}
+
+// button[class^="btn-"]:hover,
+// a[class^="btn-"]:hover,
+// input[class^="btn-"]:hover {
+//   background-color: blue;
+//   color: white;
+// }
+
+// %btn-shared {
+//   display: inline-block;
+//   padding: 0.8rem 2rem;
+//   transition: all 0.5s;
+//   border: none;
+//   cursor: pointer;
+//   text-decoration: none;
+//   font-family: "Roboto", sans-serif;
+//   text-transform: uppercase;
+//   border-radius: 5px;
+// }

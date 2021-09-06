@@ -1,0 +1,37 @@
+.aboutSection {
+  padding-top: 100px;
+}
+.aboutSection > .container {
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+}
+.aboutSection > .container > .contentBox > .btn {
+  justify-content: center;
+  position: relative;
+}
+
+.aboutSection > .container > .contentBox > h1 {
+  @include respond(phone) {
+    text-align: center;
+  }
+}
+
+// .aboutSection > .container > .imageBox {
+//   @include respond(tablet) {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//   }
+// }
+
+.aboutSection > .container > .imageBox > img {
+  @include respond(tablet) {
+    margin-left: 30px;
+    width: 650px;
+  }
+}
+
+.aboutSection > .container > .imageBox {
+  @include respond(tablet) {
+    margin-top: -355px;
+  }
+}

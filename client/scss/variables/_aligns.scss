@@ -1,0 +1,131 @@
+// MARGINS
+$max: 4;
+$unit: rem;
+
+// margin bottom
+@for $i from 1 through $max {
+  .mb-#{$i} {
+    margin-bottom: $i + $unit;
+  }
+}
+
+// margin top
+@for $i from 1 through $max {
+  .mt-#{$i} {
+    margin-top: $i + $unit;
+  }
+}
+
+// margin left
+@for $i from 1 through $max {
+  .ml-#{$i} {
+    margin-left: $i + $unit;
+  }
+}
+
+// margin right
+@for $i from 1 through $max {
+  .mr-#{$i} {
+    margin-right: $i + $unit;
+  }
+}
+
+// margin horrizontal
+@for $i from 1 through $max {
+  .mh-#{$i} {
+    margin-left: $i + $unit;
+    margin-right: $i + $unit;
+  }
+}
+
+// margin vertical
+@for $i from 1 through $max {
+  .mv-#{$i} {
+    margin-top: $i + $unit;
+    margin-bottom: $i + $unit;
+  }
+}
+
+// paddings
+$max: 4;
+$unit: rem;
+
+// padding bottom
+@for $i from 1 through $max {
+  .pb-#{$i} {
+    padding-bottom: $i + $unit;
+  }
+}
+
+// padding top
+@for $i from 1 through $max {
+  .pt-#{$i} {
+    padding-top: $i + $unit;
+  }
+}
+
+// padding left
+@for $i from 1 through $max {
+  .pl-#{$i} {
+    padding-left: $i + $unit;
+  }
+}
+
+// padding right
+@for $i from 1 through $max {
+  .pr-#{$i} {
+    padding-right: $i + $unit;
+  }
+}
+
+// padding horrizontal
+@for $i from 1 through $max {
+  .ph-#{$i} {
+    padding-left: $i + $unit;
+    padding-right: $i + $unit;
+  }
+}
+
+// padding vertical
+@for $i from 1 through $max {
+  .pv-#{$i} {
+    padding-top: $i + $unit;
+    padding-bottom: $i + $unit;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+// centering
+
+.center-x {
+  left: 0;
+  right: 0;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  position: absolute;
+  width: 90%;
+}
+
+.center-x-y {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 90vh;
+}
+
+// TEXT ALIGNS
+
+// align
+.t-center-x {
+  text-align: center;
+}
+.t-center-y {
+  display: flex;
+  align-items: center;
+}
