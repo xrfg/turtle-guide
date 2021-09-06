@@ -50,6 +50,9 @@ import { DefaultEditor } from "react-simple-wysiwyg";
 import { useSelector, useDispatch } from "react-redux";
 import { eventUpdate } from "../../store/actions/eventsActions";
 
+// * Functions
+import { goBackToPage, unBlock } from "../../functions/functions";
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -381,7 +384,6 @@ export default function SectionContentManager(props) {
     event.sections.splice(findIndex, 1, newSection);
 
     // 4. dispatch event update
-    console.log("eventToSave", event);
     try {
       await dispatch(eventUpdate(event));
       // set to save
@@ -391,38 +393,41 @@ export default function SectionContentManager(props) {
     }
   };
 
-  /**
-   * @function goBackToEvent
-   * @desc go back to the event
-   */
-
-  const goBackToEvent = () => {
-    if (needsToSave) {
-      if (
-        window.confirm(`You didn't save! Are you sure you want to go to back?`)
-      ) {
-        history.goBack();
-      } else {
-        return false;
-      }
-    } else {
-      history.goBack();
-    }
-  };
-
   // * Listener to avoid the user to go back without saving
-  let unblock = history.block((tx) => {
-    if (!needsToSave) {
-      return null;
-    }
-    if (window.confirm(`Are you sure you want to go to Event?`)) {
-      // Unblock the navigation.
-      unblock();
-      history.goBack();
-    } else {
-      return false;
-    }
-  });
+  unBlock(needsToSave, history);
+
+  // /**
+  //  * @function goBackToEvent
+  //  * @desc go back to the event
+  //  */
+
+  // const goBackToEvent = () => {
+  //   if (needsToSave) {
+  //     if (
+  //       window.confirm(`You didn't save! Are you sure you want to go to back?`)
+  //     ) {
+  //       history.goBack();
+  //     } else {
+  //       return false;
+  //     }
+  //   } else {
+  //     history.goBack();
+  //   }
+  // };
+
+  // // * Listener to avoid the user to go back without saving
+  // let unblock = history.block((tx) => {
+  //   if (!needsToSave) {
+  //     return null;
+  //   }
+  //   if (window.confirm(`Are you sure you want to go to Event?`)) {
+  //     // Unblock the navigation.
+  //     unblock();
+  //     history.goBack();
+  //   } else {
+  //     return false;
+  //   }
+  // });
 
   return (
     <>
@@ -463,7 +468,8 @@ export default function SectionContentManager(props) {
               variant="contained"
               color="primary"
               component="span"
-              onClick={goBackToEvent}
+              onClick={() => goBackToPage(needsToSave, history)}
+              // >
             >
               Go Back
             </Button>

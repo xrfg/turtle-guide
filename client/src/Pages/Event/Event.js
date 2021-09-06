@@ -19,6 +19,9 @@ import EventSectionNew from "./EventSectionNew";
 import EventName from "./EventName";
 import Section from "../Section/Section";
 
+// * Functions
+import { goBackToPage, unBlock } from "../../functions/functions";
+
 // * material UI imports Components
 import {
   Container,
@@ -388,6 +391,9 @@ export default function Event(props) {
   };
   // * Objects
 
+  // * Listener to avoid the user to go back without saving
+  unBlock(needsToSave, history);
+
   return (
     <Container style={{ padding: "2rem 0" }} maxWidth="md">
       {/* // TODO ERROR IF EVENT IS UNDEFINED */}
@@ -413,10 +419,9 @@ export default function Event(props) {
             {/* // TODO add check saving */}
             <Button
               className={classes.deleteBtn}
-              onClick={() => {}}
-              disabled={true}
+              onClick={() => goBackToPage(needsToSave, history)}
             >
-              Go Back
+              Go Back to Account
             </Button>
             <Button
               className={classes.deleteBtn}
