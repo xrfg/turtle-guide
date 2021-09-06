@@ -118,16 +118,16 @@ export default function Event(props) {
     if (needsToSave) {
       // set save to false to disable the button
 
-      dispatch(eventUpdate(event));
-      setNeedsToSave(false);
-      // const res = dispatch(eventUpdate(event));
-      // res.then((x) => {
-      //   if (x.status === 200) {
-      //     return setNeedsToSave(false);
-      //   }
-      // });
+      // dispatch(eventUpdate(event));
+      // setNeedsToSave(false);
+      const res = dispatch(eventUpdate(event));
+      res.then((x) => {
+        if (x.status === 200) {
+          return setNeedsToSave(false);
+        }
+      });
       // dispatch the event to REDUX
-      // return res;
+      return res;
     }
 
     console.log("useEff", event, isNewEvent);

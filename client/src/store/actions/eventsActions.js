@@ -53,26 +53,6 @@ export const eventCreate = (obj) => {
  */
 
 export const eventUpdate = (obj) => {
-  // return async (dispatch) => {
-  //   // uses a function to create an object for axios
-  //   const objToSend = createObj({
-  //     method: "PUT",
-  //     url: BASEurlEvents,
-  //     data: obj,
-  //     token: token,
-  //   });
-  //   try {
-  //     // call api
-  //     const res = await dispatch(objToSend);
-  //     // res.data.data sends just the event
-  //     await dispatch({ type: EVENT_UPDATE, payload: res.data.data });
-  //     return res;
-  //   } catch (error) {
-  //     console.error(error);
-  //     await dispatch({ type: EVENT_UPDATE_ERROR, payload: error });
-  //   }
-  // };
-
   return async (dispatch) => {
     // uses a function to create an object for axios
     const objToSend = createObj({

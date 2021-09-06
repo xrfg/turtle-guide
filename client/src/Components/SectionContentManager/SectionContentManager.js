@@ -7,6 +7,7 @@
 // TODO move menus to external component that takes props
 // TODO Externalize funcitions
 import React, { useState, useEffect, useCallback } from "react";
+import { useHistory } from "react-router-dom";
 
 // * Mat UI
 import { makeStyles, createStyles } from "@material-ui/core/styles";
@@ -46,7 +47,8 @@ import SectionPreview from "../../Components/SectionPreview/SectionPreview";
 import { DefaultEditor } from "react-simple-wysiwyg";
 
 // * REDUX
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { eventUpdate } from "../../store/actions/eventsActions";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -100,19 +102,26 @@ const useStyles = makeStyles((theme) =>
 export default function SectionContentManager(props) {
   // * Destruc
   const {
-    state: { id, title, slug, eventNameIdentifier },
+    state: { id, title, slug, nameIdentifier },
   } = props;
-  console.log("SectionContentManager", id, title, slug, eventNameIdentifier);
+
+  console.log("<SectionCM/>", id, title, slug, nameIdentifier);
 
   // * Hooks
   const classes = useStyles();
+  const dispatch = useDispatch();
+  let history = useHistory();
   const events = useSelector((state) => state.events.events);
 
   // * States
   // state that contains all the contents
   const [contents, setContents] = useState([]);
+  // event
+  const [event, setEvent] = useState({});
   // section
   const [section, setSection] = useState({});
+  // for save
+  const [needsToSave, setNeedsToSave] = useState(false);
 
   // for modal
   const [openModalInsertText, setOpenModalInsertText] = useState(false);
@@ -122,12 +131,13 @@ export default function SectionContentManager(props) {
   // set the section
   useEffect(() => {
     // find the event
-    const getEvent = events.find(
-      (x) => x.eventNameIdentifier === eventNameIdentifier
-    );
+    const getEvent = events.find((x) => x.nameIdentifier === nameIdentifier);
+    // set the event to be modified and sent for saving
+    setEvent(getEvent);
     // get the section with the id
     const getSection = getEvent.sections.find((x) => x.id === id);
     setSection(getSection);
+    setContents(getSection.contents);
     //eslint-disable-next-line
   }, []);
 
@@ -279,6 +289,8 @@ export default function SectionContentManager(props) {
           : contents[contents.length - 1].id + i + 1;
     });
     setContents([...contents, ...newContentsArr]);
+    // set to save
+    setNeedsToSave(true);
   };
 
   /**
@@ -292,6 +304,8 @@ export default function SectionContentManager(props) {
     const newContents = contents.filter((x) => x.id !== id);
     // set new content
     setContents(newContents);
+    // set to save
+    setNeedsToSave(true);
   };
 
   /**
@@ -306,6 +320,8 @@ export default function SectionContentManager(props) {
         x.content["caption"] = caption;
       }
     });
+    // set to save
+    setNeedsToSave(true);
   };
 
   /**
@@ -320,6 +336,9 @@ export default function SectionContentManager(props) {
     addToContents(objToSendMedia(createObj(objToSend)));
     // close modal
     handleClose();
+
+    // set to save
+    setNeedsToSave(true);
   };
 
   /**
@@ -338,7 +357,72 @@ export default function SectionContentManager(props) {
         return (x.content = newContent);
       }
     });
+    // set to save
+    setNeedsToSave(true);
   };
+
+  /**
+   * @function saveContent
+   * @param noParam
+   * @desc saves the content dispatching an action
+   */
+
+  const saveContent = async () => {
+    // 1. create the event
+    // creates the new obj section spreading the old section into the state
+    const newSection = { ...section, contents: contents };
+    // 2. update the section into the event
+    // find index for splice
+    const findIndex = event.sections.findIndex(
+      (x) => x.NameIdentifier === nameIdentifier
+    );
+
+    // 3. replace with the new section with splice
+    event.sections.splice(findIndex, 1, newSection);
+
+    // 4. dispatch event update
+    console.log("eventToSave", event);
+    try {
+      await dispatch(eventUpdate(event));
+      // set to save
+      setNeedsToSave(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  /**
+   * @function goBackToEvent
+   * @desc go back to the event
+   */
+
+  const goBackToEvent = () => {
+    if (needsToSave) {
+      if (
+        window.confirm(`Ypu didn't save! Are you sure you want to go to back?`)
+      ) {
+        history.goBack();
+      } else {
+        return false;
+      }
+    } else {
+      history.goBack();
+    }
+  };
+
+  // * Listener to avoid the user to go back without saving
+  let unblock = history.block((tx) => {
+    if (!needsToSave) {
+      return null;
+    }
+    if (window.confirm(`Are you sure you want to go to Event?`)) {
+      // Unblock the navigation.
+      unblock();
+      history.goBack();
+    } else {
+      return false;
+    }
+  });
 
   return (
     <>
@@ -356,6 +440,35 @@ export default function SectionContentManager(props) {
           // handles the state when the modal is clickes outside the area
           isClose={handleClose}
         />
+        <Grid item xs={12} className={classes.btnSection}>
+          <Grid container spacing={3} className={classes.gridContainer}>
+            <h2>{title}</h2>
+          </Grid>
+        </Grid>
+        <Grid item xs={12} className={classes.btnSection}>
+          <Grid container spacing={3} className={classes.gridContainer}>
+            {/* // * Buttons Top container */}
+            <Button
+              size="small"
+              variant="contained"
+              color="primary"
+              component="span"
+              disabled={!needsToSave}
+              onClick={saveContent}
+            >
+              Save
+            </Button>
+            <Button
+              size="small"
+              variant="contained"
+              color="primary"
+              component="span"
+              onClick={goBackToEvent}
+            >
+              Go Back
+            </Button>
+          </Grid>
+        </Grid>
         <Grid item xs={12} className={classes.btnSection}>
           <Grid container spacing={3} className={classes.gridContainer}>
             {/* // * Buttons Top container */}

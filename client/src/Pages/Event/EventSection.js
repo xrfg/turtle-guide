@@ -155,7 +155,7 @@ export default function EventSection(props) {
               variant="h6"
               component="h6"
             >
-              {title}
+              {title} id:{id}
             </Typography>
             <Typography
               className={classes.card__desc}
