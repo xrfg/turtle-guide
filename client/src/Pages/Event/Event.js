@@ -129,6 +129,7 @@ export default function Event(props) {
     if (needsToSave) {
       // dispatch
       const res = dispatch(eventUpdate(event));
+
       res.then((x) => {
         if (x.status === 200) {
           // error false
@@ -334,7 +335,7 @@ export default function Event(props) {
 
     setEvent({
       title: title,
-      nameIdentifier: title, // function to make the slug
+      nameIdentifier: slug, // function to make the slug
       slug: slug, // will be the same
       description: "description", // ? is to do?
       sections: [],
@@ -362,12 +363,19 @@ export default function Event(props) {
     // update event
 
     // destruc
-    let { title, slug } = obj;
+    // if no new title provided (can come just if event name is changed)
+    // uses the event one
+    const { title = event.title } = obj;
     // new slug
-    slug = slugify(title);
-    console.log(title, slug);
+    const slug = slugify(title);
     // push new data into event
-    setEvent({ ...event, title: title, slug: slug, sections: [...sections] });
+    setEvent({
+      ...event,
+      title: title,
+      slug: slug,
+      // nameIdentifier: slug, // ! must be added once found a solution for the old
+      sections: [...sections],
+    });
     // setNeedsToSave(false) is into useEffect
   };
 
@@ -424,6 +432,10 @@ export default function Event(props) {
   // * Listener to avoid the user to go back without saving
   unBlock(needsToSave, history);
 
+  // const testFunc = (msg) => {
+  //   setIsSuccess("Section Title and Description saved!");
+  // };
+
   return (
     <Container style={{ padding: "2rem 0" }} maxWidth="md">
       {/* // TODO ERROR IF EVENT IS UNDEFINED */}
@@ -437,6 +449,7 @@ export default function Event(props) {
               // important to fire the event name update
               eventNameUpdate={saveEvent}
               title={event.title}
+              slug={event.slug}
               getEventName={createAndSendEvent}
             />
           </Grid>
@@ -549,19 +562,6 @@ export default function Event(props) {
                   {sections
                     .sort((a, b) => a.order - b.order)
                     .map((section) => {
-                      // is the slug is new it renders the new container
-                      // if (section.slug === "title") {
-                      //   return (
-                      //     <EventSectionNew
-                      //       section={section}
-                      //       sectionToDelete={deleteSection}
-                      //       // handleDrag={handleDrag}
-                      //       // handleDrop={handleDrop}
-                      //       editSection={editSectionMode}
-                      //     />
-                      //   );
-                      // }
-
                       return (
                         <EventSection
                           section={section}
@@ -569,6 +569,7 @@ export default function Event(props) {
                           handleDrag={handleDrag}
                           handleDrop={handleDrop}
                           editSection={editSectionMode}
+                          // sendMessage={testFunc}
                         />
                       );
                     })}

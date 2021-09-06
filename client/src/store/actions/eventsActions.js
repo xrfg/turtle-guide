@@ -53,6 +53,10 @@ export const eventCreate = (obj) => {
  */
 
 export const eventUpdate = (obj) => {
+  console.log("eventUpdate", obj);
+
+  // ! needs the old name identifier to pass also for MONGO
+
   return async (dispatch) => {
     // uses a function to create an object for axios
     const objToSend = createObj({

@@ -68,11 +68,12 @@ export default function EventSection(props) {
 
   const handleSaveEditBtn = (val) => {
     if (val) {
+      // editing opens
       setEditing(true);
-      console.log("editing");
     } else {
+      // editing closes
       setEditing(false);
-      console.log("editing closed");
+      // props.sendMessage("Section Title and Description saved!");
     }
   };
 
@@ -96,18 +97,18 @@ export default function EventSection(props) {
     props.editSection(id, title);
   };
 
-  /**
-   * @function goToAndSlugify
-   * @param eventName
-   * @desc redirects and creates an object to create the event
-   */
-  const goToAndSlugify = (eventName) => {
-    history.push(`/admin/event/${slugify(eventName)}`, {
-      // isNew: true,
-      slug: slugify(eventName),
-      title: title,
-    });
-  };
+  // /**
+  //  * @function goToAndSlugify
+  //  * @param eventName
+  //  * @desc redirects and creates an object to create the event
+  //  */
+  // // const goToAndSlugify = (eventName) => {
+  // //   history.push(`/admin/event/${slugify(eventName)}`, {
+  // //     // isNew: true,
+  // //     slug: slugify(eventName),
+  // //     title: title,
+  // //   });
+  // // };
 
   return (
     <Card
@@ -155,7 +156,7 @@ export default function EventSection(props) {
               variant="h6"
               component="h6"
             >
-              {title} id:{id}
+              {title}
             </Typography>
             <Typography
               className={classes.card__desc}

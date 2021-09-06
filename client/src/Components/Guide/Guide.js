@@ -23,7 +23,7 @@ export default function Guide(props) {
 
   // name of the evetn to fetch
   const name = props.match.params.name;
-
+  console.log(name);
   const getEvent = async () => {
     setLoading(true);
     try {
