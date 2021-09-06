@@ -18,12 +18,13 @@ export default function Guide(props) {
   const baseURL = "http://localhost:5000/api/events/";
 
   const [event, setEvent] = useState();
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(true);
 
+  // name of the evetn to fetch
   const name = props.match.params.name;
-  console.log(name);
+
   const getEvent = async () => {
-    // setLoading(true);
+    setLoading(true);
     try {
       const eventData = await axios.get(baseURL + name);
       console.log(eventData.data);
@@ -50,14 +51,20 @@ export default function Guide(props) {
           <Navbar />
         </div>
         <Switch>
-          <Route exact path="/">
+          {/* <Route exact path="/">
             <Home />
           </Route>
           <Route path="/guide">
             <Home />
-          </Route>
-          <Route exact path="/:id" component={Event} />
+          </Route> */}
+          {/* <Route exact path="/:id" component={Event} /> */}
         </Switch>
+        {/* Renders the data */}
+        {loading ? (
+          <div>WAIT</div>
+        ) : (
+          <Home title={event.data.title} sections={event.data.sections} />
+        )}
       </BrowserRouter>
     </>
   );
