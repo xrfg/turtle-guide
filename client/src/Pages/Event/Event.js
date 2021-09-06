@@ -18,7 +18,6 @@ import EventSection from "./EventSection";
 import EventSectionNew from "./EventSectionNew";
 import EventName from "./EventName";
 import Section from "../Section/Section";
-import CustomMessage from "../../Components/CustomMessage";
 
 // * Functions
 import { goBackToPage, unBlock } from "../../functions/functions";
@@ -377,6 +376,7 @@ export default function Event(props) {
     }
     if (!needsToSave) {
       setIsError(false);
+
       return goToAndSlugify(id, title);
     }
   };
@@ -411,6 +411,21 @@ export default function Event(props) {
 
   // * Listener to avoid the user to go back without saving
   unBlock(needsToSave, history);
+
+  /**
+   * @Component CustomMessage
+   * @desc Sends messagess back
+   */
+  const CustomMessage = (props) => {
+    const { msg, severity, time = 3000 } = props;
+
+    setTimeout(function () {
+      setIsError(false);
+      setIsSuccess(false);
+    }, time);
+
+    return <Alert severity={severity}>{msg}</Alert>;
+  };
 
   return (
     <Container style={{ padding: "2rem 0" }} maxWidth="md">
@@ -476,11 +491,15 @@ export default function Event(props) {
               </DialogActions>
             </Dialog>
           </Grid>
-          {/* Error/success msg */}
+          {/* Error/success msg TOP */}
           <Grid container direction="row" spacing={2}>
             <Grid item xs={9}>
-              {/* {isError ? <Message severity="error" msg={isError} /> : null} */}
-              {isSuccess ? <Alert severity="success">{isSuccess}</Alert> : null}
+              {isError ? (
+                <CustomMessage severity="error" msg={isError} />
+              ) : null}
+              {isSuccess ? (
+                <CustomMessage severity="success" msg={isError} />
+              ) : null}
             </Grid>
           </Grid>
           {/* 
@@ -558,8 +577,12 @@ export default function Event(props) {
           {/* Error/success msg */}
           <Grid container direction="row" spacing={2}>
             <Grid item xs={9}>
-              {isError ? <Alert severity="error">{isError}</Alert> : null}
-              {isSuccess ? <Alert severity="success">{isSuccess}</Alert> : null}
+              {isError ? (
+                <CustomMessage severity="error" msg={isError} />
+              ) : null}
+              {isSuccess ? (
+                <CustomMessage severity="success" msg={isError} />
+              ) : null}
             </Grid>
           </Grid>
         </Grid>
