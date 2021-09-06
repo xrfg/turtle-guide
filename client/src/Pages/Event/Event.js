@@ -3,6 +3,8 @@
 */
 
 import React, { useState, useEffect, useRef } from "react";
+import { useHistory } from "react-router-dom";
+
 import slugify from "react-slugify";
 
 // * REDUX
@@ -52,8 +54,12 @@ const useStyles = makeStyles((theme) => ({
 
 // ! takes event slug
 export default function Event(props) {
+  // * Hooks
   const classes = useStyles(props);
   const dispatch = useDispatch();
+
+  // to use history.push(newRoute) on save
+  let history = useHistory();
 
   // * States
   // single event
@@ -71,8 +77,8 @@ export default function Event(props) {
   const [dragId, setDragId] = useState();
 
   // for the editing of an entire section
-  const [editSection, setEditSection] = useState(false);
-  const [editSectionId, setEditSectionId] = useState(null);
+  // const [editSection, setEditSection] = useState(false);
+  // const [editSectionId, setEditSectionId] = useState(null);
 
   // * Refs
   // just to skip the first render
@@ -136,7 +142,7 @@ export default function Event(props) {
   useEffect(() => {
     // if true skips the first render
     if (firstUpdate.current) {
-      firstUpdate.current = false;
+      return (firstUpdate.current = false);
     } else {
       // do things after first render
       setNeedsToSave(true);
@@ -336,39 +342,49 @@ export default function Event(props) {
    * @desc enter in edit mode of the section
    */
 
-  const editSectionMode = async (id) => {
-    console.log("editSectionMode", id);
+  const editSectionMode = async (id, title) => {
+    console.log("editSectionMode", id, title);
     // saves before going to section
     // saveEvent();
     // const res = await setNeedsToSaveFalse;
     // console.log(res);
     if (!needsToSave) {
       console.log("setEditsections");
-      setEditSection(true);
-      setEditSectionId(id);
+      return goToAndSlugify(id, title);
+      // setEditSection(true);
+      // setEditSectionId(id);
     }
   };
 
   /**
-   * @desc Promise to set needsToSave to false
+   * @function goToAndSlugify
+   * @param eventName
+   * @desc redirects and creates an object to create the event
    */
-
-  // const setNeedsToSaveFalse = new Promise((res, rej) => {
-  //   res(() => setNeedsToSave(false));
-  // });
-  // const setNeedsToSaveFalse = Promise.resolve(33);
-
+  const goToAndSlugify = (id, title) => {
+    // TODO do it with regex
+    // if a title is not set it uses the id of the section
+    if (title === "Title" || title === "title" || title === "TITLE") {
+      return history.push(`/admin/event/sections/${id}`, {
+        isNew: true,
+        slug: slugify(title),
+        title: title,
+      });
+    }
+    console.log("here");
+    // it uses the title
+    history.push(`/admin/event/sections/${slugify(title)}`, {
+      isNew: true,
+      slug: slugify(title),
+      title: title,
+    });
+  };
   // * Objects
 
   return (
     <Container style={{ padding: "2rem 0" }} maxWidth="md">
       {/* // TODO ERROR IF EVENT IS UNDEFINED */}
-      {editSection ? (
-        <Section
-          eventNameIdentifier={event.nameIdentifier}
-          sectionId={editSectionId}
-        />
-      ) : event === undefined ? null : (
+      {event === undefined ? null : (
         <Grid container direction="row" spacing={2}>
           <Grid item xs={9}>
             {/* 
@@ -477,17 +493,17 @@ export default function Event(props) {
                     .sort((a, b) => a.order - b.order)
                     .map((section) => {
                       // is the slug is new it renders the new container
-                      if (section.slug === "title") {
-                        return (
-                          <EventSectionNew
-                            section={section}
-                            sectionToDelete={deleteSection}
-                            // handleDrag={handleDrag}
-                            // handleDrop={handleDrop}
-                            editSection={editSectionMode}
-                          />
-                        );
-                      }
+                      // if (section.slug === "title") {
+                      //   return (
+                      //     <EventSectionNew
+                      //       section={section}
+                      //       sectionToDelete={deleteSection}
+                      //       // handleDrag={handleDrag}
+                      //       // handleDrop={handleDrop}
+                      //       editSection={editSectionMode}
+                      //     />
+                      //   );
+                      // }
 
                       return (
                         <EventSection

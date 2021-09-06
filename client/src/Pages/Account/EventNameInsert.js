@@ -28,9 +28,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const EventName = (props) => {
-  const classes = useStyles(props);
-
   // * Hooks
+  const classes = useStyles(props);
 
   // to use history.push(newRoute) on save
   let history = useHistory();

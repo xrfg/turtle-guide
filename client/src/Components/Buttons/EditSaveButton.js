@@ -11,7 +11,7 @@ export default function EditSaveButton(props) {
   // "editing" true to "non-editing" false
   const { title, isFirstEditing } = props;
 
-  console.log("EditSaveButton", title, isFirstEditing);
+  // console.log("EditSaveButton", title, isFirstEditing);
   const handleSaveEditBtn = (e) => {
     // if (title === "Title" || title === "title" || title === "") {
     //   return props.errorMsg("This is not a valid title");

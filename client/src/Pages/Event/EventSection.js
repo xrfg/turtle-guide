@@ -93,7 +93,7 @@ export default function EventSection(props) {
    */
 
   const editSection = () => {
-    props.editSection(id);
+    props.editSection(id, title);
   };
 
   /**

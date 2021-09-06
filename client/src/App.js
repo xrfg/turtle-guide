@@ -45,7 +45,8 @@ function App() {
                 render={(props) => <Event {...props} id={1} />}
               /> */}
               <Route path="/admin/event/:name" component={Event} />
-              <Route path="/admin/event/sections/:name" component={Section} />
+              {/* sections takes id or name */}
+              <Route path="/admin/event/sections/:id" component={Section} />
               <Route path="/guide">
                 <Guide />
               </Route>
