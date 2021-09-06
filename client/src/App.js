@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 //* Import Pages
+import Home from "./Pages/Home/Home";
 import Account from "./Pages/Account/Account";
 import AboutAdmin from "./Pages/AboutAdmin/AboutAdmin";
 import Guide from "./Components/Guide/Guide";
@@ -27,36 +28,26 @@ function App() {
       <MuiThemeProvider theme={theme}>
         <BrowserRouter>
           <div className="App">
-            <Navbar />
             <Switch>
-              <Route exact path="/">
-                <h1>My React App</h1>
-                <h2>
-                  if the route is "/guide" display Guide wraping component
-                </h2>
-              </Route>
-              <Route exact path="/admin" component={SignUp} />
-              <Route path="/account" component={Account} />
-
-              {/*
+              {/* Has to stay here to do not have the admin navbar */}
+              <Route path="/events/:name" component={Guide} />
+              <div>
+                <Navbar />
+                <Route exact path="/" component={Home} />
+                <Route exact path="/admin" component={SignUp} />
+                {/*
           // ! TEMPORARY LINK 
         */}
-              <Route path="/aboutadmin" component={AboutAdmin} />
-              {/* <Route
-                path="/create-event"
-                render={(props) => <Event {...props} id={1} />}
-              /> */}
-              <Route exact path="/admin/event/:name" component={Event} />
-              {/* sections takes id or name */}
-              <Route
-                exact
-                path="/admin/event/sections/:id"
-                component={Section}
-                // render={(props) => <Section {...props} />}
-              />
-              <Route path="/guide">
-                <Guide />
-              </Route>
+                <Route path="/account" component={Account} />
+                <Route path="/aboutadmin" component={AboutAdmin} />
+                <Route exact path="/admin/event/:name" component={Event} />
+                {/* sections takes id or name */}
+                <Route
+                  exact
+                  path="/admin/event/sections/:id"
+                  component={Section}
+                />
+              </div>
             </Switch>
           </div>
         </BrowserRouter>

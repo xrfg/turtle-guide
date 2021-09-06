@@ -37,7 +37,6 @@ import {
   DialogActions,
   DialogTitle,
 } from "@material-ui/core";
-import Alert from "@material-ui/lab/Alert";
 
 // * material UI imports Icons
 import { Add } from "@material-ui/icons";
