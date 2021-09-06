@@ -4,8 +4,6 @@
 
 import React from "react";
 import SectionContentManager from "../../Components/SectionContentManager/SectionContentManager";
-// import CustomMessage from "../../Components/CustomMessage";
-import Test from "../../Components/Test";
 
 const Section = (props) => {
   console.log("section", props);
