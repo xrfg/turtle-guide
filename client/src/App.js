@@ -8,6 +8,7 @@ import Guide from "./Components/Guide/Guide";
 import Event from "./Pages/Event/Event";
 import Section from "./Pages/Section/Section";
 import SignUp from "./Pages/SignUp/SignUp";
+import SignIn from "./Pages/SignIn/SignIn";
 
 // * Import Components
 import Navbar from "./Components/Navbar/Navbar";

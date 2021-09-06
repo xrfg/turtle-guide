@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -12,6 +12,11 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+
+
+// * REDUX
+import {useSelector, useDispatch}from "react-redux"
+import {signIn} from "../../store/actions/userActions" 
 
 function Copyright() {
   return (
@@ -49,6 +54,42 @@ const useStyles = makeStyles((theme) => ({
 export default function SignIn() {
   const classes = useStyles();
 
+
+   // * states
+   // ! to remove for development
+   const [loginData,setLoginData] = useState({
+    email:"jdoe@email.com",
+      password:"123456"})
+
+ //REDUX
+ const dispatch = useDispatch()
+
+ 
+ // getting states from REDUX
+ // const user = useSelector((state) => state.user);
+ const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+
+ /**
+   * @function onChange
+   * @desc grabs inputs changes while user types
+   */
+  const onChange = function (e) {
+    setLoginData({ ...loginData, [e.target.name]: e.target.value });
+  };
+
+
+   /**
+   * @function submitUserData
+   * @desc sends the data
+   */
+
+    const submitLoginData = function (e) {
+      e.preventDefault();
+
+      console.log(loginData);
+      // dispatch to REDUX
+      dispatch(signIn(loginData));
+    };
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -70,6 +111,8 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            defaultValue="jdoe@email.com"
+            onChange={onChange}
           />
           <TextField
             variant="outlined"
@@ -81,6 +124,8 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            defaultValue="123456"
+            onChange={onChange}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -92,6 +137,7 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={(e)=>{submitLoginData(e)}}
           >
             Sign In
           </Button>
