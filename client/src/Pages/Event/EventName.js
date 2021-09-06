@@ -1,3 +1,7 @@
+/**
+ * @desc Components that returns an input for the event name
+ */
+
 import React, { useState, useEffect } from "react";
 
 // * material UI imports Icons
@@ -56,7 +60,10 @@ const EventName = (props) => {
     if (val) {
       setEditing((prev) => !prev);
     } else {
+      // save edit
       setEditing((prev) => !prev);
+      // important to fire the event name update
+      props.eventNameUpdate({ title: eventName, slug: eventName });
     }
   };
 

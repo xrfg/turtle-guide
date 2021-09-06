@@ -101,6 +101,7 @@ export default function Event(props) {
   // get the slug to search for the event
   const slug = props.match.params.name;
   // to allow if is a new event
+  // props comming from account
   let isNewEvent = props.location.state?.isNew === true ? true : false;
 
   // * LifeCycles -> UseEffect
@@ -351,9 +352,22 @@ export default function Event(props) {
    * @desc saves the event
    */
 
-  const saveEvent = () => {
+  const saveEvent = (obj) => {
+    // set to true or stops it in use effect
+    setNeedsToSave(true);
+    // if the event is new skips it
+    if (isNewEvent) {
+      return;
+    }
+    // update event
+
+    // destruc
+    let { title, slug } = obj;
+    // new slug
+    slug = slugify(title);
+    console.log(title, slug);
     // push new data into event
-    setEvent({ ...event, sections: [...sections] });
+    setEvent({ ...event, title: title, slug: slug, sections: [...sections] });
     // setNeedsToSave(false) is into useEffect
   };
 
@@ -419,7 +433,12 @@ export default function Event(props) {
             {/* 
         // * Name of Event Input
         */}
-            <EventName title={event.title} getEventName={createAndSendEvent} />
+            <EventName
+              // important to fire the event name update
+              eventNameUpdate={saveEvent}
+              title={event.title}
+              getEventName={createAndSendEvent}
+            />
           </Grid>
           {/* Delete Event */}
           <Grid item xs={3}>
@@ -481,7 +500,7 @@ export default function Event(props) {
                 <CustomMessage severity="error" msg={isError} />
               ) : null}
               {isSuccess ? (
-                <CustomMessage severity="success" msg={isError} />
+                <CustomMessage severity="success" msg={isSuccess} />
               ) : null}
             </Grid>
           </Grid>
@@ -564,7 +583,7 @@ export default function Event(props) {
                 <CustomMessage severity="error" msg={isError} />
               ) : null}
               {isSuccess ? (
-                <CustomMessage severity="success" msg={isError} />
+                <CustomMessage severity="success" msg={isSuccess} />
               ) : null}
             </Grid>
           </Grid>
