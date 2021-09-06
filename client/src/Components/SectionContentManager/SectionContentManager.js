@@ -469,7 +469,6 @@ export default function SectionContentManager(props) {
               color="primary"
               component="span"
               onClick={() => goBackToPage(needsToSave, history)}
-              // >
             >
               Go Back
             </Button>

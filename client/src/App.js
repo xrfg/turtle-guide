@@ -10,8 +10,9 @@ import Section from "./Pages/Section/Section";
 import SignUp from "./Pages/SignUp/SignUp";
 import SignIn from "./Pages/SignIn/SignIn";
 
-// * Import Components
+// * Import Custom  Components
 import Navbar from "./Components/Navbar/Navbar";
+
 // REDUX
 import { Provider } from "react-redux";
 import Store from "./store/index";

@@ -172,11 +172,13 @@ export default function EventSection(props) {
           orientation="horizontal"
           aria-label="horizontal button group"
         >
+          {/* Save Edit  */}
           <EditSaveButton
             size={"small"}
             editStatus={editing}
             editHandler={handleSaveEditBtn}
           />
+          {/* Got to Edit section   */}
           <Button href={`${url}`} size="small" onClick={editSection}>
             <Forward />
           </Button>
@@ -188,6 +190,7 @@ export default function EventSection(props) {
           <Button style={{ cursor: "grab" }} size="small">
             <DragIndicator />
           </Button>{" "}
+          {/* Remove Section   */}
           <Button size="small" onClick={() => removeSection(id)}>
             <Delete />
           </Button>

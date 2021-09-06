@@ -18,6 +18,7 @@ import EventSection from "./EventSection";
 import EventSectionNew from "./EventSectionNew";
 import EventName from "./EventName";
 import Section from "../Section/Section";
+import CustomMessage from "../../Components/CustomMessage";
 
 // * Functions
 import { goBackToPage, unBlock } from "../../functions/functions";
@@ -38,6 +39,8 @@ import {
   DialogActions,
   DialogTitle,
 } from "@material-ui/core";
+import Alert from "@material-ui/lab/Alert";
+
 // * material UI imports Icons
 import { Add } from "@material-ui/icons";
 
@@ -80,6 +83,10 @@ export default function Event(props) {
 
   // for the drag and drop sections re-ordering
   const [dragId, setDragId] = useState();
+
+  // for errorr and success msg
+  const [isError, setIsError] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   // for the editing of an entire section
   // const [editSection, setEditSection] = useState(false);
@@ -126,6 +133,10 @@ export default function Event(props) {
       const res = dispatch(eventUpdate(event));
       res.then((x) => {
         if (x.status === 200) {
+          // error false
+          setIsError(false);
+          // success msg
+          setIsSuccess("Section saved successfully!");
           // set save to false to disable the button
           return setNeedsToSave(false);
         }
@@ -150,13 +161,19 @@ export default function Event(props) {
     if (firstUpdate.current) {
       return (firstUpdate.current = false);
     }
+    // in case the event is new can be saved on second render
+    if (!firstUpdate.current && isNewEvent) {
+      return setNeedsToSave(true);
+    }
     // if true skips the second render
     if (secondUpdate.current) {
       return (secondUpdate.current = false);
-    } else {
-      // do things after first render
-      return setNeedsToSave(true);
     }
+
+    // do things after first render
+    return setNeedsToSave(true);
+
+    //eslint-disable-next-line
   }, [sections]);
 
   // * Functions
@@ -351,14 +368,16 @@ export default function Event(props) {
 
   const editSectionMode = async (id, title) => {
     // saves before going to section
-    // saveEvent();
     // const res = await setNeedsToSaveFalse;
     // console.log(res);
+    // saveEvent();
+    // return goToAndSlugify(id, title);
+    if (needsToSave) {
+      setIsError("You created a new Section, please save before continue");
+    }
     if (!needsToSave) {
-      console.log("setEditsections");
+      setIsError(false);
       return goToAndSlugify(id, title);
-      // setEditSection(true);
-      // setEditSectionId(id);
     }
   };
 
@@ -379,7 +398,6 @@ export default function Event(props) {
         nameIdentifier: event.nameIdentifier, // name of the current event
       });
     }
-    console.log("history", history);
     // it uses the title
     return history.push(`/admin/event/sections/${slugify(title)}`, {
       isNew: true,
@@ -405,7 +423,6 @@ export default function Event(props) {
         */}
             <EventName title={event.title} getEventName={createAndSendEvent} />
           </Grid>
-
           {/* Delete Event */}
           <Grid item xs={3}>
             <Button
@@ -458,6 +475,13 @@ export default function Event(props) {
                 </Button>
               </DialogActions>
             </Dialog>
+          </Grid>
+          {/* Error/success msg */}
+          <Grid container direction="row" spacing={2}>
+            <Grid item xs={9}>
+              {/* {isError ? <Message severity="error" msg={isError} /> : null} */}
+              {isSuccess ? <Alert severity="success">{isSuccess}</Alert> : null}
+            </Grid>
           </Grid>
           {/* 
         // * Button Group
@@ -530,6 +554,13 @@ export default function Event(props) {
                 </ul>
               </CardContent>
             </Box>
+          </Grid>
+          {/* Error/success msg */}
+          <Grid container direction="row" spacing={2}>
+            <Grid item xs={9}>
+              {isError ? <Alert severity="error">{isError}</Alert> : null}
+              {isSuccess ? <Alert severity="success">{isSuccess}</Alert> : null}
+            </Grid>
           </Grid>
         </Grid>
       )}
