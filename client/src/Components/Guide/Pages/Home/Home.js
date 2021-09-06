@@ -55,13 +55,14 @@ export default function Home(props) {
   // * Destruc
   const { title, sections } = props;
 
-  // ! what for?
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  console.log("sections", sections);
-
+  /**
+   * @desc Component to create a card (section)
+   */
+  // TODO to ext
   const BlockSection = (props) => {
     // destruc
     const { title, description } = props.data;
@@ -99,8 +100,8 @@ export default function Home(props) {
     <>
       <h1>{title}</h1>
       <Container>
+        {/* Map to create cards */}
         {sections.map((x) => {
-          console.log("map", x);
           return <BlockSection data={x} />;
         })}
       </Container>

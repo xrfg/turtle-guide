@@ -9,6 +9,7 @@ import Event from "./Pages/Event/Event";
 
 // * Components
 import Navbar from "./Components/Navbar/Navbar";
+import Spinner from "../../Components/Spinner/Spinner";
 
 // * baseURL
 
@@ -61,7 +62,7 @@ export default function Guide(props) {
         </Switch>
         {/* Renders the data */}
         {loading ? (
-          <div>WAIT</div>
+          <Spinner />
         ) : (
           <Home title={event.data.title} sections={event.data.sections} />
         )}
