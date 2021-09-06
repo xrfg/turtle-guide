@@ -399,7 +399,7 @@ export default function SectionContentManager(props) {
   const goBackToEvent = () => {
     if (needsToSave) {
       if (
-        window.confirm(`Ypu didn't save! Are you sure you want to go to back?`)
+        window.confirm(`You didn't save! Are you sure you want to go to back?`)
       ) {
         history.goBack();
       } else {

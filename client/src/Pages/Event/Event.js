@@ -52,6 +52,8 @@ const useStyles = makeStyles((theme) => ({
   guide__header: { marginBottom: "1rem" },
 }));
 
+// TODO goBack prevention
+// TODO goBack Button
 // ! takes event slug
 export default function Event(props) {
   // * Hooks
@@ -81,8 +83,9 @@ export default function Event(props) {
   // const [editSectionId, setEditSectionId] = useState(null);
 
   // * Refs
-  // just to skip the first render
+  // just to skip the first and second render
   const firstUpdate = useRef(true);
+  const secondUpdate = useRef(true);
 
   // * Hooks
   // loads event from reducer
@@ -116,21 +119,17 @@ export default function Event(props) {
   // fires when the state event is created/ updated
   useEffect(() => {
     if (needsToSave) {
-      // set save to false to disable the button
-
-      // dispatch(eventUpdate(event));
-      // setNeedsToSave(false);
+      // dispatch
       const res = dispatch(eventUpdate(event));
       res.then((x) => {
         if (x.status === 200) {
+          // set save to false to disable the button
           return setNeedsToSave(false);
         }
       });
       // dispatch the event to REDUX
       return res;
     }
-
-    console.log("useEff", event, isNewEvent);
     // if event is empty do not dispatch
     // ! isNewevent Stops it from a recreating of an existing event
     // ! keep as an option
@@ -147,6 +146,10 @@ export default function Event(props) {
     // if true skips the first render
     if (firstUpdate.current) {
       return (firstUpdate.current = false);
+    }
+    // if true skips the second render
+    if (secondUpdate.current) {
+      return (secondUpdate.current = false);
     } else {
       // do things after first render
       return setNeedsToSave(true);
@@ -332,12 +335,9 @@ export default function Event(props) {
    */
 
   const saveEvent = () => {
-    console.log("save", sections);
     // push new data into event
     setEvent({ ...event, sections: [...sections] });
     // setNeedsToSave(false) is into useEffect
-
-    console.log("saveEvent", event);
   };
 
   /**
@@ -347,7 +347,6 @@ export default function Event(props) {
    */
 
   const editSectionMode = async (id, title) => {
-    console.log("editSectionMode", id, title);
     // saves before going to section
     // saveEvent();
     // const res = await setNeedsToSaveFalse;
