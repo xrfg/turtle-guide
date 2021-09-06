@@ -3,7 +3,7 @@
  */
 
 import React from "react";
-import AboutAdmin from "../AboutAdmin/AboutAdmin";
+import SectionContentManager from "../../Components/SectionContentManager/SectionContentManager";
 
 const Section = (props) => {
   // destru
@@ -11,7 +11,7 @@ const Section = (props) => {
 
   // ! SEND ID
   return (
-    <AboutAdmin
+    <SectionContentManager
       eventNameIdentifier={eventNameIdentifier}
       sectionId={sectionId}
     />
