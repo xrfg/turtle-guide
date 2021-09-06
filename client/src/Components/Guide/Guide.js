@@ -5,8 +5,6 @@ import Event from "./Pages/Event/Event";
 import Navbar from "./Components/Navbar/Navbar";
 // import Footer from "./Components/Footer/Footer";
 
-import QRCodePage from "./Pages/QRCode/QRCodePage";
-
 export default function Guide() {
   // Guide.js wraps all the VISITOR sees
   return (
@@ -19,7 +17,6 @@ export default function Guide() {
         <Switch>
           <Route exact path="/">
             <Home />
-            <QRCodePage />
           </Route>
           <Route path="/guide">
             <Home />
