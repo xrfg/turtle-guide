@@ -101,6 +101,7 @@ export default function Event(props) {
       const obj = props.location.state;
       return createAndSendEvent(obj);
     }
+
     // search for the event into redux
     const getEvent = events.find((x) => x.slug === slug);
     // set the whole event
@@ -116,14 +117,17 @@ export default function Event(props) {
   useEffect(() => {
     if (needsToSave) {
       // set save to false to disable the button
-      const res = dispatch(eventUpdate(event));
-      res.then((x) => {
-        if (x.status === 200) {
-          return setNeedsToSave(false);
-        }
-      });
+
+      dispatch(eventUpdate(event));
+      setNeedsToSave(false);
+      // const res = dispatch(eventUpdate(event));
+      // res.then((x) => {
+      //   if (x.status === 200) {
+      //     return setNeedsToSave(false);
+      //   }
+      // });
       // dispatch the event to REDUX
-      return res;
+      // return res;
     }
 
     console.log("useEff", event, isNewEvent);
@@ -145,7 +149,7 @@ export default function Event(props) {
       return (firstUpdate.current = false);
     } else {
       // do things after first render
-      setNeedsToSave(true);
+      return setNeedsToSave(true);
     }
   }, [sections]);
 
@@ -369,14 +373,18 @@ export default function Event(props) {
         isNew: true,
         slug: slugify(title),
         title: title,
+        id: id,
+        nameIdentifier: event.nameIdentifier, // name of the current event
       });
     }
-    console.log("here");
+    console.log("history", history);
     // it uses the title
-    history.push(`/admin/event/sections/${slugify(title)}`, {
+    return history.push(`/admin/event/sections/${slugify(title)}`, {
       isNew: true,
       slug: slugify(title),
       title: title,
+      id: id,
+      nameIdentifier: event.nameIdentifier, // name of the current event
     });
   };
   // * Objects

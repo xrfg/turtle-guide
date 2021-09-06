@@ -99,8 +99,10 @@ const useStyles = makeStyles((theme) =>
 // ! and maps contents
 export default function SectionContentManager(props) {
   // * Destruc
-  const { sectionId, eventNameIdentifier } = props;
-  console.log("SectionContentManager", sectionId, eventNameIdentifier);
+  const {
+    state: { id, title, slug, eventNameIdentifier },
+  } = props;
+  console.log("SectionContentManager", id, title, slug, eventNameIdentifier);
 
   // * Hooks
   const classes = useStyles();
@@ -121,10 +123,10 @@ export default function SectionContentManager(props) {
   useEffect(() => {
     // find the event
     const getEvent = events.find(
-      (x) => x.nameIdentifier === eventNameIdentifier
+      (x) => x.eventNameIdentifier === eventNameIdentifier
     );
     // get the section with the id
-    const getSection = getEvent.sections.find((x) => x.id === sectionId);
+    const getSection = getEvent.sections.find((x) => x.id === id);
     setSection(getSection);
     //eslint-disable-next-line
   }, []);

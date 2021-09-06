@@ -45,9 +45,14 @@ function App() {
                 path="/create-event"
                 render={(props) => <Event {...props} id={1} />}
               /> */}
-              <Route path="/admin/event/:name" component={Event} />
+              <Route exact path="/admin/event/:name" component={Event} />
               {/* sections takes id or name */}
-              <Route path="/admin/event/sections/:id" component={Section} />
+              <Route
+                exact
+                path="/admin/event/sections/:id"
+                component={Section}
+                // render={(props) => <Section {...props} />}
+              />
               <Route path="/guide">
                 <Guide />
               </Route>

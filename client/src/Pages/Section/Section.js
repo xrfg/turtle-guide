@@ -6,16 +6,14 @@ import React from "react";
 import SectionContentManager from "../../Components/SectionContentManager/SectionContentManager";
 
 const Section = (props) => {
+  console.log("section", props);
   // destru
-  const { sectionId, eventNameIdentifier } = props;
+  const {
+    location: { state },
+  } = props;
 
   // ! SEND ID
-  return (
-    <SectionContentManager
-      eventNameIdentifier={eventNameIdentifier}
-      sectionId={sectionId}
-    />
-  );
+  return <SectionContentManager state={state} />;
 };
 
 export default Section;
