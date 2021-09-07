@@ -143,7 +143,16 @@ const ContentBlockMedia = (props) => {
   };
 
   return (
-    <Paper className={classes.paper} key={id}>
+    <Paper
+      className={classes.paper}
+      key={id}
+      // below attributes for drag nd drop
+      id={id}
+      draggable={true}
+      onDragOver={(e) => e.preventDefault()}
+      onDragStart={props.handleDrag}
+      onDrop={props.handleDrop}
+    >
       <Grid item xs={12} sm container className={classes.mediaContainer}>
         <Grid item>
           {/* <ButtonBase className={classes.image}> */}
