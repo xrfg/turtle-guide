@@ -171,7 +171,6 @@ export default function Event(props) {
       return null;
     }
 
-    console.log("is creating");
     // dispatch the event to redux
     return dispatch(eventCreate(event));
     //eslint-disable-next-line
