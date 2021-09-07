@@ -54,7 +54,8 @@ export const eventCreate = (obj) => {
 
 export const eventUpdate = (obj) => {
   return async (dispatch) => {
-    // ! it uses the old nameIdf cause in mongo it has this still that nameIdf
+    // important
+    //  it uses the old nameIdf cause in mongo it has this still that nameIdf
     const eventName = obj.hasOwnProperty("oldNameIdentifier")
       ? obj.oldNameIdentifier
       : obj.nameIdentifier;
@@ -67,14 +68,12 @@ export const eventUpdate = (obj) => {
       token: token,
     });
 
-    console.log("objToSend", typeof objToSend.data);
-
     try {
       // call api
       const res = await axios(objToSend);
 
       // res.data.data sends just the event
-      await dispatch({ type: EVENT_UPDATE, payload: res.data });
+      await dispatch({ type: EVENT_UPDATE, payload: res.data.data });
 
       return res;
     } catch (error) {
