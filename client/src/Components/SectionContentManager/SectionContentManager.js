@@ -371,7 +371,6 @@ export default function SectionContentManager(props) {
    */
 
   const saveContent = async () => {
-    console.log("saveContent 1", contents);
     // 1. create the event
     // creates the new obj section spreading the old section into the state
     const newSection = { ...section, contents: contents };
@@ -383,8 +382,9 @@ export default function SectionContentManager(props) {
 
     // 3. replace with the new section with splice
     event.sections.splice(findIndex, 1, newSection);
-    console.log("saveContent 2", event);
     // 4. dispatch event update
+
+    console.log("saveContent()", event);
     try {
       await dispatch(eventUpdate(event));
       // set to save

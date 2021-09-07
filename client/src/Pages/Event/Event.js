@@ -127,25 +127,32 @@ export default function Event(props) {
   // fires when the state event is created/ updated
   useEffect(() => {
     // TODO try catch to handle UI Error
-    console.log("useEff for saving");
-    if (needsToSave) {
-      console.log("useEff IS saving");
-      // dispatch
-      const res = dispatch(eventUpdate(event));
 
-      res.then((x) => {
-        if (x.status === 200) {
-          // error false
-          setIsError(false);
-          // success msg
-          setIsSuccess("Saved successfully!");
-          // set save to false to disable the button
-          return setNeedsToSave(false);
-        }
-      });
-      // dispatch the event to REDUX
-      return res;
+    async function saveData() {
+      if (needsToSave) {
+        // dispatch
+        await dispatch(eventUpdate(event));
+
+        setIsError(false);
+        setIsSuccess("Saved successfully!");
+        return setNeedsToSave(false);
+
+        // res.then((x) => {
+        //   if (x.status === 200) {
+        //     // error false
+        //     setIsError(false);
+        //     // success msg
+        //     setIsSuccess("Saved successfully!");
+        //     // set save to false to disable the button
+        //     return setNeedsToSave(false);
+        //   }
+        // });
+        // // dispatch the event to REDUX
+        // return res;
+      }
     }
+    saveData();
+
     // if event is empty do not dispatch
     // ! isNewevent Stops it from a recreating of an existing event
     // ! keep as an option
@@ -357,6 +364,8 @@ export default function Event(props) {
    */
 
   const saveEvent = (obj) => {
+    console.log("saveEvent", obj);
+
     // set to true or stops it in use effect
     setNeedsToSave(true);
     // if the event is new skips it
@@ -442,8 +451,19 @@ export default function Event(props) {
   };
 
   // ! test to remove
-  const eventNameUpdate = () => {
-    console.log("eventNameUpdate", event);
+  const eventNameUpdate = (eventName) => {
+    // create a new obj that fires a saving with useEffect
+    // new slug
+    const slug = slugify(eventName);
+    // push new data into event
+    setEvent({
+      ...event,
+      title: eventName,
+      slug: slug,
+      nameIdentifier: slug, // new name identifier
+      oldNameIdentifier: event.slug, // old name identifier just for the search
+      sections: [...sections],
+    });
     setNeedsToSave(true);
   };
 

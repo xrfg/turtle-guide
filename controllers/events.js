@@ -124,13 +124,18 @@ exports.put = async (req, res, next) => {
   // extract name from params
   const { name } = req.params; // it's the old name identifier
 
+  //  it uses the old nameIdf cause in mongo it has this still that nameIdf
+  const eventName = req.body.hasOwnProperty("oldNameIdentifier")
+    ? req.body.oldNameIdentifier
+    : req.body.nameIdentifier;
+
   // create a new obj WITHOUT the oldNameIdentifier key
   delete req.body.oldNameIdentifier;
 
   try {
     // find and update the item using nameIdentifier
     const event = await Event.findOneAndUpdate(
-      { nameIdentifier: name },
+      { nameIdentifier: eventName },
       req.body, // the oldNameIdentifier is removed
       {
         new: true,

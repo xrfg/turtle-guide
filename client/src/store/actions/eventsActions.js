@@ -67,12 +67,14 @@ export const eventUpdate = (obj) => {
       token: token,
     });
 
+    console.log("objToSend", typeof objToSend.data);
+
     try {
       // call api
       const res = await axios(objToSend);
 
       // res.data.data sends just the event
-      await dispatch({ type: EVENT_UPDATE, payload: res.data.data });
+      await dispatch({ type: EVENT_UPDATE, payload: res.data });
 
       return res;
     } catch (error) {
