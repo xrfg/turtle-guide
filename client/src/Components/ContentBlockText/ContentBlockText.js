@@ -16,6 +16,7 @@ import TextField from "@material-ui/core/TextField";
 // * Icons
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { DragIndicator } from "@material-ui/icons";
 import EditIcon from "@material-ui/icons/Edit";
 import SaveIcon from "@material-ui/icons/Save";
 import ShortTextIcon from "@material-ui/icons/ShortText";
@@ -187,6 +188,9 @@ const ContentBlockText = (props) => {
           {/* //* Sends the id to the parent */}
           <ButtonBase onClick={() => removeContent(id)}>
             <DeleteIcon fontSize="small" />
+          </ButtonBase>
+          <ButtonBase>
+            <DragIndicator fontSize="small" />
           </ButtonBase>
         </Grid>
 

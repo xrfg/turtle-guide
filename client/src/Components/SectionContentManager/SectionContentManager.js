@@ -11,20 +11,13 @@ import { useHistory } from "react-router-dom";
 
 // * Mat UI
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import { Button, Container, Grid, Typography } from "@material-ui/core";
-import Box from "@material-ui/core/Box";
-import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
-
-// import Card from "@material-ui/core/Card";
-// import CardActionArea from "@material-ui/core/CardActionArea";
-// import CardActions from "@material-ui/core/CardActions";
-// import CardContent from "@material-ui/core/CardContent";
-// import CardMedia from "@material-ui/core/CardMedia";
-import Paper from "@material-ui/core/Paper";
-// import Typography from "@material-ui/core/Typography";
-import ButtonBase from "@material-ui/core/ButtonBase";
+import {
+  Button,
+  ButtonGroup,
+  Container,
+  Grid,
+  Typography,
+} from "@material-ui/core";
 
 // * Pages
 
@@ -52,6 +45,7 @@ import { eventUpdate } from "../../store/actions/eventsActions";
 
 // * Functions
 import { goBackToPage, unBlock } from "../../functions/functions";
+import { first } from "lodash";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -69,25 +63,24 @@ const useStyles = makeStyles((theme) =>
     },
     // * Custom CSS
     // Custom margins container buttons
-    gridContainer: {
+    sectionTitle: { textAlign: "center", fontSize: "2rem" },
+    gridItem: {
       marginTop: "10px",
       marginBottom: "10px",
-      backgroundColor: theme.palette.common.blue,
+      // backgroundColor: theme.palette.common.blue,
     },
     // Custom margins nested grid
     // ! Classes created but not styled yet
     containerGrids: {},
     gridContent: {},
+    gridContentHeader: { fontSize: "1rem", textAlign: "center", color: "gray" },
     gridPreview: {},
 
     mainContainer: {
       display: "flex",
     },
-    btnSection: {
-      display: "flex",
-      justifyContent: "space-between",
-      flexWrap: "wrap",
-    },
+    btnSection: {},
+
     overview: {
       height: "fit-content",
     },
@@ -521,97 +514,68 @@ export default function SectionContentManager(props) {
   };
 
   return (
-    <>
-      <Container maxWidth="sm">
-        {/* // * MODAL */}
-        <ModalCustom
-          content={<TextEditor setText={setMediaText} />}
-          isOpen={openModalInsertText}
-          // handles the state when the modal is clickes outside the area
-          isClose={handleClose}
-        />
-        <ModalCustom
-          content={<SectionPreview contents={contents} />}
-          isOpen={openModalPreview}
-          // handles the state when the modal is clickes outside the area
-          isClose={handleClose}
-        />
-        <Grid item xs={12} className={classes.btnSection}>
-          <Grid container spacing={3} className={classes.gridContainer}>
-            <h2>{title}</h2>
-          </Grid>
+    <Container style={{ maxWidth: "720px" }}>
+      {/* // * MODAL */}
+      <ModalCustom
+        content={<TextEditor setText={setMediaText} />}
+        isOpen={openModalInsertText}
+        // handles the state when the modal is clickes outside the area
+        isClose={handleClose}
+      />
+      <ModalCustom
+        content={<SectionPreview contents={contents} />}
+        isOpen={openModalPreview}
+        // handles the state when the modal is clickes outside the area
+        isClose={handleClose}
+      />
+      <Grid container direction="row" spacing={2}>
+        <Grid item xs={12} className={classes.gridItem}>
+          <h2 className={classes.sectionTitle}>{title}</h2>
         </Grid>
-        <Grid item xs={12} className={classes.btnSection}>
-          <Grid container spacing={3} className={classes.gridContainer}>
-            {/* // * Buttons Top container */}
-            <Button
-              size="small"
-              variant="contained"
-              color="primary"
-              component="span"
-              disabled={!needsToSave}
-              onClick={saveContent}
-            >
+        <Grid item xs={3} className={classes.gridItem}>
+          {/* // * Buttons Top container */}
+          <ButtonGroup
+            color="primary"
+            orientation="vertical"
+            variant="contained"
+            className={classes.btnSection}
+            style={{ marginBottom: "1rem" }}
+            fullWidth
+          >
+            <Button disabled={!needsToSave} onClick={saveContent}>
               Save
             </Button>
             <Button
-              size="small"
-              variant="contained"
-              color="primary"
-              component="span"
               onClick={() => goBackToPage(needsToSave, history)}
               // >
             >
               Go Back
             </Button>
-          </Grid>
-        </Grid>
-        <Grid item xs={12} className={classes.btnSection}>
-          <Grid container spacing={3} className={classes.gridContainer}>
-            {/* // * Buttons Top container */}
-            <Button
-              size="small"
-              variant="contained"
-              color="primary"
-              component="span"
-              onClick={() => handleOpen("insertText")}
-            >
-              add Text
-            </Button>
-            <Button
-              size="small"
-              variant="contained"
-              color="primary"
-              component="span"
-              onClick={() => showCloudinaryWidget(cloudinaryWidget)}
-            >
+          </ButtonGroup>
+
+          {/* // * Buttons Top container */}
+          <ButtonGroup
+            color="primary"
+            orientation="vertical"
+            variant="contained"
+            className={classes.btnSection}
+            fullWidth
+          >
+            <Button onClick={() => handleOpen("insertText")}>add Text</Button>
+            <Button onClick={() => showCloudinaryWidget(cloudinaryWidget)}>
               add Media
             </Button>
-            <Button
-              size="small"
-              variant="contained"
-              color="primary"
-              component="span"
-              onClick={() => addToContents(createObj("qrcode"))}
-            >
+            <Button onClick={() => addToContents(createObj("qrcode"))}>
               add QrCode
             </Button>
-            <Button
-              size="small"
-              variant="contained"
-              color="primary"
-              component="span"
-              //
-              onClick={() => handleOpen("preview")}
-            >
-              Preview{" "}
-            </Button>
-          </Grid>
+            <Button onClick={() => handleOpen("preview")}>Preview</Button>
+          </ButtonGroup>
         </Grid>
+
         {/* // ? Contents container */}
         {/* // ? Add content */}
-        <Grid item xs={12} className={classes.gridContent}>
-          <h3>Contents</h3>
+        <Grid item xs={9} className={classes.gridContent}>
+          <h3 className={classes.gridContentHeader}>Contents</h3>
           {/* // ? map contents state */}
           {!contents
             ? null
@@ -662,7 +626,7 @@ export default function SectionContentManager(props) {
             </Button>
           </Grid>
         </Grid> */}
-      </Container>
-    </>
+      </Grid>
+    </Container>
   );
 }
