@@ -125,6 +125,8 @@ export default function SectionContentManager(props) {
   const [section, setSection] = useState({});
   // for save
   const [needsToSave, setNeedsToSave] = useState(false);
+  // for dragging (and dropping)
+  const [dragId, setDragId] = useState();
 
   // for modal
   const [openModalInsertText, setOpenModalInsertText] = useState(false);
@@ -277,19 +279,45 @@ export default function SectionContentManager(props) {
   };
 
   /**
+   * @function findBiggestId
+   * @desc returns a Number -> biggest existing integer of an "id" from the contents array
+   * is aiding the assigning of id's to new contents in function addToContents
+   */
+
+  const findBiggestId = (e) => {
+    let biggestId = 1;
+    contents.forEach((content) => {
+      if (content.id > biggestId) {
+        biggestId = content.id;
+      }
+    });
+    return biggestId;
+  };
+
+  /**
    * @function addToContents
    * @param newContentsArr // newContentsArr to add
    * @desc adds a content into the state "contents" that will be mapped
    */
   const addToContents = (newContentsArr) => {
     // add ids
-    // create id based on the contents already into the array
+    // create "id" based on the contents already into the array,
+    // from the biggestId present on
     // if [contents] s empty assigns the index
-    newContentsArr.forEach((x, i) => {
-      x["id"] =
-        contents.length === 0
-          ? i + 1
-          : contents[contents.length - 1].id + i + 1;
+
+    const bigId = findBiggestId();
+
+    newContentsArr.forEach((content, i) => {
+      if (contents.length === 0) {
+        content["id"] = i + 1;
+        content["order"] = i + 1;
+      } else {
+        // find the content with the biggest id
+        const lastContent = contents.find((content) => content.id === bigId);
+
+        content["id"] = lastContent.id + i + 1;
+        content["order"] = lastContent.id + i + 1;
+      }
     });
     setContents([...contents, ...newContentsArr]);
     // set to save
@@ -379,6 +407,7 @@ export default function SectionContentManager(props) {
     const findIndex = event.sections.findIndex(
       (x) => x.NameIdentifier === nameIdentifier
     );
+    console.log("newsection", newSection);
 
     // 3. replace with the new section with splice
     event.sections.splice(findIndex, 1, newSection);
@@ -387,6 +416,7 @@ export default function SectionContentManager(props) {
     console.log("saveContent()", event);
     try {
       await dispatch(eventUpdate(event));
+      console.log("event", event);
       // set to save
       setNeedsToSave(false);
     } catch (error) {
@@ -429,6 +459,67 @@ export default function SectionContentManager(props) {
   //     return false;
   //   }
   // });
+
+  // * ----------- Functions for the Drag and Re-order of <EventSection/>s
+
+  /**
+   * @function handleDrag
+   * @desc gets the id of the Section which is being dragged
+   * * is passed into the <Child />
+   */
+
+  const handleDrag = (e) => {
+    // IMPORTANT
+    // e.currentTarget.id needs to be parsed otherwise later in handleDrop FUNC, "===" will not work since types are Num and String -> after parsing will be: Num === Num
+    setDragId(parseInt(e.currentTarget.id));
+  };
+
+  /**
+   * @function handleDrop
+   * @desc handles the drop and drag function, using content's keys "id" and "order", which by default are the same once the content is created
+   * * * is passed into the <Child />
+   */
+
+  const handleDrop = (e) => {
+    console.log("contents", contents);
+    console.log("dragID", dragId);
+
+    // * Finding the drag content with the same id as the one the user is trying to drag from
+    const dragContent = contents.find((content) => {
+      console.log(typeof content.id, typeof dragId, content.id === dragId);
+      return content.id === dragId;
+    });
+
+    console.log("content to drag:", dragContent);
+
+    // * Finding the drop content with the same id as the one the user is trying to drop at
+    const dropContent = contents.find(
+      // parsing again because section.id is a Num and e.currentTarget.id is a String
+      (content) => content.id === parseInt(e.currentTarget.id)
+    );
+
+    console.log("content to drop:", dropContent);
+
+    // from order x to order y, from one place to another
+    const dragContentOrder = dragContent.order; // 1
+    const dropContentOrder = dropContent.order; // 2
+
+    console.log("orders:", dragContentOrder, dropContentOrder);
+
+    // setting a new state with the updated order
+    const newContentsState = contents.map((content) => {
+      if (content.id === dragId) {
+        content.order = dropContentOrder;
+      }
+      if (content.id === parseInt(e.currentTarget.id)) {
+        content.order = dragContentOrder;
+      }
+      return content;
+    });
+
+    setContents(newContentsState);
+    console.log(newContentsState);
+  };
 
   return (
     <>
@@ -519,13 +610,14 @@ export default function SectionContentManager(props) {
         </Grid>
         {/* // ? Contents container */}
         {/* // ? Add content */}
-        <Grid container spacing={3}>
-          <Grid xs={12} className={classes.gridContent}>
-            <h3>Contents</h3>
-            {/* // ? map contents state */}
-            {!contents
-              ? null
-              : contents.map((x, i) => {
+        <Grid item xs={12} className={classes.gridContent}>
+          <h3>Contents</h3>
+          {/* // ? map contents state */}
+          {!contents
+            ? null
+            : contents
+                .sort((a, b) => a.order - b.order)
+                .map((x, i) => {
                   if (x.type === "text") {
                     return (
                       <ContentBlockText
@@ -535,6 +627,9 @@ export default function SectionContentManager(props) {
                         itemToDelete={deleteItem}
                         // gets the new content to update
                         newContent={updateMediaText}
+                        // Handle the drag and drop
+                        handleDrag={handleDrag}
+                        handleDrop={handleDrop}
                       />
                     );
                   }
@@ -545,16 +640,18 @@ export default function SectionContentManager(props) {
                       // receives the id of the item to delete
                       itemToDelete={deleteItem}
                       mediaCaption={addMediaCaption}
+                      // Handle the drag and drop
+                      handleDrag={handleDrag}
+                      handleDrop={handleDrop}
                     />
                   );
                 })}
-          </Grid>
         </Grid>
         {/* // ? Buttons Bottom container */}
-        <Grid container spacing={3} className={classes.gridContainer}>
+        {/* <Grid container spacing={3} className={classes.gridContainer}>
           <Grid item xs={12} className={classes.btnSection}>
             {/* // ! TEMPORARLY DISABLED */}
-            {/* <Button
+        {/* <Button
               size="small"
               variant="contained"
               color="primary"
@@ -562,9 +659,9 @@ export default function SectionContentManager(props) {
               onClick={() => addToContents(createObj("text"))}
             >
               Preview{" "}
-            </Button> */}
+            </Button>
           </Grid>
-        </Grid>
+        </Grid> */}
       </Container>
     </>
   );
