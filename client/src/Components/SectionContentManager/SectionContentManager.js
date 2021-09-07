@@ -398,16 +398,24 @@ export default function SectionContentManager(props) {
   const saveContent = async () => {
     console.log("sections Before", event.sections); // ! are ok ?
     console.log("contents", contents);
-
+    console.log("currentSection", section);
     // 1. create the event
     // creates the new obj section spreading the old section into the state
     const newSection = { ...section, contents: contents };
     // 2. update the section into the event
     // find index for splice
-    const findIndex = event.sections.findIndex(
-      (x) => x.NameIdentifier === nameIdentifier
-    );
 
+    // ! findIndex WAS not working w/nameIdentifier
+    // ! because its the name of the EVENT!
+    console.log("nameIdentifier", nameIdentifier); // ! Is the name of the EVENT
+    console.log("id", id); // ! Is the id of the SECTION
+    /* const findIndex = event.sections.findIndex(
+      (x) => x.NameIdentifier === nameIdentifier
+    ); */
+
+    const findIndex = event.sections.findIndex((x) => x.id === id);
+
+    console.log("index of section", findIndex);
     console.log("newsection", newSection);
 
     // 3. replace with the new section with splice
