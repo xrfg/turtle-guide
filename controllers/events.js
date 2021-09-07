@@ -122,15 +122,16 @@ exports.post = async (req, res, next) => {
 
 exports.put = async (req, res, next) => {
   // extract name from params
-  const { name } = req.params;
+  const { name } = req.params; // it's the old name identifier
 
-  // ! needs the old name identifier
+  // create a new obj WITHOUT the oldNameIdentifier key
+  delete req.body.oldNameIdentifier;
 
   try {
     // find and update the item using nameIdentifier
     const event = await Event.findOneAndUpdate(
       { nameIdentifier: name },
-      req.body,
+      req.body, // the oldNameIdentifier is removed
       {
         new: true,
       }

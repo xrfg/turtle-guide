@@ -14,16 +14,15 @@ import Spinner from "../../Components/Spinner/Spinner";
 // * baseURL
 
 export default function Guide(props) {
-  // console.log("props", props.match.params.name);
-
+  // TODO REMOVE
   const baseURL = "http://localhost:5000/api/events/";
-
+  // * States
   const [event, setEvent] = useState();
   const [loading, setLoading] = useState(true);
 
-  // name of the evetn to fetch
+  // name of the event to fetch
   const name = props.match.params.name;
-  console.log(name);
+
   const getEvent = async () => {
     setLoading(true);
     try {

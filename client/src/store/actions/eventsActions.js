@@ -53,15 +53,16 @@ export const eventCreate = (obj) => {
  */
 
 export const eventUpdate = (obj) => {
-  console.log("eventUpdate", obj);
-
-  // ! needs the old name identifier to pass also for MONGO
-
   return async (dispatch) => {
+    // ! it uses the old nameIdf cause in mongo it has this still that nameIdf
+    const eventName = obj.hasOwnProperty("oldNameIdentifier")
+      ? obj.oldNameIdentifier
+      : obj.nameIdentifier;
+
     // uses a function to create an object for axios
     const objToSend = createObj({
       method: "PUT",
-      url: BASEurlEvents + obj.nameIdentifier, // ? better slug ?
+      url: BASEurlEvents + eventName,
       data: obj,
       token: token,
     });

@@ -127,7 +127,9 @@ export default function Event(props) {
   // fires when the state event is created/ updated
   useEffect(() => {
     // TODO try catch to handle UI Error
+    console.log("useEff for saving");
     if (needsToSave) {
+      console.log("useEff IS saving");
       // dispatch
       const res = dispatch(eventUpdate(event));
 
@@ -374,7 +376,8 @@ export default function Event(props) {
       ...event,
       title: title,
       slug: slug,
-      // nameIdentifier: slug, // ! must be added once found a solution for the old
+      nameIdentifier: slug, // new name identifier
+      oldNameIdentifier: event.slug, // old name identifier just for the search
       sections: [...sections],
     });
     // setNeedsToSave(false) is into useEffect
@@ -438,6 +441,12 @@ export default function Event(props) {
     setNeedsToSave(true);
   };
 
+  // ! test to remove
+  const eventNameUpdate = () => {
+    console.log("eventNameUpdate", event);
+    setNeedsToSave(true);
+  };
+
   // * Listener to avoid the user to go back without saving
   unBlock(needsToSave, history);
 
@@ -452,7 +461,7 @@ export default function Event(props) {
         */}
             <EventName
               // important to fire the event name update
-              eventNameUpdate={saveEvent}
+              eventNameUpdate={eventNameUpdate}
               title={event.title}
               slug={event.slug}
               getEventName={createAndSendEvent}
