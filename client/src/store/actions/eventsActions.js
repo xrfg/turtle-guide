@@ -55,6 +55,8 @@ export const eventCreate = (obj) => {
  */
 
 export const eventUpdate = (obj) => {
+  console.log("obj", obj);
+
   return async (dispatch) => {
     // important
     //  it uses the old nameIdf cause in mongo it has this still that nameIdf

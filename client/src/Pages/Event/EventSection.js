@@ -95,6 +95,7 @@ export default function EventSection(props) {
    */
 
   const editSection = () => {
+    console.log("editSection", id, title);
     props.editSection(id, title);
   };
 

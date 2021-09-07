@@ -239,6 +239,9 @@ export default function Event(props) {
     // if [contents] s empty assigns the index
 
     const bigId = findBiggestId();
+    console.log("findBiggestId()", findBiggestId());
+
+    // const bigId = sections
 
     newSectionsArr.forEach((section, i) => {
       if (sections.length === 0) {

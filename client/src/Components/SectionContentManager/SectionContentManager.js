@@ -132,6 +132,10 @@ export default function SectionContentManager(props) {
     const getEvent = events.find((x) => x.nameIdentifier === nameIdentifier);
     // set the event to be modified and sent for saving
     setEvent(getEvent);
+
+    console.log("getEvent", getEvent); // ! check initial state
+    console.log("state.events.events", events); // ! check initial state
+
     // get the section with the id
     const getSection = getEvent.sections.find((x) => x.id === id);
     setSection(getSection);
@@ -392,6 +396,9 @@ export default function SectionContentManager(props) {
    */
 
   const saveContent = async () => {
+    console.log("sections Before", event.sections); // ! are ok ?
+    console.log("contents", contents);
+
     // 1. create the event
     // creates the new obj section spreading the old section into the state
     const newSection = { ...section, contents: contents };
@@ -400,13 +407,14 @@ export default function SectionContentManager(props) {
     const findIndex = event.sections.findIndex(
       (x) => x.NameIdentifier === nameIdentifier
     );
+
     console.log("newsection", newSection);
 
     // 3. replace with the new section with splice
     event.sections.splice(findIndex, 1, newSection);
     // 4. dispatch event update
 
-    console.log("saveContent()", event);
+    console.log("sections After", event);
     try {
       await dispatch(eventUpdate(event));
       console.log("event", event);
@@ -546,9 +554,7 @@ export default function SectionContentManager(props) {
             <Button disabled={!needsToSave} onClick={saveContent}>
               Save
             </Button>
-            <Button
-              onClick={() => goBackToPage(needsToSave, history)}
-            >
+            <Button onClick={() => goBackToPage(needsToSave, history)}>
               Go Back
             </Button>
           </ButtonGroup>
