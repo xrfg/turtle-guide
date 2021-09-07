@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 // * Components
 import BottomNavBar from "../../Components/Navbar/BottomNavBar";
+import { Link, useHistory } from "react-router-dom";
 
 // * MatUI
 import { makeStyles } from "@material-ui/core/styles";
@@ -49,11 +50,13 @@ const useStyles = makeStyles((theme) => ({
 export default function Home(props) {
   // * Hooks
   const classes = useStyles();
+  const history = useHistory();
+
   // * States
   const [expanded, setExpanded] = useState(false);
 
   // * Destruc
-  const { title, sections } = props;
+  const { title, sections, id } = props;
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -65,7 +68,7 @@ export default function Home(props) {
   // TODO to ext
   const BlockSection = (props) => {
     // destruc
-    const { title, description } = props.data;
+    const { title, description, id } = props.data;
 
     return (
       <Card className={classes.root} maxWidth="lg">
@@ -85,12 +88,11 @@ export default function Home(props) {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary">
-            Share
-          </Button>
-          <Button size="small" color="primary">
-            Learn More
-          </Button>
+          <Link to={`/events/van-gogh/sections/${id}`}>
+            <Button size="small" color="primary" ì>
+              Go to Section
+            </Button>
+          </Link>
         </CardActions>
       </Card>
     );

@@ -6,6 +6,7 @@ import Home from "./Pages/Home/Home";
 import Account from "./Pages/Account/Account";
 import AboutAdmin from "./Pages/AboutAdmin/AboutAdmin";
 import Guide from "./Components/Guide/Guide";
+import SectionGuide from "./Components/Guide/Pages/Section/Section";
 import Event from "./Pages/Event/Event";
 import Section from "./Pages/Section/Section";
 import SignUp from "./Pages/SignUp/SignUp";
@@ -30,14 +31,19 @@ function App() {
           <div className="App">
             <Switch>
               {/* Has to stay here to do not have the admin navbar */}
-              <Route path="/events/:name" component={Guide} />
+
+              <Route exact path="/events/:name" component={Guide} />
+              <Route
+                exact
+                path="/events/:name/sections/:id"
+                component={SectionGuide}
+              />
+
               <div>
                 <Navbar />
                 <Route exact path="/" component={Home} />
                 <Route exact path="/admin" component={SignUp} />
-                {/*
-          // ! TEMPORARY LINK 
-        */}
+
                 <Route path="/account" component={Account} />
                 <Route path="/aboutadmin" component={AboutAdmin} />
                 <Route exact path="/admin/event/:name" component={Event} />

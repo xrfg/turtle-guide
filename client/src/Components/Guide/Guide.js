@@ -45,27 +45,25 @@ export default function Guide(props) {
 
   return (
     <>
-      <BrowserRouter>
-        {/* Wraping all the guide */}
-        <div>
-          <Navbar />
-        </div>
-        <Switch>
-          {/* <Route exact path="/">
+      {/* Wraping all the guide */}
+      <div>
+        <Navbar />
+        {/* <Switch> */}
+        {/* <Route exact path="/">
             <Home />
-          </Route>
-          <Route path="/guide">
+            </Route>
+            <Route path="/guide">
             <Home />
           </Route> */}
-          {/* <Route exact path="/:id" component={Event} /> */}
-        </Switch>
+        {/* <Route exact path="/:id" component={Event} /> */}
+        {/* </Switch> */}
         {/* Renders the data */}
         {loading ? (
           <Spinner />
         ) : (
           <Home title={event.data.title} sections={event.data.sections} />
         )}
-      </BrowserRouter>
+      </div>
     </>
   );
 }
