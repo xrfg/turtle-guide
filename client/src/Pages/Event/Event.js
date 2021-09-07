@@ -69,6 +69,14 @@ export default function Event(props) {
   // * States
   // single event
   const [event, setEvent] = useState();
+
+  // ! remove
+  // to allow if is a new event
+  // props comming from account
+  // const [isNewEvent, setIsNewEvent] = useState(
+  //   props.location.state?.isNew === true ? true : false
+  // );
+
   // all sections
   // the sections are always upadated here before the save
   const [sections, setSections] = useState([]);
@@ -100,6 +108,9 @@ export default function Event(props) {
 
   // get the slug to search for the event
   const slug = props.match.params.name;
+  // to allow if is a new event
+  // props comming from account
+
   // to allow if is a new event
   // props comming from account
   let isNewEvent = props.location.state?.isNew === true ? true : false;
@@ -156,9 +167,11 @@ export default function Event(props) {
     // if event is empty do not dispatch
     // ! isNewevent Stops it from a recreating of an existing event
     // ! keep as an option
-    if (!event || !isNewEvent) {
+    if (!event || !isNewEvent || needsToSave) {
       return null;
     }
+
+    console.log("is creating");
     // dispatch the event to redux
     return dispatch(eventCreate(event));
     //eslint-disable-next-line
@@ -340,6 +353,7 @@ export default function Event(props) {
   // else fetch event
 
   const createAndSendEvent = (obj) => {
+    console.log("createAndSendEvent");
     // destruct
     const { title, slug } = obj;
 
@@ -355,6 +369,7 @@ export default function Event(props) {
       // ! spread obj
     });
     // to stop useEffect after the creation of a new event
+    // ! remove
     isNewEvent = false;
   };
 
@@ -450,8 +465,14 @@ export default function Event(props) {
     setNeedsToSave(true);
   };
 
-  // ! test to remove
+  /**
+   * @function eventNameUpdate
+   * @param eventName comes from <EventName />
+   * @desc fired when the event name changed
+   */
   const eventNameUpdate = (eventName) => {
+    console.log("eventNameUpdate", eventName);
+
     // create a new obj that fires a saving with useEffect
     // new slug
     const slug = slugify(eventName);

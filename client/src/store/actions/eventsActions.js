@@ -24,6 +24,8 @@ const token =
  * @desc action to create a new event
  */
 export const eventCreate = (obj) => {
+  console.log("eventCreate", obj);
+
   return async (dispatch) => {
     // uses a function to create an object for axios
     const objToSend = createObj({
@@ -71,7 +73,7 @@ export const eventUpdate = (obj) => {
     try {
       // call api
       const res = await axios(objToSend);
-
+      console.log("res", res);
       // res.data.data sends just the event
       await dispatch({ type: EVENT_UPDATE, payload: res.data.data });
 

@@ -124,6 +124,8 @@ exports.put = async (req, res, next) => {
   // extract name from params
   const { name } = req.params; // it's the old name identifier
 
+  console.log("req.body", res.body);
+
   //  it uses the old nameIdf cause in mongo it has this still that nameIdf
   const eventName = req.body.hasOwnProperty("oldNameIdentifier")
     ? req.body.oldNameIdentifier
