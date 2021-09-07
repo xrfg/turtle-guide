@@ -6,9 +6,11 @@ import Account from "./Pages/Account/Account";
 import Navbar from "./Components/Navbar/Navbar";
 import SignUp from "./Pages/SignUp/SignUp"
 import SignIn from "./Pages/SignIn/SignIn";
+import Footer from "./Components/Guide/Components/footer/Footer";
 
 function App() {
   return (
+    <>
     <BrowserRouter>
       <div className="App">
         <Navbar />
@@ -31,6 +33,8 @@ function App() {
         </Switch>
       </div>
     </BrowserRouter>
+    <Footer/>
+    </>
   );
 }
 

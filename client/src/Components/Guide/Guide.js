@@ -1,9 +1,10 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Home from "./Pages/Home/Home";
+// import Home from "./Pages/Home/Home";
+import Home from "./Pages/Home/Home"
 import Event from "./Pages/Event/Event";
 import Navbar from "./Components/Navbar/Navbar";
-import Footer from "./Components/footer/Footer";
+
 
 
 
@@ -28,7 +29,7 @@ export default function Guide() {
       </Switch>
     </BrowserRouter>
 
-<Footer/>
+
 </>
   );
 }
