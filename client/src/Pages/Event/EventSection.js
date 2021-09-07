@@ -73,7 +73,8 @@ export default function EventSection(props) {
     } else {
       // editing closes
       setEditing(false);
-      // props.sendMessage("Section Title and Description saved!");
+      // fires section title saving
+      props.saveSectionTitle();
     }
   };
 

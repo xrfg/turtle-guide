@@ -63,7 +63,6 @@ const EventName = (props) => {
       // save edit
       setEditing((prev) => !prev);
       // important to fire the event name update
-
       props.eventNameUpdate({ title: eventName, slug: eventName });
     }
   };

@@ -126,6 +126,7 @@ export default function Event(props) {
 
   // fires when the state event is created/ updated
   useEffect(() => {
+    // TODO try catch to handle UI Error
     if (needsToSave) {
       // dispatch
       const res = dispatch(eventUpdate(event));
@@ -135,7 +136,7 @@ export default function Event(props) {
           // error false
           setIsError(false);
           // success msg
-          setIsSuccess("Section saved successfully!");
+          setIsSuccess("Saved successfully!");
           // set save to false to disable the button
           return setNeedsToSave(false);
         }
@@ -427,14 +428,18 @@ export default function Event(props) {
       nameIdentifier: event.nameIdentifier, // name of the current event
     });
   };
-  // * Objects
+
+  /**
+   * @function saveSectionTitle
+   * @param noParam
+   * @desc to save when sectin title changes
+   */
+  const saveSectionTitle = () => {
+    setNeedsToSave(true);
+  };
 
   // * Listener to avoid the user to go back without saving
   unBlock(needsToSave, history);
-
-  // const testFunc = (msg) => {
-  //   setIsSuccess("Section Title and Description saved!");
-  // };
 
   return (
     <Container style={{ padding: "2rem 0" }} maxWidth="md">
@@ -561,15 +566,16 @@ export default function Event(props) {
                 <ul>
                   {sections
                     .sort((a, b) => a.order - b.order)
-                    .map((section) => {
+                    .map((section, i) => {
                       return (
                         <EventSection
+                          key={i}
                           section={section}
                           sectionToDelete={deleteSection}
                           handleDrag={handleDrag}
                           handleDrop={handleDrop}
                           editSection={editSectionMode}
-                          // sendMessage={testFunc}
+                          saveSectionTitle={saveSectionTitle} // to save when sectin title changes
                         />
                       );
                     })}

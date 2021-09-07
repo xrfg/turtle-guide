@@ -124,6 +124,8 @@ exports.put = async (req, res, next) => {
   // extract name from params
   const { name } = req.params;
 
+  // ! needs the old name identifier
+
   try {
     // find and update the item using nameIdentifier
     const event = await Event.findOneAndUpdate(
