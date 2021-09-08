@@ -52,8 +52,8 @@ const BlockSection = (props) => {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="https://ernst-leitz-museum.de/wp-content/uploads/2019/03/das-ernst-leitz-museum-in-wetzlar-2-2-1440x566.jpg"
-          title="Contemplative Reptile"
+          image={props.data.sectionCover.url}
+          title={props.data.sectionCover.filename}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
