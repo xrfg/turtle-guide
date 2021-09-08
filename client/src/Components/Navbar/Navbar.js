@@ -4,27 +4,35 @@
  */
 
 import React from "react";
-import { NavLink, Link, useHistory } from "react-router-dom";
-import "./navbar.scss";
 
-// Imports
+// * react-router-dom Imports
+import { Link } from "react-router-dom";
+
+// * Material UI Imports
+import { AppBar, Toolbar } from "@material-ui/core";
+
+import logoOutlines from "../../assets/images/logo/turtle_logo-outlines.png";
+import logoFilled from "../../assets/images/logo/turtle_logo-filled.png";
+
+// * Component Imports
 import Menu from "../Menu/Menu";
 
-const Navbar = ({ user }) => {
-  const arrMenu = [
-    { title: "", className: "dropdown-item", to: "/create-event" },
-  ];
-
+const Navbar = () => {
   return (
-    <nav class="navbar">
-      {/* LOGO Clickable */}
-      <div className="navbar__container">
+    <AppBar style={{ backgroundColor: "#D9D9D9", position: "relative" }}>
+      <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
         <Link className="navbar-brand" to="/">
-          Turtle Guide
+          <img
+            style={{ height: "60px", margin: "0.4rem 0" }}
+            src={logoFilled}
+            alt="logo"
+          />
         </Link>
+
+        {/* has the YOUR ACCOUNT and LOG IN/OUT */}
         <Menu />
-      </div>
-    </nav>
+      </Toolbar>
+    </AppBar>
   );
 };
 
