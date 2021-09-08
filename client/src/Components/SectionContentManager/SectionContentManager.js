@@ -205,8 +205,14 @@ export default function SectionContentManager(props) {
 
         // if is adding cover true
         if (isAddingCover) {
+          const objCoverInfo = {
+            filename: x.uploadInfo.original_filename,
+            public_id: x.uploadInfo.public_id,
+            url: x.uploadInfo.url,
+            url_thumb: x.uploadInfo.thumbnail_url,
+          };
           // put into section
-          section.coverImage = x;
+          section.sectionCover = objCoverInfo;
           // set tot save
           return setNeedsToSave(true);
         }
@@ -527,7 +533,7 @@ export default function SectionContentManager(props) {
           </Grid>
           <Grid item xs={12} className={classes.gridItem}>
             {/* Section cover image */}
-            {!section.coverImage ? (
+            {!section.sectionCover ? (
               // show button
               // important to upload the cover pass true
               <Button
@@ -543,7 +549,7 @@ export default function SectionContentManager(props) {
               <img
                 className={classes.sectionCover}
                 alt="section-cover"
-                src={section.coverImage.uploadInfo.url}
+                src={section.sectionCover.url}
               />
             )}
 
