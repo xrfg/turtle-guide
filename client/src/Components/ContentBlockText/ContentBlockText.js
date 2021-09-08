@@ -85,8 +85,6 @@ const ContentBlockText = (props) => {
   // * Destructuring props
   let { id, content } = props.item;
 
-  console.log("id, content", id, content);
-
   // * State
   const [isEditing, setIsEditing] = useState(false);
   const [newContent, setNewContent] = useState({ content: "" });

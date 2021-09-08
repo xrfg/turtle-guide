@@ -116,6 +116,8 @@ export default function SectionContentManager(props) {
   const [needsToSave, setNeedsToSave] = useState(false);
   // for dragging (and dropping)
   const [dragId, setDragId] = useState();
+  // for cover upload
+  const [isAddingCover, setIsAddingCover] = useState(false);
 
   // for modal
   const [openModalInsertText, setOpenModalInsertText] = useState(false);
@@ -161,9 +163,12 @@ export default function SectionContentManager(props) {
       uploadPreset: "turtle_guide", // name of the created upload
     },
     (error, result) => {
+      console.log("cloudinaryWidget result", result);
+
       // if error returns error
       if (error) return console.log("Error on upload", error);
       // calls function
+      //! put a state here that switches into cover?
       checkCloudinaryUpload(result);
     }
   );
@@ -174,7 +179,8 @@ export default function SectionContentManager(props) {
    * @param widget i.e. showCloudinaryWidget(cloudinaryWidget)
    */
   const showCloudinaryWidget = (widget) => {
-    cloudinaryWidget.open();
+    // console.log("isAddingCover", isAddingCover);
+    widget.open();
   };
 
   /**
@@ -183,6 +189,9 @@ export default function SectionContentManager(props) {
    * and sends to add content
    * @param result i.e. checkCloudinaryUpload(result)
    */
+
+  //! pass a param to upload cover?
+
   const checkCloudinaryUpload = (result) => {
     // if event ended
     if (result.event === "queues-end") {
@@ -195,7 +204,7 @@ export default function SectionContentManager(props) {
         if (x == undefined) {
           return console.log("Upload error");
         }
-
+        //! how to handle that here?
         // push objs created with the
         // functions createObj AND objToSendImage
         arrTemp.push(createObj(objToSendMedia(x)));
@@ -514,6 +523,7 @@ export default function SectionContentManager(props) {
             {/* Section cover image */}
             {!section.coverImage ? (
               // show button
+              // important to upload the cover pass true
               <Button onClick={() => showCloudinaryWidget(cloudinaryWidget)}>
                 Add a cover Image
               </Button>
@@ -562,6 +572,7 @@ export default function SectionContentManager(props) {
               fullWidth
             >
               <Button onClick={() => handleOpen("insertText")}>add Text</Button>
+              {/* // ordinary upload with cloudinaryWidget param */}
               <Button onClick={() => showCloudinaryWidget(cloudinaryWidget)}>
                 add Media
               </Button>
