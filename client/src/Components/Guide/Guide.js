@@ -49,7 +49,6 @@ export default function Guide(props) {
           <Spinner />
         ) : (
           <Home
-            data={event}
             eventSlug={event.data.slug}
             title={event.data.title}
             sections={event.data.sections}
