@@ -54,7 +54,8 @@ const BlockSection = (props) => {
 
   const goToSection = () => {
     history.push(`/events/${eventSlug}/sections/${id}`, {
-      sectionData: props.data,
+      eventSlug: eventSlug,
+      id: id,
     });
   };
 
