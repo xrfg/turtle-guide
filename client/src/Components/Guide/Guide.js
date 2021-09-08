@@ -8,6 +8,7 @@ import Navbar from "./Components/Navbar/Navbar";
 
 
 
+
 export default function Guide() {
   // Guide.js wraps all the VISITOR sees
   return (
@@ -25,7 +26,13 @@ export default function Guide() {
         <Route path="/guide">
         <Home/>
         </Route>
+       
+        
+        
+        
+        
         <Route exact path="/:id" component={Event} />
+        
       </Switch>
     </BrowserRouter>
 

@@ -7,6 +7,7 @@ import Navbar from "./Components/Navbar/Navbar";
 import SignUp from "./Pages/SignUp/SignUp"
 import SignIn from "./Pages/SignIn/SignIn";
 import Footer from "./Components/Guide/Components/footer/Footer";
+import Buy from "./Components/Guide/Pages/Buy/Buy"
 
 function App() {
   return (
@@ -26,13 +27,18 @@ function App() {
            <SignIn/>
           </Route>
           <Route path="/account" component={Account} />
-
+          {/* Guide Page Route */}
           <Route path="/guide">
             <Guide />
+          </Route>
+          {/* this route is payment Form for the Guide  */}
+          <Route path="/payment">
+            <Buy />
           </Route>
         </Switch>
       </div>
     </BrowserRouter>
+    {/* Main Footer Of the App */}
     <Footer/>
     </>
   );

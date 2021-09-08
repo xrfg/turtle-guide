@@ -1,15 +1,18 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CardActionArea from '@material-ui/core/CardActionArea';
-
-import {Grid,Container,Button,Box } from "@material-ui/core"
+import {Grid,Container,Box } from "@material-ui/core"
 import Card from '@material-ui/core/Card';
-
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-
 import Typography from '@material-ui/core/Typography';
+import StripeCheckout from "react-stripe-checkout";
+import axios from "axios";
+import { toast } from "react-toastify";
+
+// import "react-toastify/dist/ReactToastify.css";
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -51,12 +54,30 @@ const useStyles = makeStyles((theme) => ({
 }));
 
  
-
+toast.configure();
 export default function Home() {
   const classes = useStyles();
   // const [expanded, setExpanded] = React.useState(false);
 
- 
+  const [product] = React.useState({
+    name: "Buy Guide",
+    price: 64998.67,
+    description: "Cool car"
+  });
+
+  async function handleToken(token, addresses) {
+    const response = await axios.post(
+      "https://ry7v05l6on.sse.codesandbox.io/checkout",
+      { token, product }
+    );
+    const { status } = response.data;
+    console.log("Response:", response.data);
+    if (status === "success") {
+      toast("Success! Check email for details", { type: "success" });
+    } else {
+      toast("Something went wrong", { type: "error" });
+    }
+  }
 
   return (
     <>
@@ -96,11 +117,21 @@ export default function Home() {
         </CardContent>
       </CardActionArea>
       <CardActions className={classes.cardActions}>
+
+        {/* Buy Button */}
+        <StripeCheckout
+      stripeKey="pk_test_4TbuO6qAW2XPuce1Q6ywrGP200NrDZ2233"
+      token={handleToken}
+      amount={product.price * 100}
+      name="Tesla Roadster"
+      billingAddress
+      shippingAddress
+    />
         
        
-        <Button size="small" color="primary">
+        {/* <Button size="small" color="primary">
          See our Guides
-        </Button>
+        </Button> */}
 
       </CardActions>
     </Card>
@@ -124,10 +155,20 @@ export default function Home() {
       </CardActionArea>
       <CardActions className={classes.cardActions}>
         
-       
-        <Button size="small" color="primary">
+             {/* Buy Button */}
+             <StripeCheckout
+      stripeKey="pk_test_4TbuO6qAW2XPuce1Q6ywrGP200NrDZ2233"
+      token={handleToken}
+      amount={product.price * 100}
+      name="Tesla Roadster"
+      billingAddress
+      shippingAddress
+    />
+
+
+        {/* <Button size="small" color="primary">
          See our Guides
-        </Button>
+        </Button> */}
 
       </CardActions>
     </Card>
@@ -153,10 +194,20 @@ export default function Home() {
       </CardActionArea>
       <CardActions className={classes.cardActions}>
         
+
+              {/* Buy Button */}
+              <StripeCheckout
+      stripeKey="pk_test_4TbuO6qAW2XPuce1Q6ywrGP200NrDZ2233"
+      token={handleToken}
+      amount={product.price * 100}
+      name="Tesla Roadster"
+      billingAddress
+      shippingAddress
+    />
        
-        <Button size="small" color="primary">
+        {/* <Button size="small" color="primary">
          See our Guides
-        </Button>
+        </Button> */}
 
       </CardActions>
     </Card>
@@ -182,10 +233,19 @@ export default function Home() {
       </CardActionArea>
       <CardActions className={classes.cardActions}>
         
+              {/* Buy Button */}
+              <StripeCheckout
+      stripeKey="pk_test_4TbuO6qAW2XPuce1Q6ywrGP200NrDZ2233"
+      token={handleToken}
+      amount={product.price * 100}
+      name="Buy Guide"
+      billingAddress
+      shippingAddress
+    />
        
-        <Button size="small" color="primary">
+        {/* <Button size="small" color="primary">
          See our Guides
-        </Button>
+        </Button> */}
 
       </CardActions>
     </Card>
@@ -211,9 +271,18 @@ export default function Home() {
       <CardActions className={classes.cardActions}>
         
        
-        <Button size="small" color="primary">
+             {/* Buy Button */}
+             <StripeCheckout
+      stripeKey="pk_test_4TbuO6qAW2XPuce1Q6ywrGP200NrDZ2233"
+      token={handleToken}
+      amount={product.price * 100}
+      name="Buy Guide"
+      billingAddress
+      shippingAddress
+    />
+        {/* <Button size="small" color="primary">
          See our Guides
-        </Button>
+        </Button> */}
 
       </CardActions>
     </Card>
