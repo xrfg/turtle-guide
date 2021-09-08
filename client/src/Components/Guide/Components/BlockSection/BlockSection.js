@@ -3,7 +3,7 @@
  */
 
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 // * MAT UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -42,13 +42,22 @@ const useStyles = makeStyles((theme) => ({
 const BlockSection = (props) => {
   // * HOOKS
   const classes = useStyles();
+  let history = useHistory();
 
   // destruc
   const { eventSlug } = props;
   const { title, description, id } = props.data;
 
+  console.log("props.data", props);
+
+  const goToSection = () => {
+    history.push(`/events/${eventSlug}/sections/${id}`, {
+      sectionData: props.data,
+    });
+  };
+
   return (
-    <Card className={classes.root} maxWidth="lg">
+    <Card className={classes.root} maxWidth="lg" onClick={goToSection}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
@@ -64,13 +73,6 @@ const BlockSection = (props) => {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Link to={`/events/${eventSlug}/sections/${id}`}>
-          <Button size="small" color="primary" ì>
-            Go to Section
-          </Button>
-        </Link>
-      </CardActions>
     </Card>
   );
 };

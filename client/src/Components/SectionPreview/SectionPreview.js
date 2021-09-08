@@ -1,7 +1,7 @@
 /**
  * @desc Component that preview the Sections or
  * renders the sections into the Guide/Event
- * @requires props "contents" <SectionPreview contents={ }/>
+ * @requires props "contents" <SectionPreview contents={ } sectionCover={} sectionDescriptio={}/>
  */
 
 // TODO Add video render from cloudinary
