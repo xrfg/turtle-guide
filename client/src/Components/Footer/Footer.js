@@ -1,7 +1,4 @@
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import Link from "@material-ui/core/link";
+import { Container, Grid, Box, Link } from "@material-ui/core";
 
 export default function Footer() {
   return (
@@ -13,7 +10,7 @@ export default function Footer() {
         color="black"
       >
         <Container maxWidth="lg">
-          <Grid container spacing={5}>
+          <Grid container spacing={3}>
             <Grid item xs={12} sm={4}>
               <Box borderBottom={1}>Help</Box>
               <Box>
@@ -36,7 +33,7 @@ export default function Footer() {
               <Box borderBottom={1}>Company</Box>
               <Box>
                 <Link href="/" color="inherit">
-                  Terms ans Policy
+                  Terms and Policy
                 </Link>
               </Box>
               <Box>
@@ -54,7 +51,7 @@ export default function Footer() {
               <Box borderBottom={1}>Product</Box>
               <Box>
                 <Link href="/" color="inherit">
-                  What`s new
+                  New Features
                 </Link>
               </Box>
               <Box>

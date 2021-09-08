@@ -14,6 +14,7 @@ import SignIn from "./Pages/SignIn/SignIn";
 
 // * Import Custom  Components
 import Navbar from "./Components/Navbar/Navbar";
+import Footer from "./Components/Footer/Footer";
 
 // REDUX
 import { Provider } from "react-redux";
@@ -53,6 +54,7 @@ function App() {
                   path="/admin/event/sections/:id"
                   component={Section}
                 />
+                <Footer />
               </div>
             </Switch>
           </div>
