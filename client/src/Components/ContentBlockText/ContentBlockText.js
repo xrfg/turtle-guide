@@ -140,16 +140,21 @@ const ContentBlockText = (props) => {
     setIsEditing((prev) => !prev);
   };
 
+  /**
+   * @desc activate drag
+   *
+   */
+
   return (
     <Paper
       className={classes.paper}
       key={id}
       // below attributes for drag nd drop
       id={id}
-      draggable={true}
-      onDragOver={(e) => e.preventDefault()}
-      onDragStart={props.handleDrag}
-      onDrop={props.handleDrop}
+      draggable={props.isDraggable ? true : false}
+      onDragOver={props.isDraggable ? (e) => e.preventDefault() : null}
+      onDragStart={props.isDraggable ? props.handleDrag : null}
+      onDrop={props.isDraggable ? props.handleDrop : null}
     >
       <Grid item xs={12} sm container className={classes.mediaContainer}>
         <Grid item>
@@ -189,9 +194,11 @@ const ContentBlockText = (props) => {
           <ButtonBase onClick={() => removeContent(id)}>
             <DeleteIcon fontSize="small" />
           </ButtonBase>
-          <ButtonBase>
-            <DragIndicator fontSize="small" />
-          </ButtonBase>
+          {props.isDraggable ? (
+            <ButtonBase>
+              <DragIndicator fontSize="small" />
+            </ButtonBase>
+          ) : null}
         </Grid>
 
         <Grid item>

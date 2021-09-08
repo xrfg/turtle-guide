@@ -569,6 +569,7 @@ export default function SectionContentManager(props) {
 
             {/* Section description Edit */}
             <ContentBlockText
+              isDraggable={false} // to prevent it from being draggable
               item={objSectionDecription}
               // receives the id of the item to delete
               itemToDelete={deleteItem}
@@ -631,6 +632,7 @@ export default function SectionContentManager(props) {
                     if (x.type === "text") {
                       return (
                         <ContentBlockText
+                          isDraggable={true}
                           item={x}
                           key={x.id}
                           // receives the id of the item to delete
@@ -645,6 +647,7 @@ export default function SectionContentManager(props) {
                     }
                     return (
                       <ContentBlockMedia
+                        isDraggable={true}
                         item={x}
                         key={x.id}
                         // receives the id of the item to delete
