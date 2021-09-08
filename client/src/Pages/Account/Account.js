@@ -8,7 +8,7 @@
 import React, { useEffect, useState } from "react";
 
 // * react-router-dom
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 
 // * REDUX
 import { useSelector, useDispatch } from "react-redux";
@@ -22,8 +22,10 @@ import {
   CardContent,
   Typography,
   CardActions,
+  IconButton,
   Button,
   makeStyles,
+  Link,
 } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 
@@ -32,13 +34,26 @@ import EventNameInsert from "./EventNameInsert";
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    marginTop: "10rem",
-    padding: "1rem",
+    // marginTop: "10rem",
+    // padding: "1rem",
     textAlign: "center",
   },
+  cardTitleBox: {
+    width: "100%",
+    backgroundColor: "#D9D9D9",
+    borderBottom: "1px solid #3C6E71",
+    marginBottom: "1rem",
+  },
+  cardTitle: {
+    fontSize: "1.6rem",
+  },
   cardActions: { flexDirection: "column" },
-  link: { textDecoration: "none", color: "inherit", width: "100%" },
-  /* btn: { width: "100%" }, */
+  link: {
+    padding: "0.5rem",
+    color: "#3C6E71",
+    transition: "all 0.2s",
+    "&:hover": { color: "black" },
+  },
 }));
 
 const Account = (props) => {
@@ -63,7 +78,7 @@ const Account = (props) => {
   };
 
   return (
-    <Container>
+    <Container style={{ padding: "2rem" }}>
       <Grid
         container
         direction="row"
@@ -73,48 +88,49 @@ const Account = (props) => {
       >
         <Grid item xs={6}>
           <Card className={classes.card}>
-            <CardContent>
-              <Typography variant="h3" component="span">
+            <CardContent className={classes.cardTitleBox}>
+              <Typography component="span" className={classes.cardTitle}>
                 Events
               </Typography>
             </CardContent>
+
             <CardActions className={classes.cardActions}>
               {events &&
                 events.map((event) => {
                   return (
-                    <Button
-                      className={classes.btn}
-                      variant="text"
-                      color="primary"
+                    <Link
+                      component={RouterLink}
+                      className={classes.link}
+                      to={`/admin/event/${event.slug}`}
+                      underline="none"
                     >
-                      <Link
-                        className={classes.link}
-                        to={`/admin/event/${event.slug}`}
-                      >
-                        {event.title}
-                      </Link>
-                    </Button>
+                      <Typography component="span">{event.title}</Typography>
+                    </Link>
                   );
                 })}
 
               {isAddingEvent ? (
                 <EventNameInsert />
               ) : (
-                <Button
-                  className={classes.btn}
-                  variant="text"
+                <IconButton
+                  className={classes.link}
                   color="primary"
                   onClick={addEvent}
                 >
                   <Add />
-                </Button>
+                </IconButton>
               )}
             </CardActions>
           </Card>
         </Grid>
         <Grid item xs={6}>
           <Card className={classes.card}>
-            <Link className={classes.link} to="/aboutadmin">
+            <Link
+              component={RouterLink}
+              className={classes.link}
+              to="/aboutadmin"
+              underline="none"
+            >
               <CardContent>
                 <Typography variant="h3" component="span">
                   About
