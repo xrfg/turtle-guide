@@ -93,8 +93,6 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-// ! takes ID as prop and looks into state (to get with useSelector)
-// ! and maps contents
 export default function SectionContentManager(props) {
   // * Destruc
   const {
@@ -404,10 +402,10 @@ export default function SectionContentManager(props) {
     const newSection = { ...section, contents: contents };
     // 2. update the section into the event
     // find index for splice
-    const findIndex = event.sections.findIndex(
-      (x) => x.NameIdentifier === nameIdentifier
-    );
+    const findIndex = event.sections.findIndex((x) => x.id === id);
 
+    console.log("NameIdentifier", nameIdentifier);
+    console.log("findIndex", findIndex);
     console.log("newsection", newSection);
 
     // 3. replace with the new section with splice
