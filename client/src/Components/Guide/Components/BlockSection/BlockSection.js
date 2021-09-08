@@ -4,6 +4,8 @@
 
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
+// needed to render Rich text
+import ReactQuill from "react-quill"; // ES6
 
 // * MAT UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -69,7 +71,7 @@ const BlockSection = (props) => {
             {title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            {description}
+            <ReactQuill value={description} readOnly={true} theme={"bubble"} />
           </Typography>
         </CardContent>
       </CardActionArea>
