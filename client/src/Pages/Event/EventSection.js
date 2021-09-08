@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
     top: 0,
     right: 0,
   },
+  sectionCover: {},
   onDrag: { backgroundColor: "green" },
   textField: { display: "block" },
 }));
@@ -55,7 +56,14 @@ export default function EventSection(props) {
   let history = useHistory();
 
   // * Destructuring props
-  let { id, order, title, description, url } = props.section;
+  let {
+    id,
+    order,
+    title,
+    description,
+    url,
+    sectionCover: { url_thumb },
+  } = props.section;
 
   // * States
   const [editing, setEditing] = useState(false);
@@ -167,6 +175,14 @@ export default function EventSection(props) {
             >
               {title}
             </Typography>
+            {url_thumb.length !== 0 ? (
+              <img
+                className={classes.sectionCover}
+                alt="section-cover"
+                src={url_thumb}
+              />
+            ) : null}
+
             {/* //! temporarly disabled */}
             {/* <Typography
               className={classes.card__desc}

@@ -98,8 +98,6 @@ export default function SectionContentManager(props) {
     state: { id, title, slug, nameIdentifier },
   } = props;
 
-  console.log("props", props);
-
   // * Hooks
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -118,7 +116,7 @@ export default function SectionContentManager(props) {
   // for dragging (and dropping)
   const [dragId, setDragId] = useState();
   // for cover upload
-  // if true loads the image into coverimage
+  // if true loads the image into sectionCover
   let isAddingCover = false;
   // const [isAddingCover, setIsAddingCover] = useState(false);
 
@@ -141,7 +139,7 @@ export default function SectionContentManager(props) {
     //eslint-disable-next-line
   }, []);
 
-  console.log("section", section);
+  console.log("section state", section);
 
   // * Modals CTRLs
   const handleOpen = (modal) => {
@@ -439,7 +437,7 @@ export default function SectionContentManager(props) {
   // * Listener to avoid the user to go back without saving
   unBlock(needsToSave, history);
 
-  // * ----------- Functions for the Drag and Re-order of <EventSection/>s
+  // * Functions for the Drag and Re-order of <EventSection/>s
 
   /**
    * @function handleDrag
@@ -526,14 +524,14 @@ export default function SectionContentManager(props) {
         // handles the state when the modal is clickes outside the area
         isClose={handleClose}
       />
-      {section ? (
+      {Object.keys(section).length !== 0 ? (
         <Grid container direction="row" spacing={2}>
           <Grid item xs={12} className={classes.gridItem}>
             <h2 className={classes.sectionTitle}>{title}</h2>
           </Grid>
           <Grid item xs={12} className={classes.gridItem}>
             {/* Section cover image */}
-            {!section.sectionCover ? (
+            {section.sectionCover.url === "" ? (
               // show button
               // important to upload the cover pass true
               <Button

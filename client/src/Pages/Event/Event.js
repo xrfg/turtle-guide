@@ -147,19 +147,6 @@ export default function Event(props) {
         setIsError(false);
         setIsSuccess("Saved successfully!");
         return setNeedsToSave(false);
-
-        // res.then((x) => {
-        //   if (x.status === 200) {
-        //     // error false
-        //     setIsError(false);
-        //     // success msg
-        //     setIsSuccess("Saved successfully!");
-        //     // set save to false to disable the button
-        //     return setNeedsToSave(false);
-        //   }
-        // });
-        // // dispatch the event to REDUX
-        // return res;
       }
     }
     saveData();
@@ -231,6 +218,12 @@ export default function Event(props) {
         contents: [],
         title: "Title",
         description: "Description",
+        sectionCover: {
+          filename: "",
+          public_id: "",
+          url: "",
+          url_thumb: "",
+        },
       },
     ];
     // add ids
@@ -312,9 +305,6 @@ export default function Event(props) {
    */
 
   const handleDrop = (e) => {
-    console.log("sections", sections);
-    console.log("dragID", dragId);
-
     // * Finding the drag section with the same id as the one the user is trying to drag from
     const dragSection = sections.find((section) => {
       console.log(typeof section.id, typeof dragId, section.id === dragId);
