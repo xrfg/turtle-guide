@@ -13,7 +13,6 @@ import SignIn from "./Pages/SignIn/SignIn";
 
 // * Import Custom  Components
 import Navbar from "./Components/Navbar/Navbar";
-import { AddButton,BackButton, DeleteButton, DragButton, SaveButton, SendButton } from "./Components/Buttons/AddButton";
 
 // REDUX
 import { Provider } from "react-redux";
@@ -34,12 +33,6 @@ function App() {
               <Route path="/events/:name" component={Guide} />
               <div>
                 <Navbar />
-                <BackButton/>
-                <AddButton/>
-                <SaveButton/>
-                <DeleteButton/>
-                <DragButton/>
-                <SendButton/>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/admin" component={SignUp} />
                 {/*

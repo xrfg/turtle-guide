@@ -1,7 +1,6 @@
 import React from 'react';
-import { createTheme, withStyles, makeStyles, ThemeProvider } from '@material-ui/core/styles';
+import {  withStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import { green, purple } from '@material-ui/core/colors';
 
 //mui icons
 import AddOutlinedIcon from '@material-ui/icons/AddOutlined';
@@ -10,28 +9,48 @@ import DragIndicatorIcon from '@material-ui/icons/DragIndicator';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SaveOutlinedIcon from '@material-ui/icons/SaveOutlined';
 import SendIcon from '@material-ui/icons/Send';
+import EditIcon from '@material-ui/icons/Edit';
 
 
+// our theme
+import {theme} from '../../styles/Theme'
+
+
+//in order to use buttons import them to the required file
+//import { AddButton,BackButton, DeleteButton, DragButton, SaveButton, SendButton } from "./Components/Buttons/AddButton";
+
+const myTheme=theme
+console.log(myTheme)
 const ColorButton = withStyles((theme) => ({
   root: {
-    color: theme.palette.getContrastText(purple[500]),
-    backgroundColor: green[500],
+    color: myTheme.palette.text.primary,
+    backgroundColor: myTheme.palette.secondary.main,
     '&:hover': {
-      backgroundColor: purple[700],
+      backgroundColor:myTheme.palette.text.darkGrey,
     },
   },
 }))(Button);
+
+
 const useStyles = makeStyles((theme) => ({
   margin: {
     margin: theme.spacing(1),
   },
 }));
 
-const theme = createTheme({
+/*{const theme = createTheme({
   palette: {
-    primary: green,
+    primary: {
+      main:'#F5F5F5',
+      grey:'#525252',
+      gainsboro:'#D9D9D9',
+      cultured:'#F5F5F5',
+      ming:'#3B6C70',
+      darkblue:'#284A63'
+    },
+    
   },
-});
+});}*/
 
 export function SaveButton() {
     const classes = useStyles();
@@ -39,8 +58,8 @@ export function SaveButton() {
     return (
       <div>
         <ColorButton
-        endIcon={<SaveOutlinedIcon color="black"/>} 
-        variant="contained" color="primary"
+        endIcon={<SaveOutlinedIcon style={{fontSize:"18"}} />} 
+        variant="contained"
          className={classes.margin}>
          save
         </ColorButton>
@@ -54,8 +73,8 @@ export function SaveButton() {
     return (
       <div>
         <ColorButton
-        endIcon={<DeleteIcon color="black"/>} 
-        variant="contained" color="primary"
+        endIcon={<DeleteIcon style={{fontSize:"18"}} />} 
+        variant="contained"
          className={classes.margin}>
          Delete
         </ColorButton>
@@ -69,8 +88,8 @@ export function AddButton() {
   return (
     <div>
       <ColorButton
-      endIcon={<AddOutlinedIcon color="black"/>} 
-      variant="contained" color="primary"
+      endIcon={<AddOutlinedIcon style={{fontSize:"18"}} />} 
+      variant="contained" 
        className={classes.margin}>
        add
       </ColorButton>
@@ -83,8 +102,8 @@ export function BackButton() {
     return (
       <div>
         <ColorButton
-        startIcon={< ArrowBackOutlinedIcon color="black"/>} 
-        variant="contained" color="primary"
+        startIcon={< ArrowBackOutlinedIcon style={{fontSize:"18"}} />} 
+        variant="contained" 
          className={classes.margin}>
          go back
         </ColorButton>
@@ -96,8 +115,8 @@ export function BackButton() {
     return (
       <div>
         <ColorButton
-        startIcon={< SendIcon color="black"/>} 
-        variant="contained" color="primary"
+        endIcon={< SendIcon style={{fontSize:"18"}} />} 
+        variant="contained" 
          className={classes.margin}>
          send
         </ColorButton>
@@ -110,9 +129,22 @@ export function BackButton() {
     return (
       <div>
         <ColorButton
-        startIcon={< DragIndicatorIcon color="black"/>} 
-        variant="contained" color="primary"
+        startIcon={< DragIndicatorIcon style={{fontSize:"25"}} />} 
+        variant="contained" 
          className={classes.margin}>
+        </ColorButton>
+      </div>
+    );
+  }
+  export function EditButton() {
+    const classes = useStyles();
+    return (
+      <div>
+        <ColorButton
+        endIcon={< EditIcon style={{fontSize:"18"}}/>} 
+        variant="contained" 
+         className={classes.margin}>
+           edit
         </ColorButton>
       </div>
     );
