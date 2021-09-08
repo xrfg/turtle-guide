@@ -7,12 +7,13 @@ import React from "react";
 import SectionPreview from "../../../SectionPreview/SectionPreview";
 
 const SectionRender = (props) => {
-  const { contents, sectionCover, description } = props;
+  const { contents, sectionCover, description, sectionTitle } = props;
   return (
     <SectionPreview
       contents={contents}
       sectionCover={sectionCover}
-      sectionDescriptio={description}
+      sectionDescription={description}
+      sectionTitle={sectionTitle}
     />
   );
 };

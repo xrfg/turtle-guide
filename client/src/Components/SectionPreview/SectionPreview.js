@@ -68,7 +68,8 @@ const SectionPreview = (props) => {
   const classes = useStyles();
 
   // destru
-  const { contents, sectionCover, sectionDescription } = props;
+  const { contents, sectionCover, sectionDescription, sectionTitle } = props;
+
   return (
     <>
       <Container maxWidth="xs">
@@ -86,6 +87,7 @@ const SectionPreview = (props) => {
           readOnly={true}
           theme={"bubble"}
         />
+        {sectionTitle}
         {/* // * mapping to render divided by types */}
         {contents.map((x) => {
           /* images */

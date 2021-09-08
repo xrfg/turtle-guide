@@ -541,6 +541,7 @@ export default function SectionContentManager(props) {
             contents={contents}
             sectionCover={section.sectionCover}
             sectionDescription={section.description}
+            sectionTitle={section.title}
           />
         }
         isOpen={openModalPreview}

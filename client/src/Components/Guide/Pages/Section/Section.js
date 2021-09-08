@@ -8,14 +8,15 @@ import SectionRender from "../../Components/SectionRender/SectionRender";
 const Section = (props) => {
   console.log("Section", props.location.state.sectionData);
 
-  const { contents, sectionCover, description } =
+  const { contents, sectionCover, description, title } =
     props.location.state.sectionData;
 
   return (
     <SectionRender
       contents={contents}
       sectionCover={sectionCover}
-      sectionDescriptio={description}
+      sectionDescription={description}
+      sectionTitle={title}
     />
   );
 };
