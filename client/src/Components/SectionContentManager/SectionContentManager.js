@@ -536,7 +536,13 @@ export default function SectionContentManager(props) {
       />
       {/* For Preview */}
       <ModalCustom
-        content={<SectionPreview contents={contents} />}
+        content={
+          <SectionPreview
+            contents={contents}
+            sectionCover={section.sectionCover}
+            sectionDescription={section.description}
+          />
+        }
         isOpen={openModalPreview}
         // handles the state when the modal is clickes outside the area
         isClose={handleClose}

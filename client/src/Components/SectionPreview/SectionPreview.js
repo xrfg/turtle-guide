@@ -68,11 +68,24 @@ const SectionPreview = (props) => {
   const classes = useStyles();
 
   // destru
-  const { contents } = props;
-
+  const { contents, sectionCover, sectionDescription } = props;
   return (
     <>
       <Container maxWidth="xs">
+        {sectionCover.url === "" ? (
+          <h1>No cover image yet, please choose one</h1>
+        ) : (
+          <img
+            className={classes.image}
+            alt="section-cover"
+            src={sectionCover.url}
+          />
+        )}
+        <ReactQuill
+          value={sectionDescription}
+          readOnly={true}
+          theme={"bubble"}
+        />
         {/* // * mapping to render divided by types */}
         {contents.map((x) => {
           /* images */
