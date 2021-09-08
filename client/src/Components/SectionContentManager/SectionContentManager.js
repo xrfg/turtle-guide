@@ -69,6 +69,7 @@ const useStyles = makeStyles((theme) =>
     },
     // Custom margins nested grid
     // ! Classes created but not styled yet
+    sectionCover: {},
     containerGrids: {},
     gridContent: {},
     gridContentHeader: { fontSize: "1rem", textAlign: "center", color: "gray" },
@@ -117,7 +118,9 @@ export default function SectionContentManager(props) {
   // for dragging (and dropping)
   const [dragId, setDragId] = useState();
   // for cover upload
-  const [isAddingCover, setIsAddingCover] = useState(false);
+  // if true loads the image into coverimage
+  let isAddingCover = false;
+  // const [isAddingCover, setIsAddingCover] = useState(false);
 
   // for modal
   const [openModalInsertText, setOpenModalInsertText] = useState(false);
@@ -163,12 +166,9 @@ export default function SectionContentManager(props) {
       uploadPreset: "turtle_guide", // name of the created upload
     },
     (error, result) => {
-      console.log("cloudinaryWidget result", result);
-
       // if error returns error
       if (error) return console.log("Error on upload", error);
       // calls function
-      //! put a state here that switches into cover?
       checkCloudinaryUpload(result);
     }
   );
@@ -190,8 +190,6 @@ export default function SectionContentManager(props) {
    * @param result i.e. checkCloudinaryUpload(result)
    */
 
-  //! pass a param to upload cover?
-
   const checkCloudinaryUpload = (result) => {
     // if event ended
     if (result.event === "queues-end") {
@@ -204,7 +202,15 @@ export default function SectionContentManager(props) {
         if (x == undefined) {
           return console.log("Upload error");
         }
-        //! how to handle that here?
+
+        // if is adding cover true
+        if (isAddingCover) {
+          // put into section
+          section.coverImage = x;
+          // set tot save
+          return setNeedsToSave(true);
+        }
+
         // push objs created with the
         // functions createObj AND objToSendImage
         arrTemp.push(createObj(objToSendMedia(x)));
@@ -524,12 +530,21 @@ export default function SectionContentManager(props) {
             {!section.coverImage ? (
               // show button
               // important to upload the cover pass true
-              <Button onClick={() => showCloudinaryWidget(cloudinaryWidget)}>
+              <Button
+                onClick={() => {
+                  isAddingCover = true;
+                  showCloudinaryWidget(cloudinaryWidget);
+                }}
+              >
                 Add a cover Image
               </Button>
             ) : (
               // show img
-              <h4>your image</h4>
+              <img
+                className={classes.sectionCover}
+                alt="section-cover"
+                src={section.coverImage.uploadInfo.url}
+              />
             )}
 
             {/* Section description Edit */}
