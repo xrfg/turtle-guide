@@ -5,7 +5,7 @@
 import React from "react";
 
 const Section = (props) => {
-  console.log("Section", props);
+  // console.log("Section", props);
 
   return <div>SECTION</div>;
 };

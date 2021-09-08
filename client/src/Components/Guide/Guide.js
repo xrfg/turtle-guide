@@ -17,7 +17,7 @@ export default function Guide(props) {
   // TODO REMOVE
   const baseURL = "http://localhost:5000/api/events/";
   // * States
-  const [event, setEvent] = useState();
+  const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
 
   // name of the event to fetch
@@ -27,7 +27,6 @@ export default function Guide(props) {
     setLoading(true);
     try {
       const eventData = await axios.get(baseURL + name);
-      console.log(eventData.data);
       setEvent(eventData.data);
       setLoading(false);
     } catch (err) {
@@ -41,27 +40,20 @@ export default function Guide(props) {
     //eslint-disable-next-line
   }, []);
 
-  console.log(event);
-
   return (
     <>
       {/* Wraping all the guide */}
       <div>
         <Navbar />
-        {/* <Switch> */}
-        {/* <Route exact path="/">
-            <Home />
-            </Route>
-            <Route path="/guide">
-            <Home />
-          </Route> */}
-        {/* <Route exact path="/:id" component={Event} /> */}
-        {/* </Switch> */}
-        {/* Renders the data */}
         {loading ? (
           <Spinner />
         ) : (
-          <Home title={event.data.title} sections={event.data.sections} />
+          <Home
+            data={event}
+            eventSlug={event.data.slug}
+            title={event.data.title}
+            sections={event.data.sections}
+          />
         )}
       </div>
     </>

@@ -56,7 +56,7 @@ export default function Home(props) {
   const [expanded, setExpanded] = useState(false);
 
   // * Destruc
-  const { title, sections, id } = props;
+  const { title, sections, id, eventSlug } = props;
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -68,6 +68,7 @@ export default function Home(props) {
   // TODO to ext
   const BlockSection = (props) => {
     // destruc
+    const { eventSlug, data } = props;
     const { title, description, id } = props.data;
 
     return (
@@ -88,7 +89,7 @@ export default function Home(props) {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Link to={`/events/van-gogh/sections/${id}`}>
+          <Link to={`/events/${eventSlug}/sections/${id}`}>
             <Button size="small" color="primary" ì>
               Go to Section
             </Button>
@@ -104,7 +105,7 @@ export default function Home(props) {
       <Container>
         {/* Map to create cards */}
         {sections.map((x) => {
-          return <BlockSection data={x} />;
+          return <BlockSection eventSlug={eventSlug} data={x} />;
         })}
       </Container>
 
