@@ -18,7 +18,7 @@ import Menu from "../Menu/Menu";
 
 const Navbar = () => {
   return (
-    <AppBar style={{ backgroundColor: "#D9D9D9" }}>
+    <AppBar style={{ backgroundColor: "#D9D9D9", position: "relative" }}>
       <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
         <Link className="navbar-brand" to="/">
           <img
