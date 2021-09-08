@@ -37,7 +37,6 @@ import ModalCustom from "../../Components/Modal/ModalCustom";
 import SectionPreview from "../../Components/SectionPreview/SectionPreview";
 
 // * Other Imports
-import { DefaultEditor } from "react-simple-wysiwyg";
 
 // * REDUX
 import { useSelector, useDispatch } from "react-redux";
@@ -45,7 +44,6 @@ import { eventUpdate } from "../../store/actions/eventsActions";
 
 // * Functions
 import { goBackToPage, unBlock } from "../../functions/functions";
-import { first } from "lodash";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -99,7 +97,7 @@ export default function SectionContentManager(props) {
     state: { id, title, slug, nameIdentifier },
   } = props;
 
-  // console.log("<SectionCM/>", id, title, slug, nameIdentifier);
+  console.log("props", props);
 
   // * Hooks
   const classes = useStyles();
@@ -130,9 +128,6 @@ export default function SectionContentManager(props) {
     const getEvent = events.find((x) => x.nameIdentifier === nameIdentifier);
     // set the event to be modified and sent for saving
     setEvent(getEvent);
-
-    console.log("getEvent", getEvent); // ! check initial state
-    console.log("state.events.events", events); // ! check initial state
 
     // get the section with the id
     const getSection = getEvent.sections.find((x) => x.id === id);
@@ -369,11 +364,17 @@ export default function SectionContentManager(props) {
 
   /**
    * @function updateMediaText
-   * @desc for the text field to update
+   * @desc for the text field to update / ! important updates the section description
    * @param id coming from the prop of <ContentBlockText />
    * @param newContent coming from the prop of <ContentBlockText />
    */
   const updateMediaText = (id, newContent) => {
+    // check if the text comes from the description
+    // just to update the event description
+    if (id === objSectionDecription.id) {
+      // assign it to section
+      section.description = newContent;
+    }
     // close modal
     handleClose();
 
@@ -394,36 +395,19 @@ export default function SectionContentManager(props) {
    */
 
   const saveContent = async () => {
-    console.log("sections Before", event.sections); // ! are ok ?
-    console.log("contents", contents);
-    console.log("currentSection", section);
     // 1. create the event
     // creates the new obj section spreading the old section into the state
     const newSection = { ...section, contents: contents };
     // 2. update the section into the event
     // find index for splice
 
-    // ! findIndex WAS not working w/nameIdentifier
-    // ! because its the name of the EVENT!
-    console.log("nameIdentifier", nameIdentifier); // ! Is the name of the EVENT
-    console.log("id", id); // ! Is the id of the SECTION
-    /* const findIndex = event.sections.findIndex(
-      (x) => x.NameIdentifier === nameIdentifier
-    ); */
-
     const findIndex = event.sections.findIndex((x) => x.id === id);
-
-    console.log("index of section", findIndex);
-    console.log("newsection", newSection);
-
     // 3. replace with the new section with splice
     event.sections.splice(findIndex, 1, newSection);
     // 4. dispatch event update
 
-    console.log("sections After", event);
     try {
       await dispatch(eventUpdate(event));
-      console.log("event", event);
       // set to save
       setNeedsToSave(false);
     } catch (error) {
@@ -433,39 +417,6 @@ export default function SectionContentManager(props) {
 
   // * Listener to avoid the user to go back without saving
   unBlock(needsToSave, history);
-
-  // /**
-  //  * @function goBackToEvent
-  //  * @desc go back to the event
-  //  */
-
-  // const goBackToEvent = () => {
-  //   if (needsToSave) {
-  //     if (
-  //       window.confirm(`You didn't save! Are you sure you want to go to back?`)
-  //     ) {
-  //       history.goBack();
-  //     } else {
-  //       return false;
-  //     }
-  //   } else {
-  //     history.goBack();
-  //   }
-  // };
-
-  // // * Listener to avoid the user to go back without saving
-  // let unblock = history.block((tx) => {
-  //   if (!needsToSave) {
-  //     return null;
-  //   }
-  //   if (window.confirm(`Are you sure you want to go to Event?`)) {
-  //     // Unblock the navigation.
-  //     unblock();
-  //     history.goBack();
-  //   } else {
-  //     return false;
-  //   }
-  // });
 
   // * ----------- Functions for the Drag and Re-order of <EventSection/>s
 
@@ -528,106 +479,143 @@ export default function SectionContentManager(props) {
     console.log(newContentsState);
   };
 
+  // * Objects
+  /**
+   * @desc obj for the section description
+   */
+  const objSectionDecription = {
+    id: 999999, // important is an reserved id to detect the description
+    content: section?.description, // send current description
+  };
+
   return (
     <Container style={{ maxWidth: "720px" }}>
       {/* // * MODAL */}
+      {/* For Media Text */}
       <ModalCustom
         content={<TextEditor setText={setMediaText} />}
         isOpen={openModalInsertText}
         // handles the state when the modal is clickes outside the area
         isClose={handleClose}
       />
+      {/* For Preview */}
       <ModalCustom
         content={<SectionPreview contents={contents} />}
         isOpen={openModalPreview}
         // handles the state when the modal is clickes outside the area
         isClose={handleClose}
       />
-      <Grid container direction="row" spacing={2}>
-        <Grid item xs={12} className={classes.gridItem}>
-          <h2 className={classes.sectionTitle}>{title}</h2>
-        </Grid>
-        <Grid item xs={3} className={classes.gridItem}>
-          {/* // * Buttons Top container */}
-          <ButtonGroup
-            color="primary"
-            orientation="vertical"
-            variant="contained"
-            className={classes.btnSection}
-            style={{ marginBottom: "1rem" }}
-            fullWidth
-          >
-            <Button disabled={!needsToSave} onClick={saveContent}>
-              Save
-            </Button>
-            <Button onClick={() => goBackToPage(needsToSave, history)}>
-              Go Back
-            </Button>
-          </ButtonGroup>
+      {section ? (
+        <Grid container direction="row" spacing={2}>
+          <Grid item xs={12} className={classes.gridItem}>
+            <h2 className={classes.sectionTitle}>{title}</h2>
+          </Grid>
+          <Grid item xs={12} className={classes.gridItem}>
+            {/* Section cover image */}
+            {!section.coverImage ? (
+              // show button
+              <Button onClick={() => showCloudinaryWidget(cloudinaryWidget)}>
+                Add a cover Image
+              </Button>
+            ) : (
+              // show img
+              <h4>your image</h4>
+            )}
 
-          {/* // * Buttons Top container */}
-          <ButtonGroup
-            color="primary"
-            orientation="vertical"
-            variant="contained"
-            className={classes.btnSection}
-            fullWidth
-          >
-            <Button onClick={() => handleOpen("insertText")}>add Text</Button>
-            <Button onClick={() => showCloudinaryWidget(cloudinaryWidget)}>
-              add Media
-            </Button>
-            <Button onClick={() => addToContents(createObj("qrcode"))}>
-              add QrCode
-            </Button>
-            <Button onClick={() => handleOpen("preview")}>Preview</Button>
-          </ButtonGroup>
-        </Grid>
+            {/* Section description Edit */}
+            <ContentBlockText
+              item={objSectionDecription}
+              // receives the id of the item to delete
+              itemToDelete={deleteItem}
+              // gets the new content to update
+              newContent={updateMediaText}
+              // Handle the drag and drop
+              handleDrag={handleDrag}
+              handleDrop={handleDrop}
+            />
+          </Grid>
 
-        {/* // ? Contents container */}
-        {/* // ? Add content */}
-        <Grid item xs={9} className={classes.gridContent}>
-          <h3 className={classes.gridContentHeader}>Contents</h3>
-          {/* // ? map contents state */}
-          {!contents
-            ? null
-            : contents
-                .sort((a, b) => a.order - b.order)
-                .map((x, i) => {
-                  if (x.type === "text") {
+          <Grid item xs={3} className={classes.gridItem}>
+            {/* // * Buttons Top container */}
+            <ButtonGroup
+              color="primary"
+              orientation="vertical"
+              variant="contained"
+              className={classes.btnSection}
+              style={{ marginBottom: "1rem" }}
+              fullWidth
+            >
+              <Button disabled={!needsToSave} onClick={saveContent}>
+                Save
+              </Button>
+              <Button onClick={() => goBackToPage(needsToSave, history)}>
+                Go Back
+              </Button>
+            </ButtonGroup>
+
+            {/* // * Buttons Top container */}
+            <ButtonGroup
+              color="primary"
+              orientation="vertical"
+              variant="contained"
+              className={classes.btnSection}
+              fullWidth
+            >
+              <Button onClick={() => handleOpen("insertText")}>add Text</Button>
+              <Button onClick={() => showCloudinaryWidget(cloudinaryWidget)}>
+                add Media
+              </Button>
+              <Button onClick={() => addToContents(createObj("qrcode"))}>
+                add QrCode
+              </Button>
+              <Button onClick={() => handleOpen("preview")}>Preview</Button>
+            </ButtonGroup>
+          </Grid>
+
+          {/* // ? Contents container */}
+          {/* // ? Add content */}
+          <Grid item xs={9} className={classes.gridContent}>
+            <h3 className={classes.gridContentHeader}>Contents</h3>
+            {/* // ? map contents state */}
+            {!contents
+              ? null
+              : contents
+                  .sort((a, b) => a.order - b.order)
+                  .map((x, i) => {
+                    if (x.type === "text") {
+                      return (
+                        <ContentBlockText
+                          item={x}
+                          key={x.id}
+                          // receives the id of the item to delete
+                          itemToDelete={deleteItem}
+                          // gets the new content to update
+                          newContent={updateMediaText}
+                          // Handle the drag and drop
+                          handleDrag={handleDrag}
+                          handleDrop={handleDrop}
+                        />
+                      );
+                    }
                     return (
-                      <ContentBlockText
+                      <ContentBlockMedia
                         item={x}
                         key={x.id}
                         // receives the id of the item to delete
                         itemToDelete={deleteItem}
-                        // gets the new content to update
-                        newContent={updateMediaText}
+                        mediaCaption={addMediaCaption}
                         // Handle the drag and drop
                         handleDrag={handleDrag}
                         handleDrop={handleDrop}
                       />
                     );
-                  }
-                  return (
-                    <ContentBlockMedia
-                      item={x}
-                      key={x.id}
-                      // receives the id of the item to delete
-                      itemToDelete={deleteItem}
-                      mediaCaption={addMediaCaption}
-                      // Handle the drag and drop
-                      handleDrag={handleDrag}
-                      handleDrop={handleDrop}
-                    />
-                  );
-                })}
-        </Grid>
-        {/* // ? Buttons Bottom container */}
-        {/* <Grid container spacing={3} className={classes.gridContainer}>
+                  })}
+          </Grid>
+          {/* // ? Buttons Bottom container */}
+          {/* <Grid container spacing={3} className={classes.gridContainer}>
           <Grid item xs={12} className={classes.btnSection}>
             {/* // ! TEMPORARLY DISABLED */}
-        {/* <Button
+          {/* <Button
               size="small"
               variant="contained"
               color="primary"
@@ -638,7 +626,8 @@ export default function SectionContentManager(props) {
             </Button>
           </Grid>
         </Grid> */}
-      </Grid>
+        </Grid>
+      ) : null}
     </Container>
   );
 }

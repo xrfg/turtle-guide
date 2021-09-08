@@ -32,6 +32,9 @@ import { Forward, Delete, DragIndicator } from "@material-ui/icons";
 // * React Components
 import EditSaveButton from "../../Components/Buttons/EditSaveButton";
 
+// needed to render Rich text
+import ReactQuill from "react-quill"; // ES6
+
 const useStyles = makeStyles((theme) => ({
   card: { position: "relative", marginBottom: "1rem" },
   card__title: {},
@@ -137,7 +140,11 @@ export default function EventSection(props) {
               }}
               onChange={(e) => handleTitle(e.target.value)}
             />
-            <TextField
+            {/* //! temporarly disabled */}
+            {/* //? shall we make a edit options from here  */}
+            {/* //? i.e. <TextEditor setText={setMediaText} content={content} />  */}
+
+            {/* <TextField
               id="eventName"
               type="text"
               className={classes.textField}
@@ -149,7 +156,7 @@ export default function EventSection(props) {
                 shrink: true,
               }}
               onChange={(e) => handleDescription(e.target.value)}
-            />
+            /> */}
           </Box>
         ) : (
           <Box>
@@ -158,15 +165,17 @@ export default function EventSection(props) {
               variant="h6"
               component="h6"
             >
-              {title} id: {id}
+              {title}
             </Typography>
-            <Typography
+            {/* //! temporarly disabled */}
+            {/* <Typography
               className={classes.card__desc}
               variant="subtitle1"
               component="p"
             >
-              {description}
-            </Typography>
+              {description} */}
+            <ReactQuill value={description} readOnly={true} theme={"bubble"} />
+            {/* </Typography> */}
           </Box>
         )}
       </CardContent>

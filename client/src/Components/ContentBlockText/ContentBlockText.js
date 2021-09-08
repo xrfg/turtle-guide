@@ -83,7 +83,10 @@ const ContentBlockText = (props) => {
   const classes = useStyles();
 
   // * Destructuring props
-  let { id, type, content } = props.item;
+  let { id, content } = props.item;
+
+  console.log("id, content", id, content);
+
   // * State
   const [isEditing, setIsEditing] = useState(false);
   const [newContent, setNewContent] = useState({ content: "" });
@@ -165,7 +168,6 @@ const ContentBlockText = (props) => {
                   content={
                     <TextEditor setText={setMediaText} content={content} />
                   }
-                  // content={<TextEditor content={content}></TextEditor>}
                   isOpen={true}
                   isClose={closeEditingModal}
                 />
