@@ -19,8 +19,6 @@ import { theme } from "../../styles/Theme";
 
 const myTheme = theme;
 
-console.log(myTheme);
-
 const ColorButton = withStyles((theme) => ({
   root: {
     color: myTheme.palette.text.primary,

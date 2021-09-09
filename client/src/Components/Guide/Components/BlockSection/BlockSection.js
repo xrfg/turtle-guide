@@ -50,7 +50,7 @@ const BlockSection = (props) => {
   let history = useHistory();
 
   // destruc
-  const { eventSlug, nameIdentifier } = props;
+  const { eventSlug, nameIdentifier, sectionIndex } = props;
   const { title, description, id, order } = props.data;
 
   // console.log("BlockSection nameIdentifier ", nameIdentifier);
@@ -69,7 +69,9 @@ const BlockSection = (props) => {
     <Card
       className={classes.root}
       maxWidth="lg"
-      onClick={() => goToSection(history, id, order, eventSlug, nameIdentifier)}
+      onClick={() =>
+        goToSection(history, id, order, sectionIndex, eventSlug, nameIdentifier)
+      }
       // onClick={goToSection}
     >
       <CardActionArea>

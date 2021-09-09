@@ -96,9 +96,10 @@ export default function Home(props) {
       <h1>{title}</h1>
       <Container>
         {/* Map to create cards */}
-        {sections.map((x) => {
+        {sections.map((x, index) => {
           return (
             <BlockSection
+              sectionIndex={index} // pass for the order in the navbar
               nameIdentifier={nameIdentifier}
               eventSlug={eventSlug}
               data={x}

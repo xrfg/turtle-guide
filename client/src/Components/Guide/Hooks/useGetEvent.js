@@ -1,11 +1,11 @@
 /**
- * @desc Hook to get the current event to render
+ * @desc hook to get the current event
  */
 
 // * Redux
 import { useSelector } from "react-redux";
 
-const useEventSection = (props) => {
+const useGetEvent = () => {
   // * Hooks
   // get eventGuide state in redux
   const event = useSelector((state) => state.events.eventGuide);
@@ -16,15 +16,9 @@ const useEventSection = (props) => {
     return null;
   }
 
-  // event to find
-  const idSection = props;
-
-  // get event
-  const findSection = event.sections.find((x) => x.id === idSection);
-
   // TODO insert error in case of wrong section
   // return
-  return findSection;
+  return event;
 };
 
-export default useEventSection;
+export default useGetEvent;
