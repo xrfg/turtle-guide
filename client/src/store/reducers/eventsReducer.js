@@ -5,6 +5,8 @@ import {
   EVENT_UPDATE_ERROR,
   EVENTS_FETCH,
   EVENTS_FETCH_ERROR,
+  EVENT_GUIDE,
+  EVENT_GUIDE_ERROR,
 } from "../types";
 
 const initialState = {
