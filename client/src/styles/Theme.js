@@ -4,12 +4,16 @@
  */
 import { createTheme } from "@material-ui/core/styles";
 
+
 export const colors = {
+  grey:'#22333B', //darkGraey
+  ming:'#3B6C70',  //darkGreen
+  black:'#0A0908',
   arcBlue: "#0B72B9",
   arcOrange: "#FFBA60",
-  primaryMain: "#EB5E28", // red/orange //dark blue "#324376"
-  primaryLight: "#FCE3DA", // light blue   "#586BA4",
-  secondaryMain: "#CCC5B9", // light grey
+  primaryMain: "#D9D9D9", // yellow/white gainsboro
+  primaryLight: "#F5F5F5", // white
+  secondaryMain: "#284A63", // darkblue
   errorMain: "#EA1E0B", // Red
   warningMain: "#F76C5E", // light red / orange
   infoMain: "#F5DD90", // light yellow
@@ -34,17 +38,38 @@ export const theme = createTheme({
   palette: {
     common: {
       blue: `${colors.arcBlue}`,
-      orange: `${colors.arcOrange}`,
+      main: `${colors.main}`,
     },
-    primary: { main: `${colors.primaryMain}`, light: `${colors.primaryLight}` },
+    primary: { 
+      main: `${colors.primaryMain}`,
+       light: `${colors.primaryLight}`
+     },
     secondary: {
       main: `${colors.secondaryMain}`,
+      darkGrey:`${colors.grey}`,
+      darkGreen:`${colors.ming}`
     },
+    text:{
+      primary:`${colors.primaryLight}`,
+      secondary:`${colors.black}`,
+      darkGrey:`${colors.grey}`,
+  },
     error: { main: `${colors.errorMain}` },
     warning: { main: `${colors.warningMain}` },
     info: { main: `${colors.infoMain}` },
     success: { main: `${colors.successMain}` },
   },
+  typography:{
+    fontFamily:"'Poppins', sans-serif",
+    fontSize:11.5,
+    button:{
+      fontFamily: "'Poppins', sans-serif",
+      fontWeight:500,
+      fontSize: "0.800rem",
+      lineHeight: 1.50,
+      letterSpacing: "0.04000em",
+    }
+  }
 
   // typography: {
   //   tab: {
