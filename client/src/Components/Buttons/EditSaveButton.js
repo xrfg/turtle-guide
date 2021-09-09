@@ -1,9 +1,12 @@
+/**
+ * @desc is a Custom Button Component using our Custom Icon Button Component
+ *
+ */
+
 import React from "react";
 
-// * material UI imports Components
-import { Button } from "@material-ui/core";
-// * material UI imports Icons
-import { Edit, Save } from "@material-ui/icons";
+// Custom Component Imports
+import CustomIconButton from "./CustomIconButtons/CustomIconButton";
 
 export default function EditSaveButton(props) {
   // * Functions
@@ -24,15 +27,10 @@ export default function EditSaveButton(props) {
   };
 
   return (
-    <Button
-      variant="outlined"
-      size="small"
-      onClick={() => {
-        handleSaveEditBtn();
-      }}
-      // disabled={title === "Title" || isFirstEditing ? true : false}
-    >
-      {props.editStatus ? <Save /> : <Edit />}
-    </Button>
+    // disabled={title === "Title" || isFirstEditing ? true : false}
+    <CustomIconButton
+      icon={props.editStatus ? "save" : "edit"}
+      onClickFunc={handleSaveEditBtn}
+    />
   );
 }

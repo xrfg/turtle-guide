@@ -327,7 +327,7 @@ export default function SectionContentManager(props) {
         const lastContent = contents.find((content) => content.id === bigId);
 
         content["id"] = lastContent.id + i + 1;
-        content["order"] = lastContent.id + i + 1;
+        content["order"] = contents[contents.length - 1].order + i + 1;
       }
     });
     setContents([...contents, ...newContentsArr]);

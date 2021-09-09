@@ -22,15 +22,13 @@ import {
   CardContent,
   Typography,
   CardActions,
-  IconButton,
-  Button,
   makeStyles,
   Link,
 } from "@material-ui/core";
-import { Add } from "@material-ui/icons";
 
 // * Component Imports
 import EventNameInsert from "./EventNameInsert";
+import CustomIconButton from "../../Components/Buttons/CustomIconButtons/CustomIconButton";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -112,13 +110,12 @@ const Account = (props) => {
               {isAddingEvent ? (
                 <EventNameInsert />
               ) : (
-                <IconButton
-                  className={classes.link}
+                // Custom Icon Component
+                <CustomIconButton
                   color="primary"
-                  onClick={addEvent}
-                >
-                  <Add />
-                </IconButton>
+                  onClickFunc={addEvent}
+                  icon="add"
+                />
               )}
             </CardActions>
           </Card>

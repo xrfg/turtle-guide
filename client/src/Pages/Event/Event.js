@@ -245,7 +245,7 @@ export default function Event(props) {
         const lastSection = sections.find((section) => section.id === bigId);
 
         section["id"] = lastSection.id + i + 1;
-        section["order"] = lastSection.id + i + 1;
+        section["order"] = sections[sections.length - 1].order + i + 1;
       }
     });
 
