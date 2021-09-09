@@ -12,7 +12,7 @@ import Section from "./Pages/Section/Section";
 import SignUp from "./Pages/SignUp/SignUp";
 import SignIn from "./Pages/SignIn/SignIn";
 import Footer from "./Components/Guide/Components/footer/Footer";
-import Buy from "./Components/Guide/Pages/Buy/Buy"
+import Buy from "./Components/Guide/Pages/Buy/Buy";
 
 // * Import Custom  Components
 import Navbar from "./Components/Navbar/Navbar";
