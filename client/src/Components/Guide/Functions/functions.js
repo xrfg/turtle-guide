@@ -3,7 +3,7 @@
  */
 
 exports.goToSection = (history, id, order, eventSlug, nameIdentifier) => {
-  history.push(`sections/${id}`, {
+  history.push(`/events/${eventSlug}/sections/${id}`, {
     eventSlug: eventSlug,
     nameIdentifier: nameIdentifier,
     id: id,

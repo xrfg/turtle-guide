@@ -19,7 +19,7 @@ import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 
 // * Imports
-// import { goToSection } from "../../Functions/functions";
+import { goToSection } from "../../Functions/functions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,21 +56,21 @@ const BlockSection = (props) => {
   // console.log("BlockSection nameIdentifier ", nameIdentifier);
   console.log("props.data", props.data);
 
-  const goToSection = () => {
-    history.push(`sections/${id}`, {
-      eventSlug: eventSlug,
-      nameIdentifier: nameIdentifier,
-      id: id,
-      // order: order,
-    });
-  };
+  // const goToSection = () => {
+  //   history.push(`sections/${id}`, {
+  //     eventSlug: eventSlug,
+  //     nameIdentifier: nameIdentifier,
+  //     id: id,
+  //     // order: order,
+  //   });
+  // };
 
   return (
     <Card
       className={classes.root}
       maxWidth="lg"
-      // onClick={() => goToSection(history, id, order, eventSlug, nameIdentifier)}
-      onClick={goToSection}
+      onClick={() => goToSection(history, id, order, eventSlug, nameIdentifier)}
+      // onClick={goToSection}
     >
       <CardActionArea>
         <CardMedia
