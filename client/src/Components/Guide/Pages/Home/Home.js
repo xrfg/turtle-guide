@@ -64,7 +64,7 @@ export default function Home(props) {
   // * Destruc
   const { title, sections, id, eventSlug, nameIdentifier } = props;
 
-  console.log("eventSlug, nameIdentifier", eventSlug, nameIdentifier);
+  // console.log("eventSlug, nameIdentifier", eventSlug, nameIdentifier);
 
   // const [product] = React.useState({
   //   name: "Buy Guide",

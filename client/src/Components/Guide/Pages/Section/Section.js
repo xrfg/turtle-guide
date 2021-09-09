@@ -13,21 +13,13 @@ import useGetAndSaveEvent from "../../Hooks/useGetAndSaveEvent";
 import useEventSection from "../../Hooks/useEventSection";
 
 const Section = (props) => {
-  const {
-    id,
-    eventSlug,
-    nameIdentifier,
-    //  order
-  } = props.location.state;
+  const { id, eventSlug, nameIdentifier, order } = props.location.state;
 
   const idSection = id;
 
   // * HOOKS
   // hook that gets the right section providing an id
   const section = useEventSection(idSection);
-  // * States
-
-  // if section is null the event is not loaded into eventGuide in redux
 
   /**
    * @desc the param section is used in case the page is called
@@ -43,7 +35,7 @@ const Section = (props) => {
         <Spinner />
       ) : (
         <>
-          <SectionNavBar />
+          <SectionNavBar currentSection={order} prevOrder={0} nextOrder={0} />
           <SectionRender
             contents={section.contents}
             sectionCover={section.sectionCover}

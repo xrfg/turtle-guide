@@ -307,7 +307,6 @@ export default function Event(props) {
   const handleDrop = (e) => {
     // * Finding the drag section with the same id as the one the user is trying to drag from
     const dragSection = sections.find((section) => {
-      console.log(typeof section.id, typeof dragId, section.id === dragId);
       return section.id === dragId;
     });
 

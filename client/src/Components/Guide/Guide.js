@@ -22,6 +22,8 @@ export default function Guide(props) {
   // call hook
   const event = useGetAndSaveEvent(name);
 
+  console.log("GUIDE event", event);
+
   return (
     <>
       {/* Wraping all the guide */}

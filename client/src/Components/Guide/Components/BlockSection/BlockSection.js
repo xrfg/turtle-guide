@@ -3,7 +3,7 @@
  */
 
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 // needed to render Rich text
 import ReactQuill from "react-quill"; // ES6
 
