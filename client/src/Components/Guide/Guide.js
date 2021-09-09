@@ -11,41 +11,22 @@ import Event from "./Pages/Event/Event";
 import Navbar from "./Components/Navbar/Navbar";
 import Spinner from "../../Components/Spinner/Spinner";
 
-// * baseURL
-
+import useGetAndSaveEvent from "../Guide/Hooks/useGetAndSaveEvent";
 export default function Guide(props) {
   // TODO REMOVE
   const baseURL = "http://localhost:5000/api/events/";
   // * States
-  const [event, setEvent] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   // name of the event to fetch
   const name = props.match.params.name;
-
-  const getEvent = async () => {
-    setLoading(true);
-    try {
-      const eventData = await axios.get(baseURL + name);
-      setEvent(eventData.data);
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getEvent();
-    //eslint-disable-next-line
-  }, []);
+  const event = useGetAndSaveEvent(name);
 
   return (
     <>
       {/* Wraping all the guide */}
       <div>
         <Navbar />
-        {loading ? (
+        {!event ? (
           <Spinner />
         ) : (
           <Home
