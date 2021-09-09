@@ -121,3 +121,17 @@ export const eventsFetch = () => {
     }
   };
 };
+
+/**
+ * @desc action to set the event the guide will render
+ */
+export const setEventGuide = (obj) => {
+  return async (dispatch) => {
+    try {
+      await dispatch({ type: EVENT_GUIDE, payload: obj });
+    } catch (error) {
+      console.error(error);
+      await dispatch({ type: EVENT_GUIDE_ERROR, payload: error });
+    }
+  };
+};

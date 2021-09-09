@@ -14,13 +14,12 @@ import Navbar from "./Components/Navbar/Navbar";
 import Spinner from "../../Components/Spinner/Spinner";
 
 import useGetAndSaveEvent from "../Guide/Hooks/useGetAndSaveEvent";
-export default function Guide(props) {
-  // TODO REMOVE
-  const baseURL = "http://localhost:5000/api/events/";
-  // * States
 
+export default function Guide(props) {
   // name of the event to fetch
   const name = props.match.params.name;
+
+  // call hook
   const event = useGetAndSaveEvent(name);
 
   return (
@@ -32,9 +31,10 @@ export default function Guide(props) {
           <Spinner />
         ) : (
           <Home
-            eventSlug={event.data.slug}
-            title={event.data.title}
-            sections={event.data.sections}
+            eventSlug={event.slug}
+            nameIdentifier={event.nameIdentifier}
+            title={event.title}
+            sections={event.sections}
           />
         )}
       </div>

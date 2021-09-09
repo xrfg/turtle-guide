@@ -5,26 +5,33 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+// * Redux
+import { useDispatch } from "react-redux";
+import { setEventGuide } from "../../../store/actions/eventsActions";
+
 const useGetAndSaveEvent = (props) => {
-  // Destruc
+  // * Hooks
+  const dispatch = useDispatch();
+
+  // set event name
   const eventName = props;
 
+  // * base url
+  // TODO change it
   const baseURL = "http://localhost:5000/api/events/";
 
   // * states
   const [event, setEvent] = useState(null);
-  //   const [loading, setLoading] = useState(true);
 
   const getEvent = async () => {
-    //     setLoading(true);
     try {
       const eventData = await axios.get(baseURL + eventName);
-      console.log("eventData", eventData);
-      setEvent(eventData.data);
-      //       setLoading(false);
+      // set state
+      await setEvent(eventData.data.data);
+      // dispatch
+      await dispatch(setEventGuide(eventData.data.data));
     } catch (err) {
-      console.log(err);
-      //       setLoading(false);
+      console.error(err);
     }
   };
 

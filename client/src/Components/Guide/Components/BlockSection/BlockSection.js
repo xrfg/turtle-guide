@@ -47,14 +47,16 @@ const BlockSection = (props) => {
   let history = useHistory();
 
   // destruc
-  const { eventSlug } = props;
+  const { eventSlug, nameIdentifier } = props;
   const { title, description, id } = props.data;
 
-  console.log("props.data", props);
+  console.log("BlockSection nameIdentifier ", nameIdentifier);
+  // console.log("props.data", props);
 
   const goToSection = () => {
-    history.push(`/events/${eventSlug}/sections/${id}`, {
+    history.push(`sections/${id}`, {
       eventSlug: eventSlug,
+      nameIdentifier: nameIdentifier,
       id: id,
     });
   };

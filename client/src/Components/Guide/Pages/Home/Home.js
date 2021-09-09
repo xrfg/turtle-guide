@@ -62,7 +62,9 @@ export default function Home(props) {
   const [expanded, setExpanded] = useState(false);
 
   // * Destruc
-  const { title, sections, id, eventSlug } = props;
+  const { title, sections, id, eventSlug, nameIdentifier } = props;
+
+  console.log("eventSlug, nameIdentifier", eventSlug, nameIdentifier);
 
   // const [product] = React.useState({
   //   name: "Buy Guide",
@@ -95,7 +97,13 @@ export default function Home(props) {
       <Container>
         {/* Map to create cards */}
         {sections.map((x) => {
-          return <BlockSection eventSlug={eventSlug} data={x} />;
+          return (
+            <BlockSection
+              nameIdentifier={nameIdentifier}
+              eventSlug={eventSlug}
+              data={x}
+            />
+          );
         })}
       </Container>
     </>

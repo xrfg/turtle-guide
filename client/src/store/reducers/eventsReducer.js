@@ -10,7 +10,8 @@ import {
 } from "../types";
 
 const initialState = {
-  events: [],
+  events: [], // all events
+  eventGuide: {}, // the event the guide will render
   loading: true,
   error: null,
 };
@@ -61,6 +62,20 @@ export default (state = initialState, action) => {
       };
 
     case EVENTS_FETCH_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+
+    case EVENT_GUIDE:
+      return {
+        ...state,
+        eventGuide: action.payload,
+        loading: false,
+      };
+
+    case EVENT_GUIDE_ERROR:
       return {
         ...state,
         error: action.payload,

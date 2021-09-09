@@ -7,29 +7,33 @@ import React, { useState, useEffect } from "react";
 import SectionRender from "../../Components/SectionRender/SectionRender";
 import Spinner from "../../../Spinner/Spinner";
 
+import useGetAndSaveEvent from "../../Hooks/useGetAndSaveEvent";
+import useEventSection from "../../Hooks/useEventSection";
+
 // * Redux
 import { useSelector } from "react-redux";
 
 const Section = (props) => {
-  const { id, eventSlug } = props.location.state;
+  const { id, eventSlug, nameIdentifier } = props.location.state;
+
+  const idSection = id;
+
   // * HOOKS
-  const events = useSelector((state) => state.events.events);
+  // hook that gets the right section providing an id
+  const section = useEventSection(idSection);
   // * States
-  const [section, setSection] = useState(null);
-
-  useEffect(() => {
-    console.log("events", events);
-
-    const getEvent = events.find((x) => x.eventSlug === eventSlug);
-    console.log("getEvent", getEvent);
-    const getSection = getEvent.sections.find((x) => x.id === id);
-    console.log("getSection", getSection);
-    setSection(getSection);
-    //eslint-disable-next-line
-  }, []);
-
-  console.log(" id, eventSlug", id, eventSlug);
+  // const [section, setSection] = useState(null);
   console.log("section", section);
+
+  // if section is null the event is not loaded into eventGuide in redux
+
+  // const event = useGetAndSaveEvent(nameIdentifier, section);
+
+  console.log("Section event", event);
+
+  //  useEffect(() => {
+  //  setSection(event.sections)
+  //  }, [event])
 
   return (
     <>
@@ -37,10 +41,10 @@ const Section = (props) => {
         <Spinner />
       ) : (
         <SectionRender
-        // contents={contents}
-        // sectionCover={sectionCover}
-        // sectionDescription={description}
-        // sectionTitle={title}
+          contents={section.contents}
+          sectionCover={section.sectionCover}
+          sectionDescription={section.description}
+          sectionTitle={section.title}
         />
       )}
     </>
