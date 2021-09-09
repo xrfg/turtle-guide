@@ -7,11 +7,9 @@ import React, { useState, useEffect } from "react";
 import SectionRender from "../../Components/SectionRender/SectionRender";
 import Spinner from "../../../Spinner/Spinner";
 
+// * Import Hooks
 import useGetAndSaveEvent from "../../Hooks/useGetAndSaveEvent";
 import useEventSection from "../../Hooks/useEventSection";
-
-// * Redux
-import { useSelector } from "react-redux";
 
 const Section = (props) => {
   const { id, eventSlug, nameIdentifier } = props.location.state;
@@ -22,18 +20,16 @@ const Section = (props) => {
   // hook that gets the right section providing an id
   const section = useEventSection(idSection);
   // * States
-  // const [section, setSection] = useState(null);
-  console.log("section", section);
 
   // if section is null the event is not loaded into eventGuide in redux
 
-  // const event = useGetAndSaveEvent(nameIdentifier, section);
-
-  console.log("Section event", event);
-
-  //  useEffect(() => {
-  //  setSection(event.sections)
-  //  }, [event])
+  /**
+   * @desc the param section is used in case the page is called
+   * directly without passing by <Guide/> or <Home/>
+   * if section is null the hook returns otherwise by default returns null
+   * cause is already called from <Guide />
+   */
+  useGetAndSaveEvent(nameIdentifier, section);
 
   return (
     <>

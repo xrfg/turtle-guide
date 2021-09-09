@@ -50,7 +50,7 @@ const BlockSection = (props) => {
   const { eventSlug, nameIdentifier } = props;
   const { title, description, id } = props.data;
 
-  console.log("BlockSection nameIdentifier ", nameIdentifier);
+  // console.log("BlockSection nameIdentifier ", nameIdentifier);
   // console.log("props.data", props);
 
   const goToSection = () => {

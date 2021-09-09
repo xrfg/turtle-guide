@@ -9,19 +9,21 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setEventGuide } from "../../../store/actions/eventsActions";
 
-const useGetAndSaveEvent = (props) => {
+/**
+ * @param eventName // event to get and set
+ * @param val if need to be stopped or not i.e. false DO NOT STOP
+ * @desc the param val is used into <Section /> in case the page is called
+ * directly without passing by <Guide/> or <Home/>
+ */
+const useGetAndSaveEvent = (eventName, val = false) => {
   // * Hooks
   const dispatch = useDispatch();
-
-  // set event name
-  const eventName = props;
+  // * states
+  const [event, setEvent] = useState(null);
 
   // * base url
   // TODO change it
   const baseURL = "http://localhost:5000/api/events/";
-
-  // * states
-  const [event, setEvent] = useState(null);
 
   const getEvent = async () => {
     try {
@@ -36,7 +38,12 @@ const useGetAndSaveEvent = (props) => {
   };
 
   useEffect(() => {
-    getEvent();
+    // if val is false stops the process
+    if (!val || val === null) {
+      return getEvent();
+    } else {
+      return;
+    }
     //eslint-disable-next-line
   }, []);
 

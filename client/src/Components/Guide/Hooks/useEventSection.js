@@ -10,18 +10,19 @@ const useEventReducer = (props) => {
   // get eventGuide state in redux
   const event = useSelector((state) => state.events.eventGuide);
 
-  // console.log("events", events);
-
   // if event is === {} (empty)
+  // if is called directly from <Section />
   if (Object.keys(event).length === 0) {
     return null;
   }
 
-  // event tto find
+  // event to find
   const idSection = props;
 
   // get event
   const findSection = event.sections.find((x) => x.id === idSection);
+
+  // TODO insert error in case of wrong section
   // return
   return findSection;
 };
