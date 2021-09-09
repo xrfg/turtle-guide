@@ -20,20 +20,19 @@ import {
   CardContent,
   Typography,
   CardActions,
-  Button,
   ButtonGroup,
   TextField,
   Box,
   makeStyles,
 } from "@material-ui/core";
 // * material UI imports Icons
-import { Forward, Delete, DragIndicator } from "@material-ui/icons";
 
 // * React Components
 import EditSaveButton from "../../Components/Buttons/EditSaveButton";
 
 // needed to render Rich text
 import ReactQuill from "react-quill"; // ES6
+import CustomIconButton from "../../Components/Buttons/CustomIconButtons/CustomIconButton";
 
 const useStyles = makeStyles((theme) => ({
   card: { position: "relative", marginBottom: "1rem" },
@@ -202,26 +201,27 @@ export default function EventSection(props) {
         >
           {/* Save Edit  */}
           <EditSaveButton
-            size={"small"}
             editStatus={editing}
             editHandler={handleSaveEditBtn}
           />
           {/* Got to Edit section   */}
-          <Button href={`${url}`} size="small" onClick={editSection}>
-            <Forward />
-          </Button>
+          <CustomIconButton
+            href={`${url}`}
+            onClickFunc={editSection}
+            icon="forward"
+          />
         </ButtonGroup>
         <ButtonGroup
           orientation="horizontal"
           aria-label="horizontal button group"
         >
-          <Button style={{ cursor: "grab" }} size="small">
-            <DragIndicator />
-          </Button>{" "}
+          {/* // ! all the section is draggable, should only work when dragstart is this button */}
+          <CustomIconButton icon="drag" />
           {/* Remove Section   */}
-          <Button size="small" onClick={() => removeSection(id)}>
-            <Delete />
-          </Button>
+          <CustomIconButton
+            onClickFunc={() => removeSection(id)}
+            icon="delete"
+          />
         </ButtonGroup>
       </CardActions>
     </Card>

@@ -4,21 +4,29 @@
  */
 import { createTheme } from "@material-ui/core/styles";
 
-
 export const colors = {
-  grey:'#22333B', //darkGraey
-  ming:'#3B6C70',  //darkGreen
-  black:'#0A0908',
+  grey: "#22333B", //darkGraey ----------
+  ming: "#3B6C70", //darkGreen ----------------
+  black: "#0A0908", // --------------
   arcBlue: "#0B72B9",
   arcOrange: "#FFBA60",
-  primaryMain: "#D9D9D9", // yellow/white gainsboro
+  primaryMain: "#D9D9D9", // yellow/white gainsboro ---------
   primaryLight: "#F5F5F5", // white
-  secondaryMain: "#284A63", // darkblue
+  secondaryMain: "#284A63", // darkblue ----------
   errorMain: "#EA1E0B", // Red
   warningMain: "#F76C5E", // light red / orange
   infoMain: "#F5DD90", // light yellow
   successMain: "#918F0F", // olive
   btnOver: "#CCC5B9",
+};
+
+export const ourColors = {
+  black: "#000000", // black
+  jet: "#353535", // dark grey
+  ming: "#3C6E71", // dark blueish green
+  white: "#FFFFFF", // snow white
+  gainsboro: "#D9D9D9", // light grey
+  indigoDye: "#284B63", // dark blue
 };
 
 export const theme = createTheme({
@@ -37,39 +45,45 @@ export const theme = createTheme({
   // },
   palette: {
     common: {
-      blue: `${colors.arcBlue}`,
-      main: `${colors.main}`,
+      black: `${ourColors.black}`,
+      white: `${ourColors.white}`,
     },
-    primary: { 
-      main: `${colors.primaryMain}`,
-       light: `${colors.primaryLight}`
-     },
+    primary: {
+      main: `${ourColors.ming}`,
+      light: `${colors.primaryLight}`,
+    },
     secondary: {
-      main: `${colors.secondaryMain}`,
-      darkGrey:`${colors.grey}`,
-      darkGreen:`${colors.ming}`
+      main: `${ourColors.indigoDye}`,
+      darkGrey: `${colors.grey}`,
+      darkGreen: `${colors.ming}`,
     },
-    text:{
-      primary:`${colors.primaryLight}`,
-      secondary:`${colors.black}`,
-      darkGrey:`${colors.grey}`,
-  },
+    text: {
+      primary: `${ourColors.black}`,
+      secondary: `${ourColors.indigoDye}`,
+      darkGrey: `${colors.grey}`,
+    },
     error: { main: `${colors.errorMain}` },
     warning: { main: `${colors.warningMain}` },
     info: { main: `${colors.infoMain}` },
     success: { main: `${colors.successMain}` },
   },
-  typography:{
-    fontFamily:"'Poppins', sans-serif",
-    fontSize:11.5,
-    button:{
+  typography: {
+    htmlFontSize: 16,
+    fontFamily: "'Poppins', sans-serif, 'Roboto', 'Helvetica'",
+    fontSize: 14,
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
+    fontWeightMedium: 500,
+    fontWeightBold: 700,
+    button: {
       fontFamily: "'Poppins', sans-serif",
-      fontWeight:500,
-      fontSize: "0.800rem",
-      lineHeight: 1.50,
-      letterSpacing: "0.04000em",
-    }
-  }
+      fontWeight: 500,
+      fontSize: "0.9rem",
+      lineHeight: 1.75,
+      letterSpacing: "0.02857em",
+      textTransform: "uppercase",
+    },
+  },
 
   // typography: {
   //   tab: {
@@ -80,7 +94,7 @@ export const theme = createTheme({
   //   },
   // },
 
-  // // special CSS
+  // ? CUSTOM CSS
   // css: {
   //   tab: {
   //     minWidth: 10,
@@ -99,39 +113,38 @@ export const theme = createTheme({
   //   padding: "0px",
   // },
 
-  // // BUTTONS
-  // buttons: {
-  //   btnAddDb: {
-  //     fontSize: "0.9rem",
-  //     textTransform: "uppercase",
-  //     backgroundColor: colors.primaryMain,
-  //     color: "white",
-  //     borderRadius: "5px",
-  //     padding: "5px",
-  //     paddingRight: "8px",
-  //     paddingLeft: "8px",
-  //     marginLeft: "20px",
-  //     "&:hover": {
-  //       backgroundColor: colors.btnOver,
-  //     },
-  //   },
-  //   btnUpdateItem: {
-  //     fontSize: "0.9rem",
-  //     textTransform: "uppercase",
-  //     backgroundColor: colors.primaryMain,
-  //     color: "white",
-  //     borderRadius: "5px",
-  //     marginBottom: "5px",
-  //     marginTop: "5px",
-  //     marginLeft: "20px",
-  //     "&:hover": {
-  //       backgroundColor: colors.btnOver,
-  //     },
-  //     "&:focus": {
-  //       backgroundColor: "red",
-  //     },
-  //   },
-  // },
+  //  BUTTONS
+  buttons: {
+    btn: {
+      fontSize: "0.9rem",
+      fontWeight: 500,
+      textTransform: "uppercase",
+      backgroundColor: ourColors.ming,
+      color: "white",
+      borderRadius: "5px",
+      padding: "0.4rem 0.8rem",
+      "&:hover": {
+        backgroundColor: ourColors.gainsboro,
+        color: ourColors.black,
+      },
+    },
+    //   btnUpdateItem: {
+    //     fontSize: "0.9rem",
+    //     textTransform: "uppercase",
+    //     backgroundColor: colors.primaryMain,
+    //     color: "white",
+    //     borderRadius: "5px",
+    //     marginBottom: "5px",
+    //     marginTop: "5px",
+    //     marginLeft: "20px",
+    //     "&:hover": {
+    //       backgroundColor: colors.btnOver,
+    //     },
+    //     "&:focus": {
+    //       backgroundColor: "red",
+    //     },
+    //   },
+  },
 
   // // TABLES
 
@@ -241,7 +254,7 @@ export const theme = createTheme({
 
 // CARD INSERT STYLE
 
-export const cardColors = {
+/* export const cardColors = {
   cardBackground: "white",
   cardText: colors.primaryMain,
   cardAddDbBackground: "white",
@@ -269,3 +282,4 @@ export const cardStyleAddDb = {
   borderRadius: "0px 0px 5px 5px",
   boxShadow: "0px 2px 5px -4px rgba(0,0,0,0.50)",
 };
+ */

@@ -32,24 +32,8 @@ const ColorButton = withStyles((theme) => ({
 }))(Button);
 
 const useStyles = makeStyles((theme) => ({
-  margin: {
-    margin: theme.spacing(1),
-  },
+  btn: { ...theme.buttons.btn, margin: theme.spacing(1) },
 }));
-
-/*{const theme = createTheme({
-  palette: {
-    primary: {
-      main:'#F5F5F5',
-      grey:'#525252',
-      gainsboro:'#D9D9D9',
-      cultured:'#F5F5F5',
-      ming:'#3B6C70',
-      darkblue:'#284A63'
-    },
-    
-  },
-});}*/
 
 export function SaveButton() {
   const classes = useStyles();
@@ -59,7 +43,7 @@ export function SaveButton() {
       <ColorButton
         endIcon={<SaveOutlinedIcon style={{ fontSize: "18" }} />}
         variant="contained"
-        className={classes.margin}
+        className={classes.btn}
       >
         save
       </ColorButton>
@@ -75,7 +59,7 @@ export function DeleteButton() {
       <ColorButton
         endIcon={<DeleteIcon style={{ fontSize: "18" }} />}
         variant="contained"
-        className={classes.margin}
+        className={classes.btn}
       >
         Delete
       </ColorButton>
@@ -91,7 +75,7 @@ export function AddButton() {
       <ColorButton
         endIcon={<AddOutlinedIcon style={{ fontSize: "18" }} />}
         variant="contained"
-        className={classes.margin}
+        className={classes.btn}
       >
         add
       </ColorButton>
@@ -106,7 +90,7 @@ export function BackButton() {
       <ColorButton
         startIcon={<ArrowBackOutlinedIcon style={{ fontSize: "18" }} />}
         variant="contained"
-        className={classes.margin}
+        className={classes.btn}
       >
         go back
       </ColorButton>
@@ -120,7 +104,7 @@ export function SendButton() {
       <ColorButton
         endIcon={<SendIcon style={{ fontSize: "18" }} />}
         variant="contained"
-        className={classes.margin}
+        className={classes.btn}
       >
         send
       </ColorButton>
@@ -135,7 +119,7 @@ export function DragButton() {
       <ColorButton
         startIcon={<DragIndicatorIcon style={{ fontSize: "25" }} />}
         variant="contained"
-        className={classes.margin}
+        className={classes.btn}
       ></ColorButton>
     </div>
   );
@@ -147,7 +131,7 @@ export function EditButton() {
       <ColorButton
         endIcon={<EditIcon style={{ fontSize: "18" }} />}
         variant="contained"
-        className={classes.margin}
+        className={classes.btn}
       >
         edit
       </ColorButton>
