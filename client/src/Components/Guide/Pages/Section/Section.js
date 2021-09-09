@@ -6,13 +6,19 @@ import React, { useState, useEffect } from "react";
 // * Componentns
 import SectionRender from "../../Components/SectionRender/SectionRender";
 import Spinner from "../../../Spinner/Spinner";
+import SectionNavBar from "../../Components/SectionNavBar/SectionNavBar";
 
 // * Import Hooks
 import useGetAndSaveEvent from "../../Hooks/useGetAndSaveEvent";
 import useEventSection from "../../Hooks/useEventSection";
 
 const Section = (props) => {
-  const { id, eventSlug, nameIdentifier } = props.location.state;
+  const {
+    id,
+    eventSlug,
+    nameIdentifier,
+    //  order
+  } = props.location.state;
 
   const idSection = id;
 
@@ -36,12 +42,15 @@ const Section = (props) => {
       {section === null ? (
         <Spinner />
       ) : (
-        <SectionRender
-          contents={section.contents}
-          sectionCover={section.sectionCover}
-          sectionDescription={section.description}
-          sectionTitle={section.title}
-        />
+        <>
+          <SectionNavBar />
+          <SectionRender
+            contents={section.contents}
+            sectionCover={section.sectionCover}
+            sectionDescription={section.description}
+            sectionTitle={section.title}
+          />
+        </>
       )}
     </>
   );
