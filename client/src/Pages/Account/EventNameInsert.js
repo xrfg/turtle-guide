@@ -11,19 +11,16 @@ import { TextField, makeStyles, Button } from "@material-ui/core";
 import { Save } from "@material-ui/icons";
 
 import { useHistory } from "react-router-dom";
+import CustomIconButton from "../../Components/Buttons/CustomIconButtons/CustomIconButton";
 
 const useStyles = makeStyles((theme) => ({
   form: {
-    padding: "1.4rem",
-
+    display: "flex",
+    alignItems: "center",
+    padding: "0.6rem 1.3rem",
     backgroundColor: "lightgray",
     borderRadius: "5px",
     border: "1px solid gray",
-  },
-  nameInput: { marginRight: "1rem" },
-  saveBtn: {
-    height: "100%",
-    alignSelf: "center",
   },
 }));
 
@@ -79,16 +76,13 @@ const EventName = (props) => {
         type="text"
         required
         placeholder="Name for the Event"
-        className={classes.nameInput}
         InputLabelProps={{
           shrink: true,
         }}
         onChange={onChange}
       />
 
-      <Button className={classes.saveBtn} type="submit">
-        <Save />
-      </Button>
+      <CustomIconButton type="submit" icon="save" />
     </form>
   );
 };

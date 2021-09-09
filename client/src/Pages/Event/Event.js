@@ -40,12 +40,9 @@ import {
 
 // * material UI imports Icons
 import { Add } from "@material-ui/icons";
+import CustomButton from "../../Components/Buttons/CustomButtons/CustomButton";
 
 const useStyles = makeStyles((theme) => ({
-  deleteBtn: {
-    backgroundColor: theme.palette.common.purple,
-    marginTop: 13,
-  },
   btnGrp: {
     display: "flex",
     "& > *": {
@@ -502,27 +499,27 @@ export default function Event(props) {
           </Grid>
           {/* Delete Event */}
           <Grid item xs={3}>
-            <Button
-              className={classes.deleteBtn}
-              onClick={saveEvent}
+            <CustomButton
+              text="Account"
+              startIcon="arrowBack"
+              onClickFunc={() => goBackToPage(needsToSave, history)}
+            />
+
+            <CustomButton
+              text="Save"
+              endIcon="save"
               disabled={!needsToSave}
-            >
-              Save Event
-            </Button>
+              onClickFunc={saveEvent}
+            />
+
             {/* // ?  temporarly disabled, to implement? */}
             {/* // TODO add check saving */}
-            <Button
-              className={classes.deleteBtn}
-              onClick={() => goBackToPage(needsToSave, history)}
-            >
-              Go Back to Account
-            </Button>
-            <Button
-              className={classes.deleteBtn}
-              onClick={handleClickDeleteOpen}
-            >
-              Delete Event
-            </Button>
+            <CustomButton
+              text="Delete"
+              endIcon="delete"
+              onClickFunc={handleClickDeleteOpen}
+            />
+
             <Dialog
               open={openDeleteMsg}
               onClose={handleClickDeleteClose}
@@ -540,16 +537,15 @@ export default function Event(props) {
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
-                <Button
-                  onClick={handleClickDeleteClose}
-                  color="primary"
-                  autoFocus
-                >
-                  Cancel
-                </Button>
-                <Button onClick={handleClickDeleteClose} color="primary">
-                  Delete
-                </Button>
+                <CustomButton
+                  text="Cancel"
+                  autoFocus={true}
+                  onClickFunc={handleClickDeleteClose}
+                />
+                <CustomButton
+                  text="Delete"
+                  onClickFunc={handleClickDeleteClose}
+                />
               </DialogActions>
             </Dialog>
           </Grid>
@@ -572,20 +568,18 @@ export default function Event(props) {
               orientation="vertical"
               aria-label="vertical outlined primary button group"
             >
-              <Button
-                onClick={() => {
-                  addToContents();
-                }}
-                endIcon={<Add />}
-              >
-                Section
-              </Button>
+              <CustomButton
+                text="Add"
+                endIcon="add"
+                onClickFunc={() => addToContents()}
+              />
             </ButtonGroup>
             <ButtonGroup
               disabled
               orientation="vertical"
               aria-label="vertical outlined primary button group"
             >
+              // TODO Making a custom Button Group
               <Button endIcon={<Add />}>Pay-wall</Button>
               <Button endIcon={<Add />}>Feedback</Button>
               <Button endIcon={<Add />}>Map</Button>

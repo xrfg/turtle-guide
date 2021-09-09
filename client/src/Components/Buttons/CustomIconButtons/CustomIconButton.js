@@ -1,5 +1,7 @@
 import React from "react";
 
+// TODO Styles
+
 // MatUi Component Imports
 import { IconButton } from "@material-ui/core";
 
@@ -19,21 +21,24 @@ import { theme } from "../../../styles/Theme"; // our CUSTOM theme
 const myTheme = theme;
 
 const useStyles = makeStyles((theme) => ({
-  btn: { ...theme.buttons.btn, margin: theme.spacing(1) },
+  btnIcon: { ...theme.buttons.btnIcon, margin: theme.spacing(1) },
 }));
 
 export default function CustomIconButton(props) {
   const classes = useStyles();
 
-  const { icon, onClickFunc, color, size, href } = props;
+  const { icon, onClickFunc, color, size, href, type, disabled } = props;
 
   return (
     <IconButton
-      className={classes.link}
       color={color}
       onClick={onClickFunc}
       href={href}
       size={size}
+      type={type}
+      disabled={disabled}
+      disableRipple={icon === "drag" ? true : false}
+      className={classes.btnIcon}
     >
       {
         // switch to render the icon from props
@@ -43,7 +48,7 @@ export default function CustomIconButton(props) {
           edit: <Edit />,
           forward: <Forward />,
           delete: <Delete />,
-          drag: <DragIndicator />,
+          drag: <DragIndicator />, // ! fix the chrome cursor
         }[icon]
       }
     </IconButton>

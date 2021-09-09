@@ -128,6 +128,7 @@ export const theme = createTheme({
         color: ourColors.black,
       },
     },
+    btnIcon: {},
     //   btnUpdateItem: {
     //     fontSize: "0.9rem",
     //     textTransform: "uppercase",

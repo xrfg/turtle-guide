@@ -13,7 +13,6 @@ import SignUp from "./Pages/SignUp/SignUp";
 import SignIn from "./Pages/SignIn/SignIn";
 import Footer from "./Components/Guide/Components/footer/Footer";
 import Buy from "./Components/Guide/Pages/Buy/Buy";
-import ButtonsRender from "./Components/Buttons/ButtonsRender";
 
 // * Import Custom  Components
 import Navbar from "./Components/Navbar/Navbar";
@@ -55,8 +54,6 @@ function App() {
                 >
                   <Navbar />
                   <Route exact path="/" component={Home} />
-                  <Route exact path="/buttons" component={ButtonsRender} />{" "}
-                  {/* just for testing "/buttons"*/}
                   <Route exact path="/admin" component={SignUp} />
                   <Route path="/account" component={Account} />
                   <Route path="/aboutadmin" component={AboutAdmin} />
