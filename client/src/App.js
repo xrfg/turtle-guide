@@ -11,10 +11,12 @@ import Event from "./Pages/Event/Event";
 import Section from "./Pages/Section/Section";
 import SignUp from "./Pages/SignUp/SignUp";
 import SignIn from "./Pages/SignIn/SignIn";
+import Footer from "./Components/Guide/Components/footer/Footer";
+import Buy from "./Components/Guide/Pages/Buy/Buy";
 
 // * Import Custom  Components
 import Navbar from "./Components/Navbar/Navbar";
-import Footer from "./Components/Footer/Footer";
+// import Footer from "./Components/Footer/Footer";
 
 // REDUX
 import { Provider } from "react-redux";

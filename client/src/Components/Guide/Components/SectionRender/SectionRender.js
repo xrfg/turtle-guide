@@ -1,6 +1,6 @@
 /**
 * @desc Components to render the contents into one section in <Section/> 
-// * just forwqards <SectionPreview /> from admin 
+// * just forwards <SectionPreview /> from admin 
 */
 
 import React from "react";

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import "./guide.scss";
+
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 // * Pages
