@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import "./guide.scss";
+
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 // * Pages
@@ -10,7 +12,7 @@ import Event from "./Pages/Event/Event";
 // * Components
 import Navbar from "./Components/Navbar/Navbar";
 import Spinner from "../../Components/Spinner/Spinner";
-
+import BottomNavBar from "./Components/Navbar/BottomNavBar";
 // * baseURL
 
 export default function Guide(props) {
@@ -43,17 +45,20 @@ export default function Guide(props) {
   return (
     <>
       {/* Wraping all the guide */}
-      <div>
-        <Navbar />
-        {loading ? (
-          <Spinner />
-        ) : (
-          <Home
-            eventSlug={event.data.slug}
-            title={event.data.title}
-            sections={event.data.sections}
-          />
-        )}
+      <div aria-label="page-container" className="guide-page-container">
+        <div aria-label="content-wrap" className="guide-content-wrap">
+          {/* <Navbar /> disabled for now, because we already have the bottom nav bar */}
+          {loading ? (
+            <Spinner />
+          ) : (
+            <Home
+              eventSlug={event.data.slug}
+              title={event.data.title}
+              sections={event.data.sections}
+            />
+          )}
+          <BottomNavBar />
+        </div>
       </div>
     </>
   );
