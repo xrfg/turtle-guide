@@ -115,12 +115,17 @@ const SectionPreview = (props) => {
         {contents.map((x) => {
           /* images */
           if (x.type === "image") {
+            console.log("x.content.caption?", x.content);
             return (
-              <img
-                className={classes.image}
-                alt="complex"
-                src={x.content.url}
-              />
+              <>
+                <img
+                  className={classes.image}
+                  alt="complex"
+                  src={x.content.url}
+                />
+                <h3>{x.content.caption?.title}</h3>
+                <h4>{x.content.caption?.description}</h4>
+              </>
             );
           }
 

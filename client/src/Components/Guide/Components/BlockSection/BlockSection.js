@@ -54,7 +54,7 @@ const BlockSection = (props) => {
   const { title, description, id, order } = props.data;
 
   // console.log("BlockSection nameIdentifier ", nameIdentifier);
-  console.log("props.data", props.data);
+  // console.log("props.data", props.data);
 
   // const goToSection = () => {
   //   history.push(`sections/${id}`, {

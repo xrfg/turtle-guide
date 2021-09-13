@@ -262,6 +262,7 @@ export default function SectionContentManager(props) {
         public_id: obj.uploadInfo.public_id,
         url: obj.uploadInfo.url,
         url_thumb: obj.uploadInfo.thumbnail_url,
+        caption: "",
       },
     };
     return objToSend;
@@ -357,14 +358,18 @@ export default function SectionContentManager(props) {
    * @desc add media caption to the element into the array (state)
    */
   const addMediaCaption = (id, caption) => {
+    console.log("addMediaCaption", id, caption);
     contents.forEach((x) => {
       if (x.id === id) {
+        console.log("adding");
         x.content["caption"] = caption;
       }
     });
     // set to save
     setNeedsToSave(true);
   };
+
+  console.log("contents", contents);
 
   /**
    * @function setMediaText
