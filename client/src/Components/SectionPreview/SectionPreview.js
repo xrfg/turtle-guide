@@ -11,7 +11,7 @@ import React, { useEffect } from "react";
 
 // * Mat UI
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
+import {Container,Button} from "@material-ui/core";
 
 // * Components
 import VideoPlayerFunction from "../VideoPlayerFunction/VideoPlayerFunction";
@@ -20,6 +20,7 @@ import VideoPlayerFunction from "../VideoPlayerFunction/VideoPlayerFunction";
 import theme from '../../styles/Theme'
 // needed to render Rich text
 import ReactQuill from "react-quill"; // ES6
+import { transform } from "lodash";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -27,7 +28,13 @@ const useStyles = makeStyles((theme) =>
       "& > *": {
         margin: theme.spacing(1),
       },
-      maxWidth: 345,
+      margin:"0",
+      padding:"0",
+      display: "flex",
+      flexDirection:"column",
+      justifyContent:"center",
+      alignItems:"center",
+      backgroundColor:theme.palette.common.white,
     },
     // * Custom CSS
     // Custom margins container buttons
@@ -41,38 +48,68 @@ const useStyles = makeStyles((theme) =>
     //     containerGrids: {},
     //     gridContent: {},
     //     gridPreview: {},
-    mainContainer: {
-      margin:"0",
-      padding:"0",
-      display: "flex",
-      flexDirection:"column",
-      justifyContent:"center",
-      alignItems:"center",
-      backgroundColor:theme.palette.common.white,
-    },
     sectionCover:{
       width:"100%",
-      boxShadow:"0px 4px 10px 1px rgba(193,191,118,0.9)",
+      boxShadow:"0px 4px 10px 2px rgba(244,234,220,0.9)",
     },
     sectionDescription:{
-      marginTop:"10px",
+      margin:"10px 0 40px 0",
       fontWeight:"500",
-      letterSpacing:"0.400222px"
+      letterSpacing:"0.400222px",
+      color:"#4d4b46",
+      fontFamily:"poppins",
     },
     // ! Just a test can be removed
+    card:{
+      width:"89%",
+      display:"flex",
+      alignItems:"center",
+      flexDirection:"column",
+    },
     image: {
       display: "flex",
       flexDirection: "column",
       justifyContent:"center",
       alignItems: "center",
-      marginBottom:"20px",
+      margin:"10px 0 10px 0",
+      width:"87%",
       borderRadius:"3px",
-      boxShadow:"0px 1px 7px 0px rgba(247,245,156,0.9)",
+        boxShadow:"0px 4px 10px 2px rgba(244,234,220,0.9)",
+    },
+    cardTitle:{
+      fontSize:"1.5rem",
+      letterSpacing:"0.50000px",
+      fontFamily:"poppins",
+      textTransform:"capitalize",
+      color:"#4d4b46",
+    },
+    cardDesc:{
+      display:"flex",
+      overflow:"hidden",
+      padding:"2px",
+      margin:"10px 0 0 0",
+      alignSelf:"start",
+      fontWeight:"400",
+      fontSize:"0.8rem",
+      color:"#4d4b46",
+      fontFamily:"raleway",
+      letterSpacing:"0.30000px",
+    },
+    storySection:{
+      padding:"0.1rem",
+      fontSize:"1.5rem",
+      margin:"50px 0  40px 0",
+      color:"#4d4b46",
+      fontFamily:"raleway",
+      letterSpacing:"0.60000px",
+      width:"80%",
+      backgroundColor:"#f3e9e9a8",
     },
     btnSection: {
       display: "flex",
       justifyContent: "space-between",
       flexWrap: "wrap",
+      margin:"50px 0 30px 0 "
     },
     overview: {
       height: "fit-content",
@@ -94,7 +131,7 @@ const SectionPreview = (props) => {
 
   return (
     <>
-      <Container maxWidth="xs" className={classes.mainContainer}>
+      <Container maxWidth="xs" className={classes.root}>
         {sectionCover.url === "" ? (
           <h1>No cover image yet, please choose one</h1>
         ) : (
@@ -110,22 +147,22 @@ const SectionPreview = (props) => {
           readOnly={true}
           theme={"bubble"}
         />
-        {sectionTitle}
         {/* // * mapping to render divided by types */}
         {contents.map((x) => {
           /* images */
           if (x.type === "image") {
             console.log("x.content.caption?", x.content);
             return (
-              <>
+              <div className={classes.card}>
                 <img
                   className={classes.image}
+                  key={x.content.public_id}
                   alt="complex"
                   src={x.content.url}
                 />
-                <h3>{x.content.caption?.title}</h3>
-                <h4>{x.content.caption?.description}</h4>
-              </>
+                <h3 className={classes.cardTitle}>{x.content.caption?.title}</h3>
+                <p className={classes.cardDesc}>{x.content.caption?.description}</p>
+              </div>
             );
           }
 
@@ -140,6 +177,8 @@ const SectionPreview = (props) => {
                 <h2>Video Player in Function</h2>
                 <div className="vp">
                   <VideoPlayerFunction options={videoOptions} />
+                  <h3>{x.content.caption?.title}</h3>
+                <h4>{x.content.caption?.description}</h4>
                 </div>
               </div>
             );
@@ -148,11 +187,14 @@ const SectionPreview = (props) => {
           /*  text */
           if (x.type === "text") {
             return (
-              <ReactQuill value={x.content} readOnly={true} theme={"bubble"} />
+              <ReactQuill
+              className={classes.storySection}
+               value={x.content} readOnly={true} theme={"bubble"} />
             );
           }
           return null;
         })}
+        <Button className={classes.btnSection} variant="contained">go back</Button>
       </Container>
     </>
   );
