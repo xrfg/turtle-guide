@@ -47,17 +47,18 @@ const useStyles = makeStyles((theme) =>
       backgroundSize: "cover",
       height: "180px",
       // clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 81%)",
+      boxShadow: "3px 3px 10px -8px rgba(0,0,0,0.97)",
     },
     sectionTitleWrap: {
       // clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 81%)",
-      boxShadow: "3px 3px 15px -8px rgba(0,0,0,0.86)",
-      backgroundColor: "red",
+      // backgroundColor: "white",
     },
     sectionTitle: {
       marginTop: "-20px",
-      backgroundColor: "red",
+      backgroundColor: "white",
       padding: "10px",
-      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 81%)",
+      boxShadow: "5px 3px 15px -13px rgba(0,0,0,0.7)",
+      // clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 81%)",
     },
     sectionDescription: {
       // margin: "10px 0 40px 0",
@@ -88,6 +89,7 @@ const useStyles = makeStyles((theme) =>
       // fontFamily: "poppins",
       textTransform: "capitalize",
       color: "#4d4b46",
+      overflowWrap: "anywhere",
       "& > span": {
         padding: "2px",
         alignSelf: "start",
@@ -97,6 +99,7 @@ const useStyles = makeStyles((theme) =>
         color: "#4d4b46",
         fontFamily: "raleway",
         letterSpacing: "0.30000px",
+        overflowWrap: "anywhere",
       },
     },
     text: {
@@ -154,7 +157,7 @@ const SectionPreview = (props) => {
         <div className={classes.sectionTitleWrap}>
           <Typography
             gutterBottom={true}
-            variant={"h4"}
+            variant={"h5"}
             className={classes.sectionTitle}
           >
             {sectionTitle}

@@ -720,21 +720,6 @@ export default function SectionContentManager(props) {
                     );
                   })}
           </Grid>
-          {/* // ? Buttons Bottom container */}
-          {/* <Grid container spacing={3} className={classes.gridContainer}>
-          <Grid item xs={12} className={classes.btnSection}>
-            {/* // ! TEMPORARLY DISABLED */}
-          {/* <Button
-              size="small"
-              variant="contained"
-              color="primary"
-              component="span"
-              onClick={() => addToContents(createObj("text"))}
-            >
-              Preview{" "}
-            </Button>
-          </Grid>
-        </Grid> */}
         </Grid>
       ) : null}
     </Container>

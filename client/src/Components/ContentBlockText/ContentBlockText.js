@@ -62,10 +62,12 @@ const useStyles = makeStyles((theme) =>
     mediaContainer: {
       textAlign: "center",
       justifyContent: "center",
+      overflowWrap: "anywhere",
     },
     mediaCaption: {
       textAlign: "center",
       justifyContent: "center",
+      overflowWrap: "anywhere",
     },
     img: {
       width: "100%",
@@ -76,6 +78,8 @@ const useStyles = makeStyles((theme) =>
     },
     descriptionContainer: {
       marginLeft: "20px",
+      marginRight: "20px",
+      overflowWrap: "anywhere",
     },
   })
 );
@@ -157,15 +161,19 @@ const ContentBlockText = (props) => {
       onDragStart={props.isDraggable ? props.handleDrag : null}
       onDrop={props.isDraggable ? props.handleDrop : null}
     >
-      <Grid item xs={12} sm container className={classes.mediaContainer}>
+      {/* <Grid item xs={12} sm container className={classes.mediaContainer}>
         <Grid item>
           <ShortTextIcon fontSize="large" />
         </Grid>
-      </Grid>
+      </Grid> */}
 
       <Grid item xs={12} sm container className={classes.mediaCaption}>
-        <Grid item className={classes.descriptionContainer}>
-          <Typography gutterBottom variant="subtitle1">
+        <Grid item>
+          <Typography
+            gutterBottom
+            variant="subtitle1"
+            // className={classes.descriptionContainer}
+          >
             {isEditing ? (
               <div>
                 <ModalCustom
@@ -178,7 +186,12 @@ const ContentBlockText = (props) => {
                 <html>{content}</html>
               </div>
             ) : (
-              <ReactQuill value={content} readOnly={true} theme={"bubble"} />
+              <ReactQuill
+                value={content}
+                readOnly={true}
+                theme={"bubble"}
+                // className={classes.descriptionContainer}
+              />
             )}
           </Typography>
         </Grid>
