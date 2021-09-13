@@ -212,6 +212,7 @@ export default function EventSection(props) {
         >
           {/* Save Edit  */}
           <EditSaveButton
+            className={classes.hoverSaveEdit}
             editStatus={editing}
             editHandler={handleSaveEditBtn}
           />

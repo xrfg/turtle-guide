@@ -35,24 +35,22 @@ import {
   Box,
   Button,
   ButtonGroup,
+  IconButton,
   makeStyles,
 } from "@material-ui/core";
 
 // * material UI imports Icons
-import { Add } from "@material-ui/icons";
+import { Add, Delete, Save } from "@material-ui/icons";
+import CustomButton from "../../Components/Buttons/CustomButtons/CustomButton";
+import CustomIconButton from "../../Components/Buttons/CustomIconButtons/CustomIconButton";
 
 const useStyles = makeStyles((theme) => ({
-  deleteBtn: {
-    backgroundColor: theme.palette.common.purple,
-    marginTop: 13,
-  },
-  btnGrp: {
-    display: "flex",
-    "& > *": {
-      margin: theme.spacing(1),
-    },
-  },
   guide__header: { marginBottom: "1rem" },
+  saveDelBtnGrp: {
+    // backgroundColor: "red",
+    width: "100%",
+    justifySelf: "start",
+  },
 }));
 
 // TODO goBack prevention
@@ -539,6 +537,58 @@ export default function Event(props) {
             >
               Delete Event
             </Button>
+            <CustomButton
+              text="Account"
+              startIcon="arrowBack"
+              onClickFunc={() => goBackToPage(needsToSave, history)}
+            />
+
+            <div>
+              <CustomIconButton
+                icon="save"
+                disabled={!needsToSave}
+                onClickFunc={saveEvent}
+                // make a focus light so the user knows to save
+                style={{
+                  backgroundColor: !needsToSave ? "inherit" : "#26b519",
+                }}
+              />
+              {/* // ?  temporarly disabled, to implement? */}
+              {/* // TODO add check saving */}
+              <CustomIconButton
+                color="error"
+                icon="delete"
+                onClickFunc={handleClickDeleteOpen}
+              />
+            </div>
+
+            <Dialog
+              open={openDeleteMsg}
+              onClose={handleClickDeleteClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">
+                {`Are you sure you want to delete ${event.title}?`}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  Deleting {event.title} will permanently erase it from the
+                  admin's event collection.
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <CustomButton
+                  text="Cancel"
+                  autoFocus={true}
+                  onClickFunc={handleClickDeleteClose}
+                />
+                <CustomButton
+                  text="Delete"
+                  onClickFunc={handleClickDeleteClose}
+                />
+              </DialogActions>
+            </Dialog>
           </Grid>
           {/* Error/success msg TOP */}
           <Grid container direction="row" spacing={2}>
@@ -552,27 +602,21 @@ export default function Event(props) {
             </Grid>
           </Grid>
           {/* 
-        // * Button Group
+        // * Add BTN + Disabled ones
         */}
-          <Grid item xs={4} className={classes.btnGrp}>
-            <ButtonGroup
-              orientation="vertical"
-              aria-label="vertical outlined primary button group"
-            >
-              <Button
-                onClick={() => {
-                  addToContents();
-                }}
-                endIcon={<Add />}
-              >
-                Section
-              </Button>
-            </ButtonGroup>
+          <Grid item xs={4}>
+            <CustomButton
+              text="Section"
+              endIcon="add"
+              onClickFunc={() => addToContents()}
+            />
+
             <ButtonGroup
               disabled
               orientation="vertical"
               aria-label="vertical outlined primary button group"
             >
+              {/* // TODO Making a custom Button Group */}
               <Button endIcon={<Add />}>Pay-wall</Button>
               <Button endIcon={<Add />}>Feedback</Button>
               <Button endIcon={<Add />}>Map</Button>

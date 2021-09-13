@@ -27,6 +27,7 @@ import TextEditor from "../Inputs/TextEditor";
 import ModalCustom from "../../Components/Modal/ModalCustom";
 // needed to render Rich text
 import ReactQuill from "react-quill"; // ES6
+import CustomIconButton from "../Buttons/CustomIconButtons/CustomIconButton";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -183,22 +184,17 @@ const ContentBlockText = (props) => {
         </Grid>
         <Grid item className={classes.iconsContainer}>
           {/*  // * editing title/description */}
-          <ButtonBase onClick={() => editContent(id)}>
-            {isEditing ? (
-              <SaveIcon fontSize="small" />
-            ) : (
-              <EditIcon fontSize="small" />
-            )}
-          </ButtonBase>
+          <CustomIconButton
+            icon={isEditing ? "save" : "edit"}
+            onClickFunc={() => editContent(id)}
+          />
           {/* //* Sends the id to the parent */}
-          <ButtonBase onClick={() => removeContent(id)}>
-            <DeleteIcon fontSize="small" />
-          </ButtonBase>
-          {props.isDraggable ? (
-            <ButtonBase>
-              <DragIndicator fontSize="small" />
-            </ButtonBase>
-          ) : null}
+          <CustomIconButton
+            icon="delete"
+            onClickFunc={() => removeContent(id)}
+          />
+
+          {props.isDraggable ? <CustomIconButton icon="drag" /> : null}
         </Grid>
 
         <Grid item>

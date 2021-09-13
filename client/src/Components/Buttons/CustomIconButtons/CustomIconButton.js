@@ -1,5 +1,7 @@
 import React from "react";
 
+// TODO Styles
+
 // MatUi Component Imports
 import { IconButton } from "@material-ui/core";
 
@@ -19,31 +21,67 @@ import { theme } from "../../../styles/Theme"; // our CUSTOM theme
 const myTheme = theme;
 
 const useStyles = makeStyles((theme) => ({
-  btn: { ...theme.buttons.btn, margin: theme.spacing(1) },
+  btnIcon: {
+    ...theme.buttons.btnIcon,
+    margin: theme.spacing(1),
+    "&:hover": {
+      backgroundColor: "#f0f0f0",
+    },
+  },
+  warning: {
+    "&:hover": {
+      color: "#F06569", // lightred
+    },
+  },
+  forward: {
+    "&:hover": {
+      color: "#4698f0", // lightblue
+    },
+  },
+  edit: {
+    "&:hover": {
+      color: "#ffd014", // sunnyyellow
+    },
+  },
+  save: {
+    color: "#f0f0f0", // grey
+    "&:hover": {
+      color: "white", // white
+    },
+  },
+  add: {
+    "&:hover": {
+      color: "#ffd014", // sunnyyellow
+    },
+  },
 }));
 
 export default function CustomIconButton(props) {
   const classes = useStyles();
 
-  const { icon, onClickFunc, color, size, href } = props;
+  const { icon, onClickFunc, color, size, href, type, disabled, style } = props;
 
   return (
     <IconButton
-      className={classes.link}
       color={color}
       onClick={onClickFunc}
       href={href}
       size={size}
+      type={type}
+      disabled={disabled}
+      disableRipple={icon === "drag" ? true : false}
+      className={classes.btnIcon}
+      style={style}
     >
       {
         // switch to render the icon from props
         {
-          add: <Add />,
-          save: <Save />,
-          edit: <Edit />,
-          forward: <Forward />,
-          delete: <Delete />,
-          drag: <DragIndicator />,
+          add: <Add className={classes.add} />,
+          save: <Save className={classes.save} />,
+          edit: <Edit className={classes.edit} />,
+          forward: <Forward className={classes.forward} />,
+          delete: <Delete className={classes.warning} />,
+          drag: <DragIndicator className={classes.drag} />, // ! fix the chrome cursor
         }[icon]
       }
     </IconButton>
