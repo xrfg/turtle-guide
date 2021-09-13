@@ -7,6 +7,8 @@ import {
   EVENTS_FETCH_ERROR,
   EVENT_GUIDE,
   EVENT_GUIDE_ERROR,
+  EVENT_DELETE,
+  EVENT_DELETE_ERROR,
 } from "../types";
 
 import axios from "axios";
@@ -77,7 +79,6 @@ export const eventUpdate = (obj) => {
     try {
       // call api
       const res = await axios(objToSend);
-      console.log("res", res);
       // res.data.data sends just the event
       await dispatch({ type: EVENT_UPDATE, payload: res.data.data });
 
@@ -90,10 +91,45 @@ export const eventUpdate = (obj) => {
 };
 
 /**
+ * @desc action to delete an event
+ */
+
+export const eventDelete = (obj = {}) => {
+  return async (dispatch) => {
+    // important
+    //  it uses the old nameIdf cause in mongo it has this still that nameIdf
+    const eventName = obj?.hasOwnProperty("oldNameIdentifier")
+      ? obj?.oldNameIdentifier
+      : obj?.nameIdentifier;
+
+    // uses a function to create an object for axios
+    const objToSend = createObj({
+      method: "DELETE",
+      url: BASEurlEvents + eventName,
+      token: token,
+    });
+
+    try {
+      // call api
+      const res = await axios(objToSend);
+
+      // does not dispatch cause after the delete it goes
+      // back to the page that fetches the events from the BE
+      await dispatch({ type: EVENT_DELETE });
+
+      return res;
+    } catch (error) {
+      console.error(error);
+      await dispatch({ type: EVENT_DELETE_ERROR, payload: error });
+    }
+  };
+};
+
+/**
  * @desc action to fetch all the account's event
  */
 
-// TODO CNAHGE TOKEN to be sent from the client
+// TODO CHANGE TOKEN to be sent from the client
 export const eventsFetch = () => {
   return async (dispatch) => {
     // uses a function to create an object for axios

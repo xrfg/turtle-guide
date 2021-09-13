@@ -29,6 +29,7 @@ import {
 
 // * React Components
 import EditSaveButton from "../../Components/Buttons/EditSaveButton";
+import PopUpDialogBox from "../../Components/PopUpDialogBox/PopUpDialogBox";
 
 // needed to render Rich text
 import ReactQuill from "react-quill"; // ES6
@@ -47,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
   onDrag: { backgroundColor: "green" },
   textField: { display: "block" },
 }));
+
 export default function EventSection(props) {
   // * Hooks
   const classes = useStyles(props);
@@ -66,6 +68,7 @@ export default function EventSection(props) {
 
   // * States
   const [editing, setEditing] = useState(false);
+  const [openDeleteDialogBox, setOpenDeleteDialogBox] = useState(false);
 
   // * Functions
 
@@ -88,8 +91,12 @@ export default function EventSection(props) {
     }
   };
 
-  const removeSection = (id) => {
-    props.sectionToDelete(id);
+  const removeSection = (val) => {
+    // fired by <PopUpDialogBox /> if true deletes
+    if (val) {
+      props.sectionToDelete(id);
+    }
+    toggleDeleteDialogBox();
   };
 
   const handleTitle = (title) => {
@@ -109,18 +116,14 @@ export default function EventSection(props) {
     props.editSection(id, title);
   };
 
-  // /**
-  //  * @function goToAndSlugify
-  //  * @param eventName
-  //  * @desc redirects and creates an object to create the event
-  //  */
-  // // const goToAndSlugify = (eventName) => {
-  // //   history.push(`/admin/event/${slugify(eventName)}`, {
-  // //     // isNew: true,
-  // //     slug: slugify(eventName),
-  // //     title: title,
-  // //   });
-  // // };
+  /**
+   * @function toggleDeleteDialogBox
+   * @desc handle the Delete DialogBox
+   */
+
+  const toggleDeleteDialogBox = () => {
+    setOpenDeleteDialogBox((prev) => !prev);
+  };
 
   return (
     <Card
@@ -133,6 +136,14 @@ export default function EventSection(props) {
       onDragStart={props.handleDrag}
       onDrop={props.handleDrop}
     >
+      <PopUpDialogBox
+        open={openDeleteDialogBox}
+        isClose={toggleDeleteDialogBox}
+        confirm={removeSection}
+        confirmButtonTitle="Delete Section"
+        messageTitle={`Are you sure you want to delete the ${title} section?`}
+        messageBody="Deleting a section will permanently erase it from the event."
+      />
       <CardContent>
         {editing ? (
           <Box>
@@ -218,10 +229,7 @@ export default function EventSection(props) {
           {/* // ! all the section is draggable, should only work when dragstart is this button */}
           <CustomIconButton icon="drag" />
           {/* Remove Section   */}
-          <CustomIconButton
-            onClickFunc={() => removeSection(id)}
-            icon="delete"
-          />
+          <CustomIconButton onClickFunc={toggleDeleteDialogBox} icon="delete" />
         </ButtonGroup>
       </CardActions>
     </Card>
