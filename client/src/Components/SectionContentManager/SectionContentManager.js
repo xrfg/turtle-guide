@@ -18,8 +18,9 @@ import {
   Grid,
   Typography,
 } from "@material-ui/core";
-import ButtonBase from "@material-ui/core/ButtonBase";
 
+// toggle button for "preview" or "editing" from MatUI
+import { ToggleButton } from "@material-ui/lab";
 // * Pages
 
 // * Components
@@ -37,6 +38,9 @@ import ModalCustom from "../../Components/Modal/ModalCustom";
 // requires props "contents" <SectionPreview contents={ }/>
 import SectionPreview from "../../Components/SectionPreview/SectionPreview";
 
+// custom buttons
+import CustomIconButton from "../Buttons/CustomIconButtons/CustomIconButton";
+
 // * Other Imports
 
 // * REDUX
@@ -46,6 +50,7 @@ import { eventUpdate } from "../../store/actions/eventsActions";
 // * Functions
 import { goBackToPage, unBlock } from "../../functions/functions";
 import ImageHoverButton from "../Buttons/ImageHoverButton";
+import CustomButton from "../Buttons/CustomButtons/CustomButton";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -69,6 +74,33 @@ const useStyles = makeStyles((theme) =>
       marginBottom: "10px",
       // backgroundColor: theme.palette.common.blue,
     },
+    btnSidebar: {
+      backgroundColor: theme.palette.primary.light,
+      display: "flex",
+      flexDirection: "column",
+      borderRadius: "5px",
+      position: "sticky",
+      height: "100%",
+      padding: "1rem",
+      top: "1rem",
+    },
+    btnGroup: {
+      display: "flex",
+      flexDirection: "column",
+      borderRadius: "8px",
+      overflow: "hidden",
+      border: "1px solid black",
+      marginBottom: "1rem",
+      "& >*": {
+        borderRadius: "0",
+        margin: "0",
+        borderBottom: "1px solid black",
+        "&:last-child": {
+          borderBottom: "0",
+        },
+      },
+    },
+
     // Custom margins nested grid
     // ! Classes created but not styled yet
     sectionCover: {},
@@ -121,6 +153,9 @@ export default function SectionContentManager(props) {
   // if true loads the image into sectionCover
   let isAddingCover = false;
   // const [isAddingCover, setIsAddingCover] = useState(false);
+
+  // for toggling the selected/not-selected toggle on the preview-the-guide button
+  const [toggleSelected, setToggleSelected] = useState(false);
 
   // for modal
   const [openModalInsertText, setOpenModalInsertText] = useState(false);
@@ -588,42 +623,49 @@ export default function SectionContentManager(props) {
             />
           </Grid>
 
-          <Grid item xs={3} className={classes.gridItem}>
+          <Grid item xs={3} className={classes.btnSidebar}>
             {/* // * Buttons Top container */}
-            <ButtonGroup
-              color="primary"
-              orientation="vertical"
-              variant="contained"
-              className={classes.btnSection}
+            <CustomButton
               style={{ marginBottom: "1rem" }}
-              fullWidth
-            >
-              <Button disabled={!needsToSave} onClick={saveContent}>
-                Save
-              </Button>
-              <Button onClick={() => goBackToPage(needsToSave, history)}>
-                Go Back
-              </Button>
-            </ButtonGroup>
-
+              startIcon="arrowBack"
+              text="Event"
+              onClickFunc={() => goBackToPage(needsToSave, history)}
+            />{" "}
+            <CustomIconButton
+              style={{ marginBottom: "1rem", borderRadius: "8px" }}
+              icon="save"
+              onClickFunc={saveContent}
+              disabled={!needsToSave}
+            />
             {/* // * Buttons Top container */}
-            <ButtonGroup
-              color="primary"
-              orientation="vertical"
-              variant="contained"
-              className={classes.btnSection}
-              fullWidth
-            >
-              <Button onClick={() => handleOpen("insertText")}>add Text</Button>
+            <div className={classes.btnGroup}>
+              <CustomButton
+                text="text"
+                endIcon="add"
+                onClickFunc={() => handleOpen("insertText")}
+              />
               {/* // ordinary upload with cloudinaryWidget param */}
-              <Button onClick={() => showCloudinaryWidget(cloudinaryWidget)}>
-                add Media
-              </Button>
-              <Button onClick={() => addToContents(createObj("qrcode"))}>
-                add QrCode
-              </Button>
-              <Button onClick={() => handleOpen("preview")}>Preview</Button>
-            </ButtonGroup>
+              <CustomButton
+                text="media"
+                endIcon="add"
+                onClickFunc={() => showCloudinaryWidget(cloudinaryWidget)}
+              />
+              <CustomButton
+                text="qrCode"
+                endIcon="add"
+                onClickFunc={() => addToContents(createObj("qrcode"))}
+              />
+            </div>
+            <ToggleButton
+              value="preview"
+              selected={toggleSelected}
+              onChange={() => {
+                setToggleSelected(!toggleSelected);
+              }}
+              onClick={() => handleOpen("preview")}
+            >
+              Preview
+            </ToggleButton>
           </Grid>
 
           {/* // ? Contents container */}

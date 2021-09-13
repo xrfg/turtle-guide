@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 export default function CustomIconButton(props) {
   const classes = useStyles();
 
-  const { icon, onClickFunc, color, size, href, type, disabled } = props;
+  const { icon, onClickFunc, color, size, href, type, disabled, style } = props;
 
   return (
     <IconButton
@@ -39,6 +39,7 @@ export default function CustomIconButton(props) {
       disabled={disabled}
       disableRipple={icon === "drag" ? true : false}
       className={classes.btnIcon}
+      style={style}
     >
       {
         // switch to render the icon from props

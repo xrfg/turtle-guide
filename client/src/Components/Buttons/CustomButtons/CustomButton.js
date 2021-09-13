@@ -41,6 +41,7 @@ export default function CustomButton(props) {
     type,
     disabled,
     autoFocus,
+    style,
   } = props;
 
   return (
@@ -75,6 +76,7 @@ export default function CustomButton(props) {
       disabled={disabled}
       className={classes.btn}
       autoFocus={autoFocus ? true : false}
+      style={style}
     >
       {text}
     </Button>

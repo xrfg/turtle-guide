@@ -50,7 +50,7 @@ export const theme = createTheme({
     },
     primary: {
       main: `${ourColors.ming}`,
-      light: `${colors.primaryLight}`,
+      light: `${ourColors.gainsboro}`,
     },
     secondary: {
       main: `${ourColors.indigoDye}`,

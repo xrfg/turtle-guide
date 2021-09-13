@@ -43,12 +43,6 @@ import { Add } from "@material-ui/icons";
 import CustomButton from "../../Components/Buttons/CustomButtons/CustomButton";
 
 const useStyles = makeStyles((theme) => ({
-  btnGrp: {
-    display: "flex",
-    "& > *": {
-      margin: theme.spacing(1),
-    },
-  },
   guide__header: { marginBottom: "1rem" },
 }));
 
@@ -506,7 +500,7 @@ export default function Event(props) {
             />
 
             <CustomButton
-              text="Save"
+              text="Event"
               endIcon="save"
               disabled={!needsToSave}
               onClickFunc={saveEvent}
@@ -515,7 +509,7 @@ export default function Event(props) {
             {/* // ?  temporarly disabled, to implement? */}
             {/* // TODO add check saving */}
             <CustomButton
-              text="Delete"
+              text="Event"
               endIcon="delete"
               onClickFunc={handleClickDeleteOpen}
             />
@@ -527,13 +521,12 @@ export default function Event(props) {
               aria-describedby="alert-dialog-description"
             >
               <DialogTitle id="alert-dialog-title">
-                {`Are you sure you want to delete the EVENTNAME event?`}
+                {`Are you sure you want to delete ${event.title}?`}
               </DialogTitle>
               <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                  Deleting an event will permanently erase it from the admin's
-                  event collection. If you choose only to set it to private,
-                  check settings.
+                  Deleting {event.title} will permanently erase it from the
+                  admin's event collection.
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
@@ -561,19 +554,15 @@ export default function Event(props) {
             </Grid>
           </Grid>
           {/* 
-        // * Button Group
+        // * Add BTN + Disabled ones
         */}
-          <Grid item xs={4} className={classes.btnGrp}>
-            <ButtonGroup
-              orientation="vertical"
-              aria-label="vertical outlined primary button group"
-            >
-              <CustomButton
-                text="Add"
-                endIcon="add"
-                onClickFunc={() => addToContents()}
-              />
-            </ButtonGroup>
+          <Grid item xs={4}>
+            <CustomButton
+              text="Section"
+              endIcon="add"
+              onClickFunc={() => addToContents()}
+            />
+
             <ButtonGroup
               disabled
               orientation="vertical"
