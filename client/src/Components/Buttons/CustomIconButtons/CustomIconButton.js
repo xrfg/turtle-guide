@@ -21,7 +21,35 @@ import { theme } from "../../../styles/Theme"; // our CUSTOM theme
 const myTheme = theme;
 
 const useStyles = makeStyles((theme) => ({
-  btnIcon: { ...theme.buttons.btnIcon, margin: theme.spacing(1) },
+  btnIcon: {
+    ...theme.buttons.btnIcon,
+    margin: theme.spacing(1),
+  },
+  warning: {
+    "&:hover": {
+      color: "#F06569", // lightred
+    },
+  },
+  forward: {
+    "&:hover": {
+      color: "#4698f0", // lightblue
+    },
+  },
+  edit: {
+    "&:hover": {
+      color: "#ffd014", // sunnyyellow
+    },
+  },
+  save: {
+    "&:hover": {
+      color: "#2ea300", // green
+    },
+  },
+  add: {
+    "&:hover": {
+      color: "#ffd014", // sunnyyellow
+    },
+  },
 }));
 
 export default function CustomIconButton(props) {
@@ -44,12 +72,12 @@ export default function CustomIconButton(props) {
       {
         // switch to render the icon from props
         {
-          add: <Add />,
-          save: <Save />,
-          edit: <Edit />,
-          forward: <Forward />,
-          delete: <Delete />,
-          drag: <DragIndicator />, // ! fix the chrome cursor
+          add: <Add className={classes.add} />,
+          save: <Save className={classes.save} />,
+          edit: <Edit className={classes.edit} />,
+          forward: <Forward className={classes.forward} />,
+          delete: <Delete className={classes.warning} />,
+          drag: <DragIndicator className={classes.drag} />, // ! fix the chrome cursor
         }[icon]
       }
     </IconButton>

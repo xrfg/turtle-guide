@@ -30,6 +30,7 @@ import {
   Box,
   Button,
   ButtonGroup,
+  IconButton,
   makeStyles,
   Dialog,
   DialogContent,
@@ -39,11 +40,17 @@ import {
 } from "@material-ui/core";
 
 // * material UI imports Icons
-import { Add } from "@material-ui/icons";
+import { Add, Delete, Save } from "@material-ui/icons";
 import CustomButton from "../../Components/Buttons/CustomButtons/CustomButton";
+import CustomIconButton from "../../Components/Buttons/CustomIconButtons/CustomIconButton";
 
 const useStyles = makeStyles((theme) => ({
   guide__header: { marginBottom: "1rem" },
+  saveDelBtnGrp: {
+    // backgroundColor: "red",
+    width: "100%",
+    justifySelf: "start",
+  },
 }));
 
 // TODO goBack prevention
@@ -499,20 +506,20 @@ export default function Event(props) {
               onClickFunc={() => goBackToPage(needsToSave, history)}
             />
 
-            <CustomButton
-              text="Event"
-              endIcon="save"
-              disabled={!needsToSave}
-              onClickFunc={saveEvent}
-            />
-
-            {/* // ?  temporarly disabled, to implement? */}
-            {/* // TODO add check saving */}
-            <CustomButton
-              text="Event"
-              endIcon="delete"
-              onClickFunc={handleClickDeleteOpen}
-            />
+            <div>
+              <CustomIconButton
+                icon="save"
+                disabled={!needsToSave}
+                onClickFunc={saveEvent}
+              />
+              {/* // ?  temporarly disabled, to implement? */}
+              {/* // TODO add check saving */}
+              <CustomIconButton
+                color="error"
+                icon="delete"
+                onClickFunc={handleClickDeleteOpen}
+              />
+            </div>
 
             <Dialog
               open={openDeleteMsg}
