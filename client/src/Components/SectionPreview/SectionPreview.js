@@ -17,6 +17,7 @@ import { Container, Button } from "@material-ui/core";
 import VideoPlayerFunction from "../VideoPlayerFunction/VideoPlayerFunction";
 
 import theme from "../../styles/Theme";
+
 // needed to render Rich text
 import ReactQuill from "react-quill"; // ES6
 import { transform } from "lodash";
