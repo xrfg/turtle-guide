@@ -558,37 +558,9 @@ export default function Event(props) {
               <CustomIconButton
                 color="error"
                 icon="delete"
-                onClickFunc={handleClickDeleteOpen}
+                onClickFunc={toggleDeleteDialogBox}
               />
             </div>
-
-            <Dialog
-              open={openDeleteMsg}
-              onClose={handleClickDeleteClose}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-            >
-              <DialogTitle id="alert-dialog-title">
-                {`Are you sure you want to delete ${event.title}?`}
-              </DialogTitle>
-              <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                  Deleting {event.title} will permanently erase it from the
-                  admin's event collection.
-                </DialogContentText>
-              </DialogContent>
-              <DialogActions>
-                <CustomButton
-                  text="Cancel"
-                  autoFocus={true}
-                  onClickFunc={handleClickDeleteClose}
-                />
-                <CustomButton
-                  text="Delete"
-                  onClickFunc={handleClickDeleteClose}
-                />
-              </DialogActions>
-            </Dialog>
           </Grid>
           {/* Error/success msg TOP */}
           <Grid container direction="row" spacing={2}>
