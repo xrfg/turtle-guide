@@ -17,6 +17,7 @@ import { eventCreate, eventUpdate } from "../../store/actions/eventsActions";
 import EventSection from "./EventSection";
 import EventName from "./EventName";
 import CustomMessage from "../../Components/CustomMessage/CustomMessage";
+import PopUpDialogBox from "../../Components/PopUpDialogBox/PopUpDialogBox";
 
 // * Functions
 import { goBackToPage, unBlock } from "../../functions/functions";
@@ -31,11 +32,6 @@ import {
   Button,
   ButtonGroup,
   makeStyles,
-  Dialog,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-  DialogTitle,
 } from "@material-ui/core";
 
 // * material UI imports Icons
@@ -84,7 +80,7 @@ export default function Event(props) {
   const [needsToSave, setNeedsToSave] = useState(false);
 
   // for the "Delete Event" modal handlers
-  const [openDeleteMsg, setOpenDeleteMsg] = useState(false);
+  const [openDeleteDialogBox, setOpenDeleteDialogBox] = useState(false);
 
   // for the drag and drop sections re-ordering
   const [dragId, setDragId] = useState();
@@ -269,21 +265,13 @@ export default function Event(props) {
   // * ----------- Functions to handle the "Delete Event" Modal
 
   /**
-   * @function handleClickDeleteOpen
-   * @desc sets state to true to pop up the modal
+   * @function toggleDeleteDialogBox
+   * @desc handle the Delete DialogBox
    */
-  const handleClickDeleteOpen = () => {
-    setOpenDeleteMsg(true);
-  };
 
-  /**
-   * @function handleClickDeleteClose
-   * @desc sets state to false to close up the modal
-   */
-  const handleClickDeleteClose = () => {
-    setOpenDeleteMsg(false);
+  const toggleDeleteDialogBox = () => {
+    setOpenDeleteDialogBox((prev) => !prev);
   };
-
   // * ----------- Functions for the Drag and Re-order of <EventSection/>s
 
   /**
@@ -488,6 +476,14 @@ export default function Event(props) {
       {event === undefined ? null : (
         <Grid container direction="row" spacing={2}>
           <Grid item xs={9}>
+            <PopUpDialogBox
+              open={openDeleteDialogBox}
+              isClose={toggleDeleteDialogBox}
+              confirm={removeSection}
+              confirmButtonTitle="Delete Event"
+              messageTitle={`Are you sure you want to delete the ${title} section?`}
+              messageBody="Deleting a section will permanently erase it from the event."
+            />
             {/* 
         // * Name of Event Input
         */}
@@ -518,39 +514,10 @@ export default function Event(props) {
             </Button>
             <Button
               className={classes.deleteBtn}
-              onClick={handleClickDeleteOpen}
+              onClick={toggleDeleteDialogBox}
             >
               Delete Event
             </Button>
-            <Dialog
-              open={openDeleteMsg}
-              onClose={handleClickDeleteClose}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-            >
-              <DialogTitle id="alert-dialog-title">
-                {`Are you sure you want to delete the EVENTNAME event?`}
-              </DialogTitle>
-              <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                  Deleting an event will permanently erase it from the admin's
-                  event collection. If you choose only to set it to private,
-                  check settings.
-                </DialogContentText>
-              </DialogContent>
-              <DialogActions>
-                <Button
-                  onClick={handleClickDeleteClose}
-                  color="primary"
-                  autoFocus
-                >
-                  Cancel
-                </Button>
-                <Button onClick={handleClickDeleteClose} color="primary">
-                  Delete
-                </Button>
-              </DialogActions>
-            </Dialog>
           </Grid>
           {/* Error/success msg TOP */}
           <Grid container direction="row" spacing={2}>
