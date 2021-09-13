@@ -29,6 +29,7 @@ import {
 
 // * React Components
 import EditSaveButton from "../../Components/Buttons/EditSaveButton";
+import PopUpDialogBox from "../../Components/PopUpDialogBox/PopUpDialogBox";
 
 // needed to render Rich text
 import ReactQuill from "react-quill"; // ES6
@@ -47,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
   onDrag: { backgroundColor: "green" },
   textField: { display: "block" },
 }));
+
 export default function EventSection(props) {
   // * Hooks
   const classes = useStyles(props);
@@ -66,6 +68,7 @@ export default function EventSection(props) {
 
   // * States
   const [editing, setEditing] = useState(false);
+  const [openDeleteDialogBox, setOpenDeleteDialogBox] = useState(false);
 
   // * Functions
 
@@ -89,7 +92,8 @@ export default function EventSection(props) {
   };
 
   const removeSection = (id) => {
-    props.sectionToDelete(id);
+    handleDeleteDialogBox();
+    // props.sectionToDelete(id);
   };
 
   const handleTitle = (title) => {
@@ -109,18 +113,15 @@ export default function EventSection(props) {
     props.editSection(id, title);
   };
 
-  // /**
-  //  * @function goToAndSlugify
-  //  * @param eventName
-  //  * @desc redirects and creates an object to create the event
-  //  */
-  // // const goToAndSlugify = (eventName) => {
-  // //   history.push(`/admin/event/${slugify(eventName)}`, {
-  // //     // isNew: true,
-  // //     slug: slugify(eventName),
-  // //     title: title,
-  // //   });
-  // // };
+  /**
+   * @function handleDeleteDialogBox
+   * @desc handle the Delete DialogBox
+   */
+
+  const handleDeleteDialogBox = () => {
+    console.log("gere");
+    setOpenDeleteDialogBox((prev) => !prev);
+  };
 
   return (
     <Card
@@ -133,6 +134,10 @@ export default function EventSection(props) {
       onDragStart={props.handleDrag}
       onDrop={props.handleDrop}
     >
+      <PopUpDialogBox
+        open={openDeleteDialogBox}
+        isClose={openDeleteDialogBox}
+      />
       <CardContent>
         {editing ? (
           <Box>
