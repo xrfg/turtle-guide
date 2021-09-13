@@ -36,8 +36,8 @@ const useStyles = makeStyles((theme) =>
     },
     // * Custom CSS
     sectionCoverWrap: {
-      boxShadow: "3px 3px 15px -8px rgba(0,0,0,0.86)",
-      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 81%)",
+      // boxShadow: "3px 3px 15px -8px rgba(0,0,0,0.86)",
+      // clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 81%)",
     },
     sectionCover: {
       marginLeft: "-20px",
@@ -46,11 +46,12 @@ const useStyles = makeStyles((theme) =>
       backgroundPosition: "center",
       backgroundSize: "cover",
       height: "180px",
-      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 81%)",
+      // clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 81%)",
     },
     sectionTitleWrap: {
-      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 81%)",
+      // clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 81%)",
       boxShadow: "3px 3px 15px -8px rgba(0,0,0,0.86)",
+      backgroundColor: "red",
     },
     sectionTitle: {
       marginTop: "-20px",
