@@ -69,7 +69,7 @@ export const theme = createTheme({
   },
   typography: {
     htmlFontSize: 16,
-    fontFamily: "'Poppins', sans-serif, 'Roboto', 'Helvetica'",
+    fontFamily: " 'Poppins', 'Roboto', 'raleway', 'sans-serif', 'Helvetica'",
     fontSize: 14,
     fontWeightLight: 300,
     fontWeightRegular: 400,
