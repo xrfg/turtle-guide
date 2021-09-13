@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
   btnIcon: {
     ...theme.buttons.btnIcon,
     margin: theme.spacing(1),
+    "&:hover": {
+      backgroundColor: "#f0f0f0",
+    },
   },
   warning: {
     "&:hover": {
@@ -41,15 +44,15 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   save: {
-    color: "#D9D9D9",
+    color: "#f0f0f0", // grey
+    "&:hover": {
+      color: "white", // white
+    },
   },
   add: {
     "&:hover": {
       color: "#ffd014", // sunnyyellow
     },
-  },
-  bg: {
-    backgroundColor: "green",
   },
 }));
 

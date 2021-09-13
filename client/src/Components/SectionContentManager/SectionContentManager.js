@@ -75,7 +75,7 @@ const useStyles = makeStyles((theme) =>
       // backgroundColor: theme.palette.common.blue,
     },
     btnSidebar: {
-      backgroundColor: theme.palette.primary.light,
+      border: `1px solid ${theme.palette.primary.light}`,
       display: "flex",
       flexDirection: "column",
       borderRadius: "5px",
@@ -89,12 +89,12 @@ const useStyles = makeStyles((theme) =>
       flexDirection: "column",
       borderRadius: "8px",
       overflow: "hidden",
-      border: "1px solid black",
+      border: `1px solid ${theme.palette.primary.light}`,
       marginBottom: "1rem",
       "& >*": {
         borderRadius: "0",
         margin: "0",
-        borderBottom: "1px solid black",
+        borderBottom: `1px solid ${theme.palette.primary.light}`,
         "&:last-child": {
           borderBottom: "0",
         },
@@ -632,7 +632,13 @@ export default function SectionContentManager(props) {
               onClickFunc={() => goBackToPage(needsToSave, history)}
             />{" "}
             <CustomIconButton
-              style={{ marginBottom: "1rem", borderRadius: "8px" }}
+              style={{
+                marginBottom: "1rem",
+                borderRadius: "8px",
+                backgroundColor: !needsToSave ? "inherit" : "#26b519",
+              }}
+              // make a focus light so the user knows to save
+
               icon="save"
               onClickFunc={saveContent}
               disabled={!needsToSave}

@@ -117,15 +117,20 @@ export const theme = createTheme({
   buttons: {
     btn: {
       fontSize: "0.9rem",
-      fontWeight: 500,
+      fontWeight: 800,
+      letterSpacing: "1px",
       textTransform: "uppercase",
-      backgroundColor: ourColors.ming,
+      // backgroundColor: ourColors.ming,
+      background: `linear-gradient(45deg, ${ourColors.indigoDye} 30%, ${ourColors.ming} 90%)`,
+      boxShadow: `0 3px 5px 2px ${ourColors.gainsboro}`,
       color: "white",
       borderRadius: "5px",
       padding: "0.4rem 0.8rem",
+      transition: "all 0.1s",
       "&:hover": {
-        backgroundColor: ourColors.gainsboro,
-        color: ourColors.black,
+        transform: "scale(1.03)",
+
+        // color: ourColors.black,
       },
     },
     btnIcon: {},
