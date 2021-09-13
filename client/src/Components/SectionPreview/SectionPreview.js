@@ -11,13 +11,12 @@ import React, { useEffect } from "react";
 
 // * Mat UI
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import {Container,Button} from "@material-ui/core";
+import { Container, Button } from "@material-ui/core";
 
 // * Components
 import VideoPlayerFunction from "../VideoPlayerFunction/VideoPlayerFunction";
 
-
-import theme from '../../styles/Theme'
+import theme from "../../styles/Theme";
 // needed to render Rich text
 import ReactQuill from "react-quill"; // ES6
 import { transform } from "lodash";
@@ -26,90 +25,79 @@ const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       "& > *": {
-        margin: theme.spacing(1),
+        // margin: theme.spacing(1),
+        margin: "0",
+        padding: "0",
       },
-      margin:"0",
-      padding:"0",
-      display: "flex",
-      flexDirection:"column",
-      justifyContent:"center",
-      alignItems:"center",
-      backgroundColor:theme.palette.common.white,
+
+      backgroundColor: theme.palette.common.white,
+      maxWidth: "100%",
+      overflow: "hidden",
     },
     // * Custom CSS
-    // Custom margins container buttons
-    //     gridContainer: {
-    //       marginTop: "10px",
-    //       marginBottom: "10px",
-    //       backgroundColor: theme.palette.common.blue,
-    //     },
-    //     // Custom margins nested grid
-    //     // ! Classes created but not styled yet
-    //     containerGrids: {},
-    //     gridContent: {},
-    //     gridPreview: {},
-    sectionCover:{
-      width:"100%",
-      boxShadow:"0px 4px 10px 2px rgba(244,234,220,0.9)",
+
+    sectionCover: {
+      marginLeft: "-20px",
+      width: "115%",
+      maxHeight: "150px",
+      boxShadow: "0px 4px 10px 2px rgba(244,234,220,0.9)",
     },
-    sectionDescription:{
-      margin:"10px 0 40px 0",
-      fontWeight:"500",
-      letterSpacing:"0.400222px",
-      color:"#4d4b46",
-      fontFamily:"poppins",
+    sectionDescription: {
+      // margin: "10px 0 40px 0",
+      fontWeight: "500",
+      letterSpacing: "0.400222px",
+      color: "#4d4b46",
+      // fontFamily: "poppins",
     },
-    // ! Just a test can be removed
-    card:{
-      width:"89%",
-      display:"flex",
-      alignItems:"center",
-      flexDirection:"column",
-    },
+    // card: {
+    //   width: "89%",
+    //   display: "flex",
+    //   alignItems: "center",
+    //   flexDirection: "column",
+    // },
     image: {
       display: "flex",
       flexDirection: "column",
-      justifyContent:"center",
+      justifyContent: "center",
       alignItems: "center",
-      margin:"10px 0 10px 0",
-      width:"87%",
-      borderRadius:"3px",
-        boxShadow:"0px 4px 10px 2px rgba(244,234,220,0.9)",
+      margin: "10px 0 10px 0",
+      width: "100%",
+      borderRadius: "3px",
+      // boxShadow: "0px 4px 10px 2px rgba(244,234,220,0.9)",
     },
-    cardTitle:{
-      fontSize:"1.5rem",
-      letterSpacing:"0.50000px",
-      fontFamily:"poppins",
-      textTransform:"capitalize",
-      color:"#4d4b46",
+    imageCaptionTitle: {
+      fontSize: "0.7rem",
+      letterSpacing: "0.50000px",
+      // fontFamily: "poppins",
+      textTransform: "capitalize",
+      color: "#4d4b46",
+      "& > span": {
+        padding: "2px",
+        alignSelf: "start",
+        fontWeight: "400",
+        fontSize: "0.7rem",
+        fontStyle: "italic",
+        color: "#4d4b46",
+        fontFamily: "raleway",
+        letterSpacing: "0.30000px",
+      },
     },
-    cardDesc:{
-      display:"flex",
-      overflow:"hidden",
-      padding:"2px",
-      margin:"10px 0 0 0",
-      alignSelf:"start",
-      fontWeight:"400",
-      fontSize:"0.8rem",
-      color:"#4d4b46",
-      fontFamily:"raleway",
-      letterSpacing:"0.30000px",
-    },
-    storySection:{
-      padding:"0.1rem",
-      fontSize:"1.5rem",
-      margin:"50px 0  40px 0",
-      color:"#4d4b46",
-      fontFamily:"raleway",
-      letterSpacing:"0.60000px",
-      width:"80%",
-      backgroundColor:"#f3e9e9a8",
+    text: {
+      padding: "0.1rem",
+      fontSize: "1.5rem",
+      margin: "50px 0  40px 0",
+      color: "#4d4b46",
+      fontFamily: "raleway",
+      letterSpacing: "0.60000px",
+      width: "100%",
+      borderTop: "0.02rem grey solid",
+      borderBottom: "0.02rem grey solid",
     },
     btnSection: {
       display: "flex",
       justifyContent: "space-between",
       flexWrap: "wrap",
-      margin:"50px 0 30px 0 "
+      margin: "50px 0 30px 0 ",
     },
     overview: {
       height: "fit-content",
@@ -142,7 +130,7 @@ const SectionPreview = (props) => {
           />
         )}
         <ReactQuill
-        className={classes.sectionDescription}
+          className={classes.sectionDescription}
           value={sectionDescription}
           readOnly={true}
           theme={"bubble"}
@@ -160,8 +148,10 @@ const SectionPreview = (props) => {
                   alt="complex"
                   src={x.content.url}
                 />
-                <h3 className={classes.cardTitle}>{x.content.caption?.title}</h3>
-                <p className={classes.cardDesc}>{x.content.caption?.description}</p>
+                <p className={classes.imageCaptionTitle}>
+                  {x.content.caption?.title} -
+                  <span>{x.content.caption?.description}</span>
+                </p>
               </div>
             );
           }
@@ -178,7 +168,7 @@ const SectionPreview = (props) => {
                 <div className="vp">
                   <VideoPlayerFunction options={videoOptions} />
                   <h3>{x.content.caption?.title}</h3>
-                <h4>{x.content.caption?.description}</h4>
+                  <h4>{x.content.caption?.description}</h4>
                 </div>
               </div>
             );
@@ -188,13 +178,15 @@ const SectionPreview = (props) => {
           if (x.type === "text") {
             return (
               <ReactQuill
-              className={classes.storySection}
-               value={x.content} readOnly={true} theme={"bubble"} />
+                className={classes.text}
+                value={x.content}
+                readOnly={true}
+                theme={"bubble"}
+              />
             );
           }
           return null;
         })}
-        <Button className={classes.btnSection} variant="contained">go back</Button>
       </Container>
     </>
   );

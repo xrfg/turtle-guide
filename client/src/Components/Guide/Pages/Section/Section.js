@@ -49,6 +49,7 @@ const Section = (props) => {
             sectionDescription={section.description}
             sectionTitle={section.title}
           />
+          <SectionNavBar />
         </>
       )}
     </>
