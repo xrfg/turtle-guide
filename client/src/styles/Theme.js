@@ -49,7 +49,7 @@ export const theme = createTheme({
       white: `${ourColors.white}`,
     },
     primary: {
-      main: `${ourColors.ming}`,
+      main: `${ourColors.gainsboro}`,
       light: `${colors.primaryLight}`,
     },
     secondary: {

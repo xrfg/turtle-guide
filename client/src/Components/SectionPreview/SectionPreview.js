@@ -15,6 +15,9 @@ import Container from "@material-ui/core/Container";
 
 // * Components
 import VideoPlayerFunction from "../VideoPlayerFunction/VideoPlayerFunction";
+
+
+import theme from '../../styles/Theme'
 // needed to render Rich text
 import ReactQuill from "react-quill"; // ES6
 
@@ -39,13 +42,32 @@ const useStyles = makeStyles((theme) =>
     //     gridContent: {},
     //     gridPreview: {},
     mainContainer: {
+      margin:"0",
+      padding:"0",
       display: "flex",
+      flexDirection:"column",
+      justifyContent:"center",
+      alignItems:"center",
+      backgroundColor:theme.palette.common.white,
+    },
+    sectionCover:{
+      width:"100%",
+      boxShadow:"0px 4px 10px 1px rgba(193,191,118,0.9)",
+    },
+    sectionDescription:{
+      marginTop:"10px",
+      fontWeight:"500",
+      letterSpacing:"0.400222px"
     },
     // ! Just a test can be removed
     image: {
       display: "flex",
       flexDirection: "column",
-      maxWidth: "300px",
+      justifyContent:"center",
+      alignItems: "center",
+      marginBottom:"20px",
+      borderRadius:"3px",
+      boxShadow:"0px 1px 7px 0px rgba(247,245,156,0.9)",
     },
     btnSection: {
       display: "flex",
@@ -72,17 +94,18 @@ const SectionPreview = (props) => {
 
   return (
     <>
-      <Container maxWidth="xs">
+      <Container maxWidth="xs" className={classes.mainContainer}>
         {sectionCover.url === "" ? (
           <h1>No cover image yet, please choose one</h1>
         ) : (
           <img
-            className={classes.image}
+            className={classes.sectionCover}
             alt="section-cover"
             src={sectionCover.url}
           />
         )}
         <ReactQuill
+        className={classes.sectionDescription}
           value={sectionDescription}
           readOnly={true}
           theme={"bubble"}
