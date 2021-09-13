@@ -41,14 +41,15 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   save: {
-    "&:hover": {
-      color: "#2ea300", // green
-    },
+    color: "#D9D9D9",
   },
   add: {
     "&:hover": {
       color: "#ffd014", // sunnyyellow
     },
+  },
+  bg: {
+    backgroundColor: "green",
   },
 }));
 

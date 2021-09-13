@@ -511,6 +511,10 @@ export default function Event(props) {
                 icon="save"
                 disabled={!needsToSave}
                 onClickFunc={saveEvent}
+                // make a focus light so the user knows to save
+                style={{
+                  backgroundColor: !needsToSave ? "inherit" : "#26b519",
+                }}
               />
               {/* // ?  temporarly disabled, to implement? */}
               {/* // TODO add check saving */}

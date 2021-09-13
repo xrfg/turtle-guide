@@ -29,6 +29,10 @@ export default function EditSaveButton(props) {
   return (
     // disabled={title === "Title" || isFirstEditing ? true : false}
     <CustomIconButton
+      // make a focus light so the user knows to save
+      style={{
+        backgroundColor: !props.editStatus ? "inherit" : "#26b519",
+      }}
       icon={props.editStatus ? "save" : "edit"}
       onClickFunc={handleSaveEditBtn}
     />
