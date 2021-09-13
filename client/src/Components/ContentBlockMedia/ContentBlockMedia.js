@@ -76,7 +76,7 @@ const ContentBlockMedia = (props) => {
   let {
     id,
     type,
-    content: { url, url_thumb, original_filename },
+    content: { url, url_thumb, original_filename, caption },
   } = props.item;
 
   // * State
@@ -90,10 +90,10 @@ const ContentBlockMedia = (props) => {
   /**
    * @function removeContent
    * @desc sends back the selected element to be deleted
-   * @param id
+   * @param id it takes it from the component
    */
   const removeContent = useCallback(
-    (id) => {
+    () => {
       props.itemToDelete(id);
     },
     //eslint-disable-next-line
@@ -103,22 +103,18 @@ const ContentBlockMedia = (props) => {
   /**
    * @function sendMediaCaption
    * @desc sends back the selected element to be deleted
-   * @param id
+   * @param id it takes it from the component
    */
-  const sendMediaCaption = useCallback(
-    (id) => {
-      props.mediaCaption(id, mediaCaption);
-    },
-    //eslint-disable-next-line
-    [props.mediaCaption]
-  );
+  const sendMediaCaption = () => {
+    props.mediaCaption(id, mediaCaption);
+  };
 
   /**
    * @function editContent
    * @desc enables edit mode
-   * @param id
+   * @param id it takes it from the component
    */
-  const editContent = (id) => {
+  const editContent = () => {
     // togle editing
     setIsEditing((prev) => !prev);
     // to save if the caption is added/edited
@@ -168,24 +164,24 @@ const ContentBlockMedia = (props) => {
           ) : (
             <img className={classes.img} alt={original_filename} src={url} />
           )}
-          {/* </ButtonBase> */}
         </Grid>
       </Grid>
 
       <Grid item xs={12} sm container className={classes.mediaCaption}>
         <Grid item className={classes.descriptionContainer}>
           <Typography gutterBottom variant="subtitle1">
-            {/* {type} id:{id} */}
             {isEditing ? (
               <TextField
                 id="standard-basic-title"
                 label="Title"
                 name="title"
                 onChange={handleChange}
-                value={mediaCaption.title}
+                value={caption?.title || mediaCaption.title}
               />
             ) : !isEditing && mediaCaption.title.length !== 0 ? (
-              <h5>{mediaCaption.title}</h5>
+              <h5>{caption?.title || mediaCaption.title}</h5>
+            ) : caption?.title ? (
+              <h5>{caption?.title}</h5>
             ) : (
               <h5>Add a Title (optional)</h5>
             )}
@@ -197,10 +193,12 @@ const ContentBlockMedia = (props) => {
                 label="Description"
                 name="description"
                 onChange={handleChange}
-                value={mediaCaption.description}
+                value={caption?.description || mediaCaption.description}
               />
             ) : !isEditing && mediaCaption.description.length !== 0 ? (
-              <h6>{mediaCaption.description}</h6>
+              <h6>{caption?.description || mediaCaption.description}</h6>
+            ) : caption?.description ? (
+              <h6>{caption?.description}</h6>
             ) : (
               <h6>Add a Description (optional)</h6>
             )}
@@ -228,34 +226,6 @@ const ContentBlockMedia = (props) => {
       </Grid>
     </Paper>
   );
-
-  // return (
-  //   <Card className={classes.root}>
-  //     <CardActionArea>
-  //       <CardMedia
-  //         className={classes.media}
-  //         image="/static/images/cards/contemplative-reptile.jpg"
-  //         title="Contemplative Reptile"
-  //       />
-  //       <CardContent>
-  //         <Typography gutterBottom variant="h5" component="h2">
-  //           {title}
-  //         </Typography>
-  //         <Typography variant="body2" color="textSecondary" component="p">
-  //           {text}
-  //         </Typography>
-  //       </CardContent>
-  //     </CardActionArea>
-  //     <CardActions>
-  //       <Button size="small" color="primary">
-  //         Share
-  //       </Button>
-  //       <Button size="small" color="primary">
-  //         Learn More
-  //       </Button>
-  //     </CardActions>
-  //   </Card>
-  // );
 };
 
 export default ContentBlockMedia;
