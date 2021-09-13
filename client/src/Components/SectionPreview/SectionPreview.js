@@ -11,7 +11,7 @@ import React, { useEffect } from "react";
 
 // * Mat UI
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import { Container, Button } from "@material-ui/core";
+import { Container, Button, Typography } from "@material-ui/core";
 
 // * Components
 import VideoPlayerFunction from "../VideoPlayerFunction/VideoPlayerFunction";
@@ -35,12 +35,28 @@ const useStyles = makeStyles((theme) =>
       overflow: "hidden",
     },
     // * Custom CSS
-
+    sectionCoverWrap: {
+      boxShadow: "3px 3px 15px -8px rgba(0,0,0,0.86)",
+      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 81%)",
+    },
     sectionCover: {
       marginLeft: "-20px",
       width: "115%",
-      maxHeight: "150px",
-      boxShadow: "0px 4px 10px 2px rgba(244,234,220,0.9)",
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "center",
+      backgroundSize: "cover",
+      height: "180px",
+      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 81%)",
+    },
+    sectionTitleWrap: {
+      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 81%)",
+      boxShadow: "3px 3px 15px -8px rgba(0,0,0,0.86)",
+    },
+    sectionTitle: {
+      marginTop: "-20px",
+      backgroundColor: "red",
+      padding: "10px",
+      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 81%)",
     },
     sectionDescription: {
       // margin: "10px 0 40px 0",
@@ -123,12 +139,26 @@ const SectionPreview = (props) => {
         {sectionCover.url === "" ? (
           <h1>No cover image yet, please choose one</h1>
         ) : (
-          <img
-            className={classes.sectionCover}
-            alt="section-cover"
-            src={sectionCover.url}
-          />
+          <div className={classes.sectionCoverWrap}>
+            <div
+              className={classes.sectionCover}
+              style={{
+                backgroundImage: `url(${sectionCover.url})`,
+              }}
+              alt="section-cover"
+              // src={sectionCover.url}
+            />
+          </div>
         )}
+        <div className={classes.sectionTitleWrap}>
+          <Typography
+            gutterBottom={true}
+            variant={"h4"}
+            className={classes.sectionTitle}
+          >
+            {sectionTitle}
+          </Typography>
+        </div>
         <ReactQuill
           className={classes.sectionDescription}
           value={sectionDescription}
