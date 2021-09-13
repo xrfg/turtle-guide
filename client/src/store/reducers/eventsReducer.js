@@ -7,6 +7,7 @@ import {
   EVENTS_FETCH_ERROR,
   EVENT_GUIDE,
   EVENT_GUIDE_ERROR,
+  EVENT_DELETE_ERROR,
 } from "../types";
 
 const initialState = {
@@ -48,6 +49,13 @@ export default (state = initialState, action) => {
       };
 
     case EVENT_UPDATE_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+
+    case EVENT_DELETE_ERROR:
       return {
         ...state,
         error: action.payload,

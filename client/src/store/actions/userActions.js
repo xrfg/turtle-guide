@@ -22,40 +22,6 @@ import { createObj } from "../functions/functions";
 const BASEurlUser = "http://localhost:5000/api/users/";
 const BASEurlAuth = "http://localhost:5000/api/auth/";
 
-// /**
-//  * @function createObj
-//  * @param objCall
-//  * @desc create OBJ to send
-//  */
-// const createObj = (objCall) => {
-//   const { method, url, data = {}, token = "", params = "" } = objCall;
-
-//   // if token is not empty returns header with token
-//   // else header with out
-//   if (token) {
-//     return {
-//       method: method,
-//       url: url,
-//       // params: params,
-//       data: data,
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${token}`,
-//       },
-//     };
-//   }
-
-//   return {
-//     method: method,
-//     url: url,
-//     data: data,
-//     // params: params,
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   };
-// };
-
 /**
  * @userSignUp
  * @desc action to register a user
@@ -138,13 +104,11 @@ export const signIn = (obj) => {
   };
 };
 
-
-export const signOut =()=>{
-  return async(dispatch)=>{
-    await dispatch({type:SIGN_OUT,})
-  }
- 
-}
+export const signOut = () => {
+  return async (dispatch) => {
+    await dispatch({ type: SIGN_OUT });
+  };
+};
 
 // export const googleSearch = (entry) => {
 //   return async (dispatch) => {

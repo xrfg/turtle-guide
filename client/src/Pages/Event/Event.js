@@ -11,7 +11,11 @@ import slugify from "react-slugify";
 import { useSelector, useDispatch } from "react-redux";
 
 // * ACTIONS
-import { eventCreate, eventUpdate } from "../../store/actions/eventsActions";
+import {
+  eventCreate,
+  eventUpdate,
+  eventDelete,
+} from "../../store/actions/eventsActions";
 
 // * Components Imports (children)
 import EventSection from "./EventSection";
@@ -272,6 +276,23 @@ export default function Event(props) {
   const toggleDeleteDialogBox = () => {
     setOpenDeleteDialogBox((prev) => !prev);
   };
+
+  /**
+   * @function deleteEvent
+   * @desc deletes the current event from mongo
+   */
+  const deleteEvent = (val) => {
+    const objToSend = {
+      nameIdentifier: event.nameIdentifier,
+    };
+    if (val) {
+      dispatch(eventDelete(objToSend));
+      history.goBack();
+    }
+
+    toggleDeleteDialogBox();
+  };
+
   // * ----------- Functions for the Drag and Re-order of <EventSection/>s
 
   /**
@@ -479,9 +500,9 @@ export default function Event(props) {
             <PopUpDialogBox
               open={openDeleteDialogBox}
               isClose={toggleDeleteDialogBox}
-              confirm={removeSection}
+              confirm={deleteEvent}
               confirmButtonTitle="Delete Event"
-              messageTitle={`Are you sure you want to delete the ${title} section?`}
+              messageTitle={`Are you sure you want to delete the ${event.title} section?`}
               messageBody="Deleting a section will permanently erase it from the event."
             />
             {/* 

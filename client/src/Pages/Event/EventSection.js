@@ -140,7 +140,7 @@ export default function EventSection(props) {
         open={openDeleteDialogBox}
         isClose={toggleDeleteDialogBox}
         confirm={removeSection}
-        confirmButtonTitle="Delete Event"
+        confirmButtonTitle="Delete Section"
         messageTitle={`Are you sure you want to delete the ${title} section?`}
         messageBody="Deleting a section will permanently erase it from the event."
       />
