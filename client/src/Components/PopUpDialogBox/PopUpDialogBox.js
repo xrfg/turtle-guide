@@ -2,7 +2,44 @@
  * @desc Component to create a PopupDialog box
  */
 
-import React, { useState } from "react";
+/* HOW TO
+
+In the <Parent />:
+
+create a state
+  const [openDeleteDialogBox, setOpenDeleteDialogBox] = useState(false);
+
+
+Create a function to handle toggle
+
+  const toggleDeleteDialogBox = () => {
+    setOpenDeleteDialogBox((prev) => !prev);
+  };
+
+The component's prop "confirm" fires a function into the <Parent />
+
+const removeSection = (val) => {
+    if (val) {
+      props.sectionToDelete(id);
+    }
+    toggleDeleteDialogBox();
+  };
+
+
+component use example:
+
+  <PopUpDialogBox
+        open={openDeleteDialogBox}
+        isClose={toggleDeleteDialogBox}
+        confirm={removeSection}
+        confirmButtonTitle="Delete Event"
+        messageTitle={`Are you sure you want to delete the ${title} section?`}
+        messageBody="Deleting a section will permanently erase it from the event."
+      />
+
+*/
+
+import React from "react";
 // * material UI imports Components
 import {
   Button,
@@ -15,33 +52,26 @@ import {
 
 const PopUpDialogBox = (props) => {
   // destru
-  const {
-    open,
-    onClose,
-    onConfirm,
-    confirmButtonTitle,
-    messageTitle,
-    messageBody,
-  } = props;
-
-  // * States
-  const [openClose, setOpenClose] = useState(false);
+  const { open, confirmButtonTitle, messageTitle, messageBody } = props;
 
   /**
    * @function toggleMsg
    * @desc sets state to false to close up the modal
    */
   const toggleMsg = () => {
-    console.log("close");
     // send close back to parent
     props.isClose(true);
     //     setOpenClose((prev) => !prev);
   };
 
   /**
-   * @function isClose
-   * @desc closes the dialog box
+   * @function onConfirm
+   * @desc sends a confimation of the dialog
+   * when the user CONFIRMS operation i.e. ok
    */
+  const onConfirm = () => {
+    props.confirm(true);
+  };
 
   return (
     <>
@@ -51,15 +81,10 @@ const PopUpDialogBox = (props) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
-          {`Are you sure you want to delete the EVENTNAME event?`}
-          {messageTitle}
-        </DialogTitle>
+        <DialogTitle id="alert-dialog-title">{messageTitle}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             {messageBody}
-            Deleting an event will permanently erase it from the admin's event
-            collection. If you choose only to set it to private, check settings.
           </DialogContentText>
         </DialogContent>
         <DialogActions>

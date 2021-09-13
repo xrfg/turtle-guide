@@ -91,9 +91,12 @@ export default function EventSection(props) {
     }
   };
 
-  const removeSection = (id) => {
-    handleDeleteDialogBox();
-    // props.sectionToDelete(id);
+  const removeSection = (val) => {
+    // fired by <PopUpDialogBox /> if true deletes
+    if (val) {
+      props.sectionToDelete(id);
+    }
+    toggleDeleteDialogBox();
   };
 
   const handleTitle = (title) => {
@@ -114,12 +117,11 @@ export default function EventSection(props) {
   };
 
   /**
-   * @function handleDeleteDialogBox
+   * @function toggleDeleteDialogBox
    * @desc handle the Delete DialogBox
    */
 
-  const handleDeleteDialogBox = () => {
-    console.log("gere");
+  const toggleDeleteDialogBox = () => {
     setOpenDeleteDialogBox((prev) => !prev);
   };
 
@@ -136,7 +138,11 @@ export default function EventSection(props) {
     >
       <PopUpDialogBox
         open={openDeleteDialogBox}
-        isClose={openDeleteDialogBox}
+        isClose={toggleDeleteDialogBox}
+        confirm={removeSection}
+        confirmButtonTitle="Delete Event"
+        messageTitle={`Are you sure you want to delete the ${title} section?`}
+        messageBody="Deleting a section will permanently erase it from the event."
       />
       <CardContent>
         {editing ? (
@@ -223,10 +229,7 @@ export default function EventSection(props) {
           {/* // ! all the section is draggable, should only work when dragstart is this button */}
           <CustomIconButton icon="drag" />
           {/* Remove Section   */}
-          <CustomIconButton
-            onClickFunc={() => removeSection(id)}
-            icon="delete"
-          />
+          <CustomIconButton onClickFunc={toggleDeleteDialogBox} icon="delete" />
         </ButtonGroup>
       </CardActions>
     </Card>
