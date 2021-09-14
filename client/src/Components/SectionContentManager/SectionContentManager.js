@@ -14,6 +14,7 @@ import { makeStyles, createStyles } from "@material-ui/core/styles";
 import {
   Button,
   ButtonGroup,
+  Paper,
   Container,
   Grid,
   Typography,
@@ -62,7 +63,7 @@ const useStyles = makeStyles((theme) =>
     },
     paper: {
       backgroundColor: theme.palette.background.paper,
-      border: "2px solid #000",
+      // border: "2px solid #000",
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
     },
@@ -277,7 +278,15 @@ export default function SectionContentManager(props) {
     setUserInfo(hardCodedObj);
     setSection(hardCodedObj.infoAbout);
     setContents(hardCodedObj.infoAbout.contents);
-    setSubscriptionDate(new Date(hardCodedObj.date));
+
+    // create date
+    const date = new Date(hardCodedObj.date);
+
+    const dateToString = date.toString();
+
+    const findCut = dateToString.search(":");
+
+    setSubscriptionDate(dateToString.substring(0, findCut - 3));
     //eslint-disable-next-line
   }, []);
 
@@ -685,18 +694,42 @@ export default function SectionContentManager(props) {
       {userInfo ? (
         <>
           <Typography>Your info - not visible to the visitors</Typography>
+          <Grid container direction="row" alignContent="center" spacing={1}>
+            <Grid item sm={6}>
+              <Paper className={classes.paper}>
+                <Typography
+                  gutterBottom
+                  variant="subtitle1"
+                  // className={classes.descriptionContainer}
+                >
+                  Account: {userInfo.accountName} Name: {userInfo.firstName}
+                  Lastname: {userInfo.lastName} Company: {userInfo.company}
+                </Typography>
+              </Paper>
+            </Grid>
+            <Grid item sm={5}>
+              <Paper className={classes.paper}>
+                <Typography
+                  gutterBottom
+                  variant="subtitle1"
+                  // className={classes.descriptionContainer}
+                >
+                  Subscribed on: {subscriptionDate}
+                  Email: {userInfo.email}
+                  Your Plan:{userInfo.plan}
+                </Typography>
+              </Paper>
+            </Grid>
+            <Grid item sm={1}>
+              <Paper className={classes.paper}>edit info</Paper>
+            </Grid>
+          </Grid>
+
           <Typography
             gutterBottom
             variant="subtitle1"
             // className={classes.descriptionContainer}
           >
-            Account: {userInfo.accountName}
-            Name: {userInfo.firstName}
-            Lastname: {userInfo.lastName}
-            Company: {userInfo.company}
-            Subscribed on: {subscriptionDate.toString()}
-            Email: {userInfo.email}
-            Your Plan:{userInfo.plan}
             {/* {isEditing ? (
                   <div>
                     <ModalCustom
