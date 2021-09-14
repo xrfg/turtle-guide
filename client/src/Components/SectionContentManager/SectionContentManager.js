@@ -129,7 +129,7 @@ const useStyles = makeStyles((theme) =>
 export default function SectionContentManager(props) {
   // * Destruc
   const {
-    state: { id = "", title = "", slug = "", nameIdentifier = "" },
+    state: { id, title, slug, nameIdentifier },
     // userInfo:{}
   } = props;
   const {
@@ -152,6 +152,7 @@ export default function SectionContentManager(props) {
   const [section, setSection] = useState({});
   // section
   const [userInfo, setUserInfo] = useState({});
+  const [subscriptionDate, setSubscriptionDate] = useState("");
   // for save
   const [needsToSave, setNeedsToSave] = useState(false);
   // for dragging (and dropping)
@@ -189,16 +190,13 @@ export default function SectionContentManager(props) {
 
   // TODO REMOVE
   const hardCodedObj = {
-    accountCode: "9f810be8b8696311d068e19d996d20d5eb8ad7f7",
     accountName: "jdoe",
     company: "J DOE Acme",
     date: "2021-08-19T13:21:14.868Z",
     email: "jdoe@email.com",
     firstName: "John",
-    isAdmin: false,
     lastName: "Doe",
-    __v: 0,
-    _id: "611e5aca56104a1c09f9d13e",
+    plan: "Basic Plan",
     infoAbout: {
       description:
         "<p>Description test  test  test  test test test test test  test test  test  test  test test test test test </p>",
@@ -276,8 +274,10 @@ export default function SectionContentManager(props) {
     // setContents(props.state.infoAbout);
 
     // section is into infoAbout
+    setUserInfo(hardCodedObj);
     setSection(hardCodedObj.infoAbout);
     setContents(hardCodedObj.infoAbout.contents);
+    setSubscriptionDate(new Date(hardCodedObj.date));
     //eslint-disable-next-line
   }, []);
 
@@ -604,16 +604,11 @@ export default function SectionContentManager(props) {
    */
 
   const handleDrop = (e) => {
-    console.log("contents", contents);
-    console.log("dragID", dragId);
-
     // * Finding the drag content with the same id as the one the user is trying to drag from
     const dragContent = contents.find((content) => {
       console.log(typeof content.id, typeof dragId, content.id === dragId);
       return content.id === dragId;
     });
-
-    console.log("content to drag:", dragContent);
 
     // * Finding the drop content with the same id as the one the user is trying to drop at
     const dropContent = contents.find(
@@ -621,13 +616,9 @@ export default function SectionContentManager(props) {
       (content) => content.id === parseInt(e.currentTarget.id)
     );
 
-    console.log("content to drop:", dropContent);
-
     // from order x to order y, from one place to another
     const dragContentOrder = dragContent.order; // 1
     const dropContentOrder = dropContent.order; // 2
-
-    console.log("orders:", dragContentOrder, dropContentOrder);
 
     // setting a new state with the updated order
     const newContentsState = contents.map((content) => {
@@ -641,7 +632,6 @@ export default function SectionContentManager(props) {
     });
 
     setContents(newContentsState);
-    console.log(newContentsState);
   };
 
   /**
@@ -692,11 +682,52 @@ export default function SectionContentManager(props) {
         // handles the state when the modal is clickes outside the area
         isClose={handleClose}
       />
+      {userInfo ? (
+        <>
+          <Typography>Your info - not visible to the visitors</Typography>
+          <Typography
+            gutterBottom
+            variant="subtitle1"
+            // className={classes.descriptionContainer}
+          >
+            Account: {userInfo.accountName}
+            Name: {userInfo.firstName}
+            Lastname: {userInfo.lastName}
+            Company: {userInfo.company}
+            Subscribed on: {subscriptionDate.toString()}
+            Email: {userInfo.email}
+            Your Plan:{userInfo.plan}
+            {/* {isEditing ? (
+                  <div>
+                    <ModalCustom
+                      content={
+                        <TextEditor setText={setMediaText} content={content} />
+                      }
+                      isOpen={true}
+                      isClose={closeEditingModal}
+                    />
+                    <html>{content}</html>
+                  </div>
+                ) : (
+                  <ReactQuill
+                    value={content}
+                    readOnly={true}
+                    theme={"bubble"}
+                    // className={classes.descriptionContainer}
+                  />
+                )} */}
+          </Typography>
+        </>
+      ) : null}
+
       {Object.keys(section).length !== 0 ? (
         <Grid container direction="row" spacing={2}>
-          <Grid item xs={12} className={classes.gridItem}>
-            <h2 className={classes.sectionTitle}>{title}</h2>
-          </Grid>
+          {/* // * Do not render title if is about admin */}
+          {userInfo ? null : (
+            <Grid item xs={12} className={classes.gridItem}>
+              <h2 className={classes.sectionTitle}>{title}</h2>
+            </Grid>
+          )}
           <Grid item xs={12} className={classes.gridItem}>
             {/* Section cover image */}
             {section.sectionCover.url === "" ? (
@@ -717,6 +748,7 @@ export default function SectionContentManager(props) {
                 image={section.sectionCover}
               />
             )}
+            {/* If is editing admin */}
 
             {/* Section description Edit */}
             <ContentBlockText
@@ -732,8 +764,8 @@ export default function SectionContentManager(props) {
             />
           </Grid>
 
+          {/* // * Buttons Top container */}
           <Grid item xs={3} className={classes.btnSidebar}>
-            {/* // * Buttons Top container */}
             <CustomButton
               style={{ marginBottom: "1rem" }}
               startIcon="arrowBack"
