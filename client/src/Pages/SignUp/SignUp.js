@@ -1,12 +1,4 @@
-/**
- * @desc Component for the user SignUp
- */
 import React, { useState } from "react";
-
-// * Imports
-import axios from "axios";
-
-// * Mat UI
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -20,16 +12,10 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import axios from "axios";
+import "./signUp.scss";
+import validation from "./validation";
 
-// * REDUX
-import { useSelector, useDispatch } from "react-redux";
-import { userSignUp } from "../../store/actions/userActions";
-
-// * Functions
-/**
- * @component Copyright
- * @desc returns the copyright
- */
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -63,41 +49,45 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignUp = () => {
-  const classes = useStyles();
-
-  // Redux
-  const dispatch = useDispatch();
-
-  // getting states from REDUX
-  // const user = useSelector((state) => state.user);
-  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
-
+export default function SignUp() {
   // form
   const [userData, setUserData] = useState({});
+  const [errors, setErrors] = useState({});
+  const [isValid, setIsValid] = useState(true);
 
-  /**
-   * @function onChange
-   * @desc grabs inputs changes while user types
-   */
-  const onChange = function (e) {
+  const changeHandler = function (e) {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
-  /**
-   * @function submitUserData
-   * @desc sends the data
-   */
-
-  const submitUserData = function (e) {
+  const submitHandler = function (e) {
     e.preventDefault();
+    setErrors(validation(userData));
+    setIsValid(validation(isValid));
 
-    // dispatch to REDUX
-    dispatch(userSignUp(userData));
+    console.log("request sent");
+    axios({
+      method: "post",
+      url: "http://localhost:5000/signup",
+      /* baseURL: 'http://localhost:5000',*/
+
+      data: userData,
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    console.log(userData);
+    // window.location.replace("/")
   };
 
+  // form
+
+  const classes = useStyles();
+
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" className="pwd-container">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -106,7 +96,7 @@ const SignUp = () => {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate onSubmit={submitUserData}>
+        <form className={classes.form} noValidate onSubmit={submitHandler}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -118,8 +108,9 @@ const SignUp = () => {
                 id="firstName"
                 label="First Name"
                 autoFocus
-                onChange={onChange}
+                onChange={changeHandler}
               />
+              {errors.firstName && <p className="errors">{errors.firstName}</p>}
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -130,20 +121,20 @@ const SignUp = () => {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
-                onChange={onChange}
+                onChange={changeHandler}
               />
+              {errors.lastName && <p className="errors">{errors.lastName}</p>}
             </Grid>
             {/* company */}
             <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
-                required
                 fullWidth
                 id="company"
                 label="Company"
                 name="company"
                 autoComplete="com"
-                onChange={onChange}
+                onChange={changeHandler}
               />
             </Grid>
             {/* account name */}
@@ -156,8 +147,11 @@ const SignUp = () => {
                 label="Account Name"
                 name="accountName"
                 autoComplete="aname"
-                onChange={onChange}
+                onChange={changeHandler}
               />
+              {errors.accountName && (
+                <p className="errors">{errors.accountName}</p>
+              )}
             </Grid>
             <Grid item xs={12}>
               <TextField
@@ -168,8 +162,9 @@ const SignUp = () => {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
-                onChange={onChange}
+                onChange={changeHandler}
               />
+              {errors.email && <p className="errors">{errors.email}</p>}
             </Grid>
             <Grid item xs={12}>
               <TextField
@@ -178,12 +173,31 @@ const SignUp = () => {
                 fullWidth
                 name="password"
                 label="Password"
-                type="password"
                 id="password"
                 autoComplete="current-password"
-                onChange={onChange}
+                // type={userData.showPassword ? "text" : "password"}
+                onChange={changeHandler}
               />
+
+              {errors.password && <p className="errors">{errors.password}</p>}
             </Grid>
+            {/* Confirmation password */}
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="confirm_password"
+                label="Confirm password"
+                id="confirm_password"
+                autoComplete="current-password"
+                onChange={changeHandler}
+              />
+              {errors.confirm_password && (
+                <p className="errors">{errors.confirm_password}</p>
+              )}
+            </Grid>
+
             <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
@@ -197,7 +211,6 @@ const SignUp = () => {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={(e) => submitUserData(e)}
           >
             Sign Up
           </Button>
@@ -215,6 +228,4 @@ const SignUp = () => {
       </Box>
     </Container>
   );
-};
-
-export default SignUp;
+}
