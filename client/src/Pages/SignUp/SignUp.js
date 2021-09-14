@@ -1,4 +1,9 @@
+/**
+ * @desc Component for the user SignUp
+ */
 import React, { useState } from "react";
+
+// * Mat UI
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -12,7 +17,11 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import axios from "axios";
+
+// * REDUX
+import { useSelector, useDispatch } from "react-redux";
+import { userSignUp } from "../../store/actions/userActions";
+
 import "./signUp.scss";
 import validation from "./validation";
 
@@ -50,41 +59,41 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignUp() {
-  // form
+  // * Hooks
+  const classes = useStyles();
+  const dispatch = useDispatch();
+
+  // getting states from REDUX
+  // const user = useSelector((state) => state.user);
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+
+  // * States
   const [userData, setUserData] = useState({});
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(true);
 
-  const changeHandler = function (e) {
+  /**
+   * @function onChange
+   * @desc grabs inputs changes while user types
+   */
+  const onChange = function (e) {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
-  const submitHandler = function (e) {
+  /**
+   * @function submitUserData
+   * @desc sends the data
+   */
+
+  const submitUserData = function (e) {
     e.preventDefault();
+
     setErrors(validation(userData));
     setIsValid(validation(isValid));
 
-    console.log("request sent");
-    axios({
-      method: "post",
-      url: "http://localhost:5000/signup",
-      /* baseURL: 'http://localhost:5000',*/
-
-      data: userData,
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    console.log(userData);
-    // window.location.replace("/")
+    // dispatch to REDUX
+    dispatch(userSignUp(userData));
   };
-
-  // form
-
-  const classes = useStyles();
 
   return (
     <Container component="main" maxWidth="xs" className="pwd-container">
@@ -96,7 +105,7 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate onSubmit={submitHandler}>
+        <form className={classes.form} noValidate onSubmit={submitUserData}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -108,7 +117,7 @@ export default function SignUp() {
                 id="firstName"
                 label="First Name"
                 autoFocus
-                onChange={changeHandler}
+                onChange={onChange}
               />
               {errors.firstName && <p className="errors">{errors.firstName}</p>}
             </Grid>
@@ -121,7 +130,7 @@ export default function SignUp() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
-                onChange={changeHandler}
+                onChange={onChange}
               />
               {errors.lastName && <p className="errors">{errors.lastName}</p>}
             </Grid>
@@ -134,7 +143,7 @@ export default function SignUp() {
                 label="Company"
                 name="company"
                 autoComplete="com"
-                onChange={changeHandler}
+                onChange={onChange}
               />
             </Grid>
             {/* account name */}
@@ -147,7 +156,7 @@ export default function SignUp() {
                 label="Account Name"
                 name="accountName"
                 autoComplete="aname"
-                onChange={changeHandler}
+                onChange={onChange}
               />
               {errors.accountName && (
                 <p className="errors">{errors.accountName}</p>
@@ -162,7 +171,7 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
-                onChange={changeHandler}
+                onChange={onChange}
               />
               {errors.email && <p className="errors">{errors.email}</p>}
             </Grid>
@@ -176,7 +185,7 @@ export default function SignUp() {
                 id="password"
                 autoComplete="current-password"
                 // type={userData.showPassword ? "text" : "password"}
-                onChange={changeHandler}
+                onChange={onChange}
               />
 
               {errors.password && <p className="errors">{errors.password}</p>}
@@ -191,7 +200,7 @@ export default function SignUp() {
                 label="Confirm password"
                 id="confirm_password"
                 autoComplete="current-password"
-                onChange={changeHandler}
+                onChange={onChange}
               />
               {errors.confirm_password && (
                 <p className="errors">{errors.confirm_password}</p>

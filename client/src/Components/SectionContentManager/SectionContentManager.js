@@ -217,7 +217,6 @@ export default function SectionContentManager(props) {
       title: "Section Four",
       type: "section",
       url: "",
-
       contents: [
         {
           content: {
