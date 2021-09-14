@@ -750,6 +750,7 @@ export default function SectionContentManager(props) {
                   />
                 )} */}
           </Typography>
+          <Typography variant={"h4"}>About you</Typography>
         </>
       ) : null}
 
@@ -782,19 +783,27 @@ export default function SectionContentManager(props) {
               />
             )}
             {/* If is editing admin */}
-
-            {/* Section description Edit */}
-            <ContentBlockText
-              isDraggable={false} // to prevent it from being draggable
-              item={objSectionDecription}
-              // receives the id of the item to delete
-              itemToDelete={deleteItem}
-              // gets the new content to update
-              newContent={updateMediaText}
-              // Handle the drag and drop
-              handleDrag={handleDrag}
-              handleDrop={handleDrop}
-            />
+            {/* If is editing about admin do not show */}
+            {userInfo ? (
+              <Typography variant={"h6"}>
+                Shall we put opening hours?
+              </Typography>
+            ) : (
+              <>
+                {/* Section description Edit */}
+                <ContentBlockText
+                  isDraggable={false} // to prevent it from being draggable
+                  item={objSectionDecription}
+                  // receives the id of the item to delete
+                  itemToDelete={deleteItem}
+                  // gets the new content to update
+                  newContent={updateMediaText}
+                  // Handle the drag and drop
+                  handleDrag={handleDrag}
+                  handleDrop={handleDrop}
+                />
+              </>
+            )}
           </Grid>
 
           {/* // * Buttons Top container */}
