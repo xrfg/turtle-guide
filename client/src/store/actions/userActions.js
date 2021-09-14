@@ -134,12 +134,13 @@ export const userFecth = (obj) => {
  */
 
 export const userUpdate = (obj) => {
+  //
   return async (dispatch) => {
     // uses a function to create an object for axios
     const objToSend = createObj({
       method: "PUT",
-      url: BASEurlAuth,
-      // data: obj,
+      url: BASEurlUser,
+      data: obj,
       token: token,
     });
 
@@ -147,11 +148,11 @@ export const userUpdate = (obj) => {
       // API Call
       const res = await axios(objToSend);
       // dispatch to the reducer (update state)
-      await dispatch({ type: USER_FETCH, payload: res.data.data });
-      return res.data.data;
+      await dispatch({ type: USER_UPDATE, payload: res.data.data });
+      return res.data;
     } catch (error) {
       console.error(error);
-      await dispatch({ type: USER_FETCH_ERROR, payload: error });
+      await dispatch({ type: USER_UPDATE_ERROR, payload: error });
     }
   };
 };

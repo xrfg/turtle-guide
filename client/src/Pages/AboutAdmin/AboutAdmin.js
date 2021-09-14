@@ -47,7 +47,7 @@ const AboutAdmin = (props) => {
             slug: "slug",
             nameIdentifier: "nameIdentifier",
           }}
-          userInfo={userInfo}
+          fetchedData={userInfo}
           isAboutAdmin={true} // if true edits the admin infos
         />
       )}

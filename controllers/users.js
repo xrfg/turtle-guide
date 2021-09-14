@@ -83,23 +83,18 @@ exports.put = async (req, res, next) => {
   // extract name from params
   const { _id } = req.body; // it's the old name identifier
 
-  console.log("req.body", req.body);
-
   try {
     // find and update the item using nameIdentifier
-    const user = await User.findOneAndUpdate(
-      { _id: _id },
-      req.body, // the oldNameIdentifier is removed
-      {
-        new: true,
-      }
-    );
+    const user = await User.findOneAndUpdate({ _id: _id }, req.body, {
+      new: true,
+    });
 
     // return
-    return res.json({
+    return res.status(200).json({
       success: true,
       msg: "User updated sucessfully!",
       data: user,
+      status: 200,
     });
   } catch (error) {
     /**

@@ -6,6 +6,8 @@ import {
   SIGN_OUT,
   USER_FETCH,
   USER_FETCH_ERROR,
+  USER_UPDATE,
+  USER_UPDATE_ERROR,
 } from "../types";
 
 import { loadState } from "../localStorage";
@@ -56,7 +58,7 @@ export default (state = initialState, action) => {
 
     case SIGN_IN_ERROR:
       return {
-        ...state, // ! IMPORTANT spreads the actual state
+        ...state,
         isAuthenticated: false,
         token: null,
         error: action.payload,
@@ -69,6 +71,19 @@ export default (state = initialState, action) => {
         loading: false,
       };
     case USER_FETCH_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+
+    case USER_UPDATE:
+      return {
+        ...state,
+        userProfile: action.payload,
+        loading: false,
+      };
+    case USER_UPDATE_ERROR:
       return {
         ...state,
         error: action.payload,

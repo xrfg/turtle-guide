@@ -47,6 +47,7 @@ import CustomIconButton from "../Buttons/CustomIconButtons/CustomIconButton";
 // * REDUX
 import { useSelector, useDispatch } from "react-redux";
 import { eventUpdate } from "../../store/actions/eventsActions";
+import { userUpdate } from "../../store/actions/userActions";
 
 // * Functions
 import { goBackToPage, unBlock } from "../../functions/functions";
@@ -134,7 +135,9 @@ export default function SectionContentManager(props) {
   } = props;
 
   const {
-    isAboutAdmin = false, // if true edits the admin infos
+    // if true edits the admin infos
+    isAboutAdmin = false,
+    fetchedData,
   } = props;
 
   // * Hooks
@@ -275,12 +278,12 @@ export default function SectionContentManager(props) {
     // setContents(props.state.infoAbout);
 
     // section is into infoAbout
-    setUserInfo(hardCodedObj);
-    setSection(hardCodedObj.infoAbout);
-    setContents(hardCodedObj.infoAbout.contents);
+    setUserInfo(fetchedData);
+    setSection(fetchedData.infoAbout);
+    setContents(fetchedData.infoAbout.contents);
 
     // create date
-    const date = new Date(hardCodedObj.date);
+    const date = new Date(fetchedData.date);
 
     const dateToString = date.toString();
 
@@ -566,11 +569,29 @@ export default function SectionContentManager(props) {
    * @function saveContent
    * @param noParam
    * @desc saves the content dispatching an action
+   *
    */
 
   const saveContent = async () => {
     if (isAboutAdmin) {
-      console.log("saveContent", hardCodedObj);
+      try {
+        // create obj to save
+        const objToSave = {
+          ...fetchedData,
+          infoAbout: {
+            sectionCover: section.sectionCover,
+            contents: contents,
+          },
+        };
+
+        const res = await dispatch(userUpdate(objToSave));
+        // set to save
+        if (res.success === true) {
+          return setNeedsToSave(false);
+        }
+      } catch (error) {
+        return console.log(error);
+      }
     }
 
     // 1. create the event
@@ -588,9 +609,9 @@ export default function SectionContentManager(props) {
 
       // await dispatch(eventUpdate(event));
       // set to save
-      setNeedsToSave(false);
+      return setNeedsToSave(false);
     } catch (error) {
-      console.log(error);
+      return console.log(error);
     }
   };
 
@@ -620,7 +641,6 @@ export default function SectionContentManager(props) {
   const handleDrop = (e) => {
     // * Finding the drag content with the same id as the one the user is trying to drag from
     const dragContent = contents.find((content) => {
-      console.log(typeof content.id, typeof dragId, content.id === dragId);
       return content.id === dragId;
     });
 
@@ -814,7 +834,7 @@ export default function SectionContentManager(props) {
             <CustomButton
               style={{ marginBottom: "1rem" }}
               startIcon="arrowBack"
-              text="Event"
+              text={isAboutAdmin ? "Back" : "Event"}
               onClickFunc={() => goBackToPage(needsToSave, history)}
             />{" "}
             <CustomIconButton
