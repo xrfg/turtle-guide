@@ -5,6 +5,10 @@ export const SIGN_IN = "SIGN_IN";
 export const SIGN_IN_ERROR = "SIGN_IN_ERROR";
 export const SIGN_OUT = "SIGN_OUT";
 
+// User
+export const USER_FETCH = "USER_FETCH";
+export const USER_FETCH_ERROR = "USER_FETCH_ERROR";
+
 // Event CRUD
 export const EVENT_CREATE = "EVENT_CREATE";
 export const EVENT_CREATE_ERROR = "EVENT_CREATE_ERROR";

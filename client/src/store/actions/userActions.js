@@ -4,12 +4,8 @@ import {
   SIGN_IN,
   SIGN_IN_ERROR,
   SIGN_OUT,
-  EVENT_CREATE,
-  EVENT_CREATE_ERROR,
-  EVENT_UPDATE,
-  EVENT_UPDATE_ERROR,
-  EVENTS_FETCH,
-  EVENTS_FETCH_ERROR,
+  USER_FETCH,
+  USER_FETCH_ERROR,
 } from "../types";
 
 import axios from "axios";
@@ -21,6 +17,11 @@ import { createObj } from "../functions/functions";
 // url TO create a User
 const BASEurlUser = "http://localhost:5000/api/users/";
 const BASEurlAuth = "http://localhost:5000/api/auth/";
+
+// ! IMPORTANT TO REMOVE
+// TODO CHANGE TOKEN to be sent from the client's cookie
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjExZTVhY2E1NjEwNGExYzA5ZjlkMTNlIn0sImlhdCI6MTYzMDQ4NTU4OCwiZXhwIjoxNjMzMDc3NTg4fQ.-PpbSoenUfmDFMsII1ALNvj7OUIm19PuJYa4GD5xJfI";
 
 /**
  * @userSignUp
@@ -84,11 +85,6 @@ export const signIn = (obj) => {
       method: "POST",
       url: BASEurlAuth,
       data: obj,
-      // user and password
-      //     obj:  {
-      //   "email": "string",
-      //   "password": "string"
-      // }
     });
 
     try {
@@ -103,6 +99,38 @@ export const signIn = (obj) => {
     }
   };
 };
+
+/**
+ * @desc action to get the user info to edit in admin
+ */
+
+export const userFecth = (obj) => {
+  return async (dispatch) => {
+    // uses a function to create an object for axios
+    const objToSend = createObj({
+      method: "GET",
+      url: BASEurlAuth,
+      // data: obj,
+      token: token,
+    });
+
+    try {
+      // API Call
+      const res = await axios(objToSend);
+      console.log("userFecth", res);
+      // dispatch to the reducer (update state)
+      await dispatch({ type: USER_FETCH, payload: res.data.data });
+      return res.data.data;
+    } catch (error) {
+      console.error(error);
+      await dispatch({ type: USER_FETCH_ERROR, payload: error });
+    }
+  };
+};
+
+/**
+ * @desc action to sign out
+ */
 
 export const signOut = () => {
   return async (dispatch) => {

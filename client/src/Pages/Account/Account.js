@@ -24,6 +24,7 @@ import {
   CardActions,
   makeStyles,
   Link,
+  Button,
 } from "@material-ui/core";
 
 // * Component Imports
@@ -122,6 +123,7 @@ const Account = (props) => {
         </Grid>
         <Grid item xs={6}>
           <Card className={classes.card}>
+            {/* Just a link to <AboutAdmin /> the compentn will fetch the user info */}
             <Link
               component={RouterLink}
               className={classes.link}

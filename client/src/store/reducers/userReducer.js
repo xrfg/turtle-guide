@@ -1,18 +1,27 @@
-import { SIGN_UP, SIGN_UP_ERROR, SIGN_IN, SIGN_IN_ERROR, SIGN_OUT } from "../types";
+import {
+  SIGN_UP,
+  SIGN_UP_ERROR,
+  SIGN_IN,
+  SIGN_IN_ERROR,
+  SIGN_OUT,
+  USER_FETCH,
+  USER_FETCH_ERROR,
+} from "../types";
 
-
-import {loadState} from "../localStorage"
+import { loadState } from "../localStorage";
 
 const persistedState = loadState();
 
-const initialState = persistedState ? persistedState : {
-  isAuthenticated: false,
-  userProfile: {},
-  token: null,
-  accountIdentifier: {},
-  loading: true,
-  error: null,
-};
+const initialState = persistedState
+  ? persistedState
+  : {
+      isAuthenticated: false,
+      userProfile: {},
+      token: null,
+      accountIdentifier: {},
+      loading: true,
+      error: null,
+    };
 
 /* eslint import/no-anonymous-default-export: [2, {"allowArrowFunction": true}] */
 export default (state = initialState, action) => {
@@ -22,7 +31,7 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case SIGN_UP:
       return {
-        ...state, // ! IMPORTANT spreads the actual state
+        ...state,
         isAuthenticated: true,
         userProfile: action.payload,
         loading: false,
@@ -30,7 +39,7 @@ export default (state = initialState, action) => {
 
     case SIGN_UP_ERROR:
       return {
-        ...state, // ! IMPORTANT spreads the actual state
+        ...state,
         isAuthenticated: false,
         token: null,
         error: action.payload,
@@ -53,14 +62,26 @@ export default (state = initialState, action) => {
         error: action.payload,
         loading: false,
       };
+    case USER_FETCH:
+      return {
+        ...state,
+        userProfile: action.payload,
+        loading: false,
+      };
+    case USER_FETCH_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
 
-      case SIGN_OUT:
-        return{
-          ...state,
-          isAuthenticated:false,
-          token:null,
-          loading:false,
-        };
+    case SIGN_OUT:
+      return {
+        ...state,
+        isAuthenticated: false,
+        token: null,
+        loading: false,
+      };
 
     default:
       return state;
