@@ -2,6 +2,7 @@
  * @desc Component for the user SignUp
  */
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 // * Mat UI
 import Avatar from "@material-ui/core/Avatar";
@@ -62,6 +63,7 @@ export default function SignUp() {
   // * Hooks
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   // getting states from REDUX
   // const user = useSelector((state) => state.user);
@@ -92,7 +94,13 @@ export default function SignUp() {
     setIsValid(validation(isValid));
 
     // dispatch to REDUX
-    dispatch(userSignUp(userData)).then((res) => console.log("res", res));
+    dispatch(userSignUp(userData))
+      .then((res) => {
+        if (res.data.success) {
+          history.push("payment");
+        }
+      })
+      .catch((err) => console.error(err));
   };
 
   return (
