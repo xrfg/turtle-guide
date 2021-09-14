@@ -8,6 +8,8 @@ export const SIGN_OUT = "SIGN_OUT";
 // User
 export const USER_FETCH = "USER_FETCH";
 export const USER_FETCH_ERROR = "USER_FETCH_ERROR";
+export const USER_UPDATE = "USER_UPDATE";
+export const USER_UPDATE_ERROR = "USER_UPDATE_ERROR";
 
 // Event CRUD
 export const EVENT_CREATE = "EVENT_CREATE";

@@ -131,11 +131,10 @@ export default function SectionContentManager(props) {
   // * Destruc
   const {
     state: { id, title, slug, nameIdentifier },
-    // userInfo:{}
   } = props;
+
   const {
-    isAboutAdmin = false,
-    // userInfo:{}
+    isAboutAdmin = false, // if true edits the admin infos
   } = props;
 
   // * Hooks
@@ -191,6 +190,7 @@ export default function SectionContentManager(props) {
 
   // TODO REMOVE
   const hardCodedObj = {
+    _id: "611e5aca56104a1c09f9d13e",
     accountName: "jdoe",
     company: "J DOE Acme",
     date: "2021-08-19T13:21:14.868Z",
@@ -569,19 +569,24 @@ export default function SectionContentManager(props) {
    */
 
   const saveContent = async () => {
+    if (isAboutAdmin) {
+      console.log("saveContent", hardCodedObj);
+    }
+
     // 1. create the event
     // creates the new obj section spreading the old section into the state
     const newSection = { ...section, contents: contents };
     // 2. update the section into the event
     // find index for splice
-
     const findIndex = event.sections.findIndex((x) => x.id === id);
     // 3. replace with the new section with splice
     event.sections.splice(findIndex, 1, newSection);
     // 4. dispatch event update
 
     try {
-      await dispatch(eventUpdate(event));
+      // ! DISABLE FOR TESTING
+
+      // await dispatch(eventUpdate(event));
       // set to save
       setNeedsToSave(false);
     } catch (error) {
@@ -664,8 +669,6 @@ export default function SectionContentManager(props) {
     id: 999999, // important is an reserved id to detect the description
     content: section?.description, // send current description
   };
-
-  // * Hover btn
 
   return (
     <Container style={{ maxWidth: "720px" }}>

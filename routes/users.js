@@ -8,9 +8,10 @@ const Router = express.Router();
 
 // middleware / validators
 const { signupValidator } = require("../middleware/validators");
+const auth = require("../middleware/auth");
 
 // CTRLs
-const { post } = require("../controllers/users");
+const { post, put } = require("../controllers/users");
 
 /**
  * @desc Routes
@@ -18,10 +19,18 @@ const { post } = require("../controllers/users");
 
 /**
  * @route POST /api/users
- * @desc  add a users
+ * @desc  add a new users
  * @access Private
  */
 
 Router.post("/", signupValidator, post);
+
+/**
+ * @route PUT /api/users
+ * @desc  update a new user
+ * @access Private
+ */
+
+Router.put("/", auth, put);
 
 module.exports = Router;

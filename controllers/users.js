@@ -77,3 +77,39 @@ exports.post = async (req, res, next) => {
     });
   }
 };
+
+// Put
+exports.put = async (req, res, next) => {
+  // extract name from params
+  const { _id } = req.body; // it's the old name identifier
+
+  console.log("req.body", req.body);
+
+  try {
+    // find and update the item using nameIdentifier
+    const user = await User.findOneAndUpdate(
+      { _id: _id },
+      req.body, // the oldNameIdentifier is removed
+      {
+        new: true,
+      }
+    );
+
+    // return
+    return res.json({
+      success: true,
+      msg: "User updated sucessfully!",
+      data: user,
+    });
+  } catch (error) {
+    /**
+     * @desc sends error to the global error middleware
+     */
+    return next({
+      success: false,
+      message: error,
+      status: 404,
+      error: `${error}`,
+    });
+  }
+};

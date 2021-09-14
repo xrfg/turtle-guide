@@ -48,7 +48,7 @@ const AboutAdmin = (props) => {
             nameIdentifier: "nameIdentifier",
           }}
           userInfo={userInfo}
-          isAboutAdmin={true}
+          isAboutAdmin={true} // if true edits the admin infos
         />
       )}
     </>
