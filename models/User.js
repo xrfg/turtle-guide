@@ -41,6 +41,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  infoAbout: {
+    type: Object,
+  },
   // automatically generated
   accountCode: {
     type: String,

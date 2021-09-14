@@ -125,7 +125,7 @@ const Account = (props) => {
             <Link
               component={RouterLink}
               className={classes.link}
-              to="/aboutadmin"
+              to="/admin/about"
               underline="none"
             >
               <CardContent>

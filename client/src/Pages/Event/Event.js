@@ -413,10 +413,6 @@ export default function Event(props) {
 
   const editSectionMode = async (id, title) => {
     // saves before going to section
-    // const res = await setNeedsToSaveFalse;
-    // console.log(res);
-    // saveEvent();
-    // return goToAndSlugify(id, title);
     if (needsToSave) {
       setIsError("You created a new Section, please save before continue");
     }

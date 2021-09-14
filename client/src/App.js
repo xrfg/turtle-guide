@@ -56,7 +56,7 @@ function App() {
                   <Route exact path="/" component={Home} />
                   <Route exact path="/admin" component={SignUp} />
                   <Route path="/account" component={Account} />
-                  <Route path="/aboutadmin" component={AboutAdmin} />
+                  <Route path="/admin/about" component={AboutAdmin} />
                   <Route exact path="/admin/event/:name" component={Event} />
                   {/* sections takes id or name */}
                   <Route
