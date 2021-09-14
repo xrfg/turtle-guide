@@ -8,11 +8,12 @@ import ReduxThunk from "redux-thunk";
 import eventsReducer from "./reducers/eventsReducer";
 import userReducer from "./reducers/userReducer";
 
+import { saveState } from "./localStorage";
+
 const rootReducer = combineReducers({
   events: eventsReducer, // change names
   user: userReducer,
 });
-
 /**
  * @desc disable redux devtools if cypress requires it
  */
@@ -27,5 +28,10 @@ const Store = createStore(
       : compose
   )
 );
+Store.subscribe(()=>{
+  saveState(
+    Store.getState()
+  )
+})
 
 export default Store;

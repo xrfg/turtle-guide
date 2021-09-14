@@ -1,3 +1,7 @@
+/**
+ * @desc Components that returns an input for the event name
+ */
+
 import React, { useState, useEffect } from "react";
 
 // * material UI imports Icons
@@ -21,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 const EventName = (props) => {
   // decostru
-  const { title } = props;
+  const { title, slug } = props;
 
   // HOOKS
   const classes = useStyles(props);
@@ -56,7 +60,10 @@ const EventName = (props) => {
     if (val) {
       setEditing((prev) => !prev);
     } else {
+      // save edit
       setEditing((prev) => !prev);
+      // important to fire the event name update
+      props.eventNameUpdate(eventName);
     }
   };
 
@@ -83,6 +90,9 @@ const EventName = (props) => {
         </Typography>
       )}
       <EditSaveButton editStatus={editing} editHandler={handleSaveEditBtn} />
+      <Typography className={classes.nameInput}>
+        The address of your event is: /{slug}
+      </Typography>
     </Box>
   );
 };

@@ -3,19 +3,28 @@
 */
 
 import React, { useState, useEffect, useRef } from "react";
+import { useHistory } from "react-router-dom";
+
 import slugify from "react-slugify";
 
 // * REDUX
 import { useSelector, useDispatch } from "react-redux";
 
 // * ACTIONS
-import { eventCreate, eventUpdate } from "../../store/actions/eventsActions";
+import {
+  eventCreate,
+  eventUpdate,
+  eventDelete,
+} from "../../store/actions/eventsActions";
 
 // * Components Imports (children)
 import EventSection from "./EventSection";
-import EventSectionNew from "./EventSectionNew";
 import EventName from "./EventName";
-import Section from "../Section/Section";
+import CustomMessage from "../../Components/CustomMessage/CustomMessage";
+import PopUpDialogBox from "../../Components/PopUpDialogBox/PopUpDialogBox";
+
+// * Functions
+import { goBackToPage, unBlock } from "../../functions/functions";
 
 // * material UI imports Components
 import {
@@ -26,38 +35,46 @@ import {
   Box,
   Button,
   ButtonGroup,
+  IconButton,
   makeStyles,
-  Dialog,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-  DialogTitle,
 } from "@material-ui/core";
+
 // * material UI imports Icons
-import { Add } from "@material-ui/icons";
+import { Add, Delete, Save } from "@material-ui/icons";
+import CustomButton from "../../Components/Buttons/CustomButtons/CustomButton";
+import CustomIconButton from "../../Components/Buttons/CustomIconButtons/CustomIconButton";
 
 const useStyles = makeStyles((theme) => ({
-  deleteBtn: {
-    backgroundColor: theme.palette.common.purple,
-    marginTop: 13,
-  },
-  btnGrp: {
-    display: "flex",
-    "& > *": {
-      margin: theme.spacing(1),
-    },
-  },
   guide__header: { marginBottom: "1rem" },
+  saveDelBtnGrp: {
+    // backgroundColor: "red",
+    width: "100%",
+    justifySelf: "start",
+  },
 }));
 
+// TODO goBack prevention
+// TODO goBack Button
 // ! takes event slug
 export default function Event(props) {
+  // * Hooks
   const classes = useStyles(props);
   const dispatch = useDispatch();
+
+  // to use history.push(newRoute) on save
+  let history = useHistory();
 
   // * States
   // single event
   const [event, setEvent] = useState();
+
+  // ! remove
+  // to allow if is a new event
+  // props comming from account
+  // const [isNewEvent, setIsNewEvent] = useState(
+  //   props.location.state?.isNew === true ? true : false
+  // );
+
   // all sections
   // the sections are always upadated here before the save
   const [sections, setSections] = useState([]);
@@ -65,18 +82,23 @@ export default function Event(props) {
   const [needsToSave, setNeedsToSave] = useState(false);
 
   // for the "Delete Event" modal handlers
-  const [openDeleteMsg, setOpenDeleteMsg] = useState(false);
+  const [openDeleteDialogBox, setOpenDeleteDialogBox] = useState(false);
 
   // for the drag and drop sections re-ordering
   const [dragId, setDragId] = useState();
 
+  // for errorr and success msg
+  const [isError, setIsError] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
   // for the editing of an entire section
-  const [editSection, setEditSection] = useState(false);
-  const [editSectionId, setEditSectionId] = useState(null);
+  // const [editSection, setEditSection] = useState(false);
+  // const [editSectionId, setEditSectionId] = useState(null);
 
   // * Refs
-  // just to skip the first render
+  // just to skip the first and second render
   const firstUpdate = useRef(true);
+  const secondUpdate = useRef(true);
 
   // * Hooks
   // loads event from reducer
@@ -85,6 +107,10 @@ export default function Event(props) {
   // get the slug to search for the event
   const slug = props.match.params.name;
   // to allow if is a new event
+  // props comming from account
+
+  // to allow if is a new event
+  // props comming from account
   let isNewEvent = props.location.state?.isNew === true ? true : false;
 
   // * LifeCycles -> UseEffect
@@ -95,6 +121,7 @@ export default function Event(props) {
       const obj = props.location.state;
       return createAndSendEvent(obj);
     }
+
     // search for the event into redux
     const getEvent = events.find((x) => x.slug === slug);
     // set the whole event
@@ -108,25 +135,27 @@ export default function Event(props) {
 
   // fires when the state event is created/ updated
   useEffect(() => {
-    if (needsToSave) {
-      // set save to false to disable the button
-      const res = dispatch(eventUpdate(event));
-      res.then((x) => {
-        if (x.status === 200) {
-          return setNeedsToSave(false);
-        }
-      });
-      // dispatch the event to REDUX
-      return res;
-    }
+    // TODO try catch to handle UI Error
 
-    console.log("useEff", event, isNewEvent);
+    async function saveData() {
+      if (needsToSave) {
+        // dispatch
+        await dispatch(eventUpdate(event));
+
+        setIsError(false);
+        setIsSuccess("Saved successfully!");
+        return setNeedsToSave(false);
+      }
+    }
+    saveData();
+
     // if event is empty do not dispatch
     // ! isNewevent Stops it from a recreating of an existing event
     // ! keep as an option
-    if (!event || !isNewEvent) {
+    if (!event || !isNewEvent || needsToSave) {
       return null;
     }
+
     // dispatch the event to redux
     return dispatch(eventCreate(event));
     //eslint-disable-next-line
@@ -136,11 +165,21 @@ export default function Event(props) {
   useEffect(() => {
     // if true skips the first render
     if (firstUpdate.current) {
-      firstUpdate.current = false;
-    } else {
-      // do things after first render
-      setNeedsToSave(true);
+      return (firstUpdate.current = false);
     }
+    // in case the event is new can be saved on second render
+    if (!firstUpdate.current && isNewEvent) {
+      return setNeedsToSave(true);
+    }
+    // if true skips the second render
+    if (secondUpdate.current) {
+      return (secondUpdate.current = false);
+    }
+
+    // do things after first render
+    return setNeedsToSave(true);
+
+    //eslint-disable-next-line
   }, [sections]);
 
   // * Functions
@@ -177,6 +216,12 @@ export default function Event(props) {
         contents: [],
         title: "Title",
         description: "Description",
+        sectionCover: {
+          filename: "",
+          public_id: "",
+          url: "",
+          url_thumb: "",
+        },
       },
     ];
     // add ids
@@ -185,6 +230,9 @@ export default function Event(props) {
     // if [contents] s empty assigns the index
 
     const bigId = findBiggestId();
+    console.log("findBiggestId()", findBiggestId());
+
+    // const bigId = sections
 
     newSectionsArr.forEach((section, i) => {
       if (sections.length === 0) {
@@ -195,7 +243,7 @@ export default function Event(props) {
         const lastSection = sections.find((section) => section.id === bigId);
 
         section["id"] = lastSection.id + i + 1;
-        section["order"] = lastSection.id + i + 1;
+        section["order"] = sections[sections.length - 1].order + i + 1;
       }
     });
 
@@ -219,19 +267,28 @@ export default function Event(props) {
   // * ----------- Functions to handle the "Delete Event" Modal
 
   /**
-   * @function handleClickDeleteOpen
-   * @desc sets state to true to pop up the modal
+   * @function toggleDeleteDialogBox
+   * @desc handle the Delete DialogBox
    */
-  const handleClickDeleteOpen = () => {
-    setOpenDeleteMsg(true);
+
+  const toggleDeleteDialogBox = () => {
+    setOpenDeleteDialogBox((prev) => !prev);
   };
 
   /**
-   * @function handleClickDeleteClose
-   * @desc sets state to false to close up the modal
+   * @function deleteEvent
+   * @desc deletes the current event from mongo
    */
-  const handleClickDeleteClose = () => {
-    setOpenDeleteMsg(false);
+  const deleteEvent = (val) => {
+    const objToSend = {
+      nameIdentifier: event.nameIdentifier,
+    };
+    if (val) {
+      dispatch(eventDelete(objToSend));
+      history.goBack();
+    }
+
+    toggleDeleteDialogBox();
   };
 
   // * ----------- Functions for the Drag and Re-order of <EventSection/>s
@@ -255,12 +312,8 @@ export default function Event(props) {
    */
 
   const handleDrop = (e) => {
-    console.log("sections", sections);
-    console.log("dragID", dragId);
-
     // * Finding the drag section with the same id as the one the user is trying to drag from
     const dragSection = sections.find((section) => {
-      console.log(typeof section.id, typeof dragId, section.id === dragId);
       return section.id === dragId;
     });
 
@@ -298,12 +351,13 @@ export default function Event(props) {
   // else fetch event
 
   const createAndSendEvent = (obj) => {
+    console.log("createAndSendEvent");
     // destruct
     const { title, slug } = obj;
 
     setEvent({
       title: title,
-      nameIdentifier: title, // function to make the slug
+      nameIdentifier: slug, // function to make the slug
       slug: slug, // will be the same
       description: "description", // ? is to do?
       sections: [],
@@ -313,6 +367,7 @@ export default function Event(props) {
       // ! spread obj
     });
     // to stop useEffect after the creation of a new event
+    // ! remove
     isNewEvent = false;
   };
 
@@ -321,13 +376,33 @@ export default function Event(props) {
    * @desc saves the event
    */
 
-  const saveEvent = () => {
-    console.log("save", sections);
-    // push new data into event
-    setEvent({ ...event, sections: [...sections] });
-    // setNeedsToSave(false) is into useEffect
+  const saveEvent = (obj) => {
+    console.log("saveEvent", obj);
 
-    console.log("saveEvent", event);
+    // set to true or stops it in use effect
+    setNeedsToSave(true);
+    // if the event is new skips it
+    if (isNewEvent) {
+      return;
+    }
+    // update event
+
+    // destruc
+    // if no new title provided (can come just if event name is changed)
+    // uses the event one
+    const { title = event.title } = obj;
+    // new slug
+    const slug = slugify(title);
+    // push new data into event
+    setEvent({
+      ...event,
+      title: title,
+      slug: slug,
+      nameIdentifier: slug, // new name identifier
+      oldNameIdentifier: event.slug, // old name identifier just for the search
+      sections: [...sections],
+    });
+    // setNeedsToSave(false) is into useEffect
   };
 
   /**
@@ -336,47 +411,109 @@ export default function Event(props) {
    * @desc enter in edit mode of the section
    */
 
-  const editSectionMode = async (id) => {
-    console.log("editSectionMode", id);
+  const editSectionMode = async (id, title) => {
     // saves before going to section
-    // saveEvent();
     // const res = await setNeedsToSaveFalse;
     // console.log(res);
+    // saveEvent();
+    // return goToAndSlugify(id, title);
+    if (needsToSave) {
+      setIsError("You created a new Section, please save before continue");
+    }
     if (!needsToSave) {
-      console.log("setEditsections");
-      setEditSection(true);
-      setEditSectionId(id);
+      setIsError(false);
+
+      return goToAndSlugify(id, title);
     }
   };
 
   /**
-   * @desc Promise to set needsToSave to false
+   * @function goToAndSlugify
+   * @param eventName
+   * @desc redirects and creates an object to create the event
    */
+  const goToAndSlugify = (id, title) => {
+    // TODO do it with regex
+    // if a title is not set it uses the id of the section
+    if (title === "Title" || title === "title" || title === "TITLE") {
+      return history.push(`/admin/event/sections/${id}`, {
+        isNew: true,
+        slug: slugify(title),
+        title: title,
+        id: id,
+        nameIdentifier: event.nameIdentifier, // name of the current event
+      });
+    }
+    // it uses the title
+    return history.push(`/admin/event/sections/${slugify(title)}`, {
+      isNew: true,
+      slug: slugify(title),
+      title: title,
+      id: id,
+      nameIdentifier: event.nameIdentifier, // name of the current event
+    });
+  };
 
-  // const setNeedsToSaveFalse = new Promise((res, rej) => {
-  //   res(() => setNeedsToSave(false));
-  // });
-  // const setNeedsToSaveFalse = Promise.resolve(33);
+  /**
+   * @function saveSectionTitle
+   * @param noParam
+   * @desc to save when sectin title changes
+   */
+  const saveSectionTitle = () => {
+    setNeedsToSave(true);
+  };
 
-  // * Objects
+  /**
+   * @function eventNameUpdate
+   * @param eventName comes from <EventName />
+   * @desc fired when the event name changed
+   */
+  const eventNameUpdate = (eventName) => {
+    console.log("eventNameUpdate", eventName);
+
+    // create a new obj that fires a saving with useEffect
+    // new slug
+    const slug = slugify(eventName);
+    // push new data into event
+    setEvent({
+      ...event,
+      title: eventName,
+      slug: slug,
+      nameIdentifier: slug, // new name identifier
+      oldNameIdentifier: event.slug, // old name identifier just for the search
+      sections: [...sections],
+    });
+    setNeedsToSave(true);
+  };
+
+  // * Listener to avoid the user to go back without saving
+  unBlock(needsToSave, history);
 
   return (
     <Container style={{ padding: "2rem 0" }} maxWidth="md">
       {/* // TODO ERROR IF EVENT IS UNDEFINED */}
-      {editSection ? (
-        <Section
-          eventNameIdentifier={event.nameIdentifier}
-          sectionId={editSectionId}
-        />
-      ) : event === undefined ? null : (
+      {event === undefined ? null : (
         <Grid container direction="row" spacing={2}>
           <Grid item xs={9}>
+            <PopUpDialogBox
+              open={openDeleteDialogBox}
+              isClose={toggleDeleteDialogBox}
+              confirm={deleteEvent}
+              confirmButtonTitle="Delete Event"
+              messageTitle={`Are you sure you want to delete the ${event.title} section?`}
+              messageBody="Deleting a section will permanently erase it from the event."
+            />
             {/* 
         // * Name of Event Input
         */}
-            <EventName title={event.title} getEventName={createAndSendEvent} />
+            <EventName
+              // important to fire the event name update
+              eventNameUpdate={eventNameUpdate}
+              title={event.title}
+              slug={event.slug}
+              getEventName={createAndSendEvent}
+            />
           </Grid>
-
           {/* Delete Event */}
           <Grid item xs={3}>
             <Button
@@ -390,69 +527,68 @@ export default function Event(props) {
             {/* // TODO add check saving */}
             <Button
               className={classes.deleteBtn}
-              onClick={() => {}}
-              disabled={true}
+              onClick={() => goBackToPage(needsToSave, history)}
             >
-              Go Back
+              Go Back to Account
             </Button>
             <Button
               className={classes.deleteBtn}
-              onClick={handleClickDeleteOpen}
+              onClick={toggleDeleteDialogBox}
             >
               Delete Event
             </Button>
-            <Dialog
-              open={openDeleteMsg}
-              onClose={handleClickDeleteClose}
-              aria-labelledby="alert-dialog-title"
-              aria-describedby="alert-dialog-description"
-            >
-              <DialogTitle id="alert-dialog-title">
-                {`Are you sure you want to delete the EVENTNAME event?`}
-              </DialogTitle>
-              <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                  Deleting an event will permanently erase it from the admin's
-                  event collection. If you choose only to set it to private,
-                  check settings.
-                </DialogContentText>
-              </DialogContent>
-              <DialogActions>
-                <Button
-                  onClick={handleClickDeleteClose}
-                  color="primary"
-                  autoFocus
-                >
-                  Cancel
-                </Button>
-                <Button onClick={handleClickDeleteClose} color="primary">
-                  Delete
-                </Button>
-              </DialogActions>
-            </Dialog>
+            <CustomButton
+              text="Account"
+              startIcon="arrowBack"
+              onClickFunc={() => goBackToPage(needsToSave, history)}
+            />
+
+            <div>
+              <CustomIconButton
+                icon="save"
+                disabled={!needsToSave}
+                onClickFunc={saveEvent}
+                // make a focus light so the user knows to save
+                style={{
+                  backgroundColor: !needsToSave ? "inherit" : "#26b519",
+                }}
+              />
+              {/* // ?  temporarly disabled, to implement? */}
+              {/* // TODO add check saving */}
+              <CustomIconButton
+                color="error"
+                icon="delete"
+                onClickFunc={toggleDeleteDialogBox}
+              />
+            </div>
+          </Grid>
+          {/* Error/success msg TOP */}
+          <Grid container direction="row" spacing={2}>
+            <Grid item xs={9}>
+              {isError ? (
+                <CustomMessage severity="error" msg={isError} />
+              ) : null}
+              {isSuccess ? (
+                <CustomMessage severity="success" msg={isSuccess} />
+              ) : null}
+            </Grid>
           </Grid>
           {/* 
-        // * Button Group
+        // * Add BTN + Disabled ones
         */}
-          <Grid item xs={4} className={classes.btnGrp}>
-            <ButtonGroup
-              orientation="vertical"
-              aria-label="vertical outlined primary button group"
-            >
-              <Button
-                onClick={() => {
-                  addToContents();
-                }}
-                endIcon={<Add />}
-              >
-                Section
-              </Button>
-            </ButtonGroup>
+          <Grid item xs={4}>
+            <CustomButton
+              text="Section"
+              endIcon="add"
+              onClickFunc={() => addToContents()}
+            />
+
             <ButtonGroup
               disabled
               orientation="vertical"
               aria-label="vertical outlined primary button group"
             >
+              {/* // TODO Making a custom Button Group */}
               <Button endIcon={<Add />}>Pay-wall</Button>
               <Button endIcon={<Add />}>Feedback</Button>
               <Button endIcon={<Add />}>Map</Button>
@@ -475,33 +611,33 @@ export default function Event(props) {
                 <ul>
                   {sections
                     .sort((a, b) => a.order - b.order)
-                    .map((section) => {
-                      // is the slug is new it renders the new container
-                      if (section.slug === "title") {
-                        return (
-                          <EventSectionNew
-                            section={section}
-                            sectionToDelete={deleteSection}
-                            // handleDrag={handleDrag}
-                            // handleDrop={handleDrop}
-                            editSection={editSectionMode}
-                          />
-                        );
-                      }
-
+                    .map((section, i) => {
                       return (
                         <EventSection
+                          key={i}
                           section={section}
                           sectionToDelete={deleteSection}
                           handleDrag={handleDrag}
                           handleDrop={handleDrop}
                           editSection={editSectionMode}
+                          saveSectionTitle={saveSectionTitle} // to save when sectin title changes
                         />
                       );
                     })}
                 </ul>
               </CardContent>
             </Box>
+          </Grid>
+          {/* Error/success msg */}
+          <Grid container direction="row" spacing={2}>
+            <Grid item xs={9}>
+              {isError ? (
+                <CustomMessage severity="error" msg={isError} />
+              ) : null}
+              {isSuccess ? (
+                <CustomMessage severity="success" msg={isSuccess} />
+              ) : null}
+            </Grid>
           </Grid>
         </Grid>
       )}

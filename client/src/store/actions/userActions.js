@@ -1,6 +1,9 @@
 import {
   SIGN_UP,
   SIGN_UP_ERROR,
+  SIGN_IN,
+  SIGN_IN_ERROR,
+  SIGN_OUT,
   EVENT_CREATE,
   EVENT_CREATE_ERROR,
   EVENT_UPDATE,
@@ -18,40 +21,6 @@ import { createObj } from "../functions/functions";
 // url TO create a User
 const BASEurlUser = "http://localhost:5000/api/users/";
 const BASEurlAuth = "http://localhost:5000/api/auth/";
-
-// /**
-//  * @function createObj
-//  * @param objCall
-//  * @desc create OBJ to send
-//  */
-// const createObj = (objCall) => {
-//   const { method, url, data = {}, token = "", params = "" } = objCall;
-
-//   // if token is not empty returns header with token
-//   // else header with out
-//   if (token) {
-//     return {
-//       method: method,
-//       url: url,
-//       // params: params,
-//       data: data,
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${token}`,
-//       },
-//     };
-//   }
-
-//   return {
-//     method: method,
-//     url: url,
-//     data: data,
-//     // params: params,
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   };
-// };
 
 /**
  * @userSignUp
@@ -74,13 +43,14 @@ export const userSignUp = (obj) => {
       // if success keeps going
       if (results.data.success === true) {
         /**
-         * @desc add the fucntion to login
-         *
+         * @desc add the fucntion to login and get a token
          */
-        // const resLogin = await userLogin({
-        //   email: obj.email,
-        //   password: obj.password,
-        // });
+        await dispatch(
+          signIn({
+            email: obj.email,
+            password: obj.password,
+          })
+        );
 
         // creater a payload to send
         const payload = {
@@ -108,12 +78,36 @@ export const userSignUp = (obj) => {
  */
 
 export const signIn = (obj) => {
-  console.log("userLogin", obj);
-  // http://localhost:5000/api-docs
-  // dispatch a POST request to /api/auth
-  // and get  token
-  // try catch
-  // Dispatch
+  return async (dispatch) => {
+    // uses a function to create an object for axios
+    const objToSend = createObj({
+      method: "POST",
+      url: BASEurlAuth,
+      data: obj,
+      // user and password
+      //     obj:  {
+      //   "email": "string",
+      //   "password": "string"
+      // }
+    });
+
+    try {
+      // API Call
+      const res = await axios(objToSend);
+
+      // dispatch to the reducer (update state)
+      await dispatch({ type: SIGN_IN, payload: res.data.data.token });
+    } catch (error) {
+      console.error(error);
+      await dispatch({ type: SIGN_IN_ERROR, payload: error });
+    }
+  };
+};
+
+export const signOut = () => {
+  return async (dispatch) => {
+    await dispatch({ type: SIGN_OUT });
+  };
 };
 
 // export const googleSearch = (entry) => {

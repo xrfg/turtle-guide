@@ -14,7 +14,7 @@ info:
 servers:
   - url: http://http://localhost:5000/api
 paths:
-  /guides:
+  /events:
     get:
       description: Returns all the guides created by the owner. It gets the owner from the token.
       operationId: getGuide

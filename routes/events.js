@@ -32,7 +32,9 @@ Router.get("/", auth, get);
  * @access Private OR Public
  */
 
-Router.get("/:name", auth, getEvent);
+// TODO reinsert auth
+
+Router.get("/:name", getEvent);
 
 /**
  * @route POST /api/guides

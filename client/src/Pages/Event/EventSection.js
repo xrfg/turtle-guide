@@ -20,17 +20,20 @@ import {
   CardContent,
   Typography,
   CardActions,
-  Button,
   ButtonGroup,
   TextField,
   Box,
   makeStyles,
 } from "@material-ui/core";
 // * material UI imports Icons
-import { Forward, Delete, DragIndicator } from "@material-ui/icons";
 
 // * React Components
 import EditSaveButton from "../../Components/Buttons/EditSaveButton";
+import PopUpDialogBox from "../../Components/PopUpDialogBox/PopUpDialogBox";
+
+// needed to render Rich text
+import ReactQuill from "react-quill"; // ES6
+import CustomIconButton from "../../Components/Buttons/CustomIconButtons/CustomIconButton";
 
 const useStyles = makeStyles((theme) => ({
   card: { position: "relative", marginBottom: "1rem" },
@@ -41,9 +44,11 @@ const useStyles = makeStyles((theme) => ({
     top: 0,
     right: 0,
   },
+  sectionCover: {},
   onDrag: { backgroundColor: "green" },
   textField: { display: "block" },
 }));
+
 export default function EventSection(props) {
   // * Hooks
   const classes = useStyles(props);
@@ -52,10 +57,18 @@ export default function EventSection(props) {
   let history = useHistory();
 
   // * Destructuring props
-  let { id, order, title, description, url } = props.section;
+  let {
+    id,
+    order,
+    title,
+    description,
+    url,
+    sectionCover: { url_thumb },
+  } = props.section;
 
   // * States
   const [editing, setEditing] = useState(false);
+  const [openDeleteDialogBox, setOpenDeleteDialogBox] = useState(false);
 
   // * Functions
 
@@ -68,16 +81,22 @@ export default function EventSection(props) {
 
   const handleSaveEditBtn = (val) => {
     if (val) {
+      // editing opens
       setEditing(true);
-      console.log("editing");
     } else {
+      // editing closes
       setEditing(false);
-      console.log("editing closed");
+      // fires section title saving
+      props.saveSectionTitle();
     }
   };
 
-  const removeSection = (id) => {
-    props.sectionToDelete(id);
+  const removeSection = (val) => {
+    // fired by <PopUpDialogBox /> if true deletes
+    if (val) {
+      props.sectionToDelete(id);
+    }
+    toggleDeleteDialogBox();
   };
 
   const handleTitle = (title) => {
@@ -93,20 +112,17 @@ export default function EventSection(props) {
    */
 
   const editSection = () => {
-    props.editSection(id);
+    console.log("editSection", id, title);
+    props.editSection(id, title);
   };
 
   /**
-   * @function goToAndSlugify
-   * @param eventName
-   * @desc redirects and creates an object to create the event
+   * @function toggleDeleteDialogBox
+   * @desc handle the Delete DialogBox
    */
-  const goToAndSlugify = (eventName) => {
-    history.push(`/admin/event/${slugify(eventName)}`, {
-      // isNew: true,
-      slug: slugify(eventName),
-      title: title,
-    });
+
+  const toggleDeleteDialogBox = () => {
+    setOpenDeleteDialogBox((prev) => !prev);
   };
 
   return (
@@ -120,6 +136,14 @@ export default function EventSection(props) {
       onDragStart={props.handleDrag}
       onDrop={props.handleDrop}
     >
+      <PopUpDialogBox
+        open={openDeleteDialogBox}
+        isClose={toggleDeleteDialogBox}
+        confirm={removeSection}
+        confirmButtonTitle="Delete Section"
+        messageTitle={`Are you sure you want to delete the ${title} section?`}
+        messageBody="Deleting a section will permanently erase it from the event."
+      />
       <CardContent>
         {editing ? (
           <Box>
@@ -134,7 +158,11 @@ export default function EventSection(props) {
               }}
               onChange={(e) => handleTitle(e.target.value)}
             />
-            <TextField
+            {/* //! temporarly disabled */}
+            {/* //? shall we make a edit options from here  */}
+            {/* //? i.e. <TextEditor setText={setMediaText} content={content} />  */}
+
+            {/* <TextField
               id="eventName"
               type="text"
               className={classes.textField}
@@ -146,7 +174,7 @@ export default function EventSection(props) {
                 shrink: true,
               }}
               onChange={(e) => handleDescription(e.target.value)}
-            />
+            /> */}
           </Box>
         ) : (
           <Box>
@@ -157,13 +185,23 @@ export default function EventSection(props) {
             >
               {title}
             </Typography>
-            <Typography
+            {url_thumb.length !== 0 ? (
+              <img
+                className={classes.sectionCover}
+                alt="section-cover"
+                src={url_thumb}
+              />
+            ) : null}
+
+            {/* //! temporarly disabled */}
+            {/* <Typography
               className={classes.card__desc}
               variant="subtitle1"
               component="p"
             >
-              {description}
-            </Typography>
+              {description} */}
+            <ReactQuill value={description} readOnly={true} theme={"bubble"} />
+            {/* </Typography> */}
           </Box>
         )}
       </CardContent>
@@ -172,25 +210,27 @@ export default function EventSection(props) {
           orientation="horizontal"
           aria-label="horizontal button group"
         >
+          {/* Save Edit  */}
           <EditSaveButton
-            size={"small"}
+            className={classes.hoverSaveEdit}
             editStatus={editing}
             editHandler={handleSaveEditBtn}
           />
-          <Button href={`${url}`} size="small" onClick={editSection}>
-            <Forward />
-          </Button>
+          {/* Got to Edit section   */}
+          <CustomIconButton
+            href={`${url}`}
+            onClickFunc={editSection}
+            icon="forward"
+          />
         </ButtonGroup>
         <ButtonGroup
           orientation="horizontal"
           aria-label="horizontal button group"
         >
-          <Button style={{ cursor: "grab" }} size="small">
-            <DragIndicator />
-          </Button>{" "}
-          <Button size="small" onClick={() => removeSection(id)}>
-            <Delete />
-          </Button>
+          {/* // ! all the section is draggable, should only work when dragstart is this button */}
+          <CustomIconButton icon="drag" />
+          {/* Remove Section   */}
+          <CustomIconButton onClickFunc={toggleDeleteDialogBox} icon="delete" />
         </ButtonGroup>
       </CardActions>
     </Card>

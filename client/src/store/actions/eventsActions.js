@@ -5,6 +5,10 @@ import {
   EVENT_UPDATE_ERROR,
   EVENTS_FETCH,
   EVENTS_FETCH_ERROR,
+  EVENT_GUIDE,
+  EVENT_GUIDE_ERROR,
+  EVENT_DELETE,
+  EVENT_DELETE_ERROR,
 } from "../types";
 
 import axios from "axios";
@@ -24,6 +28,8 @@ const token =
  * @desc action to create a new event
  */
 export const eventCreate = (obj) => {
+  console.log("eventCreate", obj);
+
   return async (dispatch) => {
     // uses a function to create an object for axios
     const objToSend = createObj({
@@ -53,31 +59,19 @@ export const eventCreate = (obj) => {
  */
 
 export const eventUpdate = (obj) => {
-  // return async (dispatch) => {
-  //   // uses a function to create an object for axios
-  //   const objToSend = createObj({
-  //     method: "PUT",
-  //     url: BASEurlEvents,
-  //     data: obj,
-  //     token: token,
-  //   });
-  //   try {
-  //     // call api
-  //     const res = await dispatch(objToSend);
-  //     // res.data.data sends just the event
-  //     await dispatch({ type: EVENT_UPDATE, payload: res.data.data });
-  //     return res;
-  //   } catch (error) {
-  //     console.error(error);
-  //     await dispatch({ type: EVENT_UPDATE_ERROR, payload: error });
-  //   }
-  // };
+  console.log("obj", obj);
 
   return async (dispatch) => {
+    // important
+    //  it uses the old nameIdf cause in mongo it has this still that nameIdf
+    const eventName = obj.hasOwnProperty("oldNameIdentifier")
+      ? obj.oldNameIdentifier
+      : obj.nameIdentifier;
+
     // uses a function to create an object for axios
     const objToSend = createObj({
       method: "PUT",
-      url: BASEurlEvents + obj.nameIdentifier, // ? better slug ?
+      url: BASEurlEvents + eventName,
       data: obj,
       token: token,
     });
@@ -85,7 +79,6 @@ export const eventUpdate = (obj) => {
     try {
       // call api
       const res = await axios(objToSend);
-
       // res.data.data sends just the event
       await dispatch({ type: EVENT_UPDATE, payload: res.data.data });
 
@@ -98,10 +91,45 @@ export const eventUpdate = (obj) => {
 };
 
 /**
+ * @desc action to delete an event
+ */
+
+export const eventDelete = (obj = {}) => {
+  return async (dispatch) => {
+    // important
+    //  it uses the old nameIdf cause in mongo it has this still that nameIdf
+    const eventName = obj?.hasOwnProperty("oldNameIdentifier")
+      ? obj?.oldNameIdentifier
+      : obj?.nameIdentifier;
+
+    // uses a function to create an object for axios
+    const objToSend = createObj({
+      method: "DELETE",
+      url: BASEurlEvents + eventName,
+      token: token,
+    });
+
+    try {
+      // call api
+      const res = await axios(objToSend);
+
+      // does not dispatch cause after the delete it goes
+      // back to the page that fetches the events from the BE
+      await dispatch({ type: EVENT_DELETE });
+
+      return res;
+    } catch (error) {
+      console.error(error);
+      await dispatch({ type: EVENT_DELETE_ERROR, payload: error });
+    }
+  };
+};
+
+/**
  * @desc action to fetch all the account's event
  */
 
-// TODO CNAHGE TOKEN to be sent from the client
+// TODO CHANGE TOKEN to be sent from the client
 export const eventsFetch = () => {
   return async (dispatch) => {
     // uses a function to create an object for axios
@@ -126,6 +154,20 @@ export const eventsFetch = () => {
         type: EVENTS_FETCH_ERROR,
         payload: error,
       });
+    }
+  };
+};
+
+/**
+ * @desc action to set the event the guide will render
+ */
+export const setEventGuide = (obj) => {
+  return async (dispatch) => {
+    try {
+      await dispatch({ type: EVENT_GUIDE, payload: obj });
+    } catch (error) {
+      console.error(error);
+      await dispatch({ type: EVENT_GUIDE_ERROR, payload: error });
     }
   };
 };
