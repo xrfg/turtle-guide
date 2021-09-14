@@ -13,6 +13,8 @@ import {
   Forward,
   Delete,
   DragIndicator,
+  NavigateBefore,
+  NavigateNext,
 } from "@material-ui/icons";
 
 // MatUi Style Imports
@@ -54,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
       color: "#ffd014", // sunnyyellow
     },
   },
+  prev: {},
 }));
 
 export default function CustomIconButton(props) {
@@ -82,6 +85,8 @@ export default function CustomIconButton(props) {
           forward: <Forward className={classes.forward} />,
           delete: <Delete className={classes.warning} />,
           drag: <DragIndicator className={classes.drag} />, // ! fix the chrome cursor
+          prev: <NavigateBefore className={classes.prev} />,
+          next: <NavigateNext />,
         }[icon]
       }
     </IconButton>
