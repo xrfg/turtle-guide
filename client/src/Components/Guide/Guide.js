@@ -26,7 +26,7 @@ export default function Guide(props) {
     <>
       {/* Wraping all the guide */}
       <div>
-        <Navbar />
+        
         {!event ? (
           <Spinner />
         ) : (

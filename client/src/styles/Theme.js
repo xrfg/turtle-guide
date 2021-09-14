@@ -21,6 +21,7 @@ export const colors = {
 };
 
 export const ourColors = {
+  primaryLight: "#F5F5F5",
   black: "#000000", // black
   jet: "#353535", // dark grey
   ming: "#3C6E71", // dark blueish green
@@ -69,7 +70,7 @@ export const theme = createTheme({
   },
   typography: {
     htmlFontSize: 16,
-    fontFamily: " 'Poppins', 'Roboto', 'raleway', 'sans-serif', 'Helvetica'",
+    fontFamily: "'Poppins', 'raleway', 'Roboto',  sans-serif",
     fontSize: 14,
     fontWeightLight: 300,
     fontWeightRegular: 400,

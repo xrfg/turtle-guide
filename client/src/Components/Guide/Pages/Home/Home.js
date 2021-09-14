@@ -15,8 +15,10 @@ import { Container } from "@material-ui/core";
 
 import { red } from "@material-ui/core/colors";
 
+import {ourColors,theme} from '.././../../../styles/Theme'
+
 const useStyles = makeStyles((theme) => ({
-  hero: {
+  /*hero: {
     backgroundImage: `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0.5)),url("https://ernst-leitz-museum.de/wp-content/uploads/2019/03/das-ernst-leitz-museum-in-wetzlar-2-2-1440x566.jpg")`,
     height: "500px",
     backgroundPosition: "center",
@@ -50,7 +52,30 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     margin: "0 10px",
     justifyContent: "space-between",
+  },*/
+  mainContainer:{
+    margin:"20px 0 30px 0",
+    padding:"1.6rem",
+    backgroundColor:ourColors.primaryLight,
+    display:"flex",
+    flexDirection:"column",
+    justifyContent:"center",
+    alignItems:"center",
+    width:"100vw",
   },
+  eventsTitle:{
+    width:"100%",
+    fontSize:"1.5rem",
+    fontfamily:"sans",
+    fontWeight:"500",
+    color:ourColors.indigoDye,
+      backgroundColor: ourColors.gainsboro,
+      padding: "0.5rem",
+      boxShadow: "-2px 2px 8px 1px rgba(127,127,127,0.88)",
+      letterSpacing: "0.60000px",
+    },
+
+
 }));
 
 export default function Home(props) {
@@ -90,11 +115,13 @@ export default function Home(props) {
    * @desc Component to create a card (section)
    */
   // TODO to ext
-
+console.log(BlockSection);
   return (
     <>
-      <h1>{title}</h1>
-      <Container>
+      <h1 className={classes.eventsTitle}>{title}</h1>
+      <div
+       className={classes.mainContainer}
+       >
         {/* Map to create cards */}
         {sections.map((x, index) => {
           return (
@@ -106,7 +133,7 @@ export default function Home(props) {
             />
           );
         })}
-      </Container>
+      </div>
     </>
   );
 }
