@@ -11,6 +11,9 @@ import { MuiThemeProvider } from "@material-ui/core/styles";
 import GuideApp from "./GuideApp";
 import AdminApp from "./AdminApp";
 
+//  * Pages
+import Home from "./Pages/Home/Home";
+
 function App() {
   return (
     <Provider store={Store}>
@@ -19,6 +22,7 @@ function App() {
           <div className="App">
             {/* Has to stay here to do not have the admin navbar */}
             <Switch>
+              <Route exact path="/" component={Home} />
               <Route path="/events" component={GuideApp} />
               <Route path="/admin" component={AdminApp} />
             </Switch>

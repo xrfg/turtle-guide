@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 //* Import Pages -- ADMIN
-import Home from "./Pages/Home/Home";
 import Account from "./Pages/Account/Account";
 import AboutAdmin from "./Pages/AboutAdmin/AboutAdmin";
 import Event from "./Pages/Event/Event";
@@ -28,10 +27,8 @@ export default function AdminApp({ match }) {
         // ! this padding represents footer's height HARDCODED
       >
         <Navbar />
-        <Route exact path="/" component={Home} />
-        <Route exact path="/admin" component={SignUp} />
-        <Route path="/account" component={Account} />
-        <Route path="/aboutadmin" component={AboutAdmin} />
+        <Route path="/admin/account" component={Account} />
+        <Route path="/admin/about" component={AboutAdmin} />
         <Route exact path="/admin/event/:name" component={Event} />
         {/* sections takes id or name */}
         <Route exact path="/admin/event/sections/:id" component={Section} />

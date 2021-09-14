@@ -17,8 +17,7 @@ import Button from "@material-ui/core/Button";
 // import Popper from "@material-ui/core/Popper";
 import { makeStyles } from "@material-ui/core/styles";
 
-
-import {signOut}from "../../store/actions/userActions"
+import { signOut } from "../../store/actions/userActions";
 
 /**
  * @desc It Forwards the <MenuItem/>
@@ -26,7 +25,6 @@ import {signOut}from "../../store/actions/userActions"
  * @requires title i.e. title={"Admin Page"}
  */
 import MenuItem from "../MenuItem/MenuItem";
-
 
 import { useDispatch } from "react-redux";
 
@@ -50,7 +48,7 @@ const Menu = () => {
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
 
-  const dispatch= useDispatch()
+  const dispatch = useDispatch();
 
   // // Drop down handlers
   // const handleToggle = () => {
@@ -85,7 +83,7 @@ const Menu = () => {
   return (
     <div className={classes.root}>
       <div className="">
-        <MenuItem path={"/account"} title={"Your Account"} />
+        <MenuItem path={"/admin/account"} title={"Your Account"} />
         {/* // ! IMPORTANT the old dropdown is still here in case we'll need it */}
         {/* DROP DOWN START */}
         {/* <Button
@@ -138,8 +136,8 @@ const Menu = () => {
           aria-controls="simple-menu"
           aria-haspopup="true"
           onClick={() => {
-            dispatch(signOut())
-            history.push("/")
+            dispatch(signOut());
+            history.push("/");
           }}
         >
           Log out
