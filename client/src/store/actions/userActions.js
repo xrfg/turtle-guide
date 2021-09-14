@@ -67,7 +67,6 @@ export const userSignUp = (obj) => {
 
         // dispatch to the reducer (update state)
         await dispatch({ type: SIGN_UP, payload: payload });
-        console.log("results", results);
         return results;
       }
     } catch (error) {

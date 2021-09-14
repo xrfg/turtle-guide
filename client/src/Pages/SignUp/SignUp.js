@@ -92,7 +92,7 @@ export default function SignUp() {
     setIsValid(validation(isValid));
 
     // dispatch to REDUX
-    dispatch(userSignUp(userData));
+    dispatch(userSignUp(userData)).then((res) => console.log("res", res));
   };
 
   return (
