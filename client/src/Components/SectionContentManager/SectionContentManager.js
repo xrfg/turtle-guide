@@ -129,8 +129,12 @@ const useStyles = makeStyles((theme) =>
 export default function SectionContentManager(props) {
   // * Destruc
   const {
-    state: { id, title, slug, nameIdentifier },
+    state: { id = "", title = "", slug = "", nameIdentifier = "" },
+    // userInfo:{}
+  } = props;
+  const {
     isAboutAdmin = false,
+    // userInfo:{}
   } = props;
 
   // * Hooks
@@ -146,6 +150,8 @@ export default function SectionContentManager(props) {
   const [event, setEvent] = useState({});
   // section
   const [section, setSection] = useState({});
+  // section
+  const [userInfo, setUserInfo] = useState({});
   // for save
   const [needsToSave, setNeedsToSave] = useState(false);
   // for dragging (and dropping)
@@ -183,70 +189,82 @@ export default function SectionContentManager(props) {
 
   // TODO REMOVE
   const hardCodedObj = {
-    description:
-      "<p>Description test  test  test  test test test test test  test test  test  test  test test test test test </p>",
-    id: 5,
-    order: 1,
-    sectionCover: {
-      filename: "van-gogh-1",
-      public_id: "tf7quie5vltlp1xtnx1r",
-      url: "http://res.cloudinary.com/dhdgj2ryu/image/upload/v1631184038/tf7quie5vltlp1xtnx1r.jpg",
-      url_thumb:
-        "https://res.cloudinary.com/dhdgj2ryu/image/upload/…it,h_60,w_90/v1631184038/tf7quie5vltlp1xtnx1r.jpg",
-    },
-    slug: "title",
-    title: "Section Four",
-    type: "section",
-    url: "",
+    accountCode: "9f810be8b8696311d068e19d996d20d5eb8ad7f7",
+    accountName: "jdoe",
+    company: "J DOE Acme",
+    date: "2021-08-19T13:21:14.868Z",
+    email: "jdoe@email.com",
+    firstName: "John",
+    isAdmin: false,
+    lastName: "Doe",
+    __v: 0,
+    _id: "611e5aca56104a1c09f9d13e",
+    infoAbout: {
+      description:
+        "<p>Description test  test  test  test test test test test  test test  test  test  test test test test test </p>",
+      id: 5,
+      order: 1,
+      sectionCover: {
+        filename: "van-gogh-1",
+        public_id: "tf7quie5vltlp1xtnx1r",
+        url: "http://res.cloudinary.com/dhdgj2ryu/image/upload/v1631184038/tf7quie5vltlp1xtnx1r.jpg",
+        url_thumb:
+          "https://res.cloudinary.com/dhdgj2ryu/image/upload/…it,h_60,w_90/v1631184038/tf7quie5vltlp1xtnx1r.jpg",
+      },
+      slug: "title",
+      title: "Section Four",
+      type: "section",
+      url: "",
 
-    contents: [
-      {
-        content: {
-          filename: "fainalproject-museumsIntroImage",
-          public_id: "bf8em0vr30mwvmg66ezu",
-          url: "http://res.cloudinary.com/dhdgj2ryu/image/upload/v1631191190/bf8em0vr30mwvmg66ezu.jpg",
-          url_thumb:
-            "https://res.cloudinary.com/dhdgj2ryu/image/upload/…it,h_60,w_90/v1631191190/bf8em0vr30mwvmg66ezu.jpg",
-          caption: { title: "title images", description: "desc imagdf" },
+      contents: [
+        {
+          content: {
+            filename: "fainalproject-museumsIntroImage",
+            public_id: "bf8em0vr30mwvmg66ezu",
+            url: "http://res.cloudinary.com/dhdgj2ryu/image/upload/v1631191190/bf8em0vr30mwvmg66ezu.jpg",
+            url_thumb:
+              "https://res.cloudinary.com/dhdgj2ryu/image/upload/…it,h_60,w_90/v1631191190/bf8em0vr30mwvmg66ezu.jpg",
+            caption: { title: "title images", description: "desc imagdf" },
+          },
+          id: 1,
+          order: 1,
+          type: "image",
         },
-        id: 1,
-        order: 1,
-        type: "image",
-      },
-      {
-        content:
-          "<h2>The story</h2><p>Insert Your Text Here x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.captio<strong>n?x.content.caption?x.conten</strong>t.caption?x.content.caption?x.content.caption?x.</p>",
-        id: 4,
-        order: 2,
-        type: "text",
-      },
-      {
-        content: {
-          filename: "fainalproject-museumsIntroImage",
-          public_id: "bf8em0vr30mwvmg66ezu",
-          url: "http://res.cloudinary.com/dhdgj2ryu/image/upload/v1631191190/bf8em0vr30mwvmg66ezu.jpg",
-          url_thumb:
-            "https://res.cloudinary.com/dhdgj2ryu/image/upload/…it,h_60,w_90/v1631191190/bf8em0vr30mwvmg66ezu.jpg",
-          caption: { title: "title images", description: "desc imagdf" },
+        {
+          content:
+            "<h2>The story</h2><p>Insert Your Text Here x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.captio<strong>n?x.content.caption?x.conten</strong>t.caption?x.content.caption?x.content.caption?x.</p>",
+          id: 4,
+          order: 2,
+          type: "text",
         },
-        id: 1,
-        order: 1,
-        type: "image",
-      },
-      {
-        content: {
-          filename: "fainalproject-museumsIntroImage",
-          public_id: "bf8em0vr30mwvmg66ezu",
-          url: "http://res.cloudinary.com/dhdgj2ryu/image/upload/v1631191190/bf8em0vr30mwvmg66ezu.jpg",
-          url_thumb:
-            "https://res.cloudinary.com/dhdgj2ryu/image/upload/…it,h_60,w_90/v1631191190/bf8em0vr30mwvmg66ezu.jpg",
-          caption: { title: "title images", description: "desc imagdf" },
+        {
+          content: {
+            filename: "fainalproject-museumsIntroImage",
+            public_id: "bf8em0vr30mwvmg66ezu",
+            url: "http://res.cloudinary.com/dhdgj2ryu/image/upload/v1631191190/bf8em0vr30mwvmg66ezu.jpg",
+            url_thumb:
+              "https://res.cloudinary.com/dhdgj2ryu/image/upload/…it,h_60,w_90/v1631191190/bf8em0vr30mwvmg66ezu.jpg",
+            caption: { title: "title images", description: "desc imagdf" },
+          },
+          id: 1,
+          order: 1,
+          type: "image",
         },
-        id: 1,
-        order: 1,
-        type: "image",
-      },
-    ],
+        {
+          content: {
+            filename: "fainalproject-museumsIntroImage",
+            public_id: "bf8em0vr30mwvmg66ezu",
+            url: "http://res.cloudinary.com/dhdgj2ryu/image/upload/v1631191190/bf8em0vr30mwvmg66ezu.jpg",
+            url_thumb:
+              "https://res.cloudinary.com/dhdgj2ryu/image/upload/…it,h_60,w_90/v1631191190/bf8em0vr30mwvmg66ezu.jpg",
+            caption: { title: "title images", description: "desc imagdf" },
+          },
+          id: 1,
+          order: 1,
+          type: "image",
+        },
+      ],
+    },
   };
 
   useEffect(() => {
@@ -256,8 +274,10 @@ export default function SectionContentManager(props) {
     }
     // console.log("props.state.", props.state);
     // setContents(props.state.infoAbout);
-    setSection(hardCodedObj);
-    setContents(hardCodedObj.contents);
+
+    // section is into infoAbout
+    setSection(hardCodedObj.infoAbout);
+    setContents(hardCodedObj.infoAbout.contents);
     //eslint-disable-next-line
   }, []);
 

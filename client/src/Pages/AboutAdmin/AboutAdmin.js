@@ -32,12 +32,24 @@ const AboutAdmin = (props) => {
     // eslint-disable-next-line
   }, []);
 
+  console.log("userInfo", userInfo);
+
   return (
     <>
       {!userInfo ? (
         Spinner
       ) : (
-        <SectionContentManager state={userInfo} isAboutAdmin={true} />
+        // state null to use it as about admin manager
+        <SectionContentManager
+          state={{
+            id: 100000,
+            title: "title",
+            slug: "slug",
+            nameIdentifier: "nameIdentifier",
+          }}
+          userInfo={userInfo}
+          isAboutAdmin={true}
+        />
       )}
     </>
   );
