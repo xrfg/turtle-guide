@@ -59,10 +59,10 @@ const SectionNavBar = () => {
             )
           }
         >
-          Prev
+          {"<"}
         </button>
       )}
-      <h4 style={{ padding: "5px" }}>Title</h4>
+      <h5 style={{ padding: "5px" }}>{event?.title}</h5>
 
       {idNextSection === undefined ? null : (
         <button
@@ -78,7 +78,7 @@ const SectionNavBar = () => {
             )
           }
         >
-          Next
+          {">"}
         </button>
       )}
     </div>
