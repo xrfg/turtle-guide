@@ -10,9 +10,9 @@ import SectionGuide from "./Components/Guide/Pages/Section/Section";
 import Event from "./Pages/Event/Event";
 import Section from "./Pages/Section/Section";
 import SignUp from "./Pages/SignUp/SignUp";
-import SignIn from "./Pages/SignIn/SignIn";
+// import SignIn from "./Pages/SignIn/SignIn";
 import Footer from "./Components/Guide/Components/footer/Footer";
-import Buy from "./Components/Guide/Pages/Buy/Buy";
+// import Buy from "./Components/Guide/Pages/Buy/Buy";
 
 // * Import Custom  Components
 import Navbar from "./Components/Navbar/Navbar";
@@ -25,6 +25,8 @@ import Store from "./store/index";
 // * Mat UI
 import { theme } from "../src/styles/Theme";
 import { MuiThemeProvider } from "@material-ui/core/styles";
+import Subscription from "./Pages/Subscription/Subscription";
+import Buy from "./Components/Guide/Pages/Buy/Buy";
 
 function App() {
   return (
@@ -56,6 +58,8 @@ function App() {
                   <Route exact path="/" component={Home} />
                   <Route exact path="/admin" component={SignUp} />
                   <Route path="/account" component={Account} />
+                  <Route path="/subscription" component={Subscription} />
+                  <Route path="/payment" component={Buy} />
                   <Route path="/aboutadmin" component={AboutAdmin} />
                   <Route exact path="/admin/event/:name" component={Event} />
                   {/* sections takes id or name */}

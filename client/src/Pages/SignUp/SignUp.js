@@ -74,12 +74,13 @@ export default function SignUp() {
     })
       .then((res) => {
         console.log(res);
+       
       })
       .catch((err) => {
         console.log(err);
       });
     console.log(userData);
-    // window.location.replace("/")
+    window.location.replace("/payment")
   };
 
   // form
