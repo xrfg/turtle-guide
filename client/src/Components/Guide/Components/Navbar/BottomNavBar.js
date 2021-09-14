@@ -8,6 +8,9 @@ import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 
 import { Settings, Map, DirectionsWalk, Home } from "@material-ui/icons";
 
+// * Custom Hooks
+import useGetEvent from "../../Hooks/useGetEvent";
+
 // react router
 import { Link } from "react-router-dom";
 
@@ -23,7 +26,12 @@ const useStyles = makeStyles({
 
 export default function BottomNavBar() {
   const classes = useStyles();
+
+  // * States
   const [value, setValue] = React.useState("event");
+
+  //* Custom Hooks
+  const event = useGetEvent();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -38,7 +46,7 @@ export default function BottomNavBar() {
       className={classes.footer}
     >
       <BottomNavigationAction
-        // * Museum Page
+        // * Intro of the exhibition
         component={Link}
         to="/"
         label="Home"
@@ -49,7 +57,7 @@ export default function BottomNavBar() {
       <BottomNavigationAction
         // * Exhibition Main Page
         component={Link}
-        to="/events/:name"
+        to={event ? `/events/${event.slug}` : null}
         label="Event"
         value="event"
         icon={<DirectionsWalk />}
