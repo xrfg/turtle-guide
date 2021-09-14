@@ -117,7 +117,6 @@ export const userFecth = (obj) => {
     try {
       // API Call
       const res = await axios(objToSend);
-      console.log("userFecth", res);
       // dispatch to the reducer (update state)
       await dispatch({ type: USER_FETCH, payload: res.data.data });
       return res.data.data;

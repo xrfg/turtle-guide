@@ -130,6 +130,7 @@ export default function SectionContentManager(props) {
   // * Destruc
   const {
     state: { id, title, slug, nameIdentifier },
+    isAboutAdmin = false,
   } = props;
 
   // * Hooks
@@ -164,6 +165,10 @@ export default function SectionContentManager(props) {
   // * Life cycles Methods
   // set the section
   useEffect(() => {
+    // if true therefore about admin do not fetch
+    if (isAboutAdmin) {
+      return;
+    }
     // find the event
     const getEvent = events.find((x) => x.nameIdentifier === nameIdentifier);
     // set the event to be modified and sent for saving
@@ -176,7 +181,88 @@ export default function SectionContentManager(props) {
     //eslint-disable-next-line
   }, []);
 
+  // TODO REMOVE
+  const hardCodedObj = {
+    description:
+      "<p>Description test  test  test  test test test test test  test test  test  test  test test test test test </p>",
+    id: 5,
+    order: 1,
+    sectionCover: {
+      filename: "van-gogh-1",
+      public_id: "tf7quie5vltlp1xtnx1r",
+      url: "http://res.cloudinary.com/dhdgj2ryu/image/upload/v1631184038/tf7quie5vltlp1xtnx1r.jpg",
+      url_thumb:
+        "https://res.cloudinary.com/dhdgj2ryu/image/upload/…it,h_60,w_90/v1631184038/tf7quie5vltlp1xtnx1r.jpg",
+    },
+    slug: "title",
+    title: "Section Four",
+    type: "section",
+    url: "",
+
+    contents: [
+      {
+        content: {
+          filename: "fainalproject-museumsIntroImage",
+          public_id: "bf8em0vr30mwvmg66ezu",
+          url: "http://res.cloudinary.com/dhdgj2ryu/image/upload/v1631191190/bf8em0vr30mwvmg66ezu.jpg",
+          url_thumb:
+            "https://res.cloudinary.com/dhdgj2ryu/image/upload/…it,h_60,w_90/v1631191190/bf8em0vr30mwvmg66ezu.jpg",
+          caption: { title: "title images", description: "desc imagdf" },
+        },
+        id: 1,
+        order: 1,
+        type: "image",
+      },
+      {
+        content:
+          "<h2>The story</h2><p>Insert Your Text Here x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.captio<strong>n?x.content.caption?x.conten</strong>t.caption?x.content.caption?x.content.caption?x.</p>",
+        id: 4,
+        order: 2,
+        type: "text",
+      },
+      {
+        content: {
+          filename: "fainalproject-museumsIntroImage",
+          public_id: "bf8em0vr30mwvmg66ezu",
+          url: "http://res.cloudinary.com/dhdgj2ryu/image/upload/v1631191190/bf8em0vr30mwvmg66ezu.jpg",
+          url_thumb:
+            "https://res.cloudinary.com/dhdgj2ryu/image/upload/…it,h_60,w_90/v1631191190/bf8em0vr30mwvmg66ezu.jpg",
+          caption: { title: "title images", description: "desc imagdf" },
+        },
+        id: 1,
+        order: 1,
+        type: "image",
+      },
+      {
+        content: {
+          filename: "fainalproject-museumsIntroImage",
+          public_id: "bf8em0vr30mwvmg66ezu",
+          url: "http://res.cloudinary.com/dhdgj2ryu/image/upload/v1631191190/bf8em0vr30mwvmg66ezu.jpg",
+          url_thumb:
+            "https://res.cloudinary.com/dhdgj2ryu/image/upload/…it,h_60,w_90/v1631191190/bf8em0vr30mwvmg66ezu.jpg",
+          caption: { title: "title images", description: "desc imagdf" },
+        },
+        id: 1,
+        order: 1,
+        type: "image",
+      },
+    ],
+  };
+
+  useEffect(() => {
+    // if false therefore is NOT about admin
+    if (!isAboutAdmin) {
+      return;
+    }
+    // console.log("props.state.", props.state);
+    // setContents(props.state.infoAbout);
+    setSection(hardCodedObj);
+    setContents(hardCodedObj.contents);
+    //eslint-disable-next-line
+  }, []);
+
   console.log("section state", section);
+  console.log("contents state", contents);
 
   // * Modals CTRLs
   const handleOpen = (modal) => {
@@ -403,8 +489,6 @@ export default function SectionContentManager(props) {
     // set to save
     setNeedsToSave(true);
   };
-
-  console.log("contents", contents);
 
   /**
    * @function setMediaText

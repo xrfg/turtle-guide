@@ -6,6 +6,7 @@ import React, { useState, useEffect } from "react";
 
 // * Imports
 import SectionContentManager from "../../Components/SectionContentManager/SectionContentManager";
+import Spinner from "../../Components/Spinner/Spinner";
 
 // * Redux
 import { useDispatch } from "react-redux";
@@ -20,7 +21,9 @@ const AboutAdmin = (props) => {
 
   useEffect(() => {
     async function fetchData() {
+      // fetch data
       const res = await dispatch(userFecth());
+      // set in state
       setUserInfo(res);
     }
 
@@ -29,13 +32,15 @@ const AboutAdmin = (props) => {
     // eslint-disable-next-line
   }, []);
 
-  console.log("userInfo", userInfo);
-
-  return null;
-  // <SectionContentManager
-  //   eventNameIdentifier={eventNameIdentifier}
-  //   sectionId={sectionId}
-  // />
+  return (
+    <>
+      {!userInfo ? (
+        Spinner
+      ) : (
+        <SectionContentManager state={userInfo} isAboutAdmin={true} />
+      )}
+    </>
+  );
 };
 
 export default AboutAdmin;

@@ -18,7 +18,6 @@ exports.get = async (req, res, next) => {
   try {
     // look for the user
     const user = await User.findById(id).select("-password");
-
     // return
     return res.json({ success: true, data: user });
   } catch (error) {
