@@ -1,12 +1,10 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-//* Import Pages
+//* Import Pages -- ADMIN
 import Home from "./Pages/Home/Home";
 import Account from "./Pages/Account/Account";
 import AboutAdmin from "./Pages/AboutAdmin/AboutAdmin";
-import Guide from "./Components/Guide/Guide";
-import SectionGuide from "./Components/Guide/Pages/Section/Section";
 import Event from "./Pages/Event/Event";
 import Section from "./Pages/Section/Section";
 import SignUp from "./Pages/SignUp/SignUp";
@@ -14,9 +12,15 @@ import SignIn from "./Pages/SignIn/SignIn";
 import Footer from "./Components/Guide/Components/footer/Footer";
 import Buy from "./Components/Guide/Pages/Buy/Buy";
 
+//* Import Pages -- GUIDE
+import Guide from "./Components/Guide/Guide";
+import Settings from "./Components/Guide/Pages/Settings/Settings";
+import SectionGuide from "./Components/Guide/Pages/Section/Section";
+import Map from "./Components/Guide/Pages/Map/Map";
+
 // * Import Custom  Components
 import Navbar from "./Components/Navbar/Navbar";
-// import Footer from "./Components/Footer/Footer";
+import BottomNavBar from "./Components/Guide/Components/Navbar/BottomNavBar";
 
 // REDUX
 import { Provider } from "react-redux";
@@ -35,12 +39,19 @@ function App() {
             <Switch>
               {/* Has to stay here to do not have the admin navbar */}
 
-              <Route exact path="/events/:name" component={Guide} />
-              <Route
-                exact
-                path="/events/:name/sections/:id"
-                component={SectionGuide}
-              />
+              <div>
+                <BottomNavBar />
+                <Switch>
+                  <Route exact path="/events/settings" component={Settings} />
+                  <Route exact path="/events/:name/map" component={Map} />
+                  <Route exact path="/events/:name" component={Guide} />
+                  <Route
+                    exact
+                    path="/events/:name/sections/:id"
+                    component={SectionGuide}
+                  />
+                </Switch>
+              </div>
 
               <div
                 // This and the next <div> styles are for putting the footer at bottom
