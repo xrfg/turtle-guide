@@ -41,10 +41,15 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "0.60000px",
   },
   cardDesc:{
-    fontSize:"1rem",
+    letterSpacing:"0.5000000px",
     textAlign:"start",
+    fontWeight:"300",
     color: "#4d4b46",
-    margin:"0 0 0 -15px"
+    margin:"0 0 0 -15px",
+    "& * p": {
+      fontSize: "0.8rem",
+    },
+
   },
 
   media: {
@@ -112,9 +117,10 @@ const BlockSection = (props) => {
             {title}
           </Typography>
           <Typography 
-          className={classes.cardDesc}
           variant="body2" component="p">
-            <ReactQuill value={description} readOnly={true} theme={"bubble"} />
+            <ReactQuill
+            className={classes.cardDesc}
+             value={description} readOnly={true} theme={"bubble"} />
           </Typography>
         </CardContent>
       </CardActionArea>

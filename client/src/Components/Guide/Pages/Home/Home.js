@@ -66,8 +66,8 @@ const useStyles = makeStyles((theme) => ({
   eventsTitle:{
     width:"100%",
     fontSize:"1.5rem",
-    fontfamily:"sans",
-    fontWeight:"500",
+    fontfamily:theme.typography.fontFamily,
+    fontWeight:theme.typography.fontWeightBold,
     color:ourColors.indigoDye,
       backgroundColor: ourColors.gainsboro,
       padding: "0.5rem",
