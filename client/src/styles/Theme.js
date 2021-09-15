@@ -85,6 +85,34 @@ export const theme = createTheme({
       textTransform: "uppercase",
     },
   },
+  admin: {
+    btnSidebar: {
+      border: `1px solid ${ourColors.lightGrey}`,
+      display: "flex",
+      flexDirection: "column",
+      borderRadius: "5px",
+      position: "sticky",
+      height: "100%",
+      padding: "1rem",
+      top: "1rem",
+    },
+    btnGroup: {
+      display: "flex",
+      flexDirection: "column",
+      borderRadius: "8px",
+      overflow: "hidden",
+      border: `1px solid ${ourColors.lightGrey}`,
+      marginBottom: "1rem",
+      "& >*": {
+        borderRadius: "0",
+        margin: "0",
+        borderBottom: `1px solid ${ourColors.lightGrey}`,
+        "&:last-child": {
+          borderBottom: "0",
+        },
+      },
+    },
+  },
   guide: {
     container: { backgroundColor: "white", padding: "0" },
     settings: {

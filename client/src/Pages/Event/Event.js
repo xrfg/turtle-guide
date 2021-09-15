@@ -35,12 +35,11 @@ import {
   Box,
   Button,
   ButtonGroup,
-  IconButton,
   makeStyles,
 } from "@material-ui/core";
 
 // * material UI imports Icons
-import { Add, Delete, Save } from "@material-ui/icons";
+import { Add } from "@material-ui/icons";
 import CustomButton from "../../Components/Buttons/CustomButtons/CustomButton";
 import CustomIconButton from "../../Components/Buttons/CustomIconButtons/CustomIconButton";
 
@@ -51,6 +50,8 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     justifySelf: "start",
   },
+  btnSidebar: { ...theme.admin.btnSidebar },
+  btnGroup: { ...theme.admin.btnGroup },
 }));
 
 // TODO goBack prevention
@@ -512,27 +513,9 @@ export default function Event(props) {
           </Grid>
           {/* Delete Event */}
           <Grid item xs={3}>
-            <Button
-              className={classes.deleteBtn}
-              onClick={saveEvent}
-              disabled={!needsToSave}
-            >
-              Save Event
-            </Button>
             {/* // ?  temporarly disabled, to implement? */}
             {/* // TODO add check saving */}
-            <Button
-              className={classes.deleteBtn}
-              onClick={() => goBackToPage(needsToSave, history)}
-            >
-              Go Back to Account
-            </Button>
-            <Button
-              className={classes.deleteBtn}
-              onClick={toggleDeleteDialogBox}
-            >
-              Delete Event
-            </Button>
+
             <CustomButton
               text="Account"
               startIcon="arrowBack"
@@ -572,7 +555,7 @@ export default function Event(props) {
           {/* 
         // * Add BTN + Disabled ones
         */}
-          <Grid item xs={4}>
+          <Grid className={classes.btnSidebar} item xs={3}>
             <CustomButton
               text="Section"
               endIcon="add"
@@ -580,6 +563,7 @@ export default function Event(props) {
             />
 
             <ButtonGroup
+              className={classes.btnGroup}
               disabled
               orientation="vertical"
               aria-label="vertical outlined primary button group"

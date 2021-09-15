@@ -87,30 +87,10 @@ const useStyles = makeStyles((theme) =>
       // backgroundColor: theme.palette.common.blue,
     },
     btnSidebar: {
-      border: `1px solid ${theme.palette.primary.light}`,
-      display: "flex",
-      flexDirection: "column",
-      borderRadius: "5px",
-      position: "sticky",
-      height: "100%",
-      padding: "1rem",
-      top: "1rem",
+      ...theme.admin.btnSidebar,
     },
     btnGroup: {
-      display: "flex",
-      flexDirection: "column",
-      borderRadius: "8px",
-      overflow: "hidden",
-      border: `1px solid ${theme.palette.primary.light}`,
-      marginBottom: "1rem",
-      "& >*": {
-        borderRadius: "0",
-        margin: "0",
-        borderBottom: `1px solid ${theme.palette.primary.light}`,
-        "&:last-child": {
-          borderBottom: "0",
-        },
-      },
+      ...theme.admin.btnGroup,
     },
 
     // Custom margins nested grid
@@ -667,7 +647,7 @@ export default function SectionContentManager(props) {
   };
 
   return (
-    <Container style={{ maxWidth: "720px" }}>
+    <Container maxWidth="md">
       {/* // * MODAL */}
       {/* content Delete confirmation */}
       <PopUpDialogBox
