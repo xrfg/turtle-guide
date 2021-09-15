@@ -12,7 +12,9 @@ import BottomNavBar from "./Components/Guide/Components/Navbar/BottomNavBar";
 
 export default function GuideApp({ match }) {
   return (
-    <div>
+    <div style={{ paddingBottom: "56px" }}>
+      {" "}
+      {/* needs to be added otherwise content disappears under bottom nav bar because it is positied absolutely */}
       <BottomNavBar />
       <Switch>
         <Route exact path="/events/settings" component={Settings} />

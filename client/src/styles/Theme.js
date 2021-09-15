@@ -27,6 +27,7 @@ export const ourColors = {
   white: "#FFFFFF", // snow white
   gainsboro: "#D9D9D9", // light grey
   indigoDye: "#284B63", // dark blue
+  lightGrey: "#ededed",
 };
 
 export const theme = createTheme({
@@ -84,7 +85,24 @@ export const theme = createTheme({
       textTransform: "uppercase",
     },
   },
-
+  guide: {
+    container: { backgroundColor: "white", padding: "0" },
+    settings: {
+      header: {
+        padding: "1rem",
+        borderBottom: `1px solid ${ourColors.indigoDye}`,
+        position: "relative",
+      },
+      gridSection: {
+        "&:nth-child(even)": {
+          backgroundColor: ourColors.lightGrey,
+        },
+        textDecoration: "none",
+        color: "inherit",
+        padding: "2rem 1rem",
+      },
+    },
+  },
   // typography: {
   //   tab: {
   //     fontFamily: "Raleway",
