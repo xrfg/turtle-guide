@@ -134,7 +134,6 @@ export const theme = createTheme({
   //  BUTTONS
   buttons: {
     btn: {
-      fontSize: "0.9rem",
       fontWeight: 800,
       letterSpacing: "1px",
       textTransform: "uppercase",
@@ -150,6 +149,28 @@ export const theme = createTheme({
 
         // color: ourColors.black,
       },
+    },
+    modalbtn: {
+      fontWeight: 800,
+      letterSpacing: "1px",
+      textTransform: "uppercase",
+      padding: "0.4rem 0.8rem",
+      background: "transparent",
+      borderRadius: "5px",
+      border: `1px solid ${ourColors.jet}`,
+      transition: "all 0.1s",
+      "&:hover": {
+        cursor: "pointer",
+        background: ourColors.lightGrey,
+      },
+      color: ourColors.jet,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      position: "absolute",
+      bottom: "0",
+      right: 0,
+      transform: "scale(1.2)",
     },
     btnIcon: {},
     //   btnUpdateItem: {

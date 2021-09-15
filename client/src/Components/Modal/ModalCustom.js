@@ -10,6 +10,7 @@ import React, { useState, useEffect } from "react";
 
 // * Mat UI
 import { makeStyles, createStyles } from "@material-ui/core/styles";
+import { ourColors } from "../../styles/Theme";
 
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -29,12 +30,21 @@ const useStyles = makeStyles((theme) =>
       alignItems: "center",
       justifyContent: "center",
     },
-    paper: {
-      backgroundColor: theme.palette.background.paper,
-      border: "2px solid #000",
+    modalPaper: {
+      width: "75vw",
+      maxWidth: "750px",
+      backgroundColor: ourColors.white,
+      border: `1px solid ${ourColors.jet}`,
+      borderRadius: "5px",
       boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
+      padding: theme.spacing(3, 4),
+      paddingBottom: "4rem",
+      position: "relative",
+      overflow: "hidden",
     },
+    modalTitle: { textAlign: "center" },
+    modalDesc: {},
+
     mainContainer: {
       display: "flex",
     },
@@ -95,9 +105,13 @@ const ModalCustom = (props) => {
       }}
     >
       <Fade in={openModal}>
-        <div className={classes.paper}>
-          <h2 id="transition-modal-title">{title}</h2>
-          <p id="transition-modal-description">{content}</p>
+        <div className={classes.modalPaper}>
+          <h2 className={classes.modalTitle} id="transition-modal-title">
+            {title}
+          </h2>
+          <p className={classes.modalDesc} id="transition-modal-description">
+            {content}
+          </p>
         </div>
       </Fade>
     </Modal>
