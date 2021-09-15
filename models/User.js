@@ -41,6 +41,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  plan: {
+    type: String,
+  },
   infoAbout: {
     type: Object,
   },

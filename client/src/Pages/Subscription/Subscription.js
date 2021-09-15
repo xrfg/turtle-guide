@@ -17,8 +17,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 
 import SignUp from "../SignUp/SignUp";
-import Buy from "../../Components/Guide/Pages/Buy/Buy";
-// import Buy from '../../Components/Guide/Pages/Buy/Buy';
+import Payment from "../../Components/Guide/Components/Payment/Payment";
 
 const useStyles = makeStyles({
   root: {
@@ -41,6 +40,11 @@ function GetStepContent(props) {
   const classes = useStyles();
   const { activeStep, handleNext } = props;
 
+  // * States
+  // plan chosen but the user
+  // gets forwarded to <Payment /> and <SignUp /> for the registration
+  const [chosenPlan, setChosenPlan] = useState(null);
+
   /**
    * @function signUpOver
    * @param val // true
@@ -50,6 +54,24 @@ function GetStepContent(props) {
   const signUpOver = (val) => {
     // sets a prop to go to payment
     props.goToPayment(val);
+  };
+
+  // * Plans
+
+  const objPlanBasic = {
+    name: "Basic Plan",
+    price: 300,
+    description: "You can create 3 guides per year",
+  };
+  const objPlanStandard = {
+    name: "Standard Plan",
+    price: 500,
+    description: "You can create 5 guides per year",
+  };
+  const objPlanPremium = {
+    name: "Premium Plan",
+    price: 800,
+    description: "You can create 10 guides per year",
   };
 
   switch (activeStep) {
@@ -89,7 +111,13 @@ function GetStepContent(props) {
                 <Button
                   variant="contained"
                   color="primary"
-                  onClick={handleNext}
+                  onClick={() => {
+                    // set plan
+                    setChosenPlan(objPlanBasic);
+
+                    // go to next
+                    handleNext();
+                  }}
                 >
                   {" "}
                   {activeStep === 3 ? "Finish" : "Next"}{" "}
@@ -106,7 +134,7 @@ function GetStepContent(props) {
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">
-                    Business Plan $ 400
+                    Standard Plan $ 500
                   </Typography>
                   <Typography
                     variant="body2"
@@ -127,7 +155,56 @@ function GetStepContent(props) {
                 <Button
                   variant="contained"
                   color="primary"
-                  onClick={handleNext}
+                  onClick={() => {
+                    // set plan
+                    setChosenPlan(objPlanStandard);
+
+                    // go to next
+                    handleNext();
+                  }}
+                >
+                  {" "}
+                  {activeStep === 3 ? "Finish" : "Next"}{" "}
+                </Button>
+              </CardActions>
+            </Card>
+
+            <Card className={classes.root}>
+              <CardActionArea>
+                <CardMedia
+                  className={classes.media}
+                  image="https://museen-in-hessen.de/medien/1429173538-4223-990.jpg"
+                  title="Contemplative Reptile"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    Premium Plan $ 800
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since the 1500s, when an unknown
+                    printer took a galley of type and scrambled it to make a
+                    type specimen book. It has survived not only five centuries,
+                    but also the leap into electronic typesetting, remaining
+                    essentially unchanged. It was popularised in
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => {
+                    // set plan
+                    setChosenPlan(objPlanPremium);
+                    // go to next
+                    handleNext();
+                  }}
                 >
                   {" "}
                   {activeStep === 3 ? "Finish" : "Next"}{" "}
@@ -141,13 +218,13 @@ function GetStepContent(props) {
     case 1:
       return (
         <>
-          <SignUp isSignUpOver={signUpOver} />
+          <SignUp plan={chosenPlan} isSignUpOver={signUpOver} />
         </>
       );
     case 2:
       return (
         <>
-          <Buy />
+          <Payment item={chosenPlan} />
         </>
       );
     case 3:
@@ -161,7 +238,7 @@ function GetStepContent(props) {
   }
 }
 
-const Subscription = (props) => {
+const Subscription = () => {
   const [activeStep, setActiveStep] = useState(0);
 
   const steps = getSteps();
