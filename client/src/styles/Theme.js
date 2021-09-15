@@ -110,6 +110,11 @@ export const theme = createTheme({
       textTransform: "uppercase",
     },
   },
+  guide:{
+    title:{
+      fontSize:"12px",
+    }
+  },
 
   // typography: {
   //   tab: {

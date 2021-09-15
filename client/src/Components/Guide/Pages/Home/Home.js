@@ -65,6 +65,7 @@ const useStyles = makeStyles((theme) => ({
   },
   eventsTitle:{
     width:"100%",
+    ...theme.guide.title,
     fontfamily:theme.typography.fontFamily,
     fontWeight:theme.typography.fontWeightBold,
     color:ourColors.indigoDye,
