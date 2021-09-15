@@ -16,7 +16,7 @@ Create a function to handle toggle
     setOpenDeleteDialogBox((prev) => !prev);
   };
 
-The component's prop "confirm" fires a function into the <Parent />
+esxample: The component's prop "confirm" fires a function into the <Parent />
 
 const removeSection = (val) => {
     if (val) {

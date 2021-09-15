@@ -35,6 +35,7 @@ import ContentBlockMedia from "../../Components/ContentBlockMedia/ContentBlockMe
 // requires props "item" <ContentBlockText item={}/>
 import ContentBlockText from "../../Components/ContentBlockText/ContentBlockText";
 import TextEditor from "../../Components/Inputs/TextEditor";
+import PopUpDialogBox from "../../Components/PopUpDialogBox/PopUpDialogBox";
 
 // <ModalCustom content={a content} isOpen={state} isClose={function}/>
 import ModalCustom from "../../Components/Modal/ModalCustom";
@@ -177,7 +178,10 @@ export default function SectionContentManager(props) {
 
   // for toggling the selected/not-selected toggle on the preview-the-guide button
   const [toggleSelected, setToggleSelected] = useState(false);
-
+  // for delete confirmation
+  const [openDeleteDialogBox, setOpenDeleteDialogBox] = useState(false);
+  // set the id to delete
+  const [idToDelete, setIdToDelete] = useState(100000);
   // for modal
   const [openModalInsertText, setOpenModalInsertText] = useState(false);
   const [openModalPreview, setOpenModalPreview] = useState(false);
@@ -426,14 +430,19 @@ export default function SectionContentManager(props) {
    * @param id sent from the <Child />
    * @desc returns the item to delete from the array
    */
-  const deleteItem = (id) => {
-    // IMPORTANT
-    //  filter returns an array so updates the contents
-    const newContents = contents.filter((x) => x.id !== id);
-    // set new content
-    setContents(newContents);
-    // set to save
-    setNeedsToSave(true);
+  const deleteItem = (val) => {
+    // if a true value is return from the props confrim in <PopUpDi... />
+    if (val) {
+      // IMPORTANT
+      //  filter returns an array so updates the contents
+      const newContents = contents.filter((x) => x.id !== idToDelete);
+      // set new content
+      setContents(newContents);
+      // set to save
+      setNeedsToSave(true);
+      // toggle dialog
+      toggleDeleteDialogBox();
+    }
   };
 
   /**
@@ -637,6 +646,17 @@ export default function SectionContentManager(props) {
     setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
   };
 
+  /**
+   * @function toggleDeleteDialogBox
+   * @desc handle popup dialog box and set the id to delete
+   */
+
+  const toggleDeleteDialogBox = (id) => {
+    // set the id of the item to delete
+    setIdToDelete(id);
+    setOpenDeleteDialogBox((prev) => !prev);
+  };
+
   // * Objects
   /**
    * @desc obj for the section description
@@ -649,6 +669,15 @@ export default function SectionContentManager(props) {
   return (
     <Container style={{ maxWidth: "720px" }}>
       {/* // * MODAL */}
+      {/* content Delete confirmation */}
+      <PopUpDialogBox
+        open={openDeleteDialogBox}
+        isClose={toggleDeleteDialogBox}
+        confirm={deleteItem}
+        confirmButtonTitle="Delete Media Content"
+        messageTitle={`Are you sure you want to delete this content?`}
+        messageBody="Deleting a content will permanently erase it from the section."
+      />
       {/* For Media Text */}
       <ModalCustom
         content={<TextEditor setText={setMediaText} />}
@@ -828,7 +857,7 @@ export default function SectionContentManager(props) {
                   isDraggable={false} // to prevent it from being draggable
                   item={objSectionDecription}
                   // receives the id of the item to delete
-                  itemToDelete={deleteItem}
+                  itemToDelete={toggleDeleteDialogBox}
                   // gets the new content to update
                   newContent={updateMediaText}
                   // Handle the drag and drop
@@ -907,7 +936,7 @@ export default function SectionContentManager(props) {
                           item={x}
                           key={x.id}
                           // receives the id of the item to delete
-                          itemToDelete={deleteItem}
+                          itemToDelete={toggleDeleteDialogBox}
                           // gets the new content to update
                           newContent={updateMediaText}
                           // Handle the drag and drop
@@ -922,7 +951,7 @@ export default function SectionContentManager(props) {
                         item={x}
                         key={x.id}
                         // receives the id of the item to delete
-                        itemToDelete={deleteItem}
+                        itemToDelete={toggleDeleteDialogBox}
                         mediaCaption={addMediaCaption}
                         // Handle the drag and drop
                         handleDrag={handleDrag}
