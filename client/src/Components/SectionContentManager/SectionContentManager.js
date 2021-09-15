@@ -694,6 +694,7 @@ export default function SectionContentManager(props) {
       {/* // * MODAL */}
       {/* For Media Text */}
       <ModalCustom
+        title={section.title}
         content={<TextEditor setText={setMediaText} />}
         isOpen={openModalInsertText}
         // handles the state when the modal is clickes outside the area

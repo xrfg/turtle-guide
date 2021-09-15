@@ -59,7 +59,7 @@ const ModalCustom = (props) => {
   const classes = useStyles();
 
   // destru
-  let { content, isOpen } = props;
+  let { content, isOpen, title } = props;
 
   // States
   const [openModal, setOpenModal] = useState(false);
@@ -96,9 +96,7 @@ const ModalCustom = (props) => {
     >
       <Fade in={openModal}>
         <div className={classes.paper}>
-          <h2 id="transition-modal-title">
-            MODAL Title to change to section NAME or function name
-          </h2>
+          <h2 id="transition-modal-title">{title}</h2>
           <p id="transition-modal-description">{content}</p>
         </div>
       </Fade>
