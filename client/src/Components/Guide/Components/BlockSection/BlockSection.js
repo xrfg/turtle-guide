@@ -34,22 +34,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: ourColors.gainsboro,
   },
   cardTitle:{
-    fontSize:"1.4rem",
-    textAlign:"start",
-    fontWeight:"600",
-    textTransform:"capitalize",
-    letterSpacing: "0.60000px",
+    color:"#424242"
   },
   cardDesc:{
-    letterSpacing:"0.5000000px",
-    textAlign:"start",
-    fontWeight:"300",
-    color: "#4d4b46",
     margin:"0 0 0 -15px",
-    "& * p": {
-      fontSize: "0.8rem",
-    },
-
   },
 
   media: {
@@ -113,7 +101,7 @@ const BlockSection = (props) => {
         >
           <Typography 
           className={classes.cardTitle}
-          gutterBottom variant="h5" component="h2">
+          gutterBottom variant="h2" component="h2">
             {title}
           </Typography>
           <Typography 

@@ -76,6 +76,31 @@ export const theme = createTheme({
     fontWeightRegular: 400,
     fontWeightMedium: 500,
     fontWeightBold: 700,
+    h1:{
+      fontSize:"1rem",
+      letterSpacing: "0.60000px",
+    },
+
+    h2:{
+    fontSize:"1.4rem",
+    textAlign:"start",
+    fontWeight:"500",
+    textTransform:"capitalize",
+    letterSpacing: "0.60000px",
+    fontFamily:"'Inter', sans-serif'",
+    },
+
+    body2:{
+    letterSpacing:"0.8000000px",
+    textAlign:"start",
+    "& * p": {
+      fontSize: "0.9rem",
+      fontFamily:"'raleway', sans-serif",
+      color: "#4d4b46",
+      fontWeight:"400",
+    },
+    },
+
     button: {
       fontFamily: "'Poppins', sans-serif",
       fontWeight: 500,

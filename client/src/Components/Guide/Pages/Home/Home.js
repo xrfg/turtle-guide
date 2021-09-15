@@ -11,7 +11,7 @@ import BlockSection from "../../Components/BlockSection/BlockSection";
 // * MatUI
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
-import { Container } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 
 import { red } from "@material-ui/core/colors";
 
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
   },*/
   mainContainer:{
-    margin:"20px 0 30px 0",
+    margin:"10px 0 30px 0",
     padding:"1.6rem",
     backgroundColor:ourColors.primaryLight,
     display:"flex",
@@ -65,14 +65,12 @@ const useStyles = makeStyles((theme) => ({
   },
   eventsTitle:{
     width:"100%",
-    fontSize:"1.5rem",
     fontfamily:theme.typography.fontFamily,
     fontWeight:theme.typography.fontWeightBold,
     color:ourColors.indigoDye,
       backgroundColor: ourColors.gainsboro,
-      padding: "0.5rem",
+      padding: "0.6rem",
       boxShadow: "-2px 2px 8px 1px rgba(127,127,127,0.88)",
-      letterSpacing: "0.60000px",
     },
 
 
@@ -118,7 +116,7 @@ export default function Home(props) {
 console.log(BlockSection);
   return (
     <>
-      <h1 className={classes.eventsTitle}>{title}</h1>
+      <Typography variant="h1" component="h1" className={classes.eventsTitle}>{title}</Typography>
       <div
        className={classes.mainContainer}
        >
