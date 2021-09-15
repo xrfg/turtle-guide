@@ -45,13 +45,6 @@ function App() {
               <Route path="/admin" component={AdminApp} />
               {/* Has to stay here to do not have the admin navbar */}
 
-              <Route exact path="/events/:name" component={Guide} />
-              <Route
-                exact
-                path="/events/:name/sections/:id"
-                component={SectionGuide}
-              />
-
               <div
                 // This and the next <div> styles are for putting the footer at bottom
                 aria-label="page-container"
@@ -59,7 +52,7 @@ function App() {
               >
                 <div
                   aria-label="content-wrap"
-                  style={{ paddingBottom: "353px" }}
+                  // style={{ paddingBottom: "353px" }}
                   // ! this padding represents footer's height HARDCODED
                 >
                   <Navbar />
@@ -69,14 +62,6 @@ function App() {
                   <Route path="/account" component={Account} />
                   <Route path="/subscription" component={Subscription} />
                   <Route path="/payment" component={Buy} />
-                  <Route path="/aboutadmin" component={AboutAdmin} />
-                  <Route exact path="/admin/event/:name" component={Event} />
-                  {/* sections takes id or name */}
-                  <Route
-                    exact
-                    path="/admin/event/sections/:id"
-                    component={Section}
-                  />
                   <Footer />
                 </div>
               </div>

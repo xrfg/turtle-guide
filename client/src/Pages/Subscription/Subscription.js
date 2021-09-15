@@ -40,7 +40,6 @@ function getSteps() {
 function GetStepContent(props) {
   const classes = useStyles();
   const { activeStep, handleNext } = props;
-  console.log("GetStepContent", activeStep);
 
   /**
    * @function signUpOver
