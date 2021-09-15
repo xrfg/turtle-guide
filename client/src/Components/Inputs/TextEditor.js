@@ -5,18 +5,18 @@
 
 import React, { useState, useCallback } from "react";
 
-// * Mat UI
-import { Button } from "@material-ui/core";
-
 // * Components
 import ReactQuill, { Quill, Mixin, Toolbar } from "react-quill"; // ES6
 import "react-quill/dist/quill.snow.css"; // ES6
+
+// * Custom Components
+import CustomButton from "../Buttons/CustomButtons/CustomButton";
 
 const TextEditor = (props) => {
   const { content } = props;
 
   // state into function
-  const [html, setHtml] = useState(content || "Insert Your Text Here");
+  const [html, setHtml] = useState(content || "Add Your Text Here");
 
   // onChange does not sent to parent
   // updates just the function
@@ -88,18 +88,14 @@ const TextEditor = (props) => {
         value={html}
         onChange={onChange}
       />
-      <Button
-        size="small"
-        variant="contained"
-        color="primary"
-        component="span"
-        onClick={() => {
+      <CustomButton
+        text="insert"
+        endIcon="save"
+        onClickFunc={() => {
           sendTextToParent();
           // handleClose();
         }}
-      >
-        Close and Insert
-      </Button>
+      />
     </>
   );
 };
