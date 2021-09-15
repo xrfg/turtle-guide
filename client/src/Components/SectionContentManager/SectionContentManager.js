@@ -19,6 +19,9 @@ import {
   Grid,
   Typography,
   TextField,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
 } from "@material-ui/core";
 
 // toggle button for "preview" or "editing" from MatUI
@@ -44,6 +47,7 @@ import SectionPreview from "../../Components/SectionPreview/SectionPreview";
 import CustomIconButton from "../Buttons/CustomIconButtons/CustomIconButton";
 
 // * Other Imports
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 // * REDUX
 import { useSelector, useDispatch } from "react-redux";
@@ -62,6 +66,10 @@ const useStyles = makeStyles((theme) =>
         margin: theme.spacing(1),
       },
       maxWidth: 345,
+    },
+    heading: {
+      fontSize: theme.typography.pxToRem(15),
+      fontWeight: theme.typography.fontWeightRegular,
     },
     paper: {
       backgroundColor: theme.palette.background.paper,
@@ -664,12 +672,20 @@ export default function SectionContentManager(props) {
       />
       {Object.keys(userInfo).length !== 0 ? (
         <>
-          <Grid container direction="row" alignContent="center" spacing={1}>
-            <Grid item sm={12}>
-              <Paper className={classes.paper}>
-                <Typography>Your info - not visible to the visitors</Typography>
-                <form className={classes.root} noValidate autoComplete="off">
-                  <div>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography className={classes.heading}>
+                Your info - not visible to the visitors
+              </Typography>
+            </AccordionSummary>
+            <Grid container spacing={1}>
+              <AccordionDetails>
+                <Grid container spacing={3}>
+                  <Grid item xs={12} sm={6}>
                     <TextField
                       disabled={isEditingUserInfo ? false : true}
                       id="standard-read-only-input"
@@ -702,6 +718,8 @@ export default function SectionContentManager(props) {
                       onChange={handleUserInfoChange}
                       defaultValue={userInfo.company}
                     />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
                     <TextField
                       disabled={true}
                       id="standard-read-only-input"
@@ -722,21 +740,23 @@ export default function SectionContentManager(props) {
                       label="Your Plan"
                       defaultValue={userInfo.plan}
                     />
-                  </div>
-                </form>
-                {/*  //  editing info */}
-                <CustomIconButton
-                  icon={isEditingUserInfo ? "save" : "edit"}
-                  onClickFunc={editUserInfo}
-                  style={{
-                    marginBottom: "1rem",
-                    borderRadius: "8px",
-                    backgroundColor: !needsToSave ? "inherit" : "#26b519",
-                  }}
-                />
-              </Paper>
+                  </Grid>
+                  <Grid item xs={12}>
+                    {/*  //  editing info */}
+                    <CustomIconButton
+                      icon={isEditingUserInfo ? "save" : "edit"}
+                      onClickFunc={editUserInfo}
+                      style={{
+                        marginBottom: "1rem",
+                        borderRadius: "8px",
+                        backgroundColor: !needsToSave ? "inherit" : "#26b519",
+                      }}
+                    />
+                  </Grid>
+                </Grid>
+              </AccordionDetails>
             </Grid>
-          </Grid>
+          </Accordion>
 
           <Typography
             gutterBottom
