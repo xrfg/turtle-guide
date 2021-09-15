@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp() {
+export default function SignUp(props) {
   // * Hooks
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -92,12 +92,14 @@ export default function SignUp() {
 
     setErrors(validation(userData));
     setIsValid(validation(isValid));
-
     // dispatch to REDUX
     dispatch(userSignUp(userData))
       .then((res) => {
         if (res.data.success) {
-          history.push("payment");
+          // history.push("payment");
+          console.log("signup success");
+          // send over by props
+          props.isSignUpOver(true);
         }
       })
       .catch((err) => console.error(err));

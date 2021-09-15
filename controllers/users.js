@@ -64,7 +64,7 @@ exports.post = async (req, res, next) => {
     await user.save();
 
     // return
-    return res.json({ success: true, data: user });
+    return res.status(200).json({ success: true, data: user, status: 200 });
   } catch (error) {
     /**
      * @desc sends error to the global error middleware

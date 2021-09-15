@@ -64,8 +64,8 @@ function App() {
                 >
                   <Navbar />
                   <Route exact path="/" component={Home} />
-                  <Route exact path="/admin" component={SignUp} />
-                  <Route path="/signup" component={SignUp} />
+                  {/* <Route exact path="/admin" component={SignUp} /> */}
+                  {/* <Route path="/signup" component={SignUp} /> */}
                   <Route path="/account" component={Account} />
                   <Route path="/subscription" component={Subscription} />
                   <Route path="/payment" component={Buy} />

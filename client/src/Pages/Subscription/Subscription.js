@@ -36,9 +36,22 @@ const useStyles = makeStyles({
 function getSteps() {
   return ["Select Your Subscription Plan", "Sign Up", "Payment"];
 }
+
 function GetStepContent(props) {
   const classes = useStyles();
   const { activeStep, handleNext } = props;
+  console.log("GetStepContent", activeStep);
+
+  /**
+   * @function signUpOver
+   * @param val // true
+   * @desc handles signup over
+   */
+
+  const signUpOver = (val) => {
+    // sets a prop to go to payment
+    props.goToPayment(val);
+  };
 
   switch (activeStep) {
     case 0:
@@ -129,7 +142,7 @@ function GetStepContent(props) {
     case 1:
       return (
         <>
-          <SignUp />
+          <SignUp isSignUpOver={signUpOver} />
         </>
       );
     case 2:
@@ -148,15 +161,29 @@ function GetStepContent(props) {
       return "unknown step";
   }
 }
-const Subscription = () => {
+
+const Subscription = (props) => {
   const [activeStep, setActiveStep] = useState(0);
+
   const steps = getSteps();
+
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
+
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+
+  /**
+   * @function goToPayment
+   * @desc recive prop to go to payment
+   */
+  const goToPayment = () => {
+    // next step
+    handleNext();
+  };
+
   return (
     <div>
       <Stepper activeStep={activeStep}>
@@ -168,13 +195,12 @@ const Subscription = () => {
           );
         })}
       </Stepper>
-      <form>
-        <GetStepContent
-          activeStep={activeStep}
-          handleNext={handleNext}
-          handleBack={handleBack}
-        />
-      </form>
+      <GetStepContent
+        activeStep={activeStep}
+        handleNext={handleNext}
+        handleBack={handleBack}
+        goToPayment={goToPayment}
+      />
       {activeStep === 4 ? (
         <Typography variant="h3" align="center">
           Thanks for Subscribing
