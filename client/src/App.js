@@ -30,7 +30,7 @@ import AdminApp from "./AdminApp";
 
 //  * Pages
 import Subscription from "./Pages/Subscription/Subscription";
-import Buy from "./Components/Guide/Pages/Buy/Buy";
+// import Buy from "./Components/Guide/Pages/Buy/Buy";
 
 function App() {
   return (
@@ -68,7 +68,7 @@ function App() {
                   {/* <Route path="/signup" component={SignUp} /> */}
                   <Route path="/account" component={Account} />
                   <Route path="/subscription" component={Subscription} />
-                  <Route path="/payment" component={Buy} />
+                  {/* <Route path="/payment" component={Buy} /> */}
                   <Route path="/aboutadmin" component={AboutAdmin} />
                   <Route exact path="/admin/event/:name" component={Event} />
                   {/* sections takes id or name */}

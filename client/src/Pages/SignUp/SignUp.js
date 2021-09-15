@@ -79,7 +79,11 @@ export default function SignUp(props) {
    * @desc grabs inputs changes while user types
    */
   const onChange = function (e) {
-    setUserData({ ...userData, [e.target.name]: e.target.value });
+    setUserData({
+      ...userData,
+      plan: props.plan.name, // add chosen plan
+      [e.target.name]: e.target.value,
+    });
   };
 
   /**
@@ -96,8 +100,6 @@ export default function SignUp(props) {
     dispatch(userSignUp(userData))
       .then((res) => {
         if (res.data.success) {
-          // history.push("payment");
-          console.log("signup success");
           // send over by props
           props.isSignUpOver(true);
         }
