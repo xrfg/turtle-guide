@@ -23,7 +23,7 @@ export default function AdminApp({ match }) {
     >
       <div
         aria-label="content-wrap"
-        style={{ paddingBottom: "353px" }}
+        // style={{ paddingBottom: "353px" }}
         // ! this padding represents footer's height HARDCODED
       >
         <Navbar />
