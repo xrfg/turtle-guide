@@ -18,6 +18,7 @@ import {
   Container,
   Grid,
   Typography,
+  TextField,
 } from "@material-ui/core";
 
 // toggle button for "preview" or "editing" from MatUI
@@ -153,8 +154,9 @@ export default function SectionContentManager(props) {
   const [event, setEvent] = useState({});
   // section
   const [section, setSection] = useState({});
-  // section
+  // section userinfo for about admin
   const [userInfo, setUserInfo] = useState({});
+  const [isEditingUserInfo, setIsEditingUserInfo] = useState(false);
   const [subscriptionDate, setSubscriptionDate] = useState("");
   // for save
   const [needsToSave, setNeedsToSave] = useState(false);
@@ -190,83 +192,6 @@ export default function SectionContentManager(props) {
     setContents(getSection.contents);
     //eslint-disable-next-line
   }, []);
-
-  // TODO REMOVE
-  const hardCodedObj = {
-    _id: "611e5aca56104a1c09f9d13e",
-    accountName: "jdoe",
-    company: "J DOE Acme",
-    date: "2021-08-19T13:21:14.868Z",
-    email: "jdoe@email.com",
-    firstName: "John",
-    lastName: "Doe",
-    plan: "Basic Plan",
-    infoAbout: {
-      description:
-        "<p>Description test  test  test  test test test test test  test test  test  test  test test test test test </p>",
-      id: 5,
-      order: 1,
-      sectionCover: {
-        filename: "van-gogh-1",
-        public_id: "tf7quie5vltlp1xtnx1r",
-        url: "http://res.cloudinary.com/dhdgj2ryu/image/upload/v1631184038/tf7quie5vltlp1xtnx1r.jpg",
-        url_thumb:
-          "https://res.cloudinary.com/dhdgj2ryu/image/upload/…it,h_60,w_90/v1631184038/tf7quie5vltlp1xtnx1r.jpg",
-      },
-      slug: "title",
-      title: "Section Four",
-      type: "section",
-      url: "",
-      contents: [
-        {
-          content: {
-            filename: "fainalproject-museumsIntroImage",
-            public_id: "bf8em0vr30mwvmg66ezu",
-            url: "http://res.cloudinary.com/dhdgj2ryu/image/upload/v1631191190/bf8em0vr30mwvmg66ezu.jpg",
-            url_thumb:
-              "https://res.cloudinary.com/dhdgj2ryu/image/upload/…it,h_60,w_90/v1631191190/bf8em0vr30mwvmg66ezu.jpg",
-            caption: { title: "title images", description: "desc imagdf" },
-          },
-          id: 1,
-          order: 1,
-          type: "image",
-        },
-        {
-          content:
-            "<h2>The story</h2><p>Insert Your Text Here x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.caption?x.content.captio<strong>n?x.content.caption?x.conten</strong>t.caption?x.content.caption?x.content.caption?x.</p>",
-          id: 4,
-          order: 2,
-          type: "text",
-        },
-        {
-          content: {
-            filename: "fainalproject-museumsIntroImage",
-            public_id: "bf8em0vr30mwvmg66ezu",
-            url: "http://res.cloudinary.com/dhdgj2ryu/image/upload/v1631191190/bf8em0vr30mwvmg66ezu.jpg",
-            url_thumb:
-              "https://res.cloudinary.com/dhdgj2ryu/image/upload/…it,h_60,w_90/v1631191190/bf8em0vr30mwvmg66ezu.jpg",
-            caption: { title: "title images", description: "desc imagdf" },
-          },
-          id: 1,
-          order: 1,
-          type: "image",
-        },
-        {
-          content: {
-            filename: "fainalproject-museumsIntroImage",
-            public_id: "bf8em0vr30mwvmg66ezu",
-            url: "http://res.cloudinary.com/dhdgj2ryu/image/upload/v1631191190/bf8em0vr30mwvmg66ezu.jpg",
-            url_thumb:
-              "https://res.cloudinary.com/dhdgj2ryu/image/upload/…it,h_60,w_90/v1631191190/bf8em0vr30mwvmg66ezu.jpg",
-            caption: { title: "title images", description: "desc imagdf" },
-          },
-          id: 1,
-          order: 1,
-          type: "image",
-        },
-      ],
-    },
-  };
 
   useEffect(() => {
     // if false therefore is NOT about admin
@@ -577,6 +502,7 @@ export default function SectionContentManager(props) {
         // create obj to save
         const objToSave = {
           ...fetchedData,
+          ...userInfo,
           infoAbout: {
             sectionCover: section.sectionCover,
             contents: contents,
@@ -604,9 +530,7 @@ export default function SectionContentManager(props) {
     // 4. dispatch event update
 
     try {
-      // ! DISABLE FOR TESTING
-
-      // await dispatch(eventUpdate(event));
+      await dispatch(eventUpdate(event));
       // set to save
       return setNeedsToSave(false);
     } catch (error) {
@@ -680,6 +604,31 @@ export default function SectionContentManager(props) {
     showCloudinaryWidget(cloudinaryWidget);
   };
 
+  /**
+   * @function editUserInfo
+   * @desc handles the editing user info when is in about admin
+   */
+
+  const editUserInfo = () => {
+    // if is already in editng mode it saves
+    if (isEditingUserInfo) {
+      console.log("save editing use rinfo");
+      saveContent();
+    }
+    // set editing
+    setIsEditingUserInfo((prev) => !prev);
+  };
+
+  /**
+   * @function handleUserInfoChange
+   * @desc set user info obj
+   */
+
+  const handleUserInfoChange = (e) => {
+    setNeedsToSave(true);
+    setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+  };
+
   // * Objects
   /**
    * @desc obj for the section description
@@ -713,37 +662,79 @@ export default function SectionContentManager(props) {
         // handles the state when the modal is clickes outside the area
         isClose={handleClose}
       />
-      {userInfo ? (
+      {Object.keys(userInfo).length !== 0 ? (
         <>
-          <Typography>Your info - not visible to the visitors</Typography>
           <Grid container direction="row" alignContent="center" spacing={1}>
-            <Grid item sm={6}>
+            <Grid item sm={12}>
               <Paper className={classes.paper}>
-                <Typography
-                  gutterBottom
-                  variant="subtitle1"
-                  // className={classes.descriptionContainer}
-                >
-                  Account: {userInfo.accountName} Name: {userInfo.firstName}
-                  Lastname: {userInfo.lastName} Company: {userInfo.company}
-                </Typography>
+                <Typography>Your info - not visible to the visitors</Typography>
+                <form className={classes.root} noValidate autoComplete="off">
+                  <div>
+                    <TextField
+                      disabled={isEditingUserInfo ? false : true}
+                      id="standard-read-only-input"
+                      label="Account"
+                      name="accountName"
+                      onChange={handleUserInfoChange}
+                      defaultValue={userInfo.accountName}
+                    />
+                    <TextField
+                      disabled={isEditingUserInfo ? false : true}
+                      id="standard-read-only-input"
+                      label="Name"
+                      name="firstName"
+                      onChange={handleUserInfoChange}
+                      defaultValue={userInfo.firstName}
+                    />
+                    <TextField
+                      disabled={isEditingUserInfo ? false : true}
+                      id="standard-read-only-input"
+                      label="Lastname"
+                      name="lastName"
+                      onChange={handleUserInfoChange}
+                      defaultValue={userInfo.lastName}
+                    />
+                    <TextField
+                      disabled={isEditingUserInfo ? false : true}
+                      id="standard-read-only-input"
+                      label="Company"
+                      name="company"
+                      onChange={handleUserInfoChange}
+                      defaultValue={userInfo.company}
+                    />
+                    <TextField
+                      disabled={true}
+                      id="standard-read-only-input"
+                      label="Subscribed on"
+                      defaultValue={subscriptionDate}
+                    />
+                    <TextField
+                      disabled={isEditingUserInfo ? false : true}
+                      id="standard-read-only-input"
+                      label="Email"
+                      name="email"
+                      onChange={handleUserInfoChange}
+                      defaultValue={userInfo.email}
+                    />
+                    <TextField
+                      disabled={true}
+                      id="standard-read-only-input"
+                      label="Your Plan"
+                      defaultValue={userInfo.plan}
+                    />
+                  </div>
+                </form>
+                {/*  //  editing info */}
+                <CustomIconButton
+                  icon={isEditingUserInfo ? "save" : "edit"}
+                  onClickFunc={editUserInfo}
+                  style={{
+                    marginBottom: "1rem",
+                    borderRadius: "8px",
+                    backgroundColor: !needsToSave ? "inherit" : "#26b519",
+                  }}
+                />
               </Paper>
-            </Grid>
-            <Grid item sm={5}>
-              <Paper className={classes.paper}>
-                <Typography
-                  gutterBottom
-                  variant="subtitle1"
-                  // className={classes.descriptionContainer}
-                >
-                  Subscribed on: {subscriptionDate}
-                  Email: {userInfo.email}
-                  Your Plan:{userInfo.plan}
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item sm={1}>
-              <Paper className={classes.paper}>edit info</Paper>
             </Grid>
           </Grid>
 
