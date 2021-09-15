@@ -5,6 +5,8 @@
 
 import React, { useState, useCallback } from "react";
 
+import { Save } from "@material-ui/icons";
+
 // * Components
 import ReactQuill, { Quill, Mixin, Toolbar } from "react-quill"; // ES6
 import "react-quill/dist/quill.snow.css"; // ES6
@@ -12,7 +14,19 @@ import "react-quill/dist/quill.snow.css"; // ES6
 // * Custom Components
 import CustomButton from "../Buttons/CustomButtons/CustomButton";
 
+// MatUi Style Imports
+import { makeStyles } from "@material-ui/core/styles";
+import { theme, ourColors } from "../../styles/Theme"; // our CUSTOM theme
+const myTheme = theme;
+
+const useStyles = makeStyles((theme) => ({
+  Modalbtn: {
+    ...theme.buttons.modalbtn,
+  },
+}));
+
 const TextEditor = (props) => {
+  const classes = useStyles();
   const { content } = props;
 
   // state into function
@@ -88,14 +102,22 @@ const TextEditor = (props) => {
         value={html}
         onChange={onChange}
       />
-      <CustomButton
-        text="insert"
-        endIcon="save"
-        onClickFunc={() => {
+      <button
+        className={classes.Modalbtn}
+        onClick={() => {
           sendTextToParent();
           // handleClose();
         }}
-      />
+      >
+        <span
+          style={{
+            marginRight: "0.3rem",
+          }}
+        >
+          Insert
+        </span>
+        <Save fontSize="small" />
+      </button>
     </>
   );
 };
