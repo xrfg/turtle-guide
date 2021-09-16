@@ -1,8 +1,10 @@
 /**
  * @desc Component for the payment
+ * props: item (item to pay), dest (destination after payment)
  */
 
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 // * Imports
 import StripeCheckout from "react-stripe-checkout";
 import { toast } from "react-toastify";
@@ -14,8 +16,10 @@ import "./payment.scss";
 toast.configure();
 
 const Payment = (props) => {
+  // * Hooks
+  const history = useHistory();
   // destruc
-  const { item } = props;
+  const { item, dest } = props;
 
   const [product] = useState(item);
 
@@ -23,7 +27,12 @@ const Payment = (props) => {
   // 1. for subscription
   // 2. for paid guide
   async function handleToken() {
-    toast("Success! Check email for details", { type: "success" });
+    if (dest === "admin") {
+      toast("Success! Check email for details", { type: "success" });
+      setTimeout(() => {
+        history.push("/admin/account");
+      }, 2000);
+    }
   }
 
   return (

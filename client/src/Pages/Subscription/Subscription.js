@@ -224,7 +224,7 @@ function GetStepContent(props) {
     case 2:
       return (
         <>
-          <Payment item={chosenPlan} />
+          <Payment item={chosenPlan} dest={"admin"} />
         </>
       );
     case 3:
