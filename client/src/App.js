@@ -1,6 +1,9 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
+// * classes for Footer handling and page
+import "./app.css";
+
 //* Import Pages
 import Home from "./Pages/Home/Home";
 import Account from "./Pages/Account/Account";
@@ -11,7 +14,7 @@ import Event from "./Pages/Event/Event";
 import Section from "./Pages/Section/Section";
 import SignUp from "./Pages/SignUp/SignUp";
 // import SignIn from "./Pages/SignIn/SignIn";
-import Footer from "./Components/Guide/Components/footer/Footer";
+import Footer from "./Components/Footer/Footer";
 // import Buy from "./Components/Guide/Pages/Buy/Buy";
 
 // * Import Custom  Components
@@ -38,41 +41,18 @@ function App() {
       <MuiThemeProvider theme={theme}>
         <BrowserRouter>
           <div className="App">
-            {/* Has to stay here to do not have the admin navbar */}
             <Switch>
-              <Route exact path="/" component={Home} />
+              <Route exact path="/">
+                <div aria-label="app-container" className="app-container">
+                  <div aria-label="content-wrap" className="footer-padding">
+                    <Navbar />
+                    <Home />
+                    <Footer />
+                  </div>
+                </div>
+              </Route>
               <Route path="/events" component={GuideApp} />
               <Route path="/admin" component={AdminApp} />
-              {/* Has to stay here to do not have the admin navbar */}
-
-              <div
-                // This and the next <div> styles are for putting the footer at bottom
-                aria-label="page-container"
-                style={{ position: "relative", minHeight: "100vh" }}
-              >
-                <div
-                  aria-label="content-wrap"
-                  // style={{ paddingBottom: "353px" }}
-                  // ! this padding represents footer's height HARDCODED
-                >
-                  <Navbar />
-                  <Route exact path="/" component={Home} />
-                  {/* <Route exact path="/admin" component={SignUp} /> */}
-                  {/* <Route path="/signup" component={SignUp} /> */}
-                  <Route path="/account" component={Account} />
-                  {/* <Route path="/subscription" component={Subscription} /> */}
-                  {/* <Route path="/payment" component={Buy} /> */}
-                  <Route path="/aboutadmin" component={AboutAdmin} />
-                  <Route exact path="/admin/event/:name" component={Event} />
-                  {/* sections takes id or name */}
-                  <Route
-                    exact
-                    path="/admin/event/sections/:id"
-                    component={Section}
-                  />
-                  <Footer />
-                </div>
-              </div>
             </Switch>
           </div>
         </BrowserRouter>

@@ -22,7 +22,6 @@ import CustomButton from "../../Components/Buttons/CustomButtons/CustomButton";
 import { ourColors } from "../../styles/Theme";
 
 const useStyles = makeStyles((theme) => ({
-  page: { ...theme.admin.page },
   container: { ...theme.admin.container }, // main Admin container class
 
   // * hero
@@ -33,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
-    position: "relative",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -61,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const classes = useStyles();
   return (
-    <div className={classes.page}>
+    <Container maxWidth="md" className={classes.container}>
       <Grid
         container
         direction="row"
@@ -80,91 +78,90 @@ const Home = () => {
           />
         </Grid>
       </Grid>
-      <Container maxWidth="md" className={classes.container}>
-        <Grid container className={classes.section}>
-          <Typography variant="h4" className={classes.sectionHeading}>
-            Our Services
-          </Typography>
-          <Grid container spacing={3}>
-            <Grid item xs={12} sm={6} md={4}>
-              <Card className={classes.card}>
-                <CardActionArea>
-                  <CardMedia
-                    className={classes.media}
-                    image="https://www.nrm.org/wp2016/wp-content/uploads/2018/06/MobileApp_NewKids.jpg"
-                    title="mobile app"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Easy and Accessible
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                      className={classes.cardDesc}
-                    >
-                      We provide innovative technology to museums to help set-up
-                      digital interactive guides.
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <Card className={classes.card}>
-                <CardActionArea>
-                  <CardMedia
-                    className={classes.media}
-                    image="https://www.nhb.gov.sg/nationalmuseum/-/media/nms2017/image/exhibitions/ptp/ptp-home-mobile-banner.png?w=412"
-                    title="mobile app"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Always Up To Date
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                      className={classes.cardDesc}
-                    >
-                      The app and its contents are updated when the page loads :
-                      updates are silent for visitors. No obsolescence.
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <Card className={classes.card}>
-                <CardActionArea>
-                  <CardMedia
-                    className={classes.media}
-                    image="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F28%2F2016%2F05%2FMuseum-Etiquette-02-Quiet-MTMM0416.jpg"
-                    title="mobile app"
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Very Fast
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                      className={classes.cardDesc}
-                    >
-                      The display of content is instantaneous thanks to the
-                      loading of cached data.
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            </Grid>
+
+      <Grid container className={classes.section}>
+        <Typography variant="h4" className={classes.sectionHeading}>
+          Our Services
+        </Typography>
+        <Grid container spacing={3}>
+          <Grid item xs={12} sm={6} md={4}>
+            <Card className={classes.card}>
+              <CardActionArea>
+                <CardMedia
+                  className={classes.media}
+                  image="https://www.nrm.org/wp2016/wp-content/uploads/2018/06/MobileApp_NewKids.jpg"
+                  title="mobile app"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    Easy and Accessible
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                    className={classes.cardDesc}
+                  >
+                    We provide innovative technology to museums to help set-up
+                    digital interactive guides.
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+            <Card className={classes.card}>
+              <CardActionArea>
+                <CardMedia
+                  className={classes.media}
+                  image="https://www.nhb.gov.sg/nationalmuseum/-/media/nms2017/image/exhibitions/ptp/ptp-home-mobile-banner.png?w=412"
+                  title="mobile app"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    Always Up To Date
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                    className={classes.cardDesc}
+                  >
+                    The app and its contents are updated when the page loads :
+                    updates are silent for visitors. No obsolescence.
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+            <Card className={classes.card}>
+              <CardActionArea>
+                <CardMedia
+                  className={classes.media}
+                  image="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F28%2F2016%2F05%2FMuseum-Etiquette-02-Quiet-MTMM0416.jpg"
+                  title="mobile app"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    Very Fast
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                    className={classes.cardDesc}
+                  >
+                    The display of content is instantaneous thanks to the
+                    loading of cached data.
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
           </Grid>
         </Grid>
-      </Container>
-    </div>
+      </Grid>
+    </Container>
   );
 };
 

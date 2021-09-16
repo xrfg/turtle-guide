@@ -44,6 +44,7 @@ import CustomButton from "../../Components/Buttons/CustomButtons/CustomButton";
 import CustomIconButton from "../../Components/Buttons/CustomIconButtons/CustomIconButton";
 
 const useStyles = makeStyles((theme) => ({
+  page: { ...theme.admin.page },
   container: { ...theme.admin.container }, // main Admin container class
   guide__header: { marginBottom: "1rem" },
   saveDelBtnGrp: {
@@ -488,140 +489,142 @@ export default function Event(props) {
   unBlock(needsToSave, history);
 
   return (
-    <Container maxWidth="md" className={classes.container}>
-      {/* // TODO ERROR IF EVENT IS UNDEFINED */}
-      {event === undefined ? null : (
-        <Grid container direction="row" spacing={2}>
-          <Grid item xs={9}>
-            <PopUpDialogBox
-              open={openDeleteDialogBox}
-              isClose={toggleDeleteDialogBox}
-              confirm={deleteEvent}
-              confirmButtonTitle="Delete Event"
-              messageTitle={`Are you sure you want to delete the ${event.title} section?`}
-              messageBody="Deleting a section will permanently erase it from the event."
-            />
-            {/* 
+    <div className={classes.page}>
+      <Container maxWidth="md" className={classes.container}>
+        {/* // TODO ERROR IF EVENT IS UNDEFINED */}
+        {event === undefined ? null : (
+          <Grid container direction="row" spacing={2}>
+            <Grid item xs={9}>
+              <PopUpDialogBox
+                open={openDeleteDialogBox}
+                isClose={toggleDeleteDialogBox}
+                confirm={deleteEvent}
+                confirmButtonTitle="Delete Event"
+                messageTitle={`Are you sure you want to delete the ${event.title} section?`}
+                messageBody="Deleting a section will permanently erase it from the event."
+              />
+              {/* 
         // * Name of Event Input
         */}
-            <EventName
-              // important to fire the event name update
-              eventNameUpdate={eventNameUpdate}
-              title={event.title}
-              slug={event.slug}
-              getEventName={createAndSendEvent}
-            />
-          </Grid>
-          {/* Delete Event */}
-          <Grid item xs={3}>
-            {/* // ?  temporarly disabled, to implement? */}
-            {/* // TODO add check saving */}
-
-            <CustomButton
-              text="Account"
-              startIcon="arrowBack"
-              onClickFunc={() => goBackToPage(needsToSave, history)}
-            />
-
-            <div>
-              <CustomIconButton
-                icon="save"
-                disabled={!needsToSave}
-                onClickFunc={saveEvent}
-                // make a focus light so the user knows to save
-                style={{
-                  backgroundColor: !needsToSave ? "inherit" : "#26b519",
-                }}
+              <EventName
+                // important to fire the event name update
+                eventNameUpdate={eventNameUpdate}
+                title={event.title}
+                slug={event.slug}
+                getEventName={createAndSendEvent}
               />
+            </Grid>
+            {/* Delete Event */}
+            <Grid item xs={3}>
               {/* // ?  temporarly disabled, to implement? */}
               {/* // TODO add check saving */}
-              <CustomIconButton
-                color="error"
-                icon="delete"
-                onClickFunc={toggleDeleteDialogBox}
+
+              <CustomButton
+                text="Account"
+                startIcon="arrowBack"
+                onClickFunc={() => goBackToPage(needsToSave, history)}
               />
-            </div>
-          </Grid>
-          {/* Error/success msg TOP */}
-          <Grid container direction="row" spacing={2}>
-            <Grid item xs={9}>
-              {isError ? (
-                <CustomMessage severity="error" msg={isError} />
-              ) : null}
-              {isSuccess ? (
-                <CustomMessage severity="success" msg={isSuccess} />
-              ) : null}
+
+              <div>
+                <CustomIconButton
+                  icon="save"
+                  disabled={!needsToSave}
+                  onClickFunc={saveEvent}
+                  // make a focus light so the user knows to save
+                  style={{
+                    backgroundColor: !needsToSave ? "inherit" : "#26b519",
+                  }}
+                />
+                {/* // ?  temporarly disabled, to implement? */}
+                {/* // TODO add check saving */}
+                <CustomIconButton
+                  color="error"
+                  icon="delete"
+                  onClickFunc={toggleDeleteDialogBox}
+                />
+              </div>
             </Grid>
-          </Grid>
-          {/* 
+            {/* Error/success msg TOP */}
+            <Grid container direction="row" spacing={2}>
+              <Grid item xs={9}>
+                {isError ? (
+                  <CustomMessage severity="error" msg={isError} />
+                ) : null}
+                {isSuccess ? (
+                  <CustomMessage severity="success" msg={isSuccess} />
+                ) : null}
+              </Grid>
+            </Grid>
+            {/* 
         // * Add BTN + Disabled ones
         */}
-          <Grid className={classes.btnSidebar} item xs={3}>
-            <CustomButton
-              text="Section"
-              endIcon="add"
-              onClickFunc={() => addToContents()}
-            />
+            <Grid className={classes.btnSidebar} item xs={3}>
+              <CustomButton
+                text="Section"
+                endIcon="add"
+                onClickFunc={() => addToContents()}
+              />
 
-            <ButtonGroup
-              className={classes.btnGroup}
-              disabled
-              orientation="vertical"
-              aria-label="vertical outlined primary button group"
-            >
-              {/* // TODO Making a custom Button Group */}
-              <Button endIcon={<Add />}>Pay-wall</Button>
-              <Button endIcon={<Add />}>Feedback</Button>
-              <Button endIcon={<Add />}>Map</Button>
-            </ButtonGroup>
-          </Grid>
-          {/* 
+              <ButtonGroup
+                className={classes.btnGroup}
+                disabled
+                orientation="vertical"
+                aria-label="vertical outlined primary button group"
+              >
+                {/* // TODO Making a custom Button Group */}
+                <Button endIcon={<Add />}>Pay-wall</Button>
+                <Button endIcon={<Add />}>Feedback</Button>
+                <Button endIcon={<Add />}>Map</Button>
+              </ButtonGroup>
+            </Grid>
+            {/* 
         // * SECTIONS CONTAINER -> GUIDE
         */}
-          <Grid item xs={8}>
-            <Box filled>
-              <CardContent>
-                <Typography
-                  variant="h5"
-                  component="h3"
-                  className={classes.guide__header}
-                >
-                  Guide
-                </Typography>
-                {/* Displaying the current sections */}
-                <ul>
-                  {sections
-                    .sort((a, b) => a.order - b.order)
-                    .map((section, i) => {
-                      return (
-                        <EventSection
-                          key={i}
-                          section={section}
-                          sectionToDelete={deleteSection}
-                          handleDrag={handleDrag}
-                          handleDrop={handleDrop}
-                          editSection={editSectionMode}
-                          saveSectionTitle={saveSectionTitle} // to save when sectin title changes
-                        />
-                      );
-                    })}
-                </ul>
-              </CardContent>
-            </Box>
-          </Grid>
-          {/* Error/success msg */}
-          <Grid container direction="row" spacing={2}>
-            <Grid item xs={9}>
-              {isError ? (
-                <CustomMessage severity="error" msg={isError} />
-              ) : null}
-              {isSuccess ? (
-                <CustomMessage severity="success" msg={isSuccess} />
-              ) : null}
+            <Grid item xs={8}>
+              <Box filled>
+                <CardContent>
+                  <Typography
+                    variant="h5"
+                    component="h3"
+                    className={classes.guide__header}
+                  >
+                    Guide
+                  </Typography>
+                  {/* Displaying the current sections */}
+                  <ul>
+                    {sections
+                      .sort((a, b) => a.order - b.order)
+                      .map((section, i) => {
+                        return (
+                          <EventSection
+                            key={i}
+                            section={section}
+                            sectionToDelete={deleteSection}
+                            handleDrag={handleDrag}
+                            handleDrop={handleDrop}
+                            editSection={editSectionMode}
+                            saveSectionTitle={saveSectionTitle} // to save when sectin title changes
+                          />
+                        );
+                      })}
+                  </ul>
+                </CardContent>
+              </Box>
+            </Grid>
+            {/* Error/success msg */}
+            <Grid container direction="row" spacing={2}>
+              <Grid item xs={9}>
+                {isError ? (
+                  <CustomMessage severity="error" msg={isError} />
+                ) : null}
+                {isSuccess ? (
+                  <CustomMessage severity="success" msg={isSuccess} />
+                ) : null}
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
-      )}
-    </Container>
+        )}
+      </Container>
+    </div>
   );
 }

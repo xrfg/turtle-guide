@@ -111,10 +111,8 @@ export const theme = createTheme({
   },
   admin: {
     // container maxWidth="md"
-    page: {
-      height: "calc(100vh - 80px)" /* size of the page minus the navbar */,
-    },
     container: {
+      minHeight: "calc(100vh - 80px)",
       padding: "2rem",
     },
     btnSidebar: {

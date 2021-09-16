@@ -32,7 +32,6 @@ import EventNameInsert from "./EventNameInsert";
 import CustomIconButton from "../../Components/Buttons/CustomIconButtons/CustomIconButton";
 
 const useStyles = makeStyles((theme) => ({
-  page: { ...theme.admin.page },
   container: { ...theme.admin.container }, // main Admin container class
   card: {
     // marginTop: "10rem",
@@ -79,71 +78,69 @@ const Account = (props) => {
   };
 
   return (
-    <div className={classes.page}>
-      <Container maxWidth="md" className={classes.container}>
-        <Grid
-          container
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-          spacing={2}
-        >
-          <Grid item xs={6}>
-            <Card className={classes.card}>
-              <CardContent className={classes.cardTitleBox}>
-                <Typography component="span" className={classes.cardTitle}>
-                  Events
+    <Container maxWidth="md" className={classes.container}>
+      <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+        spacing={2}
+      >
+        <Grid item xs={6}>
+          <Card className={classes.card}>
+            <CardContent className={classes.cardTitleBox}>
+              <Typography component="span" className={classes.cardTitle}>
+                Events
+              </Typography>
+            </CardContent>
+
+            <CardActions className={classes.cardActions}>
+              {events &&
+                events.map((event) => {
+                  return (
+                    <Link
+                      component={RouterLink}
+                      className={classes.link}
+                      to={`/admin/event/${event.slug}`}
+                      underline="none"
+                    >
+                      <Typography component="span">{event.title}</Typography>
+                    </Link>
+                  );
+                })}
+
+              {isAddingEvent ? (
+                <EventNameInsert />
+              ) : (
+                // Custom Icon Component
+                <CustomIconButton
+                  color="primary"
+                  onClickFunc={addEvent}
+                  icon="add"
+                />
+              )}
+            </CardActions>
+          </Card>
+        </Grid>
+        <Grid item xs={6}>
+          <Card className={classes.card}>
+            {/* Just a link to <AboutAdmin /> the compentn will fetch the user info */}
+            <Link
+              component={RouterLink}
+              className={classes.link}
+              to="/admin/about"
+              underline="none"
+            >
+              <CardContent>
+                <Typography variant="h3" component="span">
+                  About
                 </Typography>
               </CardContent>
-
-              <CardActions className={classes.cardActions}>
-                {events &&
-                  events.map((event) => {
-                    return (
-                      <Link
-                        component={RouterLink}
-                        className={classes.link}
-                        to={`/admin/event/${event.slug}`}
-                        underline="none"
-                      >
-                        <Typography component="span">{event.title}</Typography>
-                      </Link>
-                    );
-                  })}
-
-                {isAddingEvent ? (
-                  <EventNameInsert />
-                ) : (
-                  // Custom Icon Component
-                  <CustomIconButton
-                    color="primary"
-                    onClickFunc={addEvent}
-                    icon="add"
-                  />
-                )}
-              </CardActions>
-            </Card>
-          </Grid>
-          <Grid item xs={6}>
-            <Card className={classes.card}>
-              {/* Just a link to <AboutAdmin /> the compentn will fetch the user info */}
-              <Link
-                component={RouterLink}
-                className={classes.link}
-                to="/admin/about"
-                underline="none"
-              >
-                <CardContent>
-                  <Typography variant="h3" component="span">
-                    About
-                  </Typography>
-                </CardContent>
-              </Link>
-            </Card>
-          </Grid>
+            </Link>
+          </Card>
         </Grid>
-      </Container>
-    </div>
+      </Grid>
+    </Container>
   );
 };
 
