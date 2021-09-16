@@ -71,7 +71,7 @@ export const theme = createTheme({
   },
   typography: {
     htmlFontSize: 16,
-    fontFamily: "'Poppins', 'raleway', 'Roboto',  sans-serif",
+    fontFamily: " 'Poppins', 'Roboto', 'raleway', 'sans-serif', 'Helvetica'",
     fontSize: 14,
     fontWeightLight: 300,
     fontWeightRegular: 400,
@@ -81,7 +81,6 @@ export const theme = createTheme({
       fontSize: "1rem",
       letterSpacing: "0.60000px",
     },
-
     h2: {
       fontSize: "1.4rem",
       textAlign: "start",
@@ -90,7 +89,6 @@ export const theme = createTheme({
       letterSpacing: "0.60000px",
       fontFamily: "'Inter', sans-serif'",
     },
-
     body2: {
       letterSpacing: "0.8000000px",
       textAlign: "start",
@@ -111,9 +109,50 @@ export const theme = createTheme({
       textTransform: "uppercase",
     },
   },
+  admin: {
+    btnSidebar: {
+      border: `1px solid ${ourColors.lightGrey}`,
+      display: "flex",
+      flexDirection: "column",
+      borderRadius: "5px",
+      position: "sticky",
+      height: "100%",
+      padding: "1rem",
+      top: "1rem",
+    },
+    btnGroup: {
+      display: "flex",
+      flexDirection: "column",
+      borderRadius: "8px",
+      overflow: "hidden",
+      border: `1px solid ${ourColors.lightGrey}`,
+      marginBottom: "1rem",
+      "& >*": {
+        borderRadius: "0",
+        margin: "0",
+        borderBottom: `1px solid ${ourColors.lightGrey}`,
+        "&:last-child": {
+          borderBottom: "0",
+        },
+      },
+    },
+  },
   guide: {
-    title: {
-      fontSize: "1.5rem",
+    container: { backgroundColor: "white", padding: "0" },
+    settings: {
+      header: {
+        padding: "1rem",
+        borderBottom: `1px solid ${ourColors.indigoDye}`,
+        position: "relative",
+      },
+      gridSection: {
+        "&:nth-child(even)": {
+          backgroundColor: ourColors.lightGrey,
+        },
+        textDecoration: "none",
+        color: "inherit",
+        padding: "2rem 1rem",
+      },
     },
   },
 
