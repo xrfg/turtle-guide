@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
   },*/
   mainContainer:{
-    margin:"10px 0 30px 0",
+    margin:"6rem 0 30px 0",
     padding:"1.6rem",
     backgroundColor:ourColors.primaryLight,
     display:"flex",
@@ -64,12 +64,16 @@ const useStyles = makeStyles((theme) => ({
     width:"100vw",
   },
   eventsTitle:{
+    position:"fixed",
+    display:"flex",
+    alignItems:"end",
     width:"100%",
-    ...theme.guide.title,
-    fontfamily:theme.typography.fontFamily,
-    fontWeight:theme.typography.fontWeightBold,
+    zIndex:"10000",
+    height:"3.7rem",
+    ...theme.guide.mainHeader,
     color:ourColors.indigoDye,
       backgroundColor: ourColors.gainsboro,
+      margin:"-6rem 0 0 0",
       padding: "0.6rem",
       boxShadow: "-2px 2px 8px 1px rgba(127,127,127,0.88)",
     },
