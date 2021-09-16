@@ -9,20 +9,22 @@ import SectionContentManager from "../../Components/SectionContentManager/Sectio
 import Spinner from "../../Components/Spinner/Spinner";
 
 // * Redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userFecth } from "../../store/actions/userActions";
+
 const AboutAdmin = (props) => {
   // destru
   const { sectionId, eventNameIdentifier } = props;
   // * Hooks
   const dispatch = useDispatch();
+  const token = useSelector((state) => state.user.token);
   // * States
   const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
-      // fetch data
-      const res = await dispatch(userFecth());
+      // fetch data with token to find the right user
+      const res = await dispatch(userFecth(token));
       // set in state
       setUserInfo(res);
     }

@@ -8,6 +8,7 @@ import {
   USER_FETCH_ERROR,
   USER_UPDATE,
   USER_UPDATE_ERROR,
+  EVENTS_CLEAN, // to clean events on sign out
 } from "../types";
 
 import axios from "axios";
@@ -107,13 +108,12 @@ export const signIn = (obj) => {
  * @desc action to get the user info to edit in admin
  */
 
-export const userFecth = (obj) => {
+export const userFecth = (token) => {
   return async (dispatch) => {
     // uses a function to create an object for axios
     const objToSend = createObj({
       method: "GET",
       url: BASEurlAuth,
-      // data: obj,
       token: token,
     });
 
@@ -165,5 +165,6 @@ export const userUpdate = (obj) => {
 export const signOut = () => {
   return async (dispatch) => {
     await dispatch({ type: SIGN_OUT });
+    await dispatch({ type: EVENTS_CLEAN });
   };
 };

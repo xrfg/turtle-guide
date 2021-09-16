@@ -94,6 +94,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: false,
+        userProfile: {},
         token: null,
         loading: false,
       };

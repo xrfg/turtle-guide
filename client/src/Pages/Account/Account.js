@@ -59,6 +59,7 @@ const Account = (props) => {
   const classes = useStyles(props);
   const dispatch = useDispatch();
   const events = useSelector((state) => state.events.events);
+  const token = useSelector((state) => state.user.token);
 
   //* States
   const [isAddingEvent, setIsAddingEvent] = useState(false);
@@ -66,7 +67,7 @@ const Account = (props) => {
   // useEffect retrieves all the account's info on landing
   // ? should be the models user and event linked in MONGO
   useEffect(() => {
-    dispatch(eventsFetch()); // for user events
+    dispatch(eventsFetch(token)); // for user events
     // dispatch() // for user data
     //eslint-disable-next-line
   }, []);

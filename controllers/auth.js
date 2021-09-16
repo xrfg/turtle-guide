@@ -14,6 +14,7 @@ const User = require("../models/User");
  */
 
 exports.get = async (req, res, next) => {
+  // the id is returned by the auth middleware
   const { id } = req.user;
   try {
     // look for the user

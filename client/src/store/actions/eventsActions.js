@@ -130,14 +130,13 @@ export const eventDelete = (obj = {}) => {
  */
 
 // TODO CHANGE TOKEN to be sent from the client
-export const eventsFetch = () => {
+export const eventsFetch = (token) => {
   return async (dispatch) => {
     // uses a function to create an object for axios
     const objToSend = createObj({
       method: "GET",
       url: BASEurlEvents,
-      //     data: obj,
-      // token: token,
+      token: token,
     });
 
     try {

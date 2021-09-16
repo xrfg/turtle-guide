@@ -8,6 +8,7 @@ import {
   EVENT_GUIDE,
   EVENT_GUIDE_ERROR,
   EVENT_DELETE_ERROR,
+  EVENTS_CLEAN,
 } from "../types";
 
 const initialState = {
@@ -52,6 +53,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         error: action.payload,
+        loading: false,
+      };
+
+    case EVENTS_CLEAN:
+      return {
+        ...state,
+        events: [],
         loading: false,
       };
 

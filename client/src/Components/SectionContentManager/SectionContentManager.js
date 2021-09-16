@@ -137,6 +137,9 @@ export default function SectionContentManager(props) {
   const events = useSelector((state) => state.events.events);
 
   // * States
+
+  // loading state
+  const [loading, setLoading] = useState(true);
   // state that contains all the contents
   const [contents, setContents] = useState([]);
   // event
@@ -182,6 +185,9 @@ export default function SectionContentManager(props) {
     const getSection = getEvent.sections.find((x) => x.id === id);
     setSection(getSection);
     setContents(getSection.contents);
+
+    // set loading to false
+    setLoading(false);
     //eslint-disable-next-line
   }, []);
 
@@ -192,11 +198,13 @@ export default function SectionContentManager(props) {
     }
     // console.log("props.state.", props.state);
     // setContents(props.state.infoAbout);
-
+    console.log("useEf fetchedData", fetchedData);
     // section is into infoAbout
     setUserInfo(fetchedData);
-    setSection(fetchedData.infoAbout);
-    setContents(fetchedData.infoAbout.contents);
+    setSection(fetchedData?.infoAbout);
+    if (fetchedData?.infoAbout?.contents) {
+      setContents(fetchedData.infoAbout.contents);
+    }
 
     // create date
     const date = new Date(fetchedData.date);
@@ -206,6 +214,10 @@ export default function SectionContentManager(props) {
     const findCut = dateToString.search(":");
 
     setSubscriptionDate(dateToString.substring(0, findCut - 3));
+
+    // set loading to false
+    setLoading(false);
+
     //eslint-disable-next-line
   }, []);
 
@@ -650,36 +662,40 @@ export default function SectionContentManager(props) {
     <Container maxWidth="md">
       {/* // * MODAL */}
       {/* content Delete confirmation */}
-      <PopUpDialogBox
-        open={openDeleteDialogBox}
-        isClose={toggleDeleteDialogBox}
-        confirm={deleteItem}
-        confirmButtonTitle="Delete Media Content"
-        messageTitle={`Are you sure you want to delete this content?`}
-        messageBody="Deleting a content will permanently erase it from the section."
-      />
-      {/* For Media Text */}
-      <ModalCustom
-        title={section.title}
-        content={<TextEditor setText={setMediaText} />}
-        isOpen={openModalInsertText}
-        // handles the state when the modal is clickes outside the area
-        isClose={handleClose}
-      />
-      {/* For Preview */}
-      <ModalCustom
-        content={
-          <SectionPreview
-            contents={contents}
-            sectionCover={section.sectionCover}
-            sectionDescription={section.description}
-            sectionTitle={section.title}
+      {contents.length === 0 && loading ? null : (
+        <>
+          <PopUpDialogBox
+            open={openDeleteDialogBox}
+            isClose={toggleDeleteDialogBox}
+            confirm={deleteItem}
+            confirmButtonTitle="Delete Media Content"
+            messageTitle={`Are you sure you want to delete this content?`}
+            messageBody="Deleting a content will permanently erase it from the section."
           />
-        }
-        isOpen={openModalPreview}
-        // handles the state when the modal is clickes outside the area
-        isClose={handleClose}
-      />
+          {/* For Media Text */}
+          <ModalCustom
+            title={section?.title}
+            content={<TextEditor setText={setMediaText} />}
+            isOpen={openModalInsertText}
+            // handles the state when the modal is clickes outside the area
+            isClose={handleClose}
+          />
+          {/* For Preview */}
+          <ModalCustom
+            content={
+              <SectionPreview
+                contents={contents}
+                sectionCover={section?.sectionCover}
+                sectionDescription={section?.description}
+                sectionTitle={section?.title}
+              />
+            }
+            isOpen={openModalPreview}
+            // handles the state when the modal is clickes outside the area
+            isClose={handleClose}
+          />
+        </>
+      )}
       {Object.keys(userInfo).length !== 0 ? (
         <>
           <Accordion>
@@ -807,7 +823,7 @@ export default function SectionContentManager(props) {
           )}
           <Grid item xs={12} className={classes.gridItem}>
             {/* Section cover image */}
-            {section.sectionCover.url === "" ? (
+            {section.sectionCover?.url === "" ? (
               // show button
               // important to upload the cover pass true
               <Button

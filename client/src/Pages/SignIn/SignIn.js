@@ -63,14 +63,21 @@ export default function SignIn() {
   // * Hooks
   const classes = useStyles();
   const history = useHistory();
+  // ! to remove for development
+  const user1 = {
+    email: "jdoe@email.com",
+    password: "123456",
+  };
+
+  const user2 = {
+    email: "marcotestacc@gmail.com",
+    password: "marcotestacc",
+  };
 
   // * states
   // ! to remove for development
   // const [loginData, setLoginData] = useState({});
-  const [loginData, setLoginData] = useState({
-    email: "jdoe@email.com",
-    password: "123456",
-  });
+  const [loginData, setLoginData] = useState(user1);
 
   //REDUX
   const dispatch = useDispatch();
@@ -136,7 +143,7 @@ export default function SignIn() {
             autoFocus
             // ! REMOVE
             // TODO
-            defaultValue="jdoe@email.com"
+            defaultValue={loginData.email}
             onChange={onChange}
           />
           <TextField
@@ -151,7 +158,7 @@ export default function SignIn() {
             autoComplete="current-password"
             // ! REMOVE
             // TODO
-            defaultValue="123456"
+            defaultValue={loginData.email}
             onChange={onChange}
           />
           <FormControlLabel

@@ -104,7 +104,7 @@ const ImageHoverButton = (props) => {
   return (
     <ButtonBase
       focusRipple
-      key={image.filename}
+      key={image?.filename}
       className={classes.image}
       focusVisibleClassName={classes.focusVisible}
       style={{
@@ -115,7 +115,7 @@ const ImageHoverButton = (props) => {
       <span
         className={classes.imageSrc}
         style={{
-          backgroundImage: `url(${image.url})`,
+          backgroundImage: `url(${image?.url})`,
         }}
       />
       <span className={classes.imageBackdrop} />

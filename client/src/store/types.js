@@ -22,6 +22,8 @@ export const EVENT_DELETE_ERROR = "EVENT_DELETE_ERROR";
 // EVENTS
 export const EVENTS_FETCH = "EVENTS_FETCH";
 export const EVENTS_FETCH_ERROR = "EVENTS_FETCH_ERROR";
+// just to clean on sign out
+export const EVENTS_CLEAN = "EVENTS_CLEAN";
 
 // EVENT FOR THE GUIDE
 export const EVENT_GUIDE = "EVENT_GUIDE";

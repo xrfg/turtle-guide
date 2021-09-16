@@ -14,7 +14,7 @@ const User = require("../models/User");
 
 // Post
 exports.post = async (req, res, next) => {
-  let { accountName, email, isAdmin, password } = req.body;
+  let { accountName, email, isAdmin, password, infoAbout = {} } = req.body;
 
   try {
     // check if admin is TRUE or FALSE
@@ -58,6 +58,7 @@ exports.post = async (req, res, next) => {
       accountCode: accountCode,
       password: hashedPassword,
       isAdmin: isAdmin,
+      infoAbout: { sectionCover: {}, contents: [] },
     });
 
     // save
