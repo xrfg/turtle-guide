@@ -5,7 +5,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 
+// * Imports
 import slugify from "react-slugify";
+import { toast } from "react-toastify";
 
 // * REDUX
 import { useSelector, useDispatch } from "react-redux";
@@ -20,7 +22,6 @@ import {
 // * Components Imports (children)
 import EventSection from "./EventSection";
 import EventName from "./EventName";
-import CustomMessage from "../../Components/CustomMessage/CustomMessage";
 import PopUpDialogBox from "../../Components/PopUpDialogBox/PopUpDialogBox";
 
 // * Functions
@@ -83,14 +84,6 @@ export default function Event(props) {
   // for the drag and drop sections re-ordering
   const [dragId, setDragId] = useState();
 
-  // for errorr and success msg
-  const [isError, setIsError] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-
-  // for the editing of an entire section
-  // const [editSection, setEditSection] = useState(false);
-  // const [editSectionId, setEditSectionId] = useState(null);
-
   // * Refs
   // just to skip the first and second render
   const firstUpdate = useRef(true);
@@ -139,8 +132,7 @@ export default function Event(props) {
         // dispatch
         await dispatch(eventUpdate({ event: event, token: token }));
 
-        setIsError(false);
-        setIsSuccess("Saved successfully!");
+        toast.success("Saved successfully!");
         return setNeedsToSave(false);
       }
     }
@@ -259,6 +251,7 @@ export default function Event(props) {
     const newSections = sections.filter((section) => section.id !== id);
     // set new sections
     setSections(newSections);
+    toast.warn("Section deleted!");
   };
 
   // * ----------- Functions to handle the "Delete Event" Modal
@@ -349,7 +342,6 @@ export default function Event(props) {
   // else fetch event
 
   const createAndSendEvent = (obj) => {
-    console.log("createAndSendEvent");
     // destruct
     const { title, slug } = obj;
 
@@ -410,11 +402,9 @@ export default function Event(props) {
   const editSectionMode = async (id, title) => {
     // saves before going to section
     if (needsToSave) {
-      setIsError("You created a new Section, please save before continue");
+      toast.warn("You modify the event, please save before continue");
     }
     if (!needsToSave) {
-      setIsError(false);
-
       return goToAndSlugify(id, title);
     }
   };
@@ -461,8 +451,6 @@ export default function Event(props) {
    * @desc fired when the event name changed
    */
   const eventNameUpdate = (eventName) => {
-    console.log("eventNameUpdate", eventName);
-
     // create a new obj that fires a saving with useEffect
     // new slug
     const slug = slugify(eventName);
@@ -484,6 +472,8 @@ export default function Event(props) {
   return (
     <div className={classes.page}>
       <Container maxWidth="md" className={classes.container}>
+        {/* Error/success msg TOP */}
+
         {/* // TODO ERROR IF EVENT IS UNDEFINED */}
         {event === undefined ? null : (
           <Grid container direction="row" spacing={2}>
@@ -537,17 +527,7 @@ export default function Event(props) {
                 />
               </div>
             </Grid>
-            {/* Error/success msg TOP */}
-            <Grid container direction="row" spacing={2}>
-              <Grid item xs={9}>
-                {isError ? (
-                  <CustomMessage severity="error" msg={isError} />
-                ) : null}
-                {isSuccess ? (
-                  <CustomMessage severity="success" msg={isSuccess} />
-                ) : null}
-              </Grid>
-            </Grid>
+
             {/* 
         // * Add BTN + Disabled ones
         */}
@@ -603,17 +583,6 @@ export default function Event(props) {
                   </ul>
                 </CardContent>
               </Box>
-            </Grid>
-            {/* Error/success msg */}
-            <Grid container direction="row" spacing={2}>
-              <Grid item xs={9}>
-                {isError ? (
-                  <CustomMessage severity="error" msg={isError} />
-                ) : null}
-                {isSuccess ? (
-                  <CustomMessage severity="success" msg={isSuccess} />
-                ) : null}
-              </Grid>
             </Grid>
           </Grid>
         )}

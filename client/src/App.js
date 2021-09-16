@@ -1,6 +1,10 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
+// * Imports
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 // * classes for Footer handling and page
 import "./app.css";
 
@@ -32,6 +36,18 @@ function App() {
   return (
     <Provider store={Store}>
       <MuiThemeProvider theme={theme}>
+        <ToastContainer
+          position="bottom-left"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
         <BrowserRouter>
           <div aria-label="app-container" className="app-container">
             <div aria-label="content-wrap" className="footer-padding">
