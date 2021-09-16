@@ -553,6 +553,11 @@ export default function Event(props) {
         */}
             <Grid className={classes.btnSidebar} item xs={3}>
               <CustomButton
+                text="Intro"
+                endIcon="add"
+                onClickFunc={() => addToContents()}
+              />
+              <CustomButton
                 text="Section"
                 endIcon="add"
                 onClickFunc={() => addToContents()}

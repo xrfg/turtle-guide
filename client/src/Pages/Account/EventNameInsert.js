@@ -33,6 +33,7 @@ const EventName = (props) => {
 
   // * States
   const [eventName, setEventName] = useState("");
+  const [bgColor, setBgColor] = useState("inherit");
 
   // * Functions
 
@@ -43,6 +44,7 @@ const EventName = (props) => {
 
   const onChange = (e) => {
     setEventName(e.target.value);
+    setBgColor("#26b519");
   };
 
   /**
@@ -82,7 +84,11 @@ const EventName = (props) => {
         onChange={onChange}
       />
 
-      <CustomIconButton type="submit" icon="save" />
+      <CustomIconButton
+        style={{ backgroundColor: bgColor }}
+        type="submit"
+        icon="save"
+      />
     </form>
   );
 };

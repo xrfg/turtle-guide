@@ -71,7 +71,8 @@ export const theme = createTheme({
   },
   typography: {
     htmlFontSize: 16,
-    fontFamily: "'Baton Turbo', 'Poppins', 'Roboto', 'raleway', 'sans-serif', 'Helvetica'",
+    fontFamily:
+      "'Baton Turbo', 'Poppins', 'Roboto', 'raleway', 'sans-serif', 'Helvetica'",
     fontSize: 14,
     fontWeightLight: 300,
     fontWeightRegular: 400,
@@ -92,7 +93,7 @@ export const theme = createTheme({
         fontSize: "0.9rem",
         fontFamily: "'Baton Turbo', sans-serif",
         color: "#595751",
-        fontWeight:300,
+        fontWeight: 300,
       },
     },
 
@@ -140,14 +141,14 @@ export const theme = createTheme({
   },
   guide: {
     container: { backgroundColor: "white", padding: "0" },
-    mainHeader:{
+    mainHeader: {
       fontSize: "1.5rem",
       letterSpacing: "0.60000px",
       fontFamily: "'Baton Turbo', sans-serif",
-      fontWeight:600,
+      fontWeight: 600,
     },
-    header:{
-      fontWeight:600,
+    header: {
+      fontWeight: 600,
     },
     settings: {
       header: {
