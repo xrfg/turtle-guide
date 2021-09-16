@@ -9,13 +9,13 @@
     "start": "node -r dotenv/config server.js",
     "server": "nodemon -r dotenv/config server.js",
     "client": "npm start --prefix client",
-    "testwatch": "jest --watchAll --testTimeout=5000"
+    "testwatch": "jest --watchAll --testTimeout=5000 --setupFiles dotenv/config"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dci-fbw44-2-team3/turtle-guide.git"
   },
-  "author": "Marco,Henrique,Abdilkani,Abdullah and Georgis",
+  "author": "Marco, Henrique, Abdilkani, Abdullah and Georgis",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/dci-fbw44-2-team3/turtle-guide/issues"

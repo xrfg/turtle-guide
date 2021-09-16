@@ -82,7 +82,6 @@ exports.post = async (req, res, next) => {
 exports.put = async (req, res, next) => {
   // extract name from params
   const { _id } = req.body; // it's the old name identifier
-
   try {
     // find and update the item using nameIdentifier
     const user = await User.findOneAndUpdate({ _id: _id }, req.body, {
