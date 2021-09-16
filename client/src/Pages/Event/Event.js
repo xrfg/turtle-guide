@@ -2,6 +2,8 @@
  * @desc Event Page at route /admin/event/:slug either for creating a new event or editing an existing one
  */
 
+// TODO Fix Section Rendering after having changed the IDS of the sections from 2 onwards. since 1 is Intro,, there is also type="intro" and type="section"
+
 import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 
