@@ -137,7 +137,7 @@ export default function Event(props) {
     async function saveData() {
       if (needsToSave) {
         // dispatch
-        await dispatch(eventUpdate(event));
+        await dispatch(eventUpdate({ event: event, token: token }));
 
         setIsError(false);
         setIsSuccess("Saved successfully!");
