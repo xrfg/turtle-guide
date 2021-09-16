@@ -6,16 +6,7 @@ import "./app.css";
 
 //* Import Pages
 import Home from "./Pages/Home/Home";
-import Account from "./Pages/Account/Account";
-import AboutAdmin from "./Pages/AboutAdmin/AboutAdmin";
-import Guide from "./Components/Guide/Guide";
-import SectionGuide from "./Components/Guide/Pages/Section/Section";
-import Event from "./Pages/Event/Event";
-import Section from "./Pages/Section/Section";
-import SignUp from "./Pages/SignUp/SignUp";
-// import SignIn from "./Pages/SignIn/SignIn";
 import Footer from "./Components/Footer/Footer";
-// import Buy from "./Components/Guide/Pages/Buy/Buy";
 
 // * Import Custom  Components
 import Navbar from "./Components/Navbar/Navbar";
@@ -38,31 +29,27 @@ import Subscription from "./Pages/Subscription/Subscription";
 import SignIn from "./Pages/SignIn/SignIn";
 
 function App() {
+  console.log("location", window.location.pathname === "/");
+
   return (
     <Provider store={Store}>
       <MuiThemeProvider theme={theme}>
         <BrowserRouter>
-          <div className="App">
-            <Switch>
-              <Route exact path="/">
-                <div aria-label="app-container" className="app-container">
-                  <div aria-label="content-wrap" className="footer-padding">
-                    <Navbar />
-                    <Home />
-                    <Footer />
-                  </div>
-                </div>
-              </Route>
+          <div aria-label="app-container" className="app-container">
+            <div aria-label="content-wrap" className="footer-padding">
+              {window.location.pathname.includes("/events") ? null : <Navbar />}
+              <Switch>
+                {/* Auth Routes */}
+                <AuthRoute path="/admin" component={AdminApp} />
 
-              {/* Auth Routes */}
-              <AuthRoute path="/admin" component={AdminApp} />
-
-              {/* Public routes */}
-              <Route path="/events" component={GuideApp} />
-              <Route path="/subscription" component={Subscription} />
-              <Route path="/signin" component={SignIn} />
-            </Switch>
-            {/* <Footer /> */}
+                {/* Public routes */}
+                <Route exact path="/" component={Home} />
+                <Route path="/events" component={GuideApp} />
+                <Route path="/subscription" component={Subscription} />
+                <Route path="/signin" component={SignIn} />
+              </Switch>
+              {window.location.pathname.includes("/events") ? null : <Footer />}
+            </div>
           </div>
         </BrowserRouter>
       </MuiThemeProvider>
