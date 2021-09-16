@@ -1,6 +1,6 @@
-/* 
-? Event Page at route /admin/event/:slug either for creating a new event or editing an existing one
-*/
+/**
+ * @desc Event Page at route /admin/event/:slug either for creating a new event or editing an existing one
+ */
 
 import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";

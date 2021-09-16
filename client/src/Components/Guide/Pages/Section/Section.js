@@ -17,7 +17,7 @@ import useGetAndSaveEvent from "../../Hooks/useGetAndSaveEvent";
 import useEventSection from "../../Hooks/useEventSection";
 
 const Section = (props) => {
-  const { id, eventSlug, order, sectionIndex } = props.location.state;
+  const { id } = props.location.state;
 
   const idSection = id;
 

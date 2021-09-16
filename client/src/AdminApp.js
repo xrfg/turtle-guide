@@ -10,7 +10,7 @@ import AboutAdmin from "./Pages/AboutAdmin/AboutAdmin";
 import Event from "./Pages/Event/Event";
 import Section from "./Pages/Section/Section";
 
-export default function AdminApp({ match }) {
+export default function AdminApp() {
   return (
     <>
       <Route path="/admin/account" component={Account} />

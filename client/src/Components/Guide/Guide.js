@@ -1,16 +1,11 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 
 import "./guide.scss";
 
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-
 // * Pages
 import Home from "./Pages/Home/Home";
-import Event from "./Pages/Event/Event";
 
 // * Components
-import Navbar from "./Components/Navbar/Navbar";
 import Spinner from "../../Components/Spinner/Spinner";
 
 import useGetAndSaveEvent from "../Guide/Hooks/useGetAndSaveEvent";

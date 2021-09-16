@@ -24,7 +24,6 @@ import {
   CardActions,
   makeStyles,
   Link,
-  Button,
 } from "@material-ui/core";
 
 // * Component Imports
@@ -57,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Account = (props) => {
+  // * Hooks
   const classes = useStyles(props);
   const dispatch = useDispatch();
   const events = useSelector((state) => state.events.events);
@@ -65,11 +65,9 @@ const Account = (props) => {
   //* States
   const [isAddingEvent, setIsAddingEvent] = useState(false);
 
-  // useEffect retrieves all the account's info on landing
-  // ? should be the models user and event linked in MONGO
+  // retrieves all the account's info on landing
   useEffect(() => {
     dispatch(eventsFetch(token)); // for user events
-    // dispatch() // for user data
     //eslint-disable-next-line
   }, []);
 
