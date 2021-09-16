@@ -12,11 +12,9 @@ const Event = require("../models/Event");
 exports.get = async (req, res, next) => {
   // extract the id to find all the records of account
   const { id } = req.user;
-  console.log("id", id);
   try {
     // find all the item with that account
     const accountEvents = await Event.find({ account: id });
-    console.log("accountEvents", accountEvents);
     // returns
     return res.json({
       success: true,

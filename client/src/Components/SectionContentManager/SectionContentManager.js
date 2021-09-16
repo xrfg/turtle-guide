@@ -135,6 +135,7 @@ export default function SectionContentManager(props) {
   const dispatch = useDispatch();
   let history = useHistory();
   const events = useSelector((state) => state.events.events);
+  const token = useSelector((state) => state.user.token);
 
   // * States
 
@@ -539,7 +540,7 @@ export default function SectionContentManager(props) {
     // 4. dispatch event update
 
     try {
-      await dispatch(eventUpdate(event));
+      await dispatch(eventUpdate({ event: event, token: token }));
       // set to save
       return setNeedsToSave(false);
     } catch (error) {
@@ -843,7 +844,7 @@ export default function SectionContentManager(props) {
             )}
             {/* If is editing admin */}
             {/* If is editing about admin do not show */}
-            {userInfo ? (
+            {Object.keys(userInfo).length !== 0 ? (
               <Typography variant={"h6"}>
                 Shall we put opening hours?
               </Typography>

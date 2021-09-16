@@ -69,13 +69,6 @@ export default function Event(props) {
   // single event
   const [event, setEvent] = useState();
 
-  // ! remove
-  // to allow if is a new event
-  // props comming from account
-  // const [isNewEvent, setIsNewEvent] = useState(
-  //   props.location.state?.isNew === true ? true : false
-  // );
-
   // all sections
   // the sections are always upadated here before the save
   const [sections, setSections] = useState([]);
@@ -104,6 +97,7 @@ export default function Event(props) {
   // * Hooks
   // loads event from reducer
   const events = useSelector((state) => state.events.events);
+  const token = useSelector((state) => state.user.token);
 
   // get the slug to search for the event
   const slug = props.match.params.name;
@@ -158,7 +152,7 @@ export default function Event(props) {
     }
 
     // dispatch the event to redux
-    return dispatch(eventCreate(event));
+    return dispatch(eventCreate({ event: event, token: token }));
     //eslint-disable-next-line
   }, [event]);
 
@@ -283,6 +277,7 @@ export default function Event(props) {
   const deleteEvent = (val) => {
     const objToSend = {
       nameIdentifier: event.nameIdentifier,
+      token: token,
     };
     if (val) {
       dispatch(eventDelete(objToSend));
@@ -378,8 +373,6 @@ export default function Event(props) {
    */
 
   const saveEvent = (obj) => {
-    console.log("saveEvent", obj);
-
     // set to true or stops it in use effect
     setNeedsToSave(true);
     // if the event is new skips it

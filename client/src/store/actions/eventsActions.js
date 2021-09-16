@@ -19,13 +19,6 @@ import { createObj } from "../functions/functions";
  */
 const BASEurlEvents = "http://localhost:5000/api/events/";
 
-// ! IMPORTANT TO REMOVE
-// TODO CHANGE TOKEN to be sent from the client's cookie
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjExZTVhY2E1NjEwNGExYzA5ZjlkMTNlIn0sImlhdCI6MTYzMDQ4NTU4OCwiZXhwIjoxNjMzMDc3NTg4fQ.-PpbSoenUfmDFMsII1ALNvj7OUIm19PuJYa4GD5xJfI";
-
-// TODO CHANGE TOKEN to be sent from the client
-
 /**
  * @desc action to create a new event
  */
@@ -35,8 +28,8 @@ export const eventCreate = (obj) => {
     const objToSend = createObj({
       method: "POST",
       url: BASEurlEvents,
-      data: obj,
-      token: token,
+      data: obj.event,
+      token: obj.token,
     });
 
     try {
@@ -64,15 +57,15 @@ export const eventUpdate = (obj) => {
     // important
     //  it uses the old nameIdf cause in mongo it has this still that nameIdf
     const eventName = obj.hasOwnProperty("oldNameIdentifier")
-      ? obj.oldNameIdentifier
-      : obj.nameIdentifier;
+      ? obj.event.oldNameIdentifier
+      : obj.event.nameIdentifier;
 
     // uses a function to create an object for axios
     const objToSend = createObj({
       method: "PUT",
       url: BASEurlEvents + eventName,
-      data: obj,
-      token: token,
+      data: obj.event,
+      token: obj.token,
     });
 
     try {
@@ -92,7 +85,6 @@ export const eventUpdate = (obj) => {
 /**
  * @desc action to delete an event
  */
-// TODO CHANGE TOKEN to be sent from the client
 
 export const eventDelete = (obj = {}) => {
   return async (dispatch) => {
@@ -106,7 +98,7 @@ export const eventDelete = (obj = {}) => {
     const objToSend = createObj({
       method: "DELETE",
       url: BASEurlEvents + eventName,
-      token: token,
+      token: obj.token,
     });
 
     try {
@@ -129,7 +121,6 @@ export const eventDelete = (obj = {}) => {
  * @desc action to fetch all the account's event
  */
 
-// TODO CHANGE TOKEN to be sent from the client
 export const eventsFetch = (token) => {
   return async (dispatch) => {
     // uses a function to create an object for axios
