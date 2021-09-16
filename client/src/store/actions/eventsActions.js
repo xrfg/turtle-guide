@@ -24,12 +24,12 @@ const BASEurlEvents = "http://localhost:5000/api/events/";
 const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjExZTVhY2E1NjEwNGExYzA5ZjlkMTNlIn0sImlhdCI6MTYzMDQ4NTU4OCwiZXhwIjoxNjMzMDc3NTg4fQ.-PpbSoenUfmDFMsII1ALNvj7OUIm19PuJYa4GD5xJfI";
 
+// TODO CHANGE TOKEN to be sent from the client
+
 /**
  * @desc action to create a new event
  */
 export const eventCreate = (obj) => {
-  console.log("eventCreate", obj);
-
   return async (dispatch) => {
     // uses a function to create an object for axios
     const objToSend = createObj({
@@ -57,10 +57,9 @@ export const eventCreate = (obj) => {
 /**
  * @desc action to update an event
  */
+// TODO CHANGE TOKEN to be sent from the client
 
 export const eventUpdate = (obj) => {
-  console.log("obj", obj);
-
   return async (dispatch) => {
     // important
     //  it uses the old nameIdf cause in mongo it has this still that nameIdf
@@ -93,6 +92,7 @@ export const eventUpdate = (obj) => {
 /**
  * @desc action to delete an event
  */
+// TODO CHANGE TOKEN to be sent from the client
 
 export const eventDelete = (obj = {}) => {
   return async (dispatch) => {
@@ -137,7 +137,7 @@ export const eventsFetch = () => {
       method: "GET",
       url: BASEurlEvents,
       //     data: obj,
-      token: token,
+      // token: token,
     });
 
     try {
