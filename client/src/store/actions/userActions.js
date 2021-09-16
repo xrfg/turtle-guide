@@ -95,6 +95,7 @@ export const signIn = (obj) => {
 
       // dispatch to the reducer (update state)
       await dispatch({ type: SIGN_IN, payload: res.data.data.token });
+      return res.data;
     } catch (error) {
       console.error(error);
       await dispatch({ type: SIGN_IN_ERROR, payload: error });

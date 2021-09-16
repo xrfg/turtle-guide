@@ -19,7 +19,7 @@ exports.get = async (req, res, next) => {
     // look for the user
     const user = await User.findById(id).select("-password");
     // return
-    return res.json({ success: true, data: user });
+    return res.status(200).json({ success: true, data: user, status: 200 });
   } catch (error) {
     /**
      * @desc sends error to the global error middleware

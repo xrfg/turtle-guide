@@ -1,4 +1,10 @@
-import React,{useState} from "react";
+/**
+ * @desc Compoentn for the sign in
+ */
+
+import React, { useState, useEffect } from "react";
+
+// * Mat UI
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -13,10 +19,12 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
+// * Imports
+import { useHistory } from "react-router-dom";
 
 // * REDUX
-import {useSelector, useDispatch}from "react-redux"
-import {signIn} from "../../store/actions/userActions" 
+import { useSelector, useDispatch } from "react-redux";
+import { signIn } from "../../store/actions/userActions";
 
 function Copyright() {
   return (
@@ -52,24 +60,33 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn() {
+  // * Hooks
   const classes = useStyles();
+  const history = useHistory();
 
+  // * states
+  // ! to remove for development
+  // const [loginData, setLoginData] = useState({});
+  const [loginData, setLoginData] = useState({
+    email: "jdoe@email.com",
+    password: "123456",
+  });
 
-   // * states
-   // ! to remove for development
-   const [loginData,setLoginData] = useState({
-    email:"jdoe@email.com",
-      password:"123456"})
+  //REDUX
+  const dispatch = useDispatch();
 
- //REDUX
- const dispatch = useDispatch()
+  // getting states from REDUX
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
- 
- // getting states from REDUX
- // const user = useSelector((state) => state.user);
- const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  // in case the user is already autenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push("/admin/account");
+    }
+    //eslint-disable-next-line
+  }, []);
 
- /**
+  /**
    * @function onChange
    * @desc grabs inputs changes while user types
    */
@@ -77,19 +94,25 @@ export default function SignIn() {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 
-
-   /**
+  /**
    * @function submitUserData
    * @desc sends the data
    */
 
-    const submitLoginData = function (e) {
-      e.preventDefault();
+  const submitLoginData = async function (e) {
+    e.preventDefault();
 
-      console.log(loginData);
+    try {
       // dispatch to REDUX
-      dispatch(signIn(loginData));
-    };
+      const res = await dispatch(signIn(loginData));
+      if (res.success === true) {
+        history.push("/admin/account");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -111,6 +134,8 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            // ! REMOVE
+            // TODO
             defaultValue="jdoe@email.com"
             onChange={onChange}
           />
@@ -124,6 +149,8 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            // ! REMOVE
+            // TODO
             defaultValue="123456"
             onChange={onChange}
           />
@@ -137,7 +164,9 @@ export default function SignIn() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={(e)=>{submitLoginData(e)}}
+            onClick={(e) => {
+              submitLoginData(e);
+            }}
           >
             Sign In
           </Button>
