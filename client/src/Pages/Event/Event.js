@@ -44,6 +44,7 @@ import CustomButton from "../../Components/Buttons/CustomButtons/CustomButton";
 import CustomIconButton from "../../Components/Buttons/CustomIconButtons/CustomIconButton";
 
 const useStyles = makeStyles((theme) => ({
+  container: { ...theme.admin.container }, // main Admin container class
   guide__header: { marginBottom: "1rem" },
   saveDelBtnGrp: {
     // backgroundColor: "red",
@@ -487,7 +488,7 @@ export default function Event(props) {
   unBlock(needsToSave, history);
 
   return (
-    <Container style={{ padding: "2rem 0" }} maxWidth="md">
+    <Container maxWidth="md" className={classes.container}>
       {/* // TODO ERROR IF EVENT IS UNDEFINED */}
       {event === undefined ? null : (
         <Grid container direction="row" spacing={2}>

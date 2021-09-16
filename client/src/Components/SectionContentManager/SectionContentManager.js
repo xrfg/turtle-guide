@@ -68,6 +68,7 @@ const useStyles = makeStyles((theme) =>
       },
       maxWidth: 345,
     },
+    container: { ...theme.admin.container }, // main Admin container class
     heading: {
       fontSize: theme.typography.pxToRem(15),
       fontWeight: theme.typography.fontWeightRegular,
@@ -647,7 +648,7 @@ export default function SectionContentManager(props) {
   };
 
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="md" className={classes.container}>
       {/* // * MODAL */}
       {/* content Delete confirmation */}
       <PopUpDialogBox

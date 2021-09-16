@@ -110,6 +110,13 @@ export const theme = createTheme({
     },
   },
   admin: {
+    // container maxWidth="md"
+    page: {
+      height: "calc(100vh - 80px)" /* size of the page minus the navbar */,
+    },
+    container: {
+      padding: "2rem",
+    },
     btnSidebar: {
       border: `1px solid ${ourColors.lightGrey}`,
       display: "flex",

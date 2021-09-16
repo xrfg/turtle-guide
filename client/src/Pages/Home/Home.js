@@ -22,6 +22,7 @@ import CustomButton from "../../Components/Buttons/CustomButtons/CustomButton";
 import { ourColors } from "../../styles/Theme";
 
 const useStyles = makeStyles((theme) => ({
+  page: { ...theme.admin.page },
   container: { ...theme.admin.container }, // main Admin container class
 
   // * hero
@@ -60,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const classes = useStyles();
   return (
-    <>
+    <div className={classes.page}>
       <Grid
         container
         direction="row"
@@ -163,7 +164,7 @@ const Home = () => {
           </Grid>
         </Grid>
       </Container>
-    </>
+    </div>
   );
 };
 
