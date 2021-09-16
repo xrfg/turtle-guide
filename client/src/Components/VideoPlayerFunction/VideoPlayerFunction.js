@@ -8,7 +8,6 @@ function VideoPlayerFunction(props) {
     cloud_name: props.options.cloudName,
     secure: true,
   });
-  console.log(document.querySelector(".fn-video"));
   const videoPlayerInit = () => {
     cloudinary.videoPlayer(document.querySelector(".fn-video"), {
       publicId: props.options.public_id,
