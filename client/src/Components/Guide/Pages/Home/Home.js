@@ -7,13 +7,13 @@ import { Link, useHistory } from "react-router-dom";
 
 // * Components
 import BlockSection from "../../Components/BlockSection/BlockSection";
+import logoFilled from '../../../../assets/images/logo/turtle_logo-filled.png'
 
 // * MatUI
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
-import { Typography } from "@material-ui/core";
+import { Typography,Grid } from "@material-ui/core";
 
-import { red } from "@material-ui/core/colors";
 
 import {ourColors,theme} from '.././../../../styles/Theme'
 
@@ -77,6 +77,10 @@ const useStyles = makeStyles((theme) => ({
       padding: "0.6rem",
       boxShadow: "-2px 2px 8px 1px rgba(127,127,127,0.88)",
     },
+    gridSection: {
+      backgroundColor:ourColors.lightGrey,
+      height:"10rem",
+    },
 
 
 }));
@@ -137,6 +141,18 @@ console.log(BlockSection);
           );
         })}
       </div>
+      <Grid
+          container
+          xs={12}
+          className={classes.gridSection}
+          alignItems="center"
+        >
+          <img
+            style={{ width: "60%", margin: "0 auto" }}
+            src={logoFilled}
+            alt="logo"
+          />
+        </Grid>
     </>
   );
 }

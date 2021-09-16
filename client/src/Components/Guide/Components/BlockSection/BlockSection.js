@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   cardContent:{
     margin:"0 0 0 0",
     padding:"1rem 0 0 0.4rem",
-    backgroundColor: "#ede6e6",
+    backgroundColor:ourColors.lightGrey,
   },
   cardTitle:{
     color:"#424242",
