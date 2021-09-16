@@ -1,1 +1,16 @@
 /* No CSS */
+
+.app-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.footer-padding {
+  padding-bottom: 351px;
+}
+
+@media screen and (max-width: 600px) {
+  .footer-padding {
+    padding-bottom: 500px;
+  }
+}

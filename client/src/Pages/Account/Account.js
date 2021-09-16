@@ -32,6 +32,7 @@ import EventNameInsert from "./EventNameInsert";
 import CustomIconButton from "../../Components/Buttons/CustomIconButtons/CustomIconButton";
 
 const useStyles = makeStyles((theme) => ({
+  container: { ...theme.admin.container }, // main Admin container class
   card: {
     // marginTop: "10rem",
     // padding: "1rem",
@@ -78,7 +79,7 @@ const Account = (props) => {
   };
 
   return (
-    <Container style={{ padding: "2rem" }}>
+    <Container maxWidth="md" className={classes.container}>
       <Grid
         container
         direction="row"

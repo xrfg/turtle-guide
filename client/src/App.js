@@ -1,9 +1,21 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
+// * classes for Footer handling and page
+import "./app.css";
+
 //* Import Pages
 import Home from "./Pages/Home/Home";
-import Footer from "./Components/Guide/Components/footer/Footer";
+import Account from "./Pages/Account/Account";
+import AboutAdmin from "./Pages/AboutAdmin/AboutAdmin";
+import Guide from "./Components/Guide/Guide";
+import SectionGuide from "./Components/Guide/Pages/Section/Section";
+import Event from "./Pages/Event/Event";
+import Section from "./Pages/Section/Section";
+import SignUp from "./Pages/SignUp/SignUp";
+// import SignIn from "./Pages/SignIn/SignIn";
+import Footer from "./Components/Footer/Footer";
+// import Buy from "./Components/Guide/Pages/Buy/Buy";
 
 // * Import Custom  Components
 import Navbar from "./Components/Navbar/Navbar";
@@ -31,18 +43,26 @@ function App() {
       <MuiThemeProvider theme={theme}>
         <BrowserRouter>
           <div className="App">
-            <Navbar />
-
             <Switch>
+              <Route exact path="/">
+                <div aria-label="app-container" className="app-container">
+                  <div aria-label="content-wrap" className="footer-padding">
+                    <Navbar />
+                    <Home />
+                    <Footer />
+                  </div>
+                </div>
+              </Route>
+
+              {/* Auth Routes */}
               <AuthRoute path="/admin" component={AdminApp} />
 
               {/* Public routes */}
-              <Route exact path="/" component={Home} />
               <Route path="/events" component={GuideApp} />
               <Route path="/subscription" component={Subscription} />
               <Route path="/signin" component={SignIn} />
             </Switch>
-            <Footer />
+            {/* <Footer /> */}
           </div>
         </BrowserRouter>
       </MuiThemeProvider>

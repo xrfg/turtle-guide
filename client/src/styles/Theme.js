@@ -110,6 +110,11 @@ export const theme = createTheme({
     },
   },
   admin: {
+    // container maxWidth="md"
+    container: {
+      minHeight: "calc(100vh - 80px)",
+      padding: "2rem",
+    },
     btnSidebar: {
       border: `1px solid ${ourColors.lightGrey}`,
       display: "flex",
