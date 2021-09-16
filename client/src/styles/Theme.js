@@ -71,32 +71,28 @@ export const theme = createTheme({
   },
   typography: {
     htmlFontSize: 16,
-    fontFamily: " 'Poppins', 'Roboto', 'raleway', 'sans-serif', 'Helvetica'",
+    fontFamily: "'Baton Turbo', 'Poppins', 'Roboto', 'raleway', 'sans-serif', 'Helvetica'",
     fontSize: 14,
     fontWeightLight: 300,
     fontWeightRegular: 400,
     fontWeightMedium: 500,
     fontWeightBold: 700,
-    h1: {
-      fontSize: "1rem",
-      letterSpacing: "0.60000px",
-    },
+    h1: {},
     h2: {
       fontSize: "1.4rem",
       textAlign: "start",
-      fontWeight: "500",
       textTransform: "capitalize",
       letterSpacing: "0.60000px",
-      fontFamily: "'Inter', sans-serif'",
+      fontFamily: "'Baton Turbo', sans-serif'",
     },
     body2: {
       letterSpacing: "0.8000000px",
       textAlign: "start",
       "& * p": {
         fontSize: "0.9rem",
-        fontFamily: "'raleway', sans-serif",
-        color: "#4d4b46",
-        fontWeight: "400",
+        fontFamily: "'Baton Turbo', sans-serif",
+        color: "#595751",
+        fontWeight:300,
       },
     },
 
@@ -144,6 +140,15 @@ export const theme = createTheme({
   },
   guide: {
     container: { backgroundColor: "white", padding: "0" },
+    mainHeader:{
+      fontSize: "1.5rem",
+      letterSpacing: "0.60000px",
+      fontFamily: "'Baton Turbo', sans-serif",
+      fontWeight:600,
+    },
+    header:{
+      fontWeight:600,
+    },
     settings: {
       header: {
         padding: "1rem",

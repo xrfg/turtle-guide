@@ -9,7 +9,7 @@ import ReactQuill from "react-quill"; // ES6
 
 // * MAT UI
 import { makeStyles } from "@material-ui/core/styles";
-import { Button } from "@material-ui/core";
+import { Button, Container } from "@material-ui/core";
 import { red } from "@material-ui/core/colors";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import Card from "@material-ui/core/Card";
@@ -25,16 +25,18 @@ import {ourColors,theme} from '.././../../../styles/Theme'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
-    margin:"0 0 30px 0",
+    maxWidth: 484,
+    margin:"0 0 4rem 0",
     width:"100%",
   },
   cardContent:{
     margin:"0 0 0 0",
-    backgroundColor: ourColors.gainsboro,
+    padding:"1rem 0 0 0.4rem",
+    backgroundColor:ourColors.lightGrey,
   },
   cardTitle:{
-    color:"#424242"
+    color:"#424242",
+    ...theme.guide.header,
   },
   cardDesc:{
     margin:"0 0 0 -15px",
