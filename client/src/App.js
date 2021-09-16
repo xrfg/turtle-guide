@@ -3,20 +3,11 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 //* Import Pages
 import Home from "./Pages/Home/Home";
-import Account from "./Pages/Account/Account";
-import AboutAdmin from "./Pages/AboutAdmin/AboutAdmin";
-import Guide from "./Components/Guide/Guide";
-import SectionGuide from "./Components/Guide/Pages/Section/Section";
-import Event from "./Pages/Event/Event";
-import Section from "./Pages/Section/Section";
-import SignUp from "./Pages/SignUp/SignUp";
-// import SignIn from "./Pages/SignIn/SignIn";
 import Footer from "./Components/Guide/Components/footer/Footer";
-// import Buy from "./Components/Guide/Pages/Buy/Buy";
 
 // * Import Custom  Components
 import Navbar from "./Components/Navbar/Navbar";
-// import Footer from "./Components/Footer/Footer";
+import AuthRoute from "./Components/AuthRoute/AuthRoute";
 
 // REDUX
 import { Provider } from "react-redux";
@@ -25,12 +16,14 @@ import Store from "./store/index";
 // * Mat UI
 import { theme } from "../src/styles/Theme";
 import { MuiThemeProvider } from "@material-ui/core/styles";
+
+// * Routes
 import GuideApp from "./GuideApp";
 import AdminApp from "./AdminApp";
 
 //  * Pages
 import Subscription from "./Pages/Subscription/Subscription";
-// import Buy from "./Components/Guide/Pages/Buy/Buy";
+import SignIn from "./Pages/SignIn/SignIn";
 
 function App() {
   return (
@@ -38,6 +31,7 @@ function App() {
       <MuiThemeProvider theme={theme}>
         <BrowserRouter>
           <div className="App">
+            <Navbar />
             {/* Has to stay here to do not have the admin navbar */}
             <Switch>
               <Route exact path="/" component={Home} />
@@ -45,7 +39,7 @@ function App() {
               <Route path="/admin" component={AdminApp} />
               {/* Has to stay here to do not have the admin navbar */}
 
-              <div
+              {/* <div
                 // This and the next <div> styles are for putting the footer at bottom
                 aria-label="page-container"
                 style={{ position: "relative", minHeight: "100vh" }}
@@ -54,26 +48,14 @@ function App() {
                   aria-label="content-wrap"
                   // style={{ paddingBottom: "353px" }}
                   // ! this padding represents footer's height HARDCODED
-                >
-                  <Navbar />
-                  <Route exact path="/" component={Home} />
-                  {/* <Route exact path="/admin" component={SignUp} /> */}
-                  {/* <Route path="/signup" component={SignUp} /> */}
-                  <Route path="/account" component={Account} />
-                  {/* <Route path="/subscription" component={Subscription} /> */}
-                  {/* <Route path="/payment" component={Buy} /> */}
-                  <Route path="/aboutadmin" component={AboutAdmin} />
-                  <Route exact path="/admin/event/:name" component={Event} />
-                  {/* sections takes id or name */}
-                  <Route
-                    exact
-                    path="/admin/event/sections/:id"
-                    component={Section}
-                  />
-                  <Footer />
-                </div>
-              </div>
+                > */}
+              <Route exact path="/" component={Home} />
+              <Route path="/subscription" component={Subscription} />
+              <Route path="/signin" component={SignIn} />
+              {/* </div>
+              </div> */}
             </Switch>
+            <Footer />
           </div>
         </BrowserRouter>
       </MuiThemeProvider>

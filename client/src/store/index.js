@@ -11,7 +11,7 @@ import userReducer from "./reducers/userReducer";
 import { saveState } from "./localStorage";
 
 const rootReducer = combineReducers({
-  events: eventsReducer, // change names
+  events: eventsReducer,
   user: userReducer,
 });
 /**
@@ -28,10 +28,11 @@ const Store = createStore(
       : compose
   )
 );
-Store.subscribe(()=>{
-  saveState(
-    Store.getState()
-  )
-})
+
+// Store.subscribe(()=>{
+//   saveState(
+//     Store.getState()
+//   )
+// })
 
 export default Store;

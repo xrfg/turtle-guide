@@ -26,13 +26,12 @@ export default function AdminApp({ match }) {
         // style={{ paddingBottom: "353px" }}
         // ! this padding represents footer's height HARDCODED
       >
-        <Navbar />
+        {/* <Navbar /> */}
         <Route path="/admin/account" component={Account} />
         <Route path="/admin/about" component={AboutAdmin} />
         <Route exact path="/admin/event/:name" component={Event} />
         {/* sections takes id or name */}
         <Route exact path="/admin/event/sections/:id" component={Section} />
-        <Footer />
       </div>
     </div>
   );
