@@ -29,8 +29,6 @@ import Subscription from "./Pages/Subscription/Subscription";
 import SignIn from "./Pages/SignIn/SignIn";
 
 function App() {
-  console.log("location", window.location.pathname === "/");
-
   return (
     <Provider store={Store}>
       <MuiThemeProvider theme={theme}>
