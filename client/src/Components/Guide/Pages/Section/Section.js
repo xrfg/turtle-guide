@@ -6,6 +6,7 @@ import React, { useState, useEffect } from "react";
 
 // * Imports
 import { extractNameIdentifier } from "../../Functions/functions";
+import { motion } from "framer-motion";
 
 // * Componentns
 import SectionRender from "../../Components/SectionRender/SectionRender";
@@ -42,6 +43,7 @@ const Section = (props) => {
         <Spinner />
       ) : (
         <>
+          {/* <motion.div animate={{ x: 100 }} transition={{ delay: 1 }}> */}
           <SectionNavBar />
           <SectionRender
             contents={section.contents}
@@ -49,6 +51,7 @@ const Section = (props) => {
             sectionDescription={section.description}
             sectionTitle={section.title}
           />
+          {/* </motion.div> */}
         </>
       )}
     </>
