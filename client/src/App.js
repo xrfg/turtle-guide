@@ -32,28 +32,15 @@ function App() {
         <BrowserRouter>
           <div className="App">
             <Navbar />
-            {/* Has to stay here to do not have the admin navbar */}
+
             <Switch>
+              <AuthRoute path="/admin" component={AdminApp} />
+
+              {/* Public routes */}
               <Route exact path="/" component={Home} />
               <Route path="/events" component={GuideApp} />
-              <Route path="/admin" component={AdminApp} />
-              {/* Has to stay here to do not have the admin navbar */}
-
-              {/* <div
-                // This and the next <div> styles are for putting the footer at bottom
-                aria-label="page-container"
-                style={{ position: "relative", minHeight: "100vh" }}
-              >
-                <div
-                  aria-label="content-wrap"
-                  // style={{ paddingBottom: "353px" }}
-                  // ! this padding represents footer's height HARDCODED
-                > */}
-              <Route exact path="/" component={Home} />
               <Route path="/subscription" component={Subscription} />
               <Route path="/signin" component={SignIn} />
-              {/* </div>
-              </div> */}
             </Switch>
             <Footer />
           </div>

@@ -1,15 +1,20 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 
 const AuthRoute = (props) => {
-  const { component: Component, isAuthenticated, ...rest } = props;
+  // Destruc
+  const { component: Component, ...rest } = props;
+
+  // * Hooks
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const token = useSelector((state) => state.user.token);
 
   return (
     <Route
       {...rest}
       render={(props) =>
-        !isAuthenticated ? (
+        !isAuthenticated || token.length === 0 ? (
           <Redirect
             to={{
               pathname: "/",
