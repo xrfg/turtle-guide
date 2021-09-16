@@ -20,12 +20,28 @@ import CardActions from "@material-ui/core/CardActions";
 
 // * Imports
 import { goToSection } from "../../Functions/functions";
+import {ourColors,theme} from '.././../../../styles/Theme'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
+    margin:"0 0 30px 0",
+    width:"100%",
   },
+  cardContent:{
+    margin:"0 0 0 0",
+    backgroundColor: ourColors.gainsboro,
+  },
+  cardTitle:{
+    color:"#424242"
+  },
+  cardDesc:{
+    margin:"0 0 0 -15px",
+  },
+
   media: {
+    margin:"0",
     height: 0,
     paddingTop: "56.25%", // 16:9
   },
@@ -80,12 +96,19 @@ const BlockSection = (props) => {
           image={props.data.sectionCover.url}
           title={props.data.sectionCover.filename}
         />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+        <CardContent
+        className={classes.cardContent}
+        >
+          <Typography 
+          className={classes.cardTitle}
+          gutterBottom variant="h2" component="h2">
             {title}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            <ReactQuill value={description} readOnly={true} theme={"bubble"} />
+          <Typography 
+          variant="body2" component="p">
+            <ReactQuill
+            className={classes.cardDesc}
+             value={description} readOnly={true} theme={"bubble"} />
           </Typography>
         </CardContent>
       </CardActionArea>
