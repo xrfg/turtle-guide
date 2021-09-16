@@ -21,11 +21,6 @@ import { createObj } from "../functions/functions";
 const BASEurlUser = "http://localhost:5000/api/users/";
 const BASEurlAuth = "http://localhost:5000/api/auth/";
 
-// ! IMPORTANT TO REMOVE
-// TODO CHANGE TOKEN to be sent from the client's cookie
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjExZTVhY2E1NjEwNGExYzA5ZjlkMTNlIn0sImlhdCI6MTYzMDQ4NTU4OCwiZXhwIjoxNjMzMDc3NTg4fQ.-PpbSoenUfmDFMsII1ALNvj7OUIm19PuJYa4GD5xJfI";
-
 /**
  * @userSignUp
  * @desc action to register a user
@@ -141,8 +136,8 @@ export const userUpdate = (obj) => {
     const objToSend = createObj({
       method: "PUT",
       url: BASEurlUser,
-      data: obj,
-      token: token,
+      data: obj.user,
+      token: obj.token,
     });
 
     try {

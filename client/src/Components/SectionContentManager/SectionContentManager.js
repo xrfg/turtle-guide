@@ -519,7 +519,9 @@ export default function SectionContentManager(props) {
           },
         };
 
-        const res = await dispatch(userUpdate(objToSave));
+        const res = await dispatch(
+          userUpdate({ user: objToSave, token: token })
+        );
         // set to save
         if (res.success === true) {
           return setNeedsToSave(false);
