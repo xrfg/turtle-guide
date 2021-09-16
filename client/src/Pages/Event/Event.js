@@ -182,13 +182,52 @@ export default function Event(props) {
   // * Functions
 
   /**
+   * @function addIntro
+   * @desc makes an unique obj INTRO with id:1, order:1
+   * all the other sections will start from id:2 and order:2
+   * so that intro is always first in the array
+   */
+
+  const addIntro = () => {
+    console.log(sections);
+    if (sections.length === 0 || !sections[0].id === 1) {
+      const intro = {
+        type: "intro",
+        id: 1,
+        order: 1,
+        url: "",
+        slug: "title",
+        contents: [],
+        title: `${event.title} Introduction`,
+        description: "Description",
+        sectionCover: {
+          filename: "",
+          public_id: "",
+          url: "",
+          url_thumb: "",
+        },
+      };
+
+      setSections([intro, ...sections]);
+      console.log([intro, ...sections]);
+    } else {
+      setIsError("Already have an Intro!");
+      setTimeout(() => {
+        setIsError(false);
+      }, 4000);
+      console.log("ALREADY HAVE INTRO!");
+    }
+  };
+
+  /**
    * @function findBiggestId
    * @desc returns a Number -> biggest existing integer of an "id" from the sections array
    * is aiding the assigning of id's to new sections in function addToContents
    */
 
   const findBiggestId = (e) => {
-    let biggestId = 1;
+    // * starts from 2 so that it accounts for Intro
+    let biggestId = 2;
     sections.forEach((section) => {
       if (section.id > biggestId) {
         biggestId = section.id;
@@ -233,10 +272,15 @@ export default function Event(props) {
 
     newSectionsArr.forEach((section, i) => {
       if (sections.length === 0) {
-        section["id"] = i + 1;
-        section["order"] = i + 1;
+        // * starts from 2 so that it accounts for Intro
+        section["id"] = 2;
+        section["order"] = 2;
+      } else if (sections.length === 1 && sections[0].type === "intro") {
+        section["id"] = 2;
+        section["order"] = 2;
       } else {
         // find the section with the biggest id
+        // if (sections[0].id === 1)
         const lastSection = sections.find((section) => section.id === bigId);
 
         section["id"] = lastSection.id + i + 1;
@@ -555,7 +599,7 @@ export default function Event(props) {
               <CustomButton
                 text="Intro"
                 endIcon="add"
-                onClickFunc={() => addToContents()}
+                onClickFunc={() => addIntro()}
               />
               <CustomButton
                 text="Section"

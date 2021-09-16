@@ -70,6 +70,9 @@ export default function EventSection(props) {
   const [editing, setEditing] = useState(false);
   const [openDeleteDialogBox, setOpenDeleteDialogBox] = useState(false);
 
+  // ! to check if it is the intro section
+  const isIntro = id === 1;
+
   // * Functions
 
   /**
@@ -130,10 +133,10 @@ export default function EventSection(props) {
       className={classes.card}
       key={id}
       // the attributes below are for the drag and drop function
-      draggable={true}
-      onDragOver={(e) => e.preventDefault()}
-      onDragStart={props.handleDrag}
-      onDrop={props.handleDrop}
+      draggable={isIntro ? null : true}
+      onDragOver={isIntro ? null : (e) => e.preventDefault()}
+      onDragStart={isIntro ? null : props.handleDrag}
+      onDrop={isIntro ? null : props.handleDrop}
     >
       <PopUpDialogBox
         open={openDeleteDialogBox}
@@ -182,7 +185,7 @@ export default function EventSection(props) {
               variant="h6"
               component="h6"
             >
-              {title}
+              {title} {id}
             </Typography>
             {url_thumb.length !== 0 ? (
               <img
@@ -227,7 +230,8 @@ export default function EventSection(props) {
           aria-label="horizontal button group"
         >
           {/* // ! all the section is draggable, should only work when dragstart is this button */}
-          <CustomIconButton icon="drag" />
+          {isIntro ? null : <CustomIconButton icon="drag" />}
+
           {/* Remove Section   */}
           <CustomIconButton onClickFunc={toggleDeleteDialogBox} icon="delete" />
         </ButtonGroup>
