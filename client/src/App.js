@@ -21,6 +21,7 @@ import { Provider } from "react-redux";
 import Store from "./store/index";
 
 // * Mat UI
+import { makeStyles } from "@material-ui/core";
 import { theme } from "../src/styles/Theme";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 
@@ -32,8 +33,7 @@ import AdminApp from "./AdminApp";
 import Subscription from "./Pages/Subscription/Subscription";
 import SignIn from "./Pages/SignIn/SignIn";
 
-import { makeStyles } from "@material-ui/core";
-
+// Important for the general styling
 const useStyles = makeStyles((theme) => ({
   "@global": {
     body: {

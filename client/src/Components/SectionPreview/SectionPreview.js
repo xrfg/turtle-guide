@@ -49,6 +49,8 @@ const useStyles = makeStyles((theme) =>
       height: "180px",
       // clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 81%)",
       boxShadow: "3px 3px 10px -8px rgba(0,0,0,0.97)",
+      // to adapt with the navbar
+      marginTop: "100px",
     },
     sectionTitleWrap: {
       // clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 81%)",

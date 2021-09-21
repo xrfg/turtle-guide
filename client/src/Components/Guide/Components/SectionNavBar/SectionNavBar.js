@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   navWrapper: {
     position: "fixed",
     width: "100%",
-    height: "4.8rem",
+    height: "60px",
     // transitionTimingFunction: "ease-in",
     // transition: "all 1s",
     zIndex: "1000",
@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     backgroundColor: ourColors.gainsboro,
+    boxShadow: "7px 13px 9px -7px rgba(0,0,0,0.08)",
   },
   nav: {
     display: "flex",
@@ -48,9 +49,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     // backgroundColor: ourColors.gainsboro,
     // height: "3rem",
+    marginBottom: "20px",
   },
   sectionTitle: {
-    fontSize: "1.2rem",
+    fontSize: "1rem",
     color: ourColors.jet,
   },
   // navFade: {
@@ -58,7 +60,8 @@ const useStyles = makeStyles((theme) => ({
   // },
   stepper: {
     position: "absolute",
-    bottom: "5px",
+    marginTop: "5px",
+    marginBottom: "5px",
     backgroundColor: "transparent",
   },
 }));
