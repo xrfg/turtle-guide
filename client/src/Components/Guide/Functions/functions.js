@@ -14,7 +14,8 @@ exports.goToSection = (
   order,
   sectionIndex,
   eventSlug,
-  nameIdentifier
+  nameIdentifier,
+  direction = "next"
 ) => {
   history.push(`/events/${eventSlug}/sections/${id}`, {
     eventSlug: eventSlug,
@@ -22,6 +23,7 @@ exports.goToSection = (
     id: id,
     order: order,
     sectionIndex: sectionIndex,
+    direction: direction,
   });
 };
 

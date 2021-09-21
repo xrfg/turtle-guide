@@ -174,7 +174,6 @@ const SectionPreview = (props) => {
         {contents.map((x) => {
           /* images */
           if (x.type === "image") {
-            console.log("x.content.caption?", x.content);
             return (
               <div className={classes.card}>
                 <img
