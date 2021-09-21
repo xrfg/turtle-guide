@@ -47,7 +47,7 @@ export default function BottomNavBar() {
       <BottomNavigationAction
         // * Intro of the exhibition
         component={Link}
-        to={event && `/events/${event.slug}/`}
+        to={event && `/events/${event.slug}/sections/1`} // intro is always the first slide
         label="Home"
         value="home"
         icon={<Home />}

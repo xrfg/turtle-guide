@@ -46,7 +46,6 @@ const useGetAndSaveEvent = (eventName, val = null) => {
     }
     //eslint-disable-next-line
   }, []);
-  console.log("useGetAndSaveEvent", event);
   return event;
 };
 
