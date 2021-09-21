@@ -22,6 +22,10 @@ import theme from "../../styles/Theme";
 import ReactQuill from "react-quill"; // ES6
 import { transform } from "lodash";
 
+// CSS vars
+const windowWidth = window.innerWidth;
+console.log("windowWidth", windowWidth);
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
@@ -40,17 +44,23 @@ const useStyles = makeStyles((theme) =>
       // boxShadow: "3px 3px 15px -8px rgba(0,0,0,0.86)",
       // clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 81%)",
     },
+    // TODO CSS better centering NOT a priority
     sectionCover: {
-      marginLeft: "-20px",
-      width: "115%",
+      // marginLeft: "-512px" /* 50% */,
+      // minHeight: "100%",
+      // minWidth: "680px",
       backgroundRepeat: "no-repeat",
-      backgroundPosition: "center",
+      backgroundPosition: "center center",
       backgroundSize: "cover",
       height: "180px",
-      // clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 81%)",
+      // width: "120%",
+      width: `${windowWidth + 80}px`,
+      // left: "50%",
+
+      marginLeft: `-${(windowWidth + 80) / 10}px`,
       boxShadow: "3px 3px 10px -8px rgba(0,0,0,0.97)",
       // to adapt with the navbar
-      marginTop: "100px",
+      marginTop: "70px",
     },
     sectionTitleWrap: {
       // clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 81%)",

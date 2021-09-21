@@ -22,6 +22,8 @@ import { MobileStepper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
 import { ourColors } from "../../../../styles/Theme";
 
+// TODO CSS navbar 60px centered corretly
+
 const useStyles = makeStyles((theme) => ({
   // "@global": {
   //   // ... global styles here
@@ -33,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   navWrapper: {
     position: "fixed",
     width: "100%",
-    height: "60px",
+    height: "70px",
     // transitionTimingFunction: "ease-in",
     // transition: "all 1s",
     zIndex: "1000",
@@ -41,27 +43,31 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     backgroundColor: ourColors.gainsboro,
-    boxShadow: "7px 13px 9px -7px rgba(0,0,0,0.08)",
+    boxShadow: " 0 3px 9px rgba(0, 0, 0, 0.1)",
+    // marginTop: "0px",
   },
   nav: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    // backgroundColor: ourColors.gainsboro,
-    // height: "3rem",
     marginBottom: "20px",
   },
   sectionTitle: {
     fontSize: "1rem",
     color: ourColors.jet,
   },
-  // navFade: {
-  //   backgroundColor: ourColors.gainsboro,
-  // },
-  stepper: {
+  stepperContainer: {
     position: "absolute",
-    marginTop: "5px",
-    marginBottom: "5px",
+    marginTop: "40px",
+    marginBottom: "15px",
+    backgroundColor: "transparent",
+    // display: "inline-block",
+  },
+  stepper: {
+    // position: "absolute",
+    // marginTop: "5px",
+    // marginBottom: "5px",
+    // display: "inline-block",
     backgroundColor: "transparent",
   },
 }));
@@ -131,13 +137,15 @@ const SectionNavBar = () => {
               icon="next"
             />
           </div>
-          <MobileStepper
-            className={classes.stepper}
-            variant="dots"
-            steps={event.sections.length}
-            position="static"
-            activeStep={indexCurrentSection}
-          />
+          <div className={classes.stepperContainer}>
+            <MobileStepper
+              className={classes.stepper}
+              variant="dots"
+              steps={event.sections.length}
+              position="static"
+              activeStep={indexCurrentSection}
+            />
+          </div>
         </>
       </div>
     </div>
