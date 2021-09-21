@@ -79,6 +79,7 @@ const SectionNavBar = () => {
 
   // idCurrentSection is the current index in the array of the section
   const idCurrentSection = getSectionFromAddress(window.location.pathname);
+
   // find current index in sections array
   const indexCurrentSection = event.sections.findIndex(
     (x) => x.id === idCurrentSection
@@ -87,6 +88,9 @@ const SectionNavBar = () => {
   // extract the ids of the prev/next sections using the current index
   const idPrevSection = event.sections[indexCurrentSection - 1]?.id; //
   const idNextSection = event.sections[indexCurrentSection + 1]?.id;
+
+  // setGoPrev(idPrevSection || ? true: false);
+  // setGoNext(idNextSection || ? true: false)
 
   // extract in case the page is called directly
   const nameIdentifier = extractNameIdentifier(window.location.pathname);
@@ -106,7 +110,9 @@ const SectionNavBar = () => {
         <>
           <div className={classes.nav}>
             <CustomIconButton
-              disabled={idPrevSection ? false : true}
+              // TODO disabled if is 1
+              // with states goPrev go Next bool values
+              disabled={idPrevSection === 1 ? true : false}
               onClickFunc={() =>
                 goToSection(
                   history,
@@ -114,15 +120,14 @@ const SectionNavBar = () => {
                   0,
                   idCurrentSection,
                   eventSlug,
-                  nameIdentifier,
-                  "prev" // gives the direction prev/next for the animation
+                  nameIdentifier
                 )
               }
               icon="prev"
             />
             <h4 className={classes.sectionTitle}>{event?.title}</h4>
             <CustomIconButton
-              disabled={idNextSection ? false : true}
+              disabled={idNextSection === 1 ? true : false}
               onClickFunc={() =>
                 goToSection(
                   history,
@@ -130,8 +135,7 @@ const SectionNavBar = () => {
                   0,
                   idCurrentSection,
                   eventSlug,
-                  nameIdentifier,
-                  "next" // gives the direction prev/next for the animation
+                  nameIdentifier
                 )
               }
               icon="next"
@@ -141,9 +145,9 @@ const SectionNavBar = () => {
             <MobileStepper
               className={classes.stepper}
               variant="dots"
-              steps={event.sections.length}
+              steps={event.sections.length - 1} // to skip the intro
               position="static"
-              activeStep={indexCurrentSection}
+              activeStep={indexCurrentSection - 1}
             />
           </div>
         </>
