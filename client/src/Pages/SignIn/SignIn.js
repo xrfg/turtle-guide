@@ -18,6 +18,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { theme } from "../../styles/Theme";
 
 // * Imports
 import { useHistory } from "react-router-dom";
@@ -25,6 +26,7 @@ import { useHistory } from "react-router-dom";
 // * REDUX
 import { useSelector, useDispatch } from "react-redux";
 import { signIn } from "../../store/actions/userActions";
+import CustomButton from "../../Components/Buttons/CustomButtons/CustomButton";
 
 function Copyright() {
   return (
@@ -40,6 +42,7 @@ function Copyright() {
 }
 
 const useStyles = makeStyles((theme) => ({
+  container: { ...theme.admin.container },
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
@@ -53,9 +56,6 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
   },
 }));
 
@@ -121,8 +121,7 @@ export default function SignIn() {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
+    <Container component="main" maxWidth="xs" className={classes.container}>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -165,7 +164,13 @@ export default function SignIn() {
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
-          <Button
+          <CustomButton
+            type="submit"
+            style={{ width: "100%", margin: theme.spacing(3, 0, 2) }}
+            onClickFunc={(e) => submitLoginData(e)}
+            text="Sign In"
+          />
+          {/* <Button
             type="submit"
             fullWidth
             variant="contained"
@@ -176,7 +181,7 @@ export default function SignIn() {
             }}
           >
             Sign In
-          </Button>
+          </Button> */}
           <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">

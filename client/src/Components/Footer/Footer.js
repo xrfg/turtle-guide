@@ -1,9 +1,17 @@
 import { Container, Grid, Box, Link } from "@material-ui/core";
+import { theme } from "../../styles/Theme";
 
 export default function Footer() {
   return (
     // for placing the footer at the bottom
-    <footer style={{ position: "absolute", bottom: "0", width: "100%" }}>
+    <footer
+      style={{
+        position: "absolute",
+        bottom: "0",
+        width: "100%",
+        fontFamily: theme.typography.fontFamily,
+      }}
+    >
       <Box
         px={{ xs: 3, sm: 10 }}
         py={{ xs: 5, sm: 10 }}

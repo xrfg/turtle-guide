@@ -48,10 +48,8 @@ export const theme = createTheme({
   // "@global": {
   //   // ... global styles here
 
-  //   body: {
-  //     margin: 0,
-  //   },
-  // },
+  /*   body: { }, */
+
   palette: {
     common: {
       black: `${ourColors.black}`,
@@ -115,6 +113,9 @@ export const theme = createTheme({
   },
   admin: {
     // container maxWidth="md"
+    page: {
+      background: `linear-gradient(360deg, ${ourColors.lightGrey} 10%, ${ourColors.indigoDye} 360%)`,
+    },
     container: {
       minHeight: "calc(100vh - 80px)",
       padding: "2rem",
@@ -144,6 +145,12 @@ export const theme = createTheme({
           borderBottom: "0",
         },
       }, */
+    },
+    gridContentHeader: {
+      fontSize: "1.6rem",
+      textAlign: "center",
+      color: ourColors.jet,
+      marginBottom: "1rem",
     },
     imgTitle: { fontWeight: 800, fontSize: "0.8rem", color: ourColors.jet },
     imgDesc: { fontWeight: 400, fontSize: "0.8rem", color: ourColors.jet },

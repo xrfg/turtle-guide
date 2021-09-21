@@ -42,6 +42,13 @@ const useStyles = makeStyles((theme) =>
       marginBottom: "1rem",
       overflow: "hidden",
     },
+    paperDesc: {
+      width: "90%",
+      borderRadius: "0",
+      margin: "0 auto",
+      transform: "translate(0,-1.4rem)",
+      marginBottom: "-1.4rem",
+    },
     mainContainer: {
       display: "flex",
     },
@@ -137,9 +144,11 @@ const ContentBlockText = (props) => {
    *
    */
 
+  // id: 999999,
+
   return (
     <Card
-      className={classes.paper}
+      className={id === 999999 ? classes.paperDesc : classes.paper}
       key={id}
       // below attributes for drag nd drop
       id={id}

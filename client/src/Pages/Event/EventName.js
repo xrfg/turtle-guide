@@ -2,7 +2,9 @@
  * @desc Components that returns an input for the event name
  */
 
+// * react imports
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 // * material UI imports Icons
 import { TextField, Typography, makeStyles, Box } from "@material-ui/core";
@@ -11,9 +13,19 @@ import { TextField, Typography, makeStyles, Box } from "@material-ui/core";
 // * React Components
 import EditSaveButton from "../../Components/Buttons/EditSaveButton";
 
-import { useHistory } from "react-router-dom";
+// * our colors
+import { ourColors } from "../../styles/Theme";
 
 const useStyles = makeStyles((theme) => ({
+  eventNameContainer: {
+    display: "flex",
+    alignItems: "center",
+    padding: "1rem",
+    borderRadius: "8px",
+    backgroundColor: ourColors.lightGrey,
+    width: "60%",
+    marginBottom: "1rem",
+  },
   nameInput: { width: "24rem", margin: 8 },
   saveBtn: {
     height: "100%",
@@ -68,7 +80,7 @@ const EventName = (props) => {
   };
 
   return (
-    <Box>
+    <Box className={classes.eventNameContainer}>
       {editing ? (
         <TextField
           disabled={editing ? false : true}
@@ -85,14 +97,14 @@ const EventName = (props) => {
           onChange={onChange}
         />
       ) : (
-        <Typography className={classes.nameInput}>
+        <Typography component="h2" variant="h2" className={classes.nameInput}>
           {eventName ? eventName : "Event Name"}
         </Typography>
       )}
       <EditSaveButton editStatus={editing} editHandler={handleSaveEditBtn} />
-      <Typography className={classes.nameInput}>
+      {/* <Typography className={classes.nameInput}>
         The address of your event is: /{slug}
-      </Typography>
+      </Typography> */}
     </Box>
   );
 };

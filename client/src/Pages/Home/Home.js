@@ -1,5 +1,7 @@
 import React from "react";
 
+import { useHistory } from "react-router-dom";
+
 // * Mat UI Imports
 
 import {
@@ -58,6 +60,9 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
   const classes = useStyles();
+
+  let history = useHistory();
+
   return (
     <Container maxWidth="md" className={classes.container}>
       <Grid
@@ -74,7 +79,7 @@ const Home = () => {
           <CustomButton
             text="Start your own guide"
             style={{ boxShadow: `0 3px 5px 2px ${ourColors.black}` }} // custom boxShadow because default is very light!
-            href="/subscription" //! make a working Link
+            onClickFunc={() => history.push("/subscription")}
           />
         </Grid>
       </Grid>

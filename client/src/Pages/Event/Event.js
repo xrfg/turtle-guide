@@ -29,6 +29,9 @@ import PopUpDialogBox from "../../Components/PopUpDialogBox/PopUpDialogBox";
 // * Functions
 import { goBackToPage, unBlock } from "../../functions/functions";
 
+//* css style sheet
+import "./event.css";
+
 // * material UI imports Components
 import {
   Container,
@@ -47,9 +50,21 @@ import CustomButton from "../../Components/Buttons/CustomButtons/CustomButton";
 import CustomIconButton from "../../Components/Buttons/CustomIconButtons/CustomIconButton";
 
 const useStyles = makeStyles((theme) => ({
-  page: { ...theme.admin.page },
+  page: {
+    ...theme.admin.page,
+  },
   container: { ...theme.admin.container }, // main Admin container class
-  guide__header: { marginBottom: "1rem" },
+  gridContentHeader: { ...theme.admin.gridContentHeader },
+  eventHeaderTab: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  eventBtnGrp: {
+    padding: "1rem 0",
+    display: "flex",
+    justifyContent: "space-around",
+  },
   saveDelBtnGrp: {
     // backgroundColor: "red",
     width: "100%",
@@ -540,56 +555,64 @@ export default function Event(props) {
 
         {/* // TODO ERROR IF EVENT IS UNDEFINED */}
         {event === undefined ? null : (
-          <Grid container direction="row" spacing={2}>
-            <Grid item xs={9}>
-              <PopUpDialogBox
-                open={openDeleteDialogBox}
-                isClose={toggleDeleteDialogBox}
-                confirm={deleteEvent}
-                confirmButtonTitle="Delete Event"
-                messageTitle={`Are you sure you want to delete the ${event.title} section?`}
-                messageBody="Deleting a section will permanently erase it from the event."
-              />
-              {/* 
-        // * Name of Event Input
-        */}
-              <EventName
-                // important to fire the event name update
-                eventNameUpdate={eventNameUpdate}
-                title={event.title}
-                slug={event.slug}
-                getEventName={createAndSendEvent}
-              />
-            </Grid>
-            {/* Delete Event */}
-            <Grid item xs={3}>
-              {/* // ?  temporarly disabled, to implement? */}
-              {/* // TODO add check saving */}
-
-              <CustomButton
-                text="Account"
-                startIcon="arrowBack"
-                onClickFunc={() => goBackToPage(needsToSave, history)}
-              />
-
-              <div>
-                <CustomIconButton
-                  icon="save"
-                  disabled={!needsToSave}
-                  onClickFunc={saveEvent}
-                  // make a focus light so the user knows to save
-                  style={{
-                    backgroundColor: !needsToSave ? "inherit" : "#26b519",
-                  }}
+          <Grid container direction="row" /* spacing={2} */>
+            <Grid container className={classes.eventHeaderTab}>
+              <Grid item xs={9}>
+                <PopUpDialogBox
+                  open={openDeleteDialogBox}
+                  isClose={toggleDeleteDialogBox}
+                  confirm={deleteEvent}
+                  confirmButtonTitle="Delete Event"
+                  messageTitle={`Are you sure you want to delete the ${event.title} section?`}
+                  messageBody="Deleting a section will permanently erase it from the event."
                 />
+                {/* 
+                      // * Name of Event Input
+                      */}
+                <EventName
+                  // important to fire the event name update
+                  eventNameUpdate={eventNameUpdate}
+                  title={event.title}
+                  slug={event.slug}
+                  getEventName={createAndSendEvent}
+                />
+              </Grid>
+              {/* Delete Event */}
+              <Grid
+                item
+                xs={2}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-end",
+                }}
+              >
                 {/* // ?  temporarly disabled, to implement? */}
                 {/* // TODO add check saving */}
-                <CustomIconButton
-                  color="error"
-                  icon="delete"
-                  onClickFunc={toggleDeleteDialogBox}
+                <CustomButton
+                  text="Account"
+                  startIcon="arrowBack"
+                  onClickFunc={() => goBackToPage(needsToSave, history)}
                 />
-              </div>
+                <ButtonGroup className={classes.eventBtnGrp}>
+                  <CustomIconButton
+                    icon="save"
+                    disabled={!needsToSave}
+                    onClickFunc={saveEvent}
+                    // make a focus light so the user knows to save
+                    style={{
+                      backgroundColor: !needsToSave ? "inherit" : "#26b519",
+                    }}
+                  />
+                  {/* // ?  temporarly disabled, to implement? */}
+                  {/* // TODO add check saving */}
+                  <CustomIconButton
+                    color="error"
+                    icon="delete"
+                    onClickFunc={toggleDeleteDialogBox}
+                  />
+                </ButtonGroup>
+              </Grid>
             </Grid>
 
             {/* 
@@ -607,51 +630,41 @@ export default function Event(props) {
                 onClickFunc={() => addToContents()}
               />
 
-              <ButtonGroup
+              {/* <ButtonGroup
                 className={classes.btnGroup}
                 disabled
                 orientation="vertical"
                 aria-label="vertical outlined primary button group"
               >
-                {/* // TODO Making a custom Button Group */}
                 <Button endIcon={<Add />}>Pay-wall</Button>
                 <Button endIcon={<Add />}>Feedback</Button>
                 <Button endIcon={<Add />}>Map</Button>
-              </ButtonGroup>
+              </ButtonGroup> */}
             </Grid>
             {/* 
         // * SECTIONS CONTAINER -> GUIDE
         */}
-            <Grid item xs={8}>
-              <Box filled>
-                <CardContent>
-                  <Typography
-                    variant="h5"
-                    component="h3"
-                    className={classes.guide__header}
-                  >
-                    Guide
-                  </Typography>
-                  {/* Displaying the current sections */}
-                  <ul>
-                    {sections
-                      .sort((a, b) => a.order - b.order)
-                      .map((section, i) => {
-                        return (
-                          <EventSection
-                            key={i}
-                            section={section}
-                            sectionToDelete={deleteSection}
-                            handleDrag={handleDrag}
-                            handleDrop={handleDrop}
-                            editSection={editSectionMode}
-                            saveSectionTitle={saveSectionTitle} // to save when sectin title changes
-                          />
-                        );
-                      })}
-                  </ul>
-                </CardContent>
-              </Box>
+            <Grid item xs={9}>
+              <CardContent>
+                <h3 className={classes.gridContentHeader}>Guide</h3>
+                {/* Displaying the current sections */}
+
+                {sections
+                  .sort((a, b) => a.order - b.order)
+                  .map((section, i) => {
+                    return (
+                      <EventSection
+                        key={i}
+                        section={section}
+                        sectionToDelete={deleteSection}
+                        handleDrag={handleDrag}
+                        handleDrop={handleDrop}
+                        editSection={editSectionMode}
+                        saveSectionTitle={saveSectionTitle} // to save when sectin title changes
+                      />
+                    );
+                  })}
+              </CardContent>
             </Grid>
           </Grid>
         )}

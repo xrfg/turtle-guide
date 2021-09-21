@@ -37,12 +37,12 @@ const useStyles = makeStyles((theme) => ({
   },
   forward: {
     "&:hover": {
-      color: "#4698f0", // lightblue
+      color: "#FFB833", // sunnyyellow
     },
   },
   edit: {
     "&:hover": {
-      color: "#ffd014", // sunnyyellow
+      color: "#4698f0", // blue
     },
   },
   save: {
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
   },
   add: {
     "&:hover": {
-      color: "#ffd014", // sunnyyellow
+      color: "#FFB833", // sunnyyellow
     },
   },
   prev: {},

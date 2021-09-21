@@ -4,6 +4,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
+import { theme } from "../../styles/Theme";
+
 // * Mat UI
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -25,6 +27,7 @@ import { userSignUp } from "../../store/actions/userActions";
 
 import "./signUp.scss";
 import validation from "./validation";
+import CustomButton from "../../Components/Buttons/CustomButtons/CustomButton";
 
 function Copyright() {
   return (
@@ -53,9 +56,6 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(3),
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2),
   },
 }));
 
@@ -226,15 +226,12 @@ export default function SignUp(props) {
               />
             </Grid>
           </Grid>
-          <Button
+          <CustomButton
             type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign Up
-          </Button>
+            style={{ width: "100%", margin: theme.spacing(3, 0, 2) }}
+            text="Sign Up"
+          />
+
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link href="#" variant="body2">
