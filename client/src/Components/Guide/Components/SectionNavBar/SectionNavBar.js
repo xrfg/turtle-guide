@@ -27,26 +27,28 @@ const useStyles = makeStyles((theme) => ({
     position: "fixed",
     width: "100%",
     height: "4.8rem",
-    transitionTimingFunction: "ease-in",
-    transition: "all 1s",
+    // transitionTimingFunction: "ease-in",
+    // transition: "all 1s",
     zIndex: "1000",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    backgroundColor: ourColors.gainsboro,
   },
   nav: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    // backgroundColor: ourColors.gainsboro,
     // height: "3rem",
   },
   sectionTitle: {
     fontSize: "1.2rem",
     color: ourColors.jet,
   },
-  navFade: {
-    backgroundColor: ourColors.gainsboro,
-  },
+  // navFade: {
+  //   backgroundColor: ourColors.gainsboro,
+  // },
   stepper: {
     position: "absolute",
     bottom: "5px",
@@ -59,9 +61,6 @@ const SectionNavBar = () => {
   // * Hooks
   const history = useHistory();
   const event = useGetEvent();
-
-  // * States
-  const [show, handleShow] = useState(false);
 
   // idCurrentSection is the current index in the array of the section
   const idCurrentSection = getSectionFromAddress(window.location.pathname);
@@ -86,64 +85,51 @@ const SectionNavBar = () => {
    */
   useGetAndSaveEvent(nameIdentifier, event);
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 30) {
-      handleShow(true);
-    } else {
-      handleShow(false);
-    }
-    return () => {
-      window.removeEventListener("scroll");
-    };
-  });
-
   return (
     <div>
-      <div className={`${classes.navWrapper} ${show && classes.navFade}`}>
-        {show === false ? null : (
-          <>
-            <div className={classes.nav}>
-              <CustomIconButton
-                disabled={idPrevSection ? false : true}
-                onClickFunc={() =>
-                  goToSection(
-                    history,
-                    idPrevSection,
-                    0,
-                    idCurrentSection,
-                    eventSlug,
-                    nameIdentifier,
-                    "prev" // gives the direction prev/next for the animation
-                  )
-                }
-                icon="prev"
-              />
-              <h4 className={classes.sectionTitle}>{event?.title}</h4>
-              <CustomIconButton
-                disabled={idNextSection ? false : true}
-                onClickFunc={() =>
-                  goToSection(
-                    history,
-                    idNextSection,
-                    0,
-                    idCurrentSection,
-                    eventSlug,
-                    nameIdentifier,
-                    "next" // gives the direction prev/next for the animation
-                  )
-                }
-                icon="next"
-              />
-            </div>
-            <MobileStepper
-              className={classes.stepper}
-              variant="dots"
-              steps={event.sections.length}
-              position="static"
-              activeStep={indexCurrentSection}
+      <div className={`${classes.navWrapper}`}>
+        <>
+          <div className={classes.nav}>
+            <CustomIconButton
+              disabled={idPrevSection ? false : true}
+              onClickFunc={() =>
+                goToSection(
+                  history,
+                  idPrevSection,
+                  0,
+                  idCurrentSection,
+                  eventSlug,
+                  nameIdentifier,
+                  "prev" // gives the direction prev/next for the animation
+                )
+              }
+              icon="prev"
             />
-          </>
-        )}
+            <h4 className={classes.sectionTitle}>{event?.title}</h4>
+            <CustomIconButton
+              disabled={idNextSection ? false : true}
+              onClickFunc={() =>
+                goToSection(
+                  history,
+                  idNextSection,
+                  0,
+                  idCurrentSection,
+                  eventSlug,
+                  nameIdentifier,
+                  "next" // gives the direction prev/next for the animation
+                )
+              }
+              icon="next"
+            />
+          </div>
+          <MobileStepper
+            className={classes.stepper}
+            variant="dots"
+            steps={event.sections.length}
+            position="static"
+            activeStep={indexCurrentSection}
+          />
+        </>
       </div>
     </div>
   );
