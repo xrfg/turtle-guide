@@ -919,53 +919,66 @@ export default function SectionContentManager(props) {
               selected={toggleSelected}
               onChange={() => {
                 setToggleSelected(!toggleSelected);
+                // makes btn filled or empty (grey), also activates the toggle "Contents" or "Preview"
               }}
-              onClick={() => handleOpen("preview")}
+              /* onClick={() => handleOpen("preview")} */
             >
               Preview
             </ToggleButton>
           </Grid>
 
+          {/* if toggleSelected */}
+
           {/* // ? Contents container */}
           {/* // ? Add content */}
+
           <Grid item xs={9} className={classes.gridContent}>
-            <h3 className={classes.gridContentHeader}>Contents</h3>
-            {/* // ? map contents state */}
-            {!contents
-              ? null
-              : contents
-                  .sort((a, b) => a.order - b.order)
-                  .map((x, i) => {
-                    if (x.type === "text") {
-                      return (
-                        <ContentBlockText
-                          isDraggable={true}
-                          item={x}
-                          key={x.id}
-                          // receives the id of the item to delete
-                          itemToDelete={toggleDeleteDialogBox}
-                          // gets the new content to update
-                          newContent={updateMediaText}
-                          // Handle the drag and drop
-                          handleDrag={handleDrag}
-                          handleDrop={handleDrop}
-                        />
-                      );
-                    }
+            <h3 className={classes.gridContentHeader}>
+              {toggleSelected ? "Preview" : "Contents"}
+            </h3>
+
+            {toggleSelected ? (
+              <SectionPreview
+                contents={contents}
+                sectionCover={section?.sectionCover}
+                sectionDescription={section?.description}
+                sectionTitle={section?.title}
+              />
+            ) : (
+              contents
+                .sort((a, b) => a.order - b.order)
+                .map((x, i) => {
+                  if (x.type === "text") {
                     return (
-                      <ContentBlockMedia
+                      <ContentBlockText
                         isDraggable={true}
                         item={x}
                         key={x.id}
                         // receives the id of the item to delete
                         itemToDelete={toggleDeleteDialogBox}
-                        mediaCaption={addMediaCaption}
+                        // gets the new content to update
+                        newContent={updateMediaText}
                         // Handle the drag and drop
                         handleDrag={handleDrag}
                         handleDrop={handleDrop}
                       />
                     );
-                  })}
+                  }
+                  return (
+                    <ContentBlockMedia
+                      isDraggable={true}
+                      item={x}
+                      key={x.id}
+                      // receives the id of the item to delete
+                      itemToDelete={toggleDeleteDialogBox}
+                      mediaCaption={addMediaCaption}
+                      // Handle the drag and drop
+                      handleDrag={handleDrag}
+                      handleDrop={handleDrop}
+                    />
+                  );
+                })
+            )}
           </Grid>
         </Grid>
       ) : null}
