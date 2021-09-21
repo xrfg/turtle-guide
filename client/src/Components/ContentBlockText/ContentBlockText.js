@@ -8,17 +8,18 @@ import React, { useState, useEffect, useCallback } from "react";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 
 // * Mat UI
-import { Button, Container, Grid, Typography } from "@material-ui/core";
+import {
+  ButtonGroup,
+  Grid,
+  Typography,
+  Card,
+  CardActions,
+  CardContent,
+} from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
-import ButtonBase from "@material-ui/core/ButtonBase";
-import TextField from "@material-ui/core/TextField";
 
 // * Icons
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
-import DeleteIcon from "@material-ui/icons/Delete";
-import { DragIndicator } from "@material-ui/icons";
-import EditIcon from "@material-ui/icons/Edit";
-import SaveIcon from "@material-ui/icons/Save";
 import ShortTextIcon from "@material-ui/icons/ShortText";
 
 // * Components
@@ -38,18 +39,13 @@ const useStyles = makeStyles((theme) =>
       maxWidth: 345,
     },
     paper: {
-      marginTop: "10px",
-      // ! hard coded just for purpose testing with drag nd drop
-      // height: "200px",
+      marginBottom: "1rem",
+      overflow: "hidden",
     },
     mainContainer: {
       display: "flex",
     },
-    btnSection: {
-      display: "flex",
-      justifyContent: "space-between",
-      flexWrap: "wrap",
-    },
+
     overview: {
       height: "fit-content",
     },
@@ -60,26 +56,17 @@ const useStyles = makeStyles((theme) =>
       height: 140,
     },
     mediaContainer: {
-      textAlign: "center",
-      justifyContent: "center",
       overflowWrap: "anywhere",
     },
     mediaCaption: {
-      textAlign: "center",
-      justifyContent: "center",
       overflowWrap: "anywhere",
     },
     img: {
       width: "100%",
     },
     iconsContainer: {
-      marginLeft: "auto",
-      marginRight: "20px",
-    },
-    descriptionContainer: {
-      marginLeft: "20px",
-      marginRight: "20px",
-      overflowWrap: "anywhere",
+      display: "flex",
+      justifyContent: "space-between",
     },
   })
 );
@@ -151,7 +138,7 @@ const ContentBlockText = (props) => {
    */
 
   return (
-    <Paper
+    <Card
       className={classes.paper}
       key={id}
       // below attributes for drag nd drop
@@ -167,54 +154,48 @@ const ContentBlockText = (props) => {
         </Grid>
       </Grid> */}
 
-      <Grid item xs={12} sm container className={classes.mediaCaption}>
-        <Grid item>
-          <Typography
-            gutterBottom
-            variant="subtitle1"
-            // className={classes.descriptionContainer}
-          >
-            {isEditing ? (
-              <div>
-                <ModalCustom
-                  content={
-                    <TextEditor setText={setMediaText} content={content} />
-                  }
-                  isOpen={true}
-                  isClose={closeEditingModal}
-                />
-                <html>{content}</html>
-              </div>
-            ) : (
-              <ReactQuill
-                value={content}
-                readOnly={true}
-                theme={"bubble"}
-                // className={classes.descriptionContainer}
+      <CardContent className={classes.mediaCaption}>
+        <Typography>
+          {isEditing ? (
+            <div>
+              <ModalCustom
+                content={
+                  <TextEditor setText={setMediaText} content={content} />
+                }
+                isOpen={true}
+                isClose={closeEditingModal}
               />
-            )}
-          </Typography>
-        </Grid>
-        <Grid item className={classes.iconsContainer}>
-          {/*  // * editing title/description */}
-          <CustomIconButton
-            icon={isEditing ? "save" : "edit"}
-            onClickFunc={() => editContent(id)}
-          />
+              <html>{content}</html>
+            </div>
+          ) : (
+            <ReactQuill
+              value={content}
+              readOnly={true}
+              theme={"bubble"}
+              // className={classes.descriptionContainer}
+            />
+          )}
+        </Typography>
+      </CardContent>
+      <CardActions className={classes.iconsContainer}>
+        {/*  // * editing title/description */}
+        <CustomIconButton
+          icon={isEditing ? "save" : "edit"}
+          onClickFunc={() => editContent(id)}
+        />
+        <ButtonGroup
+          orientation="horizontal"
+          aria-label="horizontal button group"
+        >
+          {props.isDraggable ? <CustomIconButton icon="drag" /> : null}
           {/* //* Sends the id to the parent */}
           <CustomIconButton
             icon="delete"
             onClickFunc={() => removeContent(id)}
           />
-
-          {props.isDraggable ? <CustomIconButton icon="drag" /> : null}
-        </Grid>
-
-        <Grid item>
-          <Typography variant="subtitle1"></Typography>
-        </Grid>
-      </Grid>
-    </Paper>
+        </ButtonGroup>
+      </CardActions>
+    </Card>
   );
 };
 

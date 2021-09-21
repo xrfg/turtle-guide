@@ -8,17 +8,23 @@ import React, { useState, useEffect, useCallback } from "react";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 
 // * Mat UI
-import { Button, Container, Grid, Typography } from "@material-ui/core";
-import Paper from "@material-ui/core/Paper";
-import ButtonBase from "@material-ui/core/ButtonBase";
-import TextField from "@material-ui/core/TextField";
+import {
+  ButtonGroup,
+  Grid,
+  Typography,
+  Card,
+  CardActions,
+  CardMedia,
+  CardContent,
+  TextField,
+} from "@material-ui/core";
 
 // * Icons
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
-import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
-import SaveIcon from "@material-ui/icons/Save";
-import UndoIcon from "@material-ui/icons/Undo";
+
+// * Custom Components
+import EditSaveButton from "../Buttons/EditSaveButton";
+import CustomIconButton from "../Buttons/CustomIconButtons/CustomIconButton";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -29,7 +35,8 @@ const useStyles = makeStyles((theme) =>
       maxWidth: 345,
     },
     paper: {
-      marginTop: "10px",
+      marginBottom: "1rem",
+      overflow: "hidden",
     },
     mainContainer: {
       display: "flex",
@@ -53,19 +60,21 @@ const useStyles = makeStyles((theme) =>
       justifyContent: "center",
     },
     mediaCaption: {
-      textAlign: "center",
-      justifyContent: "center",
+      /* padding: "1rem 2rem 2rem 2rem",
+       textAlign: "center",
+      justifyContent: "center", */
     },
     img: {
       width: "100%",
     },
     iconsContainer: {
-      marginLeft: "auto",
-      marginRight: "20px",
+      // marginLeft: "auto",
+      display: "flex",
+      justifyContent: "space-between",
     },
-    descriptionContainer: {
-      marginLeft: "20px",
-    },
+    descriptionContainer: {},
+    imageTitle: { ...theme.admin.imgTitle },
+    imageDesc: { ...theme.admin.imgDesc },
   })
 );
 
@@ -139,7 +148,7 @@ const ContentBlockMedia = (props) => {
   };
 
   return (
-    <Paper
+    <Card
       className={classes.paper}
       key={id}
       // below attributes for drag nd drop
@@ -167,64 +176,76 @@ const ContentBlockMedia = (props) => {
         </Grid>
       </Grid>
 
-      <Grid item xs={12} sm container className={classes.mediaCaption}>
-        <Grid item className={classes.descriptionContainer}>
-          <Typography gutterBottom variant="subtitle1">
-            {isEditing ? (
-              <TextField
-                id="standard-basic-title"
-                label="Title"
-                name="title"
-                onChange={handleChange}
-                value={caption?.title || mediaCaption.title}
-              />
-            ) : !isEditing && mediaCaption.title.length !== 0 ? (
-              <h5>{caption?.title || mediaCaption.title}</h5>
-            ) : caption?.title ? (
-              <h5>{caption?.title}</h5>
-            ) : (
-              <h5>Add a Title (optional)</h5>
-            )}
-          </Typography>
-          <Typography variant="body2" gutterBottom>
-            {isEditing ? (
-              <TextField
-                id="standard-basic-description"
-                label="Description"
-                name="description"
-                onChange={handleChange}
-                value={caption?.description || mediaCaption.description}
-              />
-            ) : !isEditing && mediaCaption.description.length !== 0 ? (
-              <h6>{caption?.description || mediaCaption.description}</h6>
-            ) : caption?.description ? (
-              <h6>{caption?.description}</h6>
-            ) : (
-              <h6>Add a Description (optional)</h6>
-            )}
-          </Typography>
-          <Typography variant="body2" color="textSecondary"></Typography>
-        </Grid>
-        <Grid item className={classes.iconsContainer}>
-          {/*  // * editing title/description */}
-          <ButtonBase onClick={() => editContent(id)}>
+      <CardContent className={classes.mediaCaption}>
+        <Typography gutterBottom variant="subtitle1">
+          {isEditing ? (
+            <TextField
+              id="standard-basic-title"
+              label="Title"
+              name="title"
+              onChange={handleChange}
+              value={caption?.title || mediaCaption.title}
+            />
+          ) : !isEditing && mediaCaption.title.length !== 0 ? (
+            <span className={classes.imageTitle}>
+              {caption?.title || mediaCaption.title}
+            </span>
+          ) : caption?.title ? (
+            <span className={classes.imageTitle}>{caption?.title}</span>
+          ) : (
+            <span className={classes.imageTitle}>Add a Title (optional)</span>
+          )}
+        </Typography>
+        <Typography variant="body2" gutterBottom>
+          {isEditing ? (
+            <TextField
+              id="standard-basic-description"
+              label="Description"
+              name="description"
+              maxRows="2"
+              fullWidth
+              onChange={handleChange}
+              value={caption?.description || mediaCaption.description}
+            />
+          ) : !isEditing && mediaCaption.description.length !== 0 ? (
+            <span className={classes.imageDesc}>
+              {caption?.description || mediaCaption.description}
+            </span>
+          ) : caption?.description ? (
+            <span className={classes.imageDesc}>{caption?.description}</span>
+          ) : (
+            <span className={classes.imageDesc}>
+              Add a Description (optional)
+            </span>
+          )}
+        </Typography>
+      </CardContent>
+      <CardActions className={classes.iconsContainer}>
+        {/*  // * editing title/description */}
+        <EditSaveButton
+          editStatus={isEditing}
+          editHandler={() => editContent(id)}
+        />
+        {/* <ButtonBase onClick={() => editContent(id)}>
             {isEditing ? (
               <SaveIcon fontSize="small" />
             ) : (
               <EditIcon fontSize="small" />
             )}
-          </ButtonBase>
+          </ButtonBase> */}
+        <ButtonGroup
+          orientation="horizontal"
+          aria-label="horizontal button group"
+        >
+          {props.isDraggable ? <CustomIconButton icon="drag" /> : null}
           {/* //* Sends the id to the parent */}
-          <ButtonBase onClick={() => removeContent(id)}>
-            <DeleteIcon fontSize="small" />
-          </ButtonBase>
-        </Grid>
-
-        <Grid item>
-          <Typography variant="subtitle1"></Typography>
-        </Grid>
-      </Grid>
-    </Paper>
+          <CustomIconButton
+            icon="delete"
+            onClickFunc={() => removeContent(id)}
+          />
+        </ButtonGroup>
+      </CardActions>
+    </Card>
   );
 };
 

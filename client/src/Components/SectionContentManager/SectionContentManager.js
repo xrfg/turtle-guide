@@ -80,6 +80,7 @@ const useStyles = makeStyles((theme) =>
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
     },
+    coverImg: {},
     // * Custom CSS
     // Custom margins container buttons
     sectionTitle: { textAlign: "center", fontSize: "2rem" },
@@ -826,7 +827,11 @@ export default function SectionContentManager(props) {
               <h2 className={classes.sectionTitle}>{title}</h2>
             </Grid>
           )}
-          <Grid item xs={12} className={classes.gridItem}>
+          <Grid
+            item
+            xs={12}
+            className={`${classes.gridItem} ${classes.coverImg}`}
+          >
             {/* Section cover image */}
             {section.sectionCover?.url === "" ? (
               // show button

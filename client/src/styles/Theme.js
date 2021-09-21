@@ -138,6 +138,8 @@ export const theme = createTheme({
         },
       }, */
     },
+    imgTitle: { fontWeight: 800, fontSize: "0.8rem", color: ourColors.jet },
+    imgDesc: { fontWeight: 400, fontSize: "0.8rem", color: ourColors.jet },
   },
   guide: {
     container: { backgroundColor: "white", padding: "0" },
