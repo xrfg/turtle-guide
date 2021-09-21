@@ -61,7 +61,14 @@ function App() {
         />
         <BrowserRouter>
           <div aria-label="app-container" className="app-container">
-            <div aria-label="content-wrap" className="footer-padding">
+            <div
+              aria-label="content-wrap"
+              className={
+                window.location.pathname.includes("/events")
+                  ? "footer-padding-guide"
+                  : "footer-padding-admin"
+              }
+            >
               {window.location.pathname.includes("/events") ? null : <Navbar />}
               <Switch>
                 {/* Auth Routes */}

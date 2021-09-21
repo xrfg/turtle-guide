@@ -25,7 +25,7 @@ const myTheme = theme;
 const useStyles = makeStyles((theme) => ({
   btnIcon: {
     ...theme.buttons.btnIcon,
-    margin: theme.spacing(1),
+    // margin: theme.spacing(0.5),
     "&:hover": {
       backgroundColor: "#f0f0f0",
     },

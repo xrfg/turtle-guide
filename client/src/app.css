@@ -5,12 +5,16 @@
   min-height: 100vh;
 }
 
-.footer-padding {
+.footer-padding-admin {
   padding-bottom: 351px;
 }
 
+.footer-padding-guide {
+  padding-bottom: 56px;
+}
+
 @media screen and (max-width: 600px) {
-  .footer-padding {
+  .footer-padding-admin {
     padding-bottom: 500px;
   }
 }

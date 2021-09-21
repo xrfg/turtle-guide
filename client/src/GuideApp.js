@@ -17,9 +17,7 @@ export default function GuideApp({ match }) {
   // * Hooks
   const location = useLocation();
   return (
-    <div style={{ paddingBottom: "56px" }}>
-      {" "}
-      {/* needs to be added otherwise content disappears under bottom nav bar because it is positied absolutely */}
+    <>
       <BottomNavBar />
       <AnimatePresence>
         {/* location is important for the animation */}
@@ -34,6 +32,6 @@ export default function GuideApp({ match }) {
           />
         </Switch>
       </AnimatePresence>
-    </div>
+    </>
   );
 }

@@ -11,6 +11,7 @@
  */
 
 import React, { useState } from "react";
+
 import { useHistory } from "react-router-dom";
 import slugify from "react-slugify";
 
@@ -20,6 +21,7 @@ import {
   CardContent,
   Typography,
   CardActions,
+  CardActionArea,
   ButtonGroup,
   TextField,
   Box,
@@ -69,6 +71,9 @@ export default function EventSection(props) {
   // * States
   const [editing, setEditing] = useState(false);
   const [openDeleteDialogBox, setOpenDeleteDialogBox] = useState(false);
+
+  // ! to check if it is the intro section
+  const isIntro = id === 1;
 
   // * Functions
 
@@ -130,10 +135,10 @@ export default function EventSection(props) {
       className={classes.card}
       key={id}
       // the attributes below are for the drag and drop function
-      draggable={true}
-      onDragOver={(e) => e.preventDefault()}
-      onDragStart={props.handleDrag}
-      onDrop={props.handleDrop}
+      draggable={isIntro ? null : true}
+      onDragOver={isIntro ? null : (e) => e.preventDefault()}
+      onDragStart={isIntro ? null : props.handleDrag}
+      onDrop={isIntro ? null : props.handleDrop}
     >
       <PopUpDialogBox
         open={openDeleteDialogBox}
@@ -143,25 +148,27 @@ export default function EventSection(props) {
         messageTitle={`Are you sure you want to delete the ${title} section?`}
         messageBody="Deleting a section will permanently erase it from the event."
       />
-      <CardContent>
-        {editing ? (
-          <Box>
-            <TextField
-              id="eventName"
-              type="text"
-              className={classes.textField}
-              defaultValue={title === "Title" ? null : title}
-              placeholder="Title"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              onChange={(e) => handleTitle(e.target.value)}
-            />
-            {/* //! temporarly disabled */}
-            {/* //? shall we make a edit options from here  */}
-            {/* //? i.e. <TextEditor setText={setMediaText} content={content} />  */}
 
-            {/* <TextField
+      <CardActionArea onClick={editSection}>
+        <CardContent>
+          {editing ? (
+            <Box>
+              <TextField
+                id="eventName"
+                type="text"
+                className={classes.textField}
+                defaultValue={title === "Title" ? null : title}
+                placeholder="Title"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                onChange={(e) => handleTitle(e.target.value)}
+              />
+              {/* //! temporarly disabled */}
+              {/* //? shall we make a edit options from here  */}
+              {/* //? i.e. <TextEditor setText={setMediaText} content={content} />  */}
+
+              {/* <TextField
               id="eventName"
               type="text"
               className={classes.textField}
@@ -174,64 +181,77 @@ export default function EventSection(props) {
               }}
               onChange={(e) => handleDescription(e.target.value)}
             /> */}
-          </Box>
-        ) : (
-          <Box>
-            <Typography
-              className={classes.card__title}
-              variant="h6"
-              component="h6"
-            >
-              {title}
-            </Typography>
-            {url_thumb.length !== 0 ? (
-              <img
-                className={classes.sectionCover}
-                alt="section-cover"
-                src={url_thumb}
-              />
-            ) : null}
+            </Box>
+          ) : (
+            <Box>
+              <Typography
+                className={classes.card__title}
+                variant="h6"
+                component="h6"
+              >
+                {title} {id}
+              </Typography>
+              {url_thumb.length !== 0 ? (
+                <img
+                  className={classes.sectionCover}
+                  alt="section-cover"
+                  src={url_thumb}
+                />
+              ) : null}
 
-            {/* //! temporarly disabled */}
-            {/* <Typography
+              {/* //! temporarly disabled */}
+              {/* <Typography
               className={classes.card__desc}
               variant="subtitle1"
               component="p"
             >
               {description} */}
-            <ReactQuill value={description} readOnly={true} theme={"bubble"} />
-            {/* </Typography> */}
-          </Box>
-        )}
-      </CardContent>
-      <CardActions style={{ display: "flex", justifyContent: "space-between" }}>
-        <ButtonGroup
-          orientation="horizontal"
-          aria-label="horizontal button group"
+              <ReactQuill
+                value={description}
+                readOnly={true}
+                theme={"bubble"}
+              />
+              {/* </Typography> */}
+            </Box>
+          )}
+        </CardContent>
+      </CardActionArea>
+
+      {/* // ! all the section is draggable, should only work when dragstart is this button */}
+      {isIntro ? null : (
+        <CardActions
+          style={{ display: "flex", justifyContent: "space-between" }}
         >
-          {/* Save Edit  */}
-          <EditSaveButton
-            className={classes.hoverSaveEdit}
-            editStatus={editing}
-            editHandler={handleSaveEditBtn}
-          />
-          {/* Got to Edit section   */}
-          <CustomIconButton
-            href={`${url}`}
-            onClickFunc={editSection}
-            icon="forward"
-          />
-        </ButtonGroup>
-        <ButtonGroup
-          orientation="horizontal"
-          aria-label="horizontal button group"
-        >
-          {/* // ! all the section is draggable, should only work when dragstart is this button */}
-          <CustomIconButton icon="drag" />
-          {/* Remove Section   */}
-          <CustomIconButton onClickFunc={toggleDeleteDialogBox} icon="delete" />
-        </ButtonGroup>
-      </CardActions>
+          <ButtonGroup
+            orientation="horizontal"
+            aria-label="horizontal button group"
+          >
+            {/* Save Edit  */}
+            <EditSaveButton
+              className={classes.hoverSaveEdit}
+              editStatus={editing}
+              editHandler={handleSaveEditBtn}
+            />
+            {/* Got to Edit section   */}
+            {/* <CustomIconButton
+              href={`${url}`}
+              onClickFunc={editSection}
+              icon="forward"
+            /> */}
+          </ButtonGroup>
+          <ButtonGroup
+            orientation="horizontal"
+            aria-label="horizontal button group"
+          >
+            <CustomIconButton icon="drag" />
+            {/* Remove Section   */}
+            <CustomIconButton
+              onClickFunc={toggleDeleteDialogBox}
+              icon="delete"
+            />
+          </ButtonGroup>
+        </CardActions>
+      )}
     </Card>
   );
 }

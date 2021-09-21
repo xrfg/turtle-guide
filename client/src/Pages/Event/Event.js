@@ -2,6 +2,8 @@
  * @desc Event Page at route /admin/event/:slug either for creating a new event or editing an existing one
  */
 
+// TODO Fix Section Rendering after having changed the IDS of the sections from 2 onwards. since 1 is Intro,, there is also type="intro" and type="section"
+
 import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -174,13 +176,52 @@ export default function Event(props) {
   // * Functions
 
   /**
+   * @function addIntro
+   * @desc makes an unique obj INTRO with id:1, order:1
+   * all the other sections will start from id:2 and order:2
+   * so that intro is always first in the array
+   */
+
+  /* const addIntro = () => {
+    console.log(sections);
+    if (sections.length === 0 || !sections[0].id === 1) {
+      const intro = {
+        type: "intro",
+        id: 1,
+        order: 1,
+        url: "",
+        slug: "title",
+        contents: [],
+        title: `${event.title} Introduction`,
+        description: "Description",
+        sectionCover: {
+          filename: "",
+          public_id: "",
+          url: "",
+          url_thumb: "",
+        },
+      };
+
+      setSections([intro, ...sections]);
+      console.log([intro, ...sections]);
+    } else {
+      setIsError("Already have an Intro!");
+      setTimeout(() => {
+        setIsError(false);
+      }, 4000);
+      console.log("ALREADY HAVE INTRO!");
+    }
+  }; */
+
+  /**
    * @function findBiggestId
    * @desc returns a Number -> biggest existing integer of an "id" from the sections array
    * is aiding the assigning of id's to new sections in function addToContents
    */
 
   const findBiggestId = (e) => {
-    let biggestId = 1;
+    // * starts from 2 so that it accounts for Intro
+    let biggestId = 2;
     sections.forEach((section) => {
       if (section.id > biggestId) {
         biggestId = section.id;
@@ -225,10 +266,15 @@ export default function Event(props) {
 
     newSectionsArr.forEach((section, i) => {
       if (sections.length === 0) {
-        section["id"] = i + 1;
-        section["order"] = i + 1;
+        // * starts from 2 so that it accounts for Intro
+        section["id"] = 2;
+        section["order"] = 2;
+      } else if (sections.length === 1 && sections[0].type === "intro") {
+        section["id"] = 2;
+        section["order"] = 2;
       } else {
         // find the section with the biggest id
+        // if (sections[0].id === 1)
         const lastSection = sections.find((section) => section.id === bigId);
 
         section["id"] = lastSection.id + i + 1;
@@ -350,7 +396,25 @@ export default function Event(props) {
       nameIdentifier: slug, // function to make the slug
       slug: slug, // will be the same
       description: "description", // ? is to do?
-      sections: [],
+      sections: [
+        // intro is added by default
+        {
+          type: "intro",
+          id: 1,
+          order: 1,
+          url: "",
+          slug: "intro",
+          contents: [],
+          title: event ? `${event.title} Introduction` : "Event Introduction",
+          description: "Event Description",
+          sectionCover: {
+            filename: "",
+            public_id: "",
+            url: "",
+            url_thumb: "",
+          },
+        },
+      ],
       // TODO CHANGE ACCOUNT
       // WILL BET SENT ONCe IS LOGGED IN
       account: "611e5aca56104a1c09f9d13e",
@@ -532,6 +596,11 @@ export default function Event(props) {
         // * Add BTN + Disabled ones
         */}
             <Grid className={classes.btnSidebar} item xs={3}>
+              {/* <CustomButton
+                text="Intro"
+                endIcon="add"
+                onClickFunc={() => addIntro()}
+              /> */}
               <CustomButton
                 text="Section"
                 endIcon="add"
