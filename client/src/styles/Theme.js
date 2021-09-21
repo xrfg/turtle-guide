@@ -127,16 +127,16 @@ export const theme = createTheme({
       flexDirection: "column",
       borderRadius: "8px",
       overflow: "hidden",
-      border: `1px solid ${ourColors.lightGrey}`,
+      // border: `1px solid ${ourColors.lightGrey}`,
       marginBottom: "1rem",
-      "& >*": {
+      /* "& >*": {
         borderRadius: "0",
         margin: "0",
         borderBottom: `1px solid ${ourColors.lightGrey}`,
         "&:last-child": {
           borderBottom: "0",
         },
-      },
+      }, */
     },
   },
   guide: {
