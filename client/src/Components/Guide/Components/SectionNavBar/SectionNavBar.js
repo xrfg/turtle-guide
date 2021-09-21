@@ -23,6 +23,13 @@ import { makeStyles } from "@material-ui/core";
 import { ourColors } from "../../../../styles/Theme";
 
 const useStyles = makeStyles((theme) => ({
+  // "@global": {
+  //   // ... global styles here
+
+  //   body: {
+  //     margin: 0,
+  //   },
+  // },
   navWrapper: {
     position: "fixed",
     width: "100%",
@@ -56,9 +63,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 const SectionNavBar = () => {
-  const classes = useStyles();
-
   // * Hooks
+  const classes = useStyles();
   const history = useHistory();
   const event = useGetEvent();
 

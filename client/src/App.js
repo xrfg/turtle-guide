@@ -32,7 +32,18 @@ import AdminApp from "./AdminApp";
 import Subscription from "./Pages/Subscription/Subscription";
 import SignIn from "./Pages/SignIn/SignIn";
 
+import { makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  "@global": {
+    body: {
+      margin: 0,
+    },
+  },
+}));
+
 function App() {
+  const classes = useStyles();
   return (
     <Provider store={Store}>
       <MuiThemeProvider theme={theme}>

@@ -45,9 +45,13 @@ export const theme = createTheme({
   //   fontSize: "1.1rem",
   //   textTransform: "uppercase",
   // },
-  body: {
-    margin: "0px !important",
-  },
+  // "@global": {
+  //   // ... global styles here
+
+  //   body: {
+  //     margin: 0,
+  //   },
+  // },
   palette: {
     common: {
       black: `${ourColors.black}`,
