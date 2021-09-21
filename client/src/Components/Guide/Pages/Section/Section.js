@@ -93,7 +93,7 @@ const Section = (props) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{
-              opacity: { duration: 0.3 },
+              opacity: { duration: 0.2 },
             }}
           >
             <SectionRender
