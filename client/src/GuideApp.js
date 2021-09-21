@@ -19,7 +19,7 @@ export default function GuideApp({ match }) {
   return (
     <>
       <BottomNavBar />
-      <AnimatePresence>
+      <AnimatePresence exitBeforeEnter>
         {/* location is important for the animation */}
         <Switch location={location} key={location.key}>
           <Route exact path="/events/settings" component={Settings} />
