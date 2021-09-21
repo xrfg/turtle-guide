@@ -190,7 +190,7 @@ export default function Event(props) {
    * so that intro is always first in the array
    */
 
-  const addIntro = () => {
+  /* const addIntro = () => {
     console.log(sections);
     if (sections.length === 0 || !sections[0].id === 1) {
       const intro = {
@@ -219,7 +219,7 @@ export default function Event(props) {
       }, 4000);
       console.log("ALREADY HAVE INTRO!");
     }
-  };
+  }; */
 
   /**
    * @function findBiggestId
@@ -404,7 +404,25 @@ export default function Event(props) {
       nameIdentifier: slug, // function to make the slug
       slug: slug, // will be the same
       description: "description", // ? is to do?
-      sections: [],
+      sections: [
+        // intro is added by default
+        {
+          type: "intro",
+          id: 1,
+          order: 1,
+          url: "",
+          slug: "intro",
+          contents: [],
+          title: event ? `${event.title} Introduction` : "Event Introduction",
+          description: "Event Description",
+          sectionCover: {
+            filename: "",
+            public_id: "",
+            url: "",
+            url_thumb: "",
+          },
+        },
+      ],
       // TODO CHANGE ACCOUNT
       // WILL BET SENT ONCe IS LOGGED IN
       account: "611e5aca56104a1c09f9d13e",
@@ -598,11 +616,11 @@ export default function Event(props) {
         // * Add BTN + Disabled ones
         */}
             <Grid className={classes.btnSidebar} item xs={3}>
-              <CustomButton
+              {/* <CustomButton
                 text="Intro"
                 endIcon="add"
                 onClickFunc={() => addIntro()}
-              />
+              /> */}
               <CustomButton
                 text="Section"
                 endIcon="add"
