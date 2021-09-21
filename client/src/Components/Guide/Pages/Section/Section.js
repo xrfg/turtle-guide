@@ -47,6 +47,8 @@ const Section = (props) => {
       // x: `${direction === "next" ? "100vw" : "-100vw"}`,
       transition: {
         ease: "easeInOut",
+        // delay: 0.15,
+        // duration: 1.3,
       },
     },
     visible: {
