@@ -43,10 +43,10 @@ const Section = (props) => {
    */
   const containerVariants = {
     hidden: {
-      opactity: 0,
-      // x: `${direction === "next" ? "100vw" : "-100vw"}`,
+      opactity: 1,
+      x: `${direction === "next" ? "100vw" : "-100vw"}`,
       transition: {
-        ease: "easeInOut",
+        // ease: "easeInOut",
         // delay: 0.15,
         // duration: 1.3,
       },
@@ -60,7 +60,7 @@ const Section = (props) => {
       opactity: 0,
       // x: `${direction === "next" ? "100vw" : "-100vw"}`,
       transition: {
-        ease: "easeInOut",
+        // ease: "easeInOut",
         // delay: 0.15,
         // duration: 1.3,
       },
@@ -76,10 +76,11 @@ const Section = (props) => {
         <>
           <SectionNavBar />
           <motion.div
+            // layout
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            exit="exit"
+            // exit="exit"
             transition={{
               x: { type: "spring", stiffness: 300, damping: 30 },
               opacity: { duration: 0.2 },
