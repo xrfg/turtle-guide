@@ -112,7 +112,8 @@ const SectionNavBar = () => {
                     0,
                     idCurrentSection,
                     eventSlug,
-                    nameIdentifier
+                    nameIdentifier,
+                    "prev" // gives the direction prev/next for the animation
                   )
                 }
                 icon="prev"
@@ -127,7 +128,8 @@ const SectionNavBar = () => {
                     0,
                     idCurrentSection,
                     eventSlug,
-                    nameIdentifier
+                    nameIdentifier,
+                    "next" // gives the direction prev/next for the animation
                   )
                 }
                 icon="next"
@@ -148,42 +150,3 @@ const SectionNavBar = () => {
 };
 
 export default SectionNavBar;
-
-{
-  /* <div className={`${classes.nav} ${show && classes.navFade}`}>
-{idPrevSection === undefined || show === false ? null : (
-  <CustomIconButton
-    onClickFunc={() =>
-      goToSection(
-        history,
-        idPrevSection,
-        0,
-        idCurrentSection,
-        eventSlug,
-        nameIdentifier
-      )
-    }
-    icon="prev"
-  />
-)}
-{idNextSection === undefined || show === false ? null : (
-  <>
-    <h4 className={classes.sectionTitle}>{event?.title}</h4>
-    <CustomIconButton
-      onClickFunc={() =>
-        goToSection(
-          history,
-          idNextSection,
-          0,
-          idCurrentSection,
-          eventSlug,
-          nameIdentifier
-        )
-      }
-      icon="next"
-    />
-  </>
-)}
-</div>
- */
-}
