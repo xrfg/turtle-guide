@@ -24,7 +24,7 @@ import { theme } from "../../../styles/Theme"; // our CUSTOM theme
 const myTheme = theme;
 
 const useStyles = makeStyles((theme) => ({
-  btn: { ...theme.buttons.btn, margin: theme.spacing(1) },
+  btn: { ...theme.buttons.btn, margin: theme.spacing(0.5) },
 }));
 
 export default function CustomButton(props) {
