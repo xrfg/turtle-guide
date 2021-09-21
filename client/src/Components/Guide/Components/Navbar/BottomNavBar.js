@@ -37,8 +37,7 @@ export default function BottomNavBar() {
     setValue(newValue);
   };
 
-  // TODO Fix the Routing "/example" on the different links
-
+  console.log("event", event);
   return (
     <BottomNavigation
       value={value}
@@ -48,7 +47,7 @@ export default function BottomNavBar() {
       <BottomNavigationAction
         // * Intro of the exhibition
         component={Link}
-        to="/"
+        to={event && `/events/${event.slug}/`}
         label="Home"
         value="home"
         icon={<Home />}
@@ -57,7 +56,7 @@ export default function BottomNavBar() {
       <BottomNavigationAction
         // * Exhibition Main Page
         component={Link}
-        to={event ? `/events/${event.slug}` : null}
+        to={event && `/events/${event.slug}`}
         label="Event"
         value="event"
         icon={<DirectionsWalk />}

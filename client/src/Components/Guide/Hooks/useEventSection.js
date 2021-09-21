@@ -22,7 +22,10 @@ const useEventSection = (props) => {
   // get event
   const findSection = event.sections.find((x) => x.id === idSection);
 
-  // TODO insert error in case of wrong section
+  if (findSection === undefined) {
+    return console.error("No vaild section provided");
+  }
+
   // return
   return findSection;
 };

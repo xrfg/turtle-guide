@@ -24,7 +24,6 @@ import { transform } from "lodash";
 
 // CSS vars
 const windowWidth = window.innerWidth;
-console.log("windowWidth", windowWidth);
 
 const useStyles = makeStyles((theme) =>
   createStyles({

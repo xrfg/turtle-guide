@@ -29,7 +29,7 @@ exports.goToSection = (
 
 /**
  * @function extractNameIdentifier
- * @param hash i.e. window.location.pathname
+ * @param path i.e. window.location.pathname
  * @desc extracts the name identifier from the browser address
  * useed in  case a page is directly called
  */
@@ -41,7 +41,7 @@ exports.extractNameIdentifier = (path) => {
 
 /**
  * @function extractNameIdentifier
- * @param hash i.e. window.location.pathname
+ * @param path i.e. window.location.pathname
  * @desc the last numbers from the path that is the id
  * of the section
  */

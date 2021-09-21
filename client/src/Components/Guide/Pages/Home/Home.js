@@ -8,14 +8,12 @@ import { Link, useHistory } from "react-router-dom";
 // * Components
 import BlockSection from "../../Components/BlockSection/BlockSection";
 
-
 // * MatUI
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import { Typography } from "@material-ui/core";
 
-
-import {ourColors,theme} from '.././../../../styles/Theme'
+import { ourColors, theme } from ".././../../../styles/Theme";
 
 const useStyles = makeStyles((theme) => ({
   /*hero: {
@@ -53,33 +51,30 @@ const useStyles = makeStyles((theme) => ({
     margin: "0 10px",
     justifyContent: "space-between",
   },*/
-  mainContainer:{
-    margin:"6rem 0 30px 0",
-    padding:"1.6rem",
-    backgroundColor:ourColors.primaryLight,
-    display:"flex",
-    flexDirection:"column",
-    justifyContent:"center",
-    alignItems:"center",
-    width:"100vw",
+  mainContainer: {
+    margin: "6rem 0 30px 0",
+    padding: "1.6rem",
+    backgroundColor: ourColors.primaryLight,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100vw",
   },
-  eventsTitle:{
-    position:"fixed",
-    display:"flex",
-    alignItems:"end",
-    width:"100%",
-    zIndex:"10000",
-    height:"3.7rem",
+  eventsTitle: {
+    position: "fixed",
+    display: "flex",
+    alignItems: "end",
+    width: "100%",
+    zIndex: "10000",
+    height: "3.7rem",
     ...theme.guide.mainHeader,
-    color:ourColors.indigoDye,
-      backgroundColor: ourColors.gainsboro,
-      margin:"-6rem 0 0 0",
-      padding: "0.6rem",
-      boxShadow: "-2px 2px 8px 1px rgba(127,127,127,0.88)",
-    },
-    
-
-
+    color: ourColors.indigoDye,
+    backgroundColor: ourColors.gainsboro,
+    margin: "-6rem 0 0 0",
+    padding: "0.6rem",
+    boxShadow: "-2px 2px 8px 1px rgba(127,127,127,0.88)",
+  },
 }));
 
 export default function Home(props) {
@@ -119,15 +114,20 @@ export default function Home(props) {
    * @desc Component to create a card (section)
    */
   // TODO to ext
-console.log(BlockSection);
+  console.log(BlockSection);
   return (
     <>
-      <Typography variant="h1" component="h1" className={classes.eventsTitle}>{title}</Typography>
-      <div
-       className={classes.mainContainer}
-       >
+      <Typography variant="h1" component="h1" className={classes.eventsTitle}>
+        {title}
+      </Typography>
+      <div className={classes.mainContainer}>
         {/* Map to create cards */}
         {sections.map((x, index) => {
+          // skip intro from general rendering
+          if (x.type === "intro") {
+            return null;
+          }
+          // renders the rest
           return (
             <BlockSection
               sectionIndex={index} // pass for the order in the navbar

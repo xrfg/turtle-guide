@@ -15,7 +15,7 @@ import { setEventGuide } from "../../../store/actions/eventsActions";
  * @desc the param val is used into <Section /> in case the page is called
  * directly without passing by <Guide/> or <Home/>
  */
-const useGetAndSaveEvent = (eventName, val = false) => {
+const useGetAndSaveEvent = (eventName, val = null) => {
   // * Hooks
   const dispatch = useDispatch();
   // * states
@@ -46,7 +46,7 @@ const useGetAndSaveEvent = (eventName, val = false) => {
     }
     //eslint-disable-next-line
   }, []);
-
+  console.log("useGetAndSaveEvent", event);
   return event;
 };
 
