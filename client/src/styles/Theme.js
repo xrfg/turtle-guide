@@ -48,10 +48,8 @@ export const theme = createTheme({
   // "@global": {
   //   // ... global styles here
 
-  //   body: {
-  //     margin: 0,
-  //   },
-  // },
+  /*   body: { }, */
+
   palette: {
     common: {
       black: `${ourColors.black}`,
@@ -115,12 +113,33 @@ export const theme = createTheme({
   },
   admin: {
     // container maxWidth="md"
+    page: {
+      background: `linear-gradient(360deg, ${ourColors.lightGrey} 10%, ${ourColors.indigoDye} 360%)`,
+    },
     container: {
       minHeight: "calc(100vh - 80px)",
       padding: "2rem",
     },
+    pageTitle: {
+      textAlign: "left",
+      fontSize: "2rem",
+      lineHeight: "2.6rem",
+      // letterSpacing: "1px",
+      textTransform: "uppercase",
+      color: ourColors.indigoDye,
+      // fontWeight: "bold",
+      marginBottom: "1rem",
+      // borderBottom: `2px solid ${ourColors.jet}`,
+      // textShadow: `1px 2px 2px ${ourColors.indigoDye}`,
+      /* textShadow: `-1px -1px 0 ${ourColors.indigoDye},
+      1px -1px 0 ${ourColors.indigoDye},
+      -1px 1px 0 ${ourColors.indigoDye},
+      1px 1px 0 ${ourColors.indigoDye}`, */
+    },
+    sectionsContentsContainer: { paddingLeft: "2rem" },
     btnSidebar: {
-      border: `1px solid ${ourColors.lightGrey}`,
+      border: `1px solid ${ourColors.gainsboro}`,
+      backgroundColor: ourColors.lightGrey,
       display: "flex",
       flexDirection: "column",
       borderRadius: "5px",
@@ -144,6 +163,13 @@ export const theme = createTheme({
           borderBottom: "0",
         },
       }, */
+    },
+    gridContentHeader: {
+      fontSize: "1.6rem",
+      textAlign: "center",
+      color: ourColors.jet,
+      marginTop: "1.6rem",
+      marginBottom: "1rem",
     },
     imgTitle: { fontWeight: 800, fontSize: "0.8rem", color: ourColors.jet },
     imgDesc: { fontWeight: 400, fontSize: "0.8rem", color: ourColors.jet },

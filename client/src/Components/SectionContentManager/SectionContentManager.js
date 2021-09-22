@@ -60,34 +60,25 @@ import { userUpdate } from "../../store/actions/userActions";
 import { goBackToPage, unBlock } from "../../functions/functions";
 import ImageHoverButton from "../Buttons/ImageHoverButton";
 import CustomButton from "../Buttons/CustomButtons/CustomButton";
+import { ourColors } from "../../styles/Theme";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    root: {
-      "& > *": {
-        margin: theme.spacing(1),
-      },
-      maxWidth: 345,
-    },
-    container: { ...theme.admin.container }, // main Admin container class
-    heading: {
-      fontSize: theme.typography.pxToRem(15),
-      fontWeight: theme.typography.fontWeightRegular,
-    },
-    paper: {
-      backgroundColor: theme.palette.background.paper,
-      // border: "2px solid #000",
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-    },
+    page: { ...theme.admin.page },
+    container: { ...theme.admin.container, paddingTop: "3.4rem" }, // main Admin container class
+
     coverImg: {},
-    // * Custom CSS
+    accordion: { marginBottom: "2rem" },
+    accordTxtField: { marginBottom: "0.6rem", marginRight: "0.6rem" },
+
     // Custom margins container buttons
-    sectionTitle: { textAlign: "center", fontSize: "2rem" },
-    gridItem: {
-      marginTop: "10px",
-      marginBottom: "10px",
-      // backgroundColor: theme.palette.common.blue,
+    pageTitle: {
+      ...theme.admin.pageTitle,
+      fontWeight: "normal",
+      fontSize: "1.6rem",
+    },
+    contentsContainer: {
+      ...theme.admin.sectionsContentsContainer,
     },
     btnSidebar: {
       ...theme.admin.btnSidebar,
@@ -95,29 +86,7 @@ const useStyles = makeStyles((theme) =>
     btnGroup: {
       ...theme.admin.btnGroup,
     },
-
-    // Custom margins nested grid
-    // ! Classes created but not styled yet
-    sectionCover: {},
-    containerGrids: {},
-    gridContent: {},
-    gridContentHeader: { fontSize: "1rem", textAlign: "center", color: "gray" },
-    gridPreview: {},
-
-    mainContainer: {
-      display: "flex",
-    },
-    btnSection: {},
-
-    overview: {
-      height: "fit-content",
-    },
-    input: {
-      display: "none",
-    },
-    media: {
-      height: 140,
-    },
+    gridContentHeader: { ...theme.admin.gridContentHeader },
   })
 );
 
@@ -664,138 +633,151 @@ export default function SectionContentManager(props) {
     content: section?.description, // send current description
   };
 
-  return (
-    <Container maxWidth="md" className={classes.container}>
-      {/* // * MODAL */}
-      {/* content Delete confirmation */}
-      {contents.length === 0 && loading ? null : (
-        <>
-          <PopUpDialogBox
-            open={openDeleteDialogBox}
-            isClose={toggleDeleteDialogBox}
-            confirm={deleteItem}
-            confirmButtonTitle="Delete Media Content"
-            messageTitle={`Are you sure you want to delete this content?`}
-            messageBody="Deleting a content will permanently erase it from the section."
-          />
-          {/* For Media Text */}
-          <ModalCustom
-            title={section?.title}
-            content={<TextEditor setText={setMediaText} />}
-            isOpen={openModalInsertText}
-            // handles the state when the modal is clickes outside the area
-            isClose={handleClose}
-          />
-          {/* For Preview */}
-          <ModalCustom
-            content={
-              <SectionPreview
-                contents={contents}
-                sectionCover={section?.sectionCover}
-                sectionDescription={section?.description}
-                sectionTitle={section?.title}
-              />
-            }
-            isOpen={openModalPreview}
-            // handles the state when the modal is clickes outside the area
-            isClose={handleClose}
-          />
-        </>
-      )}
-      {Object.keys(userInfo).length !== 0 ? (
-        <>
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel1a-content"
-              id="panel1a-header"
-            >
-              <Typography className={classes.heading}>
-                Your info - not visible to the visitors
-              </Typography>
-            </AccordionSummary>
-            <Grid container spacing={1}>
-              <AccordionDetails>
-                <Grid container spacing={3}>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      disabled={isEditingUserInfo ? false : true}
-                      id="standard-read-only-input"
-                      label="Account"
-                      name="accountName"
-                      onChange={handleUserInfoChange}
-                      defaultValue={userInfo.accountName}
-                    />
-                    <TextField
-                      disabled={isEditingUserInfo ? false : true}
-                      id="standard-read-only-input"
-                      label="Name"
-                      name="firstName"
-                      onChange={handleUserInfoChange}
-                      defaultValue={userInfo.firstName}
-                    />
-                    <TextField
-                      disabled={isEditingUserInfo ? false : true}
-                      id="standard-read-only-input"
-                      label="Lastname"
-                      name="lastName"
-                      onChange={handleUserInfoChange}
-                      defaultValue={userInfo.lastName}
-                    />
-                    <TextField
-                      disabled={isEditingUserInfo ? false : true}
-                      id="standard-read-only-input"
-                      label="Company"
-                      name="company"
-                      onChange={handleUserInfoChange}
-                      defaultValue={userInfo.company}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      disabled={true}
-                      id="standard-read-only-input"
-                      label="Subscribed on"
-                      defaultValue={subscriptionDate}
-                    />
-                    <TextField
-                      disabled={isEditingUserInfo ? false : true}
-                      id="standard-read-only-input"
-                      label="Email"
-                      name="email"
-                      onChange={handleUserInfoChange}
-                      defaultValue={userInfo.email}
-                    />
-                    <TextField
-                      disabled={true}
-                      id="standard-read-only-input"
-                      label="Your Plan"
-                      defaultValue={userInfo.plan}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    {/*  //  editing info */}
-                    <CustomIconButton
-                      icon={isEditingUserInfo ? "save" : "edit"}
-                      onClickFunc={editUserInfo}
-                      style={{
-                        marginBottom: "1rem",
-                        borderRadius: "8px",
-                        backgroundColor: !needsToSave ? "inherit" : "#26b519",
-                      }}
-                    />
-                  </Grid>
-                </Grid>
-              </AccordionDetails>
-            </Grid>
-          </Accordion>
+  // console.log("userInfo", userInfo);
 
-          <Typography
-            gutterBottom
-            variant="subtitle1"
-            // className={classes.descriptionContainer}
-          >
-            {/* {isEditing ? (
+  return (
+    <div className={classes.page}>
+      <Container maxWidth="md" className={classes.container}>
+        {/* // * MODAL */}
+        {/* content Delete confirmation */}
+        {contents.length === 0 && loading ? null : (
+          <>
+            <PopUpDialogBox
+              open={openDeleteDialogBox}
+              isClose={toggleDeleteDialogBox}
+              confirm={deleteItem}
+              confirmButtonTitle="Delete Media Content"
+              messageTitle={`Are you sure you want to delete this content?`}
+              messageBody="Deleting a content will permanently erase it from the section."
+            />
+            {/* For Media Text */}
+            <ModalCustom
+              title={section?.title}
+              content={<TextEditor setText={setMediaText} />}
+              isOpen={openModalInsertText}
+              // handles the state when the modal is clickes outside the area
+              isClose={handleClose}
+            />
+            {/* For Preview */}
+            <ModalCustom
+              content={
+                <SectionPreview
+                  contents={contents}
+                  sectionCover={section?.sectionCover}
+                  sectionDescription={section?.description}
+                  pageTitle={section?.title}
+                />
+              }
+              isOpen={openModalPreview}
+              // handles the state when the modal is clickes outside the area
+              isClose={handleClose}
+            />
+          </>
+        )}
+        {Object.keys(userInfo).length !== 0 ? (
+          <>
+            <Accordion className={classes.accordion}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography className={classes.heading}>
+                  Account information{" "}
+                  <span style={{ fontSize: "0.8rem", marginLeft: "0.4rem" }}>
+                    (hidden from the visitors)
+                  </span>
+                </Typography>
+              </AccordionSummary>
+              <Grid container spacing={1}>
+                <AccordionDetails>
+                  <Grid container spacing={3}>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        className={classes.accordTxtField}
+                        disabled={isEditingUserInfo ? false : true}
+                        id="standard-read-only-input"
+                        label="Account"
+                        name="accountName"
+                        onChange={handleUserInfoChange}
+                        defaultValue={userInfo.accountName}
+                      />
+                      <TextField
+                        className={classes.accordTxtField}
+                        disabled={isEditingUserInfo ? false : true}
+                        id="standard-read-only-input"
+                        label="Company"
+                        name="company"
+                        onChange={handleUserInfoChange}
+                        defaultValue={userInfo.company}
+                      />
+                      <TextField
+                        className={classes.accordTxtField}
+                        disabled={isEditingUserInfo ? false : true}
+                        id="standard-read-only-input"
+                        label="Name"
+                        name="firstName"
+                        onChange={handleUserInfoChange}
+                        defaultValue={userInfo.firstName}
+                      />
+                      <TextField
+                        className={classes.accordTxtField}
+                        disabled={isEditingUserInfo ? false : true}
+                        id="standard-read-only-input"
+                        label="Lastname"
+                        name="lastName"
+                        onChange={handleUserInfoChange}
+                        defaultValue={userInfo.lastName}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        className={classes.accordTxtField}
+                        disabled={true}
+                        id="standard-read-only-input"
+                        label="Subscribed on"
+                        defaultValue={subscriptionDate}
+                      />
+                      <TextField
+                        className={classes.accordTxtField}
+                        disabled={isEditingUserInfo ? false : true}
+                        id="standard-read-only-input"
+                        label="Email"
+                        name="email"
+                        onChange={handleUserInfoChange}
+                        defaultValue={userInfo.email}
+                      />
+                      <TextField
+                        className={classes.accordTxtField}
+                        disabled={true}
+                        id="standard-read-only-input"
+                        label="Your Plan"
+                        defaultValue={userInfo.plan}
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      {/*  //  editing info */}
+                      <CustomIconButton
+                        icon={isEditingUserInfo ? "save" : "edit"}
+                        onClickFunc={editUserInfo}
+                        style={{
+                          marginBottom: "1rem",
+                          borderRadius: "8px",
+                          backgroundColor: !needsToSave ? "inherit" : "#26b519",
+                        }}
+                      />
+                    </Grid>
+                  </Grid>
+                </AccordionDetails>
+              </Grid>
+            </Accordion>
+
+            <Typography
+              gutterBottom
+              variant="subtitle1"
+              // className={classes.descriptionContainer}
+            >
+              {/* {isEditing ? (
                   <div>
                     <ModalCustom
                       content={
@@ -814,174 +796,186 @@ export default function SectionContentManager(props) {
                     // className={classes.descriptionContainer}
                   />
                 )} */}
-          </Typography>
-          <Typography variant={"h4"}>About you</Typography>
-        </>
-      ) : null}
+            </Typography>
+            <Typography className={classes.pageTitle}>
+              {userInfo.company}
+            </Typography>
+          </>
+        ) : null}
 
-      {Object.keys(section).length !== 0 ? (
-        <Grid container direction="row" spacing={2}>
-          {/* // * Do not render title if is about admin */}
-          {userInfo ? null : (
-            <Grid item xs={12} className={classes.gridItem}>
-              <h2 className={classes.sectionTitle}>{title}</h2>
-            </Grid>
-          )}
-          <Grid
-            item
-            xs={12}
-            className={`${classes.gridItem} ${classes.coverImg}`}
-          >
-            {/* Section cover image */}
-            {section.sectionCover?.url === "" ? (
-              // show button
-              // important to upload the cover pass true
-              <Button
-                onClick={() => {
-                  isAddingCover = true;
-                  showCloudinaryWidget(cloudinaryWidget);
-                }}
-              >
-                Add a cover Image
-              </Button>
-            ) : (
-              <ImageHoverButton
-                title={"Change Cover Image"}
-                onClickFunc={addCoverImage}
-                image={section.sectionCover}
-              />
+        {Object.keys(section).length !== 0 ? (
+          <Grid container direction="row" spacing={2}>
+            {/* // * Do not render title if is about admin */}
+            {userInfo.company ? null : (
+              <Grid /* item */ xs={12}>
+                <h2 className={classes.pageTitle}>{title}</h2>
+              </Grid>
             )}
-            {/* If is editing admin */}
-            {/* If is editing about admin do not show */}
-            {Object.keys(userInfo).length !== 0 ? (
-              <Typography variant={"h6"}>
-                Shall we put opening hours?
-              </Typography>
-            ) : (
-              <>
-                {/* Section description Edit */}
-                <ContentBlockText
-                  isDraggable={false} // to prevent it from being draggable
-                  item={objSectionDecription}
-                  // receives the id of the item to delete
-                  itemToDelete={toggleDeleteDialogBox}
-                  // gets the new content to update
-                  newContent={updateMediaText}
-                  // Handle the drag and drop
-                  handleDrag={handleDrag}
-                  handleDrop={handleDrop}
-                />
-              </>
-            )}
-          </Grid>
-
-          {/* // * Buttons Top container */}
-          <Grid item xs={3} className={classes.btnSidebar}>
-            <CustomButton
-              style={{ marginBottom: "1rem" }}
-              startIcon="arrowBack"
-              text={isAboutAdmin ? "Back" : "Event"}
-              onClickFunc={() => goBackToPage(needsToSave, history)}
-            />{" "}
-            <CustomIconButton
-              style={{
-                marginBottom: "1rem",
-                borderRadius: "8px",
-                backgroundColor: !needsToSave ? "inherit" : "#26b519",
-              }}
-              // make a focus light so the user knows to save
-
-              icon="save"
-              onClickFunc={saveContent}
-              disabled={!needsToSave}
-            />
-            {/* // * Buttons Top container */}
-            <div className={classes.btnGroup}>
-              <CustomButton
-                text="text"
-                endIcon="add"
-                onClickFunc={() => handleOpen("insertText")}
-              />
-              {/* // ordinary upload with cloudinaryWidget param */}
-              <CustomButton
-                text="media"
-                endIcon="add"
-                onClickFunc={() => showCloudinaryWidget(cloudinaryWidget)}
-              />
-              <CustomButton
-                text="qrCode"
-                endIcon="add"
-                onClickFunc={() => addToContents(createObj("qrcode"))}
-              />
-            </div>
-            <ToggleButton
-              value="preview"
-              selected={toggleSelected}
-              onChange={() => {
-                setToggleSelected(!toggleSelected);
-                // makes btn filled or empty (grey), also activates the toggle "Contents" or "Preview"
-              }}
-              /* onClick={() => handleOpen("preview")} */
+            <Grid
+              item
+              xs={12}
+              className={`${classes.gridItem} ${classes.coverImg}`}
             >
-              Preview
-            </ToggleButton>
-          </Grid>
+              {/* Section cover image */}
+              {section.sectionCover?.url === "" ? (
+                // show button
+                // important to upload the cover pass true
+                <CustomButton
+                  style={{
+                    transform: "translate(0,-1.4rem)",
+                    marginBottom: "0.6rem",
+                  }}
+                  onClickFunc={() => {
+                    isAddingCover = true;
+                    showCloudinaryWidget(cloudinaryWidget);
+                  }}
+                  text="Cover Image"
+                  endIcon="add"
+                />
+              ) : (
+                <ImageHoverButton
+                  title={"Change Cover Image"}
+                  onClickFunc={addCoverImage}
+                  image={section.sectionCover}
+                />
+              )}
+              {/* If is editing admin */}
+              {/* If is editing about admin do not show */}
+              {Object.keys(userInfo).length !== 0 ? (
+                <Typography variant={"h6"}>
+                  Shall we put opening hours?
+                </Typography>
+              ) : (
+                <>
+                  {/* Section description Edit */}
+                  <ContentBlockText
+                    isDraggable={false} // to prevent it from being draggable
+                    item={objSectionDecription}
+                    // receives the id of the item to delete
+                    itemToDelete={toggleDeleteDialogBox}
+                    // gets the new content to update
+                    newContent={updateMediaText}
+                    // Handle the drag and drop
+                    handleDrag={handleDrag}
+                    handleDrop={handleDrop}
+                  />
+                </>
+              )}
+            </Grid>
+            {/* // * Header */}
+            <Grid item xs={3}></Grid> {/* ! empty for styling purposes */}
+            <Grid item xs={9}>
+              <h3 className={classes.gridContentHeader}>
+                {toggleSelected ? "Preview" : "Contents"}
+              </h3>
+            </Grid>
+            {/* // * Buttons Top container */}
+            <Grid /* item */ xs={3} className={classes.btnSidebar}>
+              <CustomButton
+                style={{ marginBottom: "1rem" }}
+                startIcon="arrowBack"
+                text={isAboutAdmin ? "Back" : "Event"}
+                onClickFunc={() => goBackToPage(needsToSave, history)}
+              />{" "}
+              <CustomIconButton
+                style={{
+                  marginBottom: "1rem",
+                  borderRadius: "8px",
+                  backgroundColor: !needsToSave ? "inherit" : "#26b519",
+                }}
+                // make a focus light so the user knows to save
 
-          {/* if toggleSelected */}
-
-          {/* // ? Contents container */}
-          {/* // ? Add content */}
-
-          <Grid item xs={9} className={classes.gridContent}>
-            <h3 className={classes.gridContentHeader}>
-              {toggleSelected ? "Preview" : "Contents"}
-            </h3>
-
-            {toggleSelected ? (
-              <SectionPreview
-                contents={contents}
-                sectionCover={section?.sectionCover}
-                sectionDescription={section?.description}
-                sectionTitle={section?.title}
+                icon="save"
+                onClickFunc={saveContent}
+                disabled={!needsToSave}
               />
-            ) : (
-              contents
-                .sort((a, b) => a.order - b.order)
-                .map((x, i) => {
-                  if (x.type === "text") {
+              {/* // * Buttons Top container */}
+              <div className={classes.btnGroup}>
+                <CustomButton
+                  text="text"
+                  endIcon="add"
+                  onClickFunc={() => handleOpen("insertText")}
+                />
+                {/* // ordinary upload with cloudinaryWidget param */}
+                <CustomButton
+                  text="media"
+                  endIcon="add"
+                  onClickFunc={() => showCloudinaryWidget(cloudinaryWidget)}
+                />
+                {/* <CustomButton
+                  text="qrCode"
+                  endIcon="add"
+                  onClickFunc={() => addToContents(createObj("qrcode"))}
+                /> */}
+              </div>
+              <ToggleButton
+                value="preview"
+                selected={toggleSelected}
+                onChange={() => {
+                  setToggleSelected(!toggleSelected);
+                  // makes btn filled or empty (grey), also activates the toggle "Contents" or "Preview"
+                }}
+                /* onClick={() => handleOpen("preview")} */
+              >
+                Preview
+              </ToggleButton>
+            </Grid>
+            {/* if toggleSelected */}
+            {/* // ? Contents container */}
+            {/* // ? Add content */}
+            <Grid
+              // item -> is fucking up the styles???
+              xs={9}
+              className={classes.contentsContainer}
+              /* style={{ padding: "0" }} */
+            >
+              {toggleSelected ? (
+                <SectionPreview
+                  adminPreview={true}
+                  contents={contents}
+                  sectionCover={section?.sectionCover}
+                  sectionDescription={section?.description}
+                  pageTitle={section?.title}
+                />
+              ) : (
+                contents
+                  .sort((a, b) => a.order - b.order)
+                  .map((x, i) => {
+                    if (x.type === "text") {
+                      return (
+                        <ContentBlockText
+                          isDraggable={true}
+                          item={x}
+                          key={x.id}
+                          // receives the id of the item to delete
+                          itemToDelete={toggleDeleteDialogBox}
+                          // gets the new content to update
+                          newContent={updateMediaText}
+                          // Handle the drag and drop
+                          handleDrag={handleDrag}
+                          handleDrop={handleDrop}
+                        />
+                      );
+                    }
                     return (
-                      <ContentBlockText
+                      <ContentBlockMedia
                         isDraggable={true}
                         item={x}
                         key={x.id}
                         // receives the id of the item to delete
                         itemToDelete={toggleDeleteDialogBox}
-                        // gets the new content to update
-                        newContent={updateMediaText}
+                        mediaCaption={addMediaCaption}
                         // Handle the drag and drop
                         handleDrag={handleDrag}
                         handleDrop={handleDrop}
                       />
                     );
-                  }
-                  return (
-                    <ContentBlockMedia
-                      isDraggable={true}
-                      item={x}
-                      key={x.id}
-                      // receives the id of the item to delete
-                      itemToDelete={toggleDeleteDialogBox}
-                      mediaCaption={addMediaCaption}
-                      // Handle the drag and drop
-                      handleDrag={handleDrag}
-                      handleDrop={handleDrop}
-                    />
-                  );
-                })
-            )}
+                  })
+              )}
+            </Grid>
           </Grid>
-        </Grid>
-      ) : null}
-    </Container>
+        ) : null}
+      </Container>
+    </div>
   );
 }

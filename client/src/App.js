@@ -21,7 +21,7 @@ import { Provider } from "react-redux";
 import Store from "./store/index";
 
 // * Mat UI
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, CssBaseline } from "@material-ui/core";
 import { theme } from "../src/styles/Theme";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 
@@ -60,6 +60,7 @@ function App() {
           theme="colored"
         />
         <BrowserRouter>
+          <CssBaseline />
           <div aria-label="app-container" className="app-container">
             <div
               aria-label="content-wrap"

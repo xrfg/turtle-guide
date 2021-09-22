@@ -37,6 +37,8 @@ import PopUpDialogBox from "../../Components/PopUpDialogBox/PopUpDialogBox";
 import ReactQuill from "react-quill"; // ES6
 import CustomIconButton from "../../Components/Buttons/CustomIconButtons/CustomIconButton";
 
+import { ourColors } from "../../styles/Theme";
+
 const useStyles = makeStyles((theme) => ({
   card: { position: "relative", marginBottom: "1rem" },
   card__title: {},
@@ -131,6 +133,7 @@ export default function EventSection(props) {
 
   return (
     <Card
+      disableRipple={true}
       id={id}
       className={classes.card}
       key={id}
@@ -149,7 +152,12 @@ export default function EventSection(props) {
         messageBody="Deleting a section will permanently erase it from the event."
       />
 
-      <CardActionArea onClick={editSection}>
+      <CardActionArea
+        onClick={!editing ? editSection : null}
+        // prevents it from going inside the section when editing
+        // the title of the section
+        disableRipple={true}
+      >
         <CardContent>
           {editing ? (
             <Box>
@@ -189,7 +197,7 @@ export default function EventSection(props) {
                 variant="h6"
                 component="h6"
               >
-                {title} {id}
+                {title}
               </Typography>
               {url_thumb.length !== 0 ? (
                 <img
@@ -220,7 +228,11 @@ export default function EventSection(props) {
       {/* // ! all the section is draggable, should only work when dragstart is this button */}
       {isIntro ? null : (
         <CardActions
-          style={{ display: "flex", justifyContent: "space-between" }}
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            borderTop: `1px solid ${ourColors.gainsboro}`,
+          }}
         >
           <ButtonGroup
             orientation="horizontal"
