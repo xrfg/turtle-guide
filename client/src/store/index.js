@@ -30,8 +30,6 @@ const Store = createStore(
   )
 );
 
-console.log("Store.getState()", Store.getState());
-
 Store.subscribe(() => {
   // throttle(() => {
   saveState({
