@@ -71,7 +71,7 @@ const EventName = (props) => {
       title: title,
       nameIdentifier: slug, // function to make the slug
       slug: slug, // will be the same
-      description: "description", // ? is to do?
+      description: "description",
       sections: [
         // intro is added by default
         {
@@ -110,7 +110,6 @@ const EventName = (props) => {
     await dispatch(eventCreate({ event: createEvent, token: token }));
 
     history.push(`/admin/event/${slugify(eventName)}`, {
-      isNew: true,
       slug: slugify(eventName),
       title: eventName,
     });
