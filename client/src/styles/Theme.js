@@ -177,10 +177,14 @@ export const theme = createTheme({
   guide: {
     container: { backgroundColor: "white", padding: "0" },
     mainHeader: {
-      fontSize: "1.5rem",
+      top: 0,
+      // ! define color here just a test
+      color: "grey",
+      fontSize: "2.5rem",
       letterSpacing: "0.60000px",
-      fontFamily: "'Baton Turbo', sans-serif",
-      fontWeight: 600,
+      // ! I don't think it fits
+      // fontFamily: "'Baton Turbo', sans-serif",
+      // fontWeight: 600,
     },
     header: {
       fontWeight: 600,

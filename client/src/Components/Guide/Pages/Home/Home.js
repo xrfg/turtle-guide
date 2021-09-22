@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
     // width: "100vw",
   },
   parallaxLayerContainer: {
-    margin: "6rem 0 30px 0",
+    // margin: "6rem 0 30px 0",
     // padding: "1.6rem",
     display: "flex",
     flexDirection: "column",
@@ -89,18 +89,21 @@ const useStyles = makeStyles((theme) => ({
   },
 
   eventsTitle: {
-    position: "fixed",
+    // ! changed from fixed
+    position: "relative",
     display: "flex",
     alignItems: "end",
     width: "100%",
     zIndex: "10000",
-    height: "3.7rem",
     ...theme.guide.mainHeader,
-    color: ourColors.indigoDye,
-    backgroundColor: ourColors.gainsboro,
-    margin: "-6rem 0 0 0",
-    padding: "0.6rem",
-    boxShadow: "-2px 2px 8px 1px rgba(127,127,127,0.88)",
+    // ! removed background and bar
+    // maxHeight: "100px",
+    // height: "3.7rem",
+    // backgroundColor: ourColors.gainsboro,
+    // boxShadow: "-2px 2px 8px 1px rgba(127,127,127,0.88)",
+    margin: "0 0 0 0",
+    // color: ourColors.indigoDye,
+    padding: "20px",
   },
 }));
 
@@ -160,9 +163,6 @@ export default function Home(props) {
         </ParallaxLayer>
       </Parallax> */}
 
-      <Typography variant="h1" component="h1" className={classes.eventsTitle}>
-        {title}
-      </Typography>
       <div className={classes.mainContainer}>
         <Parallax pages={5}>
           <ParallaxLayer
@@ -174,6 +174,13 @@ export default function Home(props) {
             //   backgroundImage: `url(${imgUrl})`,
             // }}
           >
+            <Typography
+              variant="h1"
+              component="h1"
+              className={classes.eventsTitle}
+            >
+              {title}
+            </Typography>
             <div className={classes.parallaxLayerContainer}>
               {/* Map to create cards */}
               {sections.map((x, index) => {
