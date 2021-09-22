@@ -11,12 +11,18 @@ import {
   EVENTS_CLEAN,
 } from "../types";
 
-const initialState = {
-  events: [], // all events
-  eventGuide: {}, // the event the guide will render
-  loading: true,
-  error: null,
-};
+import { loadState } from "../localStorage";
+
+const persistedState = loadState();
+
+const initialState = persistedState
+  ? persistedState
+  : {
+      events: [], // all events
+      eventGuide: {}, // the event the guide will render
+      loading: true,
+      error: null,
+    };
 
 /* eslint import/no-anonymous-default-export: [2, {"allowArrowFunction": true}] */
 export default (state = initialState, action) => {
