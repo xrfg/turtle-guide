@@ -13,9 +13,6 @@ import React, { useEffect } from "react";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import { Container, Button, Typography } from "@material-ui/core";
 
-// * Components
-import VideoPlayerFunction from "../VideoPlayerFunction/VideoPlayerFunction";
-
 import theme from "../../styles/Theme";
 
 // needed to render Rich text
@@ -203,18 +200,14 @@ const SectionPreview = (props) => {
 
           /*  video */
           if (x.type === "video") {
-            const videoOptions = {
-              cloudName: "dhdgj2ryu",
-              public_id: x.content.public_id,
-            };
+            // passes the url video to video
             return (
               <div className="video-card">
-                <h2>Video Player in Function</h2>
-                <div className="vp">
-                  <VideoPlayerFunction options={videoOptions} />
-                  <h3>{x.content.caption?.title}</h3>
-                  <h4>{x.content.caption?.description}</h4>
-                </div>
+                <video width="400" controls>
+                  <source src={x.content.url} type="video/mp4" />
+                </video>
+                <h3>{x.content.caption?.title}</h3>
+                <h4>{x.content.caption?.description}</h4>
               </div>
             );
           }
