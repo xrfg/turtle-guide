@@ -123,97 +123,33 @@ export default function Home(props) {
   // * States
   const [totalParallaxPages, setTotalParallaxPages] = useState(0);
   const [parallaxContainerSize, setParallaxContainerSize] = useState(0);
-  const [needsCalc, setNeedsCalc] = useState(true);
 
-  // let totalParallaxPages = 1;
   useEffect(() => {
-    console.log("mainContainerRef.current", mainContainerRef);
-    // if true the content is loaded
-    if (mainContainerRef.current && needsCalc && parallaxContainerSize !== 0) {
-      setNeedsCalc(false);
-      // * calculate parallax total size
-      const getViewportSize = window.innerHeight;
-      console.log("CALC", parallaxContainerSize / getViewportSize);
-      // set the pages
-      setTotalParallaxPages(
-        Math.floor(parallaxContainerSize / getViewportSize)
-      );
-      // console.log("get", get);
-    }
-    // setTotalParallaxPages(getViewportSize / getParallaxContainerSize);
-    //eslint-disable-next-line
-  }, [parallaxContainerSize, needsCalc]);
+    const getViewportSize = window.innerHeight;
 
-  // const [parallaxContainerSize, setParallaxContainerSize] = useState(
-  //   parallaxContainer.current.offsetHeight
-  //   );
+    const totalCards = sections.length;
+    const totalPixels = totalCards * 385;
+
+    const pages = Math.floor(totalPixels / getViewportSize);
+
+    // TODO -10% - 30 % from pages
+
+    setTotalParallaxPages(pages);
+
+    //eslint-disable-next-line
+  }, []);
 
   // * Destruc
   const { title, sections, eventSlug, nameIdentifier } = props;
 
-  console.log("sections", sections.length * 385);
-
-  const imgUrl =
-    "https://cms.hostelworld.com/hwblog/wp-content/uploads/sites/2/2018/12/kirkjufell.jpg";
-
-  // const totalParallaxPages = getViewportSize / getParallaxContainerSize;
-
-  // console.log("totalParallaxPages", totalParallaxPages);
   return (
     <>
-      {/* <Parallax pages={5}>
-        <ParallaxLayer
-          offset={0}
-          speed={0.5}
-          style={{ ...alignCenter, justifyContent: "center" }}
-        >
-          <p className={styles.scrollText}>Scroll down</p>
-        </ParallaxLayer>
-
-        <ParallaxLayer
-          sticky={{ start: 1, end: 3 }}
-          style={{ ...alignCenter, justifyContent: "flex-start" }}
-        >
-          <div className={`${styles.card} ${styles.sticky}`}>
-            <p>I'm a sticky layer</p>
-          </div>
-        </ParallaxLayer>
-
-        <ParallaxLayer
-          offset={1.5}
-          speed={1.5}
-          style={{ ...alignCenter, justifyContent: "flex-end" }}
-        >
-          <div className={`${styles.card} ${styles.parallax} ${styles.purple}`}>
-            <p>I'm not</p>
-          </div>
-        </ParallaxLayer>
-
-        <ParallaxLayer
-          offset={2.5}
-          speed={1.5}
-          style={{ ...alignCenter, justifyContent: "flex-end" }}
-        >
-          <div className={`${styles.card} ${styles.parallax} ${styles.blue}`}>
-            <p>Neither am I</p>
-          </div>
-        </ParallaxLayer>
-      </Parallax> */}
       {totalParallaxPages === 0 ? (
         <h1>WAIT</h1>
       ) : (
         <div className={classes.mainContainer} ref={mainContainerRef}>
-          {console.log("totalParallaxPages", totalParallaxPages)}
-          <Parallax pages={5.5} enabled={true}>
-            <ParallaxLayer
-              // factor={2}
-              offset={0}
-              speed={0.5}
-              // style={{ ...alignCenter, justifyContent: "center" }}
-              // style={{
-              //   backgroundImage: `url(${imgUrl})`,
-              // }}
-            >
+          <Parallax pages={totalParallaxPages} enabled={true}>
+            <ParallaxLayer offset={0} speed={0.5}>
               <Typography
                 variant="h1"
                 component="h1"
