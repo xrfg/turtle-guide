@@ -6,12 +6,16 @@ import React, { useState } from "react";
 import slugify from "react-slugify";
 
 // * material UI imports Icons
-import { TextField, makeStyles, Button } from "@material-ui/core";
-// * material UI imports Icons
-import { Save } from "@material-ui/icons";
+import { TextField, makeStyles } from "@material-ui/core";
 
 import { useHistory } from "react-router-dom";
 import CustomIconButton from "../../Components/Buttons/CustomIconButtons/CustomIconButton";
+
+// * REDUX
+import { useDispatch, useSelector } from "react-redux";
+
+// * ACTIONS
+import { eventCreate } from "../../store/actions/eventsActions";
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -27,9 +31,11 @@ const useStyles = makeStyles((theme) => ({
 const EventName = (props) => {
   // * Hooks
   const classes = useStyles(props);
-
+  const dispatch = useDispatch();
   // to use history.push(newRoute) on save
   let history = useHistory();
+
+  const token = useSelector((state) => state.user.token);
 
   // * States
   const [eventName, setEventName] = useState("");
@@ -48,11 +54,67 @@ const EventName = (props) => {
   };
 
   /**
+   * @function createEvent
+   * @param eventName coming from the props "getEventName"
+   * @desc saves the event name and creates event obj
+   */
+
+  // if params === new then show name modal
+  // else fetch event
+
+  const createAndSendEvent = (obj) => {
+    // destruct
+    const { title, slug } = obj;
+
+    return {
+      title: title,
+      nameIdentifier: slug, // function to make the slug
+      slug: slug, // will be the same
+      description: "description", // ? is to do?
+      sections: [
+        // intro is added by default
+        {
+          type: "intro",
+          id: 1,
+          order: 1,
+          url: "",
+          slug: "intro",
+          contents: [],
+          title: eventName ? `${eventName} Introduction` : "Event Introduction",
+          description: "Event Description",
+          sectionCover: {
+            filename: "",
+            public_id: "",
+            url: "",
+            url_thumb: "",
+          },
+        },
+      ],
+      // TODO CHANGE ACCOUNT
+      // WILL BET SENT ONCe IS LOGGED IN
+      account: "611e5aca56104a1c09f9d13e",
+      // ! spread obj
+    };
+    // to stop useEffect after the creation of a new event
+    // ! remove
+    // isNewEvent = false;
+  };
+
+  /**
    * @function goToAndSlugify
    * @param eventName
    * @desc redirects and creates an object to create the event
    */
-  const goToAndSlugify = (eventName) => {
+  const goToAndSlugify = async (eventName) => {
+    const createEvent = createAndSendEvent({
+      slug: slugify(eventName),
+      title: eventName,
+    });
+
+    const res = await dispatch(
+      eventCreate({ event: createEvent, token: token })
+    );
+
     history.push(`/admin/event/${slugify(eventName)}`, {
       isNew: true,
       slug: slugify(eventName),

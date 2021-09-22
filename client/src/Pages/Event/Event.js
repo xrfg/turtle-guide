@@ -109,10 +109,10 @@ export default function Event(props) {
 
   useEffect(() => {
     // create a new event
-    if (isNewEvent) {
-      const obj = props.location.state;
-      return createAndSendEvent(obj);
-    }
+    // if (isNewEvent) {
+    //   const obj = props.location.state;
+    //   return createAndSendEvent(obj);
+    // }
 
     // search for the event into redux
     const getEvent = events.find((x) => x.slug === slug);
@@ -176,44 +176,6 @@ export default function Event(props) {
   // * Functions
 
   /**
-   * @function addIntro
-   * @desc makes an unique obj INTRO with id:1, order:1
-   * all the other sections will start from id:2 and order:2
-   * so that intro is always first in the array
-   */
-
-  /* const addIntro = () => {
-    console.log(sections);
-    if (sections.length === 0 || !sections[0].id === 1) {
-      const intro = {
-        type: "intro",
-        id: 1,
-        order: 1,
-        url: "",
-        slug: "title",
-        contents: [],
-        title: `${event.title} Introduction`,
-        description: "Description",
-        sectionCover: {
-          filename: "",
-          public_id: "",
-          url: "",
-          url_thumb: "",
-        },
-      };
-
-      setSections([intro, ...sections]);
-      console.log([intro, ...sections]);
-    } else {
-      setIsError("Already have an Intro!");
-      setTimeout(() => {
-        setIsError(false);
-      }, 4000);
-      console.log("ALREADY HAVE INTRO!");
-    }
-  }; */
-
-  /**
    * @function findBiggestId
    * @desc returns a Number -> biggest existing integer of an "id" from the sections array
    * is aiding the assigning of id's to new sections in function addToContents
@@ -260,7 +222,6 @@ export default function Event(props) {
     // if [contents] s empty assigns the index
 
     const bigId = findBiggestId();
-    console.log("findBiggestId()", findBiggestId());
 
     // const bigId = sections
 
@@ -283,7 +244,6 @@ export default function Event(props) {
     });
 
     setSections([...sections, ...newSectionsArr]);
-    console.log([...sections, ...newSectionsArr]);
   };
 
   /**
@@ -376,53 +336,6 @@ export default function Event(props) {
     });
 
     setSections(newSectionState);
-  };
-
-  /**
-   * @function createEvent
-   * @param eventName coming from the props "getEventName"
-   * @desc saves the event name and creates event obj
-   */
-
-  // if params === new then show name modal
-  // else fetch event
-
-  const createAndSendEvent = (obj) => {
-    // destruct
-    const { title, slug } = obj;
-
-    setEvent({
-      title: title,
-      nameIdentifier: slug, // function to make the slug
-      slug: slug, // will be the same
-      description: "description", // ? is to do?
-      sections: [
-        // intro is added by default
-        {
-          type: "intro",
-          id: 1,
-          order: 1,
-          url: "",
-          slug: "intro",
-          contents: [],
-          title: event ? `${event.title} Introduction` : "Event Introduction",
-          description: "Event Description",
-          sectionCover: {
-            filename: "",
-            public_id: "",
-            url: "",
-            url_thumb: "",
-          },
-        },
-      ],
-      // TODO CHANGE ACCOUNT
-      // WILL BET SENT ONCe IS LOGGED IN
-      account: "611e5aca56104a1c09f9d13e",
-      // ! spread obj
-    });
-    // to stop useEffect after the creation of a new event
-    // ! remove
-    isNewEvent = false;
   };
 
   /**
@@ -558,7 +471,7 @@ export default function Event(props) {
                 eventNameUpdate={eventNameUpdate}
                 title={event.title}
                 slug={event.slug}
-                getEventName={createAndSendEvent}
+                // getEventName={createAndSendEvent}
               />
             </Grid>
             {/* Delete Event */}
