@@ -128,16 +128,17 @@ export default function Event(props) {
 
   // fires when the state event is created/ updated
   useEffect(() => {
-    // TODO try catch to handle UI Error
-
     async function saveData() {
-      if (needsToSave) {
-        console.log("saving");
-        // dispatch
-        await dispatch(eventUpdate({ event: event, token: token }));
+      try {
+        if (needsToSave) {
+          // dispatch
+          await dispatch(eventUpdate({ event: event, token: token }));
 
-        toast.success("Saved successfully!");
-        return setNeedsToSave(false);
+          toast.success("Saved successfully!");
+          return setNeedsToSave(false);
+        }
+      } catch (error) {
+        console.error(error);
       }
     }
     saveData();
