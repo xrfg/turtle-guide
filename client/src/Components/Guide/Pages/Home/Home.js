@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useLayoutEffect, useEffect } from "react";
 // import styles from "./home.css";
 import axios from "axios";
 // import toast from "toast";
@@ -116,18 +116,49 @@ const useStyles = makeStyles((theme) => ({
 export default function Home(props) {
   // * Hooks
   const classes = useStyles();
+  // * refs
+  const mainContainerRef = useRef();
+  const parallaxContainerRef = useRef();
+
+  // * States
+  const [totalParallaxPages, setTotalParallaxPages] = useState(0);
+  const [parallaxContainerSize, setParallaxContainerSize] = useState(0);
+  const [needsCalc, setNeedsCalc] = useState(true);
+
+  // let totalParallaxPages = 1;
+  useEffect(() => {
+    console.log("mainContainerRef.current", mainContainerRef);
+    // if true the content is loaded
+    if (mainContainerRef.current && needsCalc && parallaxContainerSize !== 0) {
+      setNeedsCalc(false);
+      // * calculate parallax total size
+      const getViewportSize = window.innerHeight;
+      console.log("CALC", parallaxContainerSize / getViewportSize);
+      // set the pages
+      setTotalParallaxPages(
+        Math.floor(parallaxContainerSize / getViewportSize)
+      );
+      // console.log("get", get);
+    }
+    // setTotalParallaxPages(getViewportSize / getParallaxContainerSize);
+    //eslint-disable-next-line
+  }, [parallaxContainerSize, needsCalc]);
+
+  // const [parallaxContainerSize, setParallaxContainerSize] = useState(
+  //   parallaxContainer.current.offsetHeight
+  //   );
 
   // * Destruc
   const { title, sections, eventSlug, nameIdentifier } = props;
 
+  console.log("sections", sections.length * 385);
+
   const imgUrl =
     "https://cms.hostelworld.com/hwblog/wp-content/uploads/sites/2/2018/12/kirkjufell.jpg";
 
-  /**
-   * @desc Component to create a card (section)
-   */
-  // TODO to ext
-  const alignCenter = { display: "flex", alignItems: "center" };
+  // const totalParallaxPages = getViewportSize / getParallaxContainerSize;
+
+  // console.log("totalParallaxPages", totalParallaxPages);
   return (
     <>
       {/* <Parallax pages={5}>
@@ -168,46 +199,56 @@ export default function Home(props) {
           </div>
         </ParallaxLayer>
       </Parallax> */}
-
-      <div className={classes.mainContainer}>
-        <Parallax pages={5}>
-          <ParallaxLayer
-            // factor={0.1}
-            offset={0}
-            speed={0.5}
-            // style={{ ...alignCenter, justifyContent: "center" }}
-            // style={{
-            //   backgroundImage: `url(${imgUrl})`,
-            // }}
-          >
-            <Typography
-              variant="h1"
-              component="h1"
-              className={classes.eventsTitle}
+      {totalParallaxPages === 0 ? (
+        <h1>WAIT</h1>
+      ) : (
+        <div className={classes.mainContainer} ref={mainContainerRef}>
+          {console.log("totalParallaxPages", totalParallaxPages)}
+          <Parallax pages={5.5} enabled={true}>
+            <ParallaxLayer
+              // factor={2}
+              offset={0}
+              speed={0.5}
+              // style={{ ...alignCenter, justifyContent: "center" }}
+              // style={{
+              //   backgroundImage: `url(${imgUrl})`,
+              // }}
             >
-              {title}
-            </Typography>
-            <div className={classes.parallaxLayerContainer}>
-              {/* Map to create cards */}
-              {sections.map((x, index) => {
-                // skip intro from general rendering
-                if (x.type === "intro") {
-                  return null;
-                }
-                // renders the rest
-                return (
-                  <BlockSection
-                    sectionIndex={index} // pass for the order in the navbar
-                    nameIdentifier={nameIdentifier}
-                    eventSlug={eventSlug}
-                    data={x}
-                  />
-                );
-              })}
-            </div>
-          </ParallaxLayer>
-        </Parallax>
-      </div>
+              <Typography
+                variant="h1"
+                component="h1"
+                className={classes.eventsTitle}
+              >
+                {title}
+              </Typography>
+              <div
+                ref={(el) => {
+                  // sets the size of the container
+                  setParallaxContainerSize(el?.offsetHeight);
+                }}
+                className={classes.parallaxLayerContainer}
+              >
+                {/* Map to create cards */}
+                {sections.map((x, index) => {
+                  // skip intro from general rendering
+                  if (x.type === "intro") {
+                    return null;
+                  }
+                  // renders the rest
+                  return (
+                    <BlockSection
+                      sectionIndex={index} // pass for the order in the navbar
+                      nameIdentifier={nameIdentifier}
+                      eventSlug={eventSlug}
+                      data={x}
+                    />
+                  );
+                })}
+              </div>
+            </ParallaxLayer>
+          </Parallax>
+        </div>
+      )}
     </>
   );
 }

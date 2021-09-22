@@ -25,6 +25,7 @@ import { ourColors, theme } from ".././../../../styles/Theme";
 const useStyles = makeStyles((theme) => ({
   card: {
     maxWidth: 450,
+    height: 385, // must be fixed
     margin: "0 0 4rem 0",
     width: "80%",
   },
