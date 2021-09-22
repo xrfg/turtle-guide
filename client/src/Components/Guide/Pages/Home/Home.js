@@ -57,7 +57,10 @@ const useStyles = makeStyles((theme) => ({
   mainContainer: {
     margin: "6rem 0 30px 0",
     padding: "1.6rem",
-    backgroundColor: ourColors.primaryLight,
+
+    // background:
+    //   "linear-gradient(4deg, rgba(121,16,9,1) 44%, rgba(0,212,255,1) 100%)",
+    // backgroundColor: ourColors.primaryLight,
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -112,6 +115,9 @@ export default function Home(props) {
   //     toast("Something went wrong", { type: "error" });
   //   }
   // }
+
+  const imgUrl =
+    "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.hostelworld.com%2Fblog%2Fbeautiful-mountains%2F&psig=AOvVaw3QHyW9y6t3hb-QDf92S-Mz&ust=1632397532678000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJin6-bAkvMCFQAAAAAdAAAAABAD";
 
   /**
    * @desc Component to create a card (section)
@@ -168,7 +174,12 @@ export default function Home(props) {
           speed={0.5}
           // style={{ ...alignCenter, justifyContent: "center" }}
         >
-          <div className={classes.mainContainer}>
+          <div
+            className={classes.mainContainer}
+            // style={{
+            //   // backgroundImage: `url(${imgUrl})`,
+            // }}
+          >
             {/* Map to create cards */}
             {sections.map((x, index) => {
               // skip intro from general rendering
