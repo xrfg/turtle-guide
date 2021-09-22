@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// import styles from "./home.css";
 import axios from "axios";
 // import toast from "toast";
 
@@ -19,6 +20,9 @@ import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import styles from "./styles.module.css";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    background: "linear-gradient(#e66465, #9198e5)",
+  },
   /*hero: {
     backgroundImage: `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0.5)),url("https://ernst-leitz-museum.de/wp-content/uploads/2019/03/das-ernst-leitz-museum-in-wetzlar-2-2-1440x566.jpg")`,
     height: "500px",
@@ -55,18 +59,36 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
   },*/
   mainContainer: {
-    margin: "6rem 0 30px 0",
-    padding: "1.6rem",
+    background: "linear-gradient(#e66465, #9198e5)",
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
+    // width: "100vw",
+    // height: "100vh",
 
-    // background:
-    //   "linear-gradient(4deg, rgba(121,16,9,1) 44%, rgba(0,212,255,1) 100%)",
-    // backgroundColor: ourColors.primaryLight,
+    // margin: "6rem 0 30px 0",
+    // padding: "1.6rem",
+    // // // background:
+    // // //   "linear-gradient(4deg, rgba(121,16,9,1) 44%, rgba(0,212,255,1) 100%)",
+    // // // backgroundColor: ourColors.primaryLight,
+    // display: "flex",
+    // flexDirection: "column",
+    // justifyContent: "center",
+    // alignItems: "center",
+    // width: "100vw",
+  },
+  parallaxLayerContainer: {
+    margin: "6rem 0 30px 0",
+    // padding: "1.6rem",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     width: "100vw",
   },
+
   eventsTitle: {
     position: "fixed",
     display: "flex",
@@ -117,7 +139,7 @@ export default function Home(props) {
   // }
 
   const imgUrl =
-    "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.hostelworld.com%2Fblog%2Fbeautiful-mountains%2F&psig=AOvVaw3QHyW9y6t3hb-QDf92S-Mz&ust=1632397532678000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJin6-bAkvMCFQAAAAAdAAAAABAD";
+    "https://cms.hostelworld.com/hwblog/wp-content/uploads/sites/2/2018/12/kirkjufell.jpg";
 
   /**
    * @desc Component to create a card (section)
@@ -168,37 +190,38 @@ export default function Home(props) {
       <Typography variant="h1" component="h1" className={classes.eventsTitle}>
         {title}
       </Typography>
-      <Parallax pages={0}>
-        <ParallaxLayer
-          offset={0}
-          speed={0.5}
-          // style={{ ...alignCenter, justifyContent: "center" }}
-        >
-          <div
-            className={classes.mainContainer}
+      <div className={classes.mainContainer}>
+        <Parallax pages={5}>
+          <ParallaxLayer
+            // factor={0.1}
+            offset={0}
+            speed={0.5}
+            // style={{ ...alignCenter, justifyContent: "center" }}
             // style={{
-            //   // backgroundImage: `url(${imgUrl})`,
+            //   backgroundImage: `url(${imgUrl})`,
             // }}
           >
-            {/* Map to create cards */}
-            {sections.map((x, index) => {
-              // skip intro from general rendering
-              if (x.type === "intro") {
-                return null;
-              }
-              // renders the rest
-              return (
-                <BlockSection
-                  sectionIndex={index} // pass for the order in the navbar
-                  nameIdentifier={nameIdentifier}
-                  eventSlug={eventSlug}
-                  data={x}
-                />
-              );
-            })}
-          </div>
-        </ParallaxLayer>
-      </Parallax>
+            <div className={classes.parallaxLayerContainer}>
+              {/* Map to create cards */}
+              {sections.map((x, index) => {
+                // skip intro from general rendering
+                if (x.type === "intro") {
+                  return null;
+                }
+                // renders the rest
+                return (
+                  <BlockSection
+                    sectionIndex={index} // pass for the order in the navbar
+                    nameIdentifier={nameIdentifier}
+                    eventSlug={eventSlug}
+                    data={x}
+                  />
+                );
+              })}
+            </div>
+          </ParallaxLayer>
+        </Parallax>
+      </div>
     </>
   );
 }
