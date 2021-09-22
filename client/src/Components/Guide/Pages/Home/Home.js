@@ -15,6 +15,8 @@ import { Typography } from "@material-ui/core";
 
 import { ourColors, theme } from ".././../../../styles/Theme";
 
+import { Parallax, ParallaxLayer } from "@react-spring/parallax";
+
 const useStyles = makeStyles((theme) => ({
   /*hero: {
     backgroundImage: `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0.5)),url("https://ernst-leitz-museum.de/wp-content/uploads/2019/03/das-ernst-leitz-museum-in-wetzlar-2-2-1440x566.jpg")`,
@@ -117,12 +119,57 @@ export default function Home(props) {
   console.log(BlockSection);
   return (
     <>
-      <Typography variant="h1" component="h1" className={classes.eventsTitle}>
-        {title}
-      </Typography>
-      <div className={classes.mainContainer}>
-        {/* Map to create cards */}
-        {sections.map((x, index) => {
+      <Parallax pages={3} style={{ top: "0", left: "0" }}>
+        <ParallaxLayer
+          offset={1}
+          speed={2}
+          style={{ backgroundColor: "#ff6d6d" }}
+        />
+        <div>
+          <Typography
+            variant="h1"
+            component="h1"
+            className={classes.eventsTitle}
+          >
+            {title}
+          </Typography>
+        </div>
+
+        <ParallaxLayer
+          offset={0}
+          speed={2.5}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <p>code {title}</p>
+        </ParallaxLayer>
+
+        <ParallaxLayer
+          offset={1}
+          speed={2}
+          style={{ backgroundColor: "#ff6d6d" }}
+        />
+
+        <ParallaxLayer
+          offset={1}
+          speed={0.5}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            color: "white",
+          }}
+        >
+          <p>Scroll up</p>
+        </ParallaxLayer>
+      </Parallax>
+
+      {/* <div className={classes.mainContainer}> */}
+      {/* Map to create cards */}
+      {/* {sections.map((x, index) => {
           // skip intro from general rendering
           if (x.type === "intro") {
             return null;
@@ -136,8 +183,8 @@ export default function Home(props) {
               data={x}
             />
           );
-        })}
-      </div>
+        })} */}
+      {/* </div> */}
     </>
   );
 }
