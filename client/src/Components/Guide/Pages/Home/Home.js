@@ -159,37 +159,34 @@ export default function Home(props) {
         </ParallaxLayer>
       </Parallax> */}
 
-      {/* <Typography variant="h1" component="h1" className={classes.eventsTitle}>
+      <Typography variant="h1" component="h1" className={classes.eventsTitle}>
         {title}
-      </Typography> */}
-
-      <Parallax pages={sections.length}>
-        <div className={classes.mainContainer}>
-          {/* Map to create cards */}
-          {sections.map((x, index) => {
-            // skip intro from general rendering
-            if (x.type === "intro") {
-              return null;
-            }
-            // renders the rest
-            return (
-              <ParallaxLayer
-                offset={0}
-                speed={0.5}
-                style={{ ...alignCenter, justifyContent: "center" }}
-              >
-                <div style={{ display: "block" }}>
-                  <BlockSection
-                    sectionIndex={index} // pass for the order in the navbar
-                    nameIdentifier={nameIdentifier}
-                    eventSlug={eventSlug}
-                    data={x}
-                  />
-                </div>
-              </ParallaxLayer>
-            );
-          })}
-        </div>
+      </Typography>
+      <Parallax pages={0}>
+        <ParallaxLayer
+          offset={0}
+          speed={0.5}
+          // style={{ ...alignCenter, justifyContent: "center" }}
+        >
+          <div className={classes.mainContainer}>
+            {/* Map to create cards */}
+            {sections.map((x, index) => {
+              // skip intro from general rendering
+              if (x.type === "intro") {
+                return null;
+              }
+              // renders the rest
+              return (
+                <BlockSection
+                  sectionIndex={index} // pass for the order in the navbar
+                  nameIdentifier={nameIdentifier}
+                  eventSlug={eventSlug}
+                  data={x}
+                />
+              );
+            })}
+          </div>
+        </ParallaxLayer>
       </Parallax>
     </>
   );
