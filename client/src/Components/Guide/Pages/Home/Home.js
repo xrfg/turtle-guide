@@ -19,9 +19,6 @@ import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import styles from "./styles.module.css";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    background: "linear-gradient(#e66465, #9198e5)",
-  },
   /*hero: {
     backgroundImage: `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0.5)),url("https://ernst-leitz-museum.de/wp-content/uploads/2019/03/das-ernst-leitz-museum-in-wetzlar-2-2-1440x566.jpg")`,
     height: "500px",
@@ -58,7 +55,16 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
   },*/
   mainContainer: {
-    background: "linear-gradient(#e66465, #9198e5)",
+    // ! gradients samples NOT DELETE
+    // background: "linear-gradient(#e66465, #9198e5)",
+    // background:
+    //   "linear-gradient(0deg, rgba(207,222,243,1) 0%, rgba(224,234,252,1) 100%)", // Sky
+    // background:
+    //   "linear-gradient(0deg, rgba(173,169,150,1) 0%, rgba(242,242,242,1) 40%, rgba(219,219,219,1) 68%, rgba(234,234,234,1) 100%)", // zinc
+    // background:
+    //   "linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(170,186,171,1) 100%)", // light green
+    background:
+      " linear-gradient(0deg, rgba(215,221,232,0.6) 0%, rgba(117,127,154,0.6) 100%)", // blue grey
     position: "absolute",
     top: 0,
     bottom: 0,
