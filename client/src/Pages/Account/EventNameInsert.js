@@ -66,7 +66,6 @@ const EventName = (props) => {
   const createAndSendEvent = (obj) => {
     // destruct
     const { title, slug } = obj;
-    console.log("userInfo", user._id);
 
     return {
       title: title,
@@ -92,15 +91,9 @@ const EventName = (props) => {
           },
         },
       ],
-      // TODO CHANGE ACCOUNT
-      // WILL BET SENT ONCe IS LOGGED IN
-      // ! check this
+
       account: user._id,
-      // ! spread obj
     };
-    // to stop useEffect after the creation of a new event
-    // ! remove
-    // isNewEvent = false;
   };
 
   /**

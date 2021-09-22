@@ -132,6 +132,7 @@ export default function Event(props) {
 
     async function saveData() {
       if (needsToSave) {
+        console.log("saving");
         // dispatch
         await dispatch(eventUpdate({ event: event, token: token }));
 
@@ -349,12 +350,13 @@ export default function Event(props) {
    */
 
   const saveEvent = (obj) => {
+    console.log("saveEvent()");
     // set to true or stops it in use effect
     setNeedsToSave(true);
     // if the event is new skips it
-    if (isNewEvent) {
-      return;
-    }
+    // if (isNewEvent) {
+    //   return;
+    // }
     // update event
 
     // destruc
