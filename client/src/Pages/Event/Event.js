@@ -86,10 +86,11 @@ export default function Event(props) {
   // for the drag and drop sections re-ordering
   const [dragId, setDragId] = useState();
 
+  // TODO remove if not necessary
   // * Refs
   // just to skip the first and second render
-  const firstUpdate = useRef(true);
-  const secondUpdate = useRef(true);
+  // const firstUpdate = useRef(true);
+  // const secondUpdate = useRef(true);
 
   // * Hooks
   // loads event from reducer
@@ -143,35 +144,38 @@ export default function Event(props) {
     // if event is empty do not dispatch
     // ! isNewevent Stops it from a recreating of an existing event
     // ! keep as an option
-    if (!event || !isNewEvent || needsToSave) {
-      return null;
-    }
+    // if (!event || !isNewEvent || needsToSave) {
+    //   return null;
+    // }
 
     // dispatch the event to redux
-    return dispatch(eventCreate({ event: event, token: token }));
+    // return dispatch(eventCreate({ event: event, token: token }));
     //eslint-disable-next-line
   }, [event]);
 
   // handles the save button
-  useEffect(() => {
-    // if true skips the first render
-    if (firstUpdate.current) {
-      return (firstUpdate.current = false);
-    }
-    // in case the event is new can be saved on second render
-    if (!firstUpdate.current && isNewEvent) {
-      return setNeedsToSave(true);
-    }
-    // if true skips the second render
-    if (secondUpdate.current) {
-      return (secondUpdate.current = false);
-    }
+  // useEffect(() => {
+  //   // if true skips the first render
+  //   if (firstUpdate.current) {
+  //     return (firstUpdate.current = false);
+  //   }
+  //   // ! disabled!! is important ?
+  //   // in case the event is new can be saved on second render
+  //   // if (!firstUpdate.current && isNewEvent) {
+  //   //   return setNeedsToSave(true);
+  //   // }
 
-    // do things after first render
-    return setNeedsToSave(true);
+  //   // ! disabled!! is important ?
+  //   // if true skips the second render
+  //   // if (secondUpdate.current) {
+  //   //   return (secondUpdate.current = false);
+  //   // }
 
-    //eslint-disable-next-line
-  }, [sections]);
+  //   // do things after first render
+  //   return setNeedsToSave(true);
+
+  //   //eslint-disable-next-line
+  // }, [sections]);
 
   // * Functions
 
@@ -244,6 +248,7 @@ export default function Event(props) {
     });
 
     setSections([...sections, ...newSectionsArr]);
+    setNeedsToSave(true);
   };
 
   /**
@@ -471,6 +476,7 @@ export default function Event(props) {
                 eventNameUpdate={eventNameUpdate}
                 title={event.title}
                 slug={event.slug}
+                // ! is it usefull?
                 // getEventName={createAndSendEvent}
               />
             </Grid>

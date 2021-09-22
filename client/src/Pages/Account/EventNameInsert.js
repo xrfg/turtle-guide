@@ -36,6 +36,7 @@ const EventName = (props) => {
   let history = useHistory();
 
   const token = useSelector((state) => state.user.token);
+  // const userId = useSelector((state) => state.user.token);
 
   // * States
   const [eventName, setEventName] = useState("");
@@ -92,6 +93,8 @@ const EventName = (props) => {
       ],
       // TODO CHANGE ACCOUNT
       // WILL BET SENT ONCe IS LOGGED IN
+
+      // ! check this
       account: "611e5aca56104a1c09f9d13e",
       // ! spread obj
     };
@@ -106,14 +109,12 @@ const EventName = (props) => {
    * @desc redirects and creates an object to create the event
    */
   const goToAndSlugify = async (eventName) => {
-    const createEvent = createAndSendEvent({
+    const createEvent = await createAndSendEvent({
       slug: slugify(eventName),
       title: eventName,
     });
 
-    const res = await dispatch(
-      eventCreate({ event: createEvent, token: token })
-    );
+    await dispatch(eventCreate({ event: createEvent, token: token }));
 
     history.push(`/admin/event/${slugify(eventName)}`, {
       isNew: true,

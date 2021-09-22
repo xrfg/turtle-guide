@@ -13,8 +13,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { userFecth } from "../../store/actions/userActions";
 
 const AboutAdmin = (props) => {
-  // destru
-  const { sectionId, eventNameIdentifier } = props;
   // * Hooks
   const dispatch = useDispatch();
   const token = useSelector((state) => state.user.token);
@@ -33,8 +31,6 @@ const AboutAdmin = (props) => {
 
     // eslint-disable-next-line
   }, []);
-
-  console.log("userInfo", userInfo);
 
   return (
     <>
