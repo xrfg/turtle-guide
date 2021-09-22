@@ -16,7 +16,7 @@ import { Container, Button, Typography } from "@material-ui/core";
 // * Components
 import VideoPlayerFunction from "../VideoPlayerFunction/VideoPlayerFunction";
 
-import theme from "../../styles/Theme";
+import theme, { ourColors } from "../../styles/Theme";
 
 // needed to render Rich text
 import ReactQuill from "react-quill"; // ES6
@@ -35,6 +35,22 @@ const useStyles = makeStyles((theme) =>
       maxWidth: "100%",
       overflow: "hidden",
     },
+
+    adminPreview: {
+      "& > *": {
+        // margin: theme.spacing(1),
+        margin: "0",
+        padding: "0",
+      },
+
+      backgroundColor: theme.palette.common.white,
+      borderRadius: "8px",
+      border: `10px solid ${ourColors.lightGrey}`,
+      boxShadow: `0px 0px 0px 1px ${ourColors.jet}`,
+      maxWidth: "460px",
+      overflow: "hidden",
+    },
+
     // * Custom CSS
     sectionCoverWrap: {
       // boxShadow: "3px 3px 15px -8px rgba(0,0,0,0.86)",
@@ -138,11 +154,20 @@ const SectionPreview = (props) => {
   const classes = useStyles();
 
   // destru
-  const { contents, sectionCover, sectionDescription, sectionTitle } = props;
+  const {
+    contents,
+    sectionCover,
+    sectionDescription,
+    sectionTitle,
+    adminPreview,
+  } = props;
 
   return (
     <>
-      <Container maxWidth="xs" className={classes.root}>
+      <Container
+        maxWidth="xs"
+        className={adminPreview ? classes.adminPreview : classes.root}
+      >
         {sectionCover.url === "" ? (
           <h1>No cover image yet, please choose one</h1>
         ) : (

@@ -60,6 +60,7 @@ import { userUpdate } from "../../store/actions/userActions";
 import { goBackToPage, unBlock } from "../../functions/functions";
 import ImageHoverButton from "../Buttons/ImageHoverButton";
 import CustomButton from "../Buttons/CustomButtons/CustomButton";
+import { ourColors } from "../../styles/Theme";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -67,9 +68,15 @@ const useStyles = makeStyles((theme) =>
     container: { ...theme.admin.container, paddingTop: "3.4rem" }, // main Admin container class
 
     coverImg: {},
+    accordion: { marginBottom: "2rem" },
+    accordTxtField: { marginBottom: "0.6rem", marginRight: "0.6rem" },
 
     // Custom margins container buttons
-    sectionTitle: { textAlign: "center", fontSize: "2rem" },
+    pageTitle: {
+      ...theme.admin.pageTitle,
+      fontWeight: "normal",
+      fontSize: "1.6rem",
+    },
     contentsContainer: {
       ...theme.admin.sectionsContentsContainer,
     },
@@ -626,6 +633,8 @@ export default function SectionContentManager(props) {
     content: section?.description, // send current description
   };
 
+  // console.log("userInfo", userInfo);
+
   return (
     <div className={classes.page}>
       <Container maxWidth="md" className={classes.container}>
@@ -656,7 +665,7 @@ export default function SectionContentManager(props) {
                   contents={contents}
                   sectionCover={section?.sectionCover}
                   sectionDescription={section?.description}
-                  sectionTitle={section?.title}
+                  pageTitle={section?.title}
                 />
               }
               isOpen={openModalPreview}
@@ -667,14 +676,17 @@ export default function SectionContentManager(props) {
         )}
         {Object.keys(userInfo).length !== 0 ? (
           <>
-            <Accordion>
+            <Accordion className={classes.accordion}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
                 <Typography className={classes.heading}>
-                  Your info - not visible to the visitors
+                  Account information{" "}
+                  <span style={{ fontSize: "0.8rem", marginLeft: "0.4rem" }}>
+                    (hidden from the visitors)
+                  </span>
                 </Typography>
               </AccordionSummary>
               <Grid container spacing={1}>
@@ -682,6 +694,7 @@ export default function SectionContentManager(props) {
                   <Grid container spacing={3}>
                     <Grid item xs={12} sm={6}>
                       <TextField
+                        className={classes.accordTxtField}
                         disabled={isEditingUserInfo ? false : true}
                         id="standard-read-only-input"
                         label="Account"
@@ -690,6 +703,16 @@ export default function SectionContentManager(props) {
                         defaultValue={userInfo.accountName}
                       />
                       <TextField
+                        className={classes.accordTxtField}
+                        disabled={isEditingUserInfo ? false : true}
+                        id="standard-read-only-input"
+                        label="Company"
+                        name="company"
+                        onChange={handleUserInfoChange}
+                        defaultValue={userInfo.company}
+                      />
+                      <TextField
+                        className={classes.accordTxtField}
                         disabled={isEditingUserInfo ? false : true}
                         id="standard-read-only-input"
                         label="Name"
@@ -698,6 +721,7 @@ export default function SectionContentManager(props) {
                         defaultValue={userInfo.firstName}
                       />
                       <TextField
+                        className={classes.accordTxtField}
                         disabled={isEditingUserInfo ? false : true}
                         id="standard-read-only-input"
                         label="Lastname"
@@ -705,23 +729,17 @@ export default function SectionContentManager(props) {
                         onChange={handleUserInfoChange}
                         defaultValue={userInfo.lastName}
                       />
-                      <TextField
-                        disabled={isEditingUserInfo ? false : true}
-                        id="standard-read-only-input"
-                        label="Company"
-                        name="company"
-                        onChange={handleUserInfoChange}
-                        defaultValue={userInfo.company}
-                      />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
+                        className={classes.accordTxtField}
                         disabled={true}
                         id="standard-read-only-input"
                         label="Subscribed on"
                         defaultValue={subscriptionDate}
                       />
                       <TextField
+                        className={classes.accordTxtField}
                         disabled={isEditingUserInfo ? false : true}
                         id="standard-read-only-input"
                         label="Email"
@@ -730,6 +748,7 @@ export default function SectionContentManager(props) {
                         defaultValue={userInfo.email}
                       />
                       <TextField
+                        className={classes.accordTxtField}
                         disabled={true}
                         id="standard-read-only-input"
                         label="Your Plan"
@@ -778,16 +797,18 @@ export default function SectionContentManager(props) {
                   />
                 )} */}
             </Typography>
-            <Typography variant={"h4"}>About you</Typography>
+            <Typography className={classes.pageTitle}>
+              {userInfo.company}
+            </Typography>
           </>
         ) : null}
 
         {Object.keys(section).length !== 0 ? (
           <Grid container direction="row" spacing={2}>
             {/* // * Do not render title if is about admin */}
-            {userInfo ? null : (
-              <Grid item xs={12} className={classes.gridItem}>
-                <h2 className={classes.sectionTitle}>{title}</h2>
+            {userInfo.company ? null : (
+              <Grid /* item */ xs={12}>
+                <h2 className={classes.pageTitle}>{title}</h2>
               </Grid>
             )}
             <Grid
@@ -910,10 +931,11 @@ export default function SectionContentManager(props) {
             >
               {toggleSelected ? (
                 <SectionPreview
+                  adminPreview={true}
                   contents={contents}
                   sectionCover={section?.sectionCover}
                   sectionDescription={section?.description}
-                  sectionTitle={section?.title}
+                  pageTitle={section?.title}
                 />
               ) : (
                 contents

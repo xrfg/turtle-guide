@@ -120,6 +120,22 @@ export const theme = createTheme({
       minHeight: "calc(100vh - 80px)",
       padding: "2rem",
     },
+    pageTitle: {
+      textAlign: "left",
+      fontSize: "2rem",
+      lineHeight: "2.6rem",
+      // letterSpacing: "1px",
+      textTransform: "uppercase",
+      color: ourColors.indigoDye,
+      // fontWeight: "bold",
+      marginBottom: "1rem",
+      // borderBottom: `2px solid ${ourColors.jet}`,
+      // textShadow: `1px 2px 2px ${ourColors.indigoDye}`,
+      /* textShadow: `-1px -1px 0 ${ourColors.indigoDye},
+      1px -1px 0 ${ourColors.indigoDye},
+      -1px 1px 0 ${ourColors.indigoDye},
+      1px 1px 0 ${ourColors.indigoDye}`, */
+    },
     sectionsContentsContainer: { paddingLeft: "2rem" },
     btnSidebar: {
       border: `1px solid ${ourColors.gainsboro}`,

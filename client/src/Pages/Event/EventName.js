@@ -20,13 +20,14 @@ const useStyles = makeStyles((theme) => ({
   eventNameContainer: {
     display: "flex",
     alignItems: "center",
-    padding: "1rem",
+    // padding: "1rem",
     borderRadius: "8px",
-    backgroundColor: ourColors.lightGrey,
-    width: "60%",
+    // backgroundColor: ourColors.lightGrey,
+    width: "100%",
     marginBottom: "1rem",
   },
-  nameInput: { width: "24rem", margin: 8 },
+  nameInput: { marginRight: "1rem" },
+  pageTitle: { ...theme.admin.pageTitle, marginBottom: "0" },
   saveBtn: {
     height: "100%",
     alignSelf: "center",
@@ -86,6 +87,7 @@ const EventName = (props) => {
           disabled={editing ? false : true}
           id="eventName"
           type="text"
+          fullWidth
           required
           defaultValue={eventName}
           placeholder="Name for the Event"
@@ -97,7 +99,11 @@ const EventName = (props) => {
           onChange={onChange}
         />
       ) : (
-        <Typography component="h2" variant="h2" className={classes.nameInput}>
+        <Typography
+          /* component="h2"
+          variant="h2" */
+          className={`${classes.nameInput} ${classes.pageTitle}`}
+        >
           {eventName ? eventName : "Event Name"}
         </Typography>
       )}
