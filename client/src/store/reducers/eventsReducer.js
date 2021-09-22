@@ -13,7 +13,7 @@ import {
 
 import { loadState } from "../localStorage";
 
-const persistedState = loadState().events;
+const persistedState = loadState()?.events;
 
 const initialState = persistedState
   ? persistedState

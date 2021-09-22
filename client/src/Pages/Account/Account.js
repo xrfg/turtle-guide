@@ -13,6 +13,7 @@ import { Link as RouterLink } from "react-router-dom";
 // * REDUX
 import { useSelector, useDispatch } from "react-redux";
 import { eventsFetch } from "../../store/actions/eventsActions";
+import { userFecth } from "../../store/actions/userActions";
 
 // * MAT UI
 import {
@@ -65,11 +66,24 @@ const Account = (props) => {
   //* States
   const [isAddingEvent, setIsAddingEvent] = useState(false);
 
-  // retrieves all the account's info on landing
+  // * Life cycles
+  // fetch userr infos
   useEffect(() => {
-    dispatch(eventsFetch(token)); // for user events
-    //eslint-disable-next-line
+    async function fetchData() {
+      // fetch data with token to find the right user
+      await dispatch(eventsFetch(token)); // for user events
+      await dispatch(userFecth(token)); // for user info
+    }
+
+    fetchData();
+
+    // eslint-disable-next-line
   }, []);
+
+  // // retrieves all the account's info on landing
+  // useEffect(() => {
+  //   //eslint-disable-next-line
+  // }, []);
 
   // "+" onClick function to toggle the TextField <EventNameInsert/>
   const addEvent = () => {

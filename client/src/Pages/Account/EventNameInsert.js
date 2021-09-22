@@ -2,7 +2,7 @@
  * @desc Component to insert the name of the event from <Account/>
  */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import slugify from "react-slugify";
 
 // * material UI imports Icons
@@ -36,7 +36,7 @@ const EventName = (props) => {
   let history = useHistory();
 
   const token = useSelector((state) => state.user.token);
-  // const userId = useSelector((state) => state.user.token);
+  const user = useSelector((state) => state.user.userProfile);
 
   // * States
   const [eventName, setEventName] = useState("");
@@ -66,6 +66,7 @@ const EventName = (props) => {
   const createAndSendEvent = (obj) => {
     // destruct
     const { title, slug } = obj;
+    console.log("userInfo", user._id);
 
     return {
       title: title,
@@ -93,9 +94,8 @@ const EventName = (props) => {
       ],
       // TODO CHANGE ACCOUNT
       // WILL BET SENT ONCe IS LOGGED IN
-
       // ! check this
-      account: "611e5aca56104a1c09f9d13e",
+      account: user._id,
       // ! spread obj
     };
     // to stop useEffect after the creation of a new event

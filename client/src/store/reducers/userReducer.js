@@ -12,7 +12,7 @@ import {
 
 import { loadState } from "../localStorage";
 
-const persistedState = loadState().user;
+const persistedState = loadState()?.user;
 
 const initialState = persistedState
   ? persistedState
