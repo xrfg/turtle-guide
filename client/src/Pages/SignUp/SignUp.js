@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     borderRadius: "8px",
     padding: "2rem",
-    width: "100%",
+    width: "60%",
   },
   avatar: {
     margin: theme.spacing(1),
@@ -113,141 +113,138 @@ export default function SignUp(props) {
   };
 
   return (
-    <Container component="main" maxWidth="xs" className="pwd-container">
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign up
-        </Typography>
-        <form className={classes.form} noValidate onSubmit={submitUserData}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="firstName"
-                variant="outlined"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-                onChange={onChange}
-              />
-              {errors.firstName && <p className="errors">{errors.firstName}</p>}
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-                onChange={onChange}
-              />
-              {errors.lastName && <p className="errors">{errors.lastName}</p>}
-            </Grid>
-            {/* company */}
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                fullWidth
-                id="company"
-                label="Company"
-                name="company"
-                autoComplete="com"
-                onChange={onChange}
-              />
-            </Grid>
-            {/* account name */}
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="accountName"
-                label="Account Name"
-                name="accountName"
-                autoComplete="aname"
-                onChange={onChange}
-              />
-              {errors.accountName && (
-                <p className="errors">{errors.accountName}</p>
-              )}
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                onChange={onChange}
-              />
-              {errors.email && <p className="errors">{errors.email}</p>}
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                id="password"
-                autoComplete="current-password"
-                // type={userData.showPassword ? "text" : "password"}
-                onChange={onChange}
-              />
-
-              {errors.password && <p className="errors">{errors.password}</p>}
-            </Grid>
-            {/* Confirmation password */}
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="confirm_password"
-                label="Confirm password"
-                id="confirm_password"
-                autoComplete="current-password"
-                onChange={onChange}
-              />
-              {errors.confirm_password && (
-                <p className="errors">{errors.confirm_password}</p>
-              )}
-            </Grid>
-
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="Subscribe our News Letter"
-              />
-            </Grid>
+    <div className={classes.paper}>
+      <Avatar className={classes.avatar}>
+        <LockOutlinedIcon />
+      </Avatar>
+      <Typography component="h1" variant="h5">
+        Sign up
+      </Typography>
+      <form className={classes.form} noValidate onSubmit={submitUserData}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              autoComplete="fname"
+              name="firstName"
+              variant="outlined"
+              required
+              fullWidth
+              id="firstName"
+              label="First Name"
+              autoFocus
+              onChange={onChange}
+            />
+            {errors.firstName && <p className="errors">{errors.firstName}</p>}
           </Grid>
-          <CustomButton
-            type="submit"
-            style={{ width: "100%", margin: theme.spacing(3, 0, 2) }}
-            text="Sign Up"
-          />
-
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Link href="#" variant="body2">
-                Already have an account? Sign in
-              </Link>
-            </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              variant="outlined"
+              required
+              fullWidth
+              id="lastName"
+              label="Last Name"
+              name="lastName"
+              autoComplete="lname"
+              onChange={onChange}
+            />
+            {errors.lastName && <p className="errors">{errors.lastName}</p>}
           </Grid>
-        </form>
-      </div>
-      <Box mt={5}>
-        <Copyright />
-      </Box>
-    </Container>
+          {/* company */}
+          <Grid item xs={12} sm={6}>
+            <TextField
+              variant="outlined"
+              fullWidth
+              id="company"
+              label="Company"
+              name="company"
+              autoComplete="com"
+              onChange={onChange}
+            />
+          </Grid>
+          {/* account name */}
+          <Grid item xs={12} sm={6}>
+            <TextField
+              variant="outlined"
+              required
+              fullWidth
+              id="accountName"
+              label="Account Name"
+              name="accountName"
+              autoComplete="aname"
+              onChange={onChange}
+            />
+            {errors.accountName && (
+              <p className="errors">{errors.accountName}</p>
+            )}
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              variant="outlined"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              onChange={onChange}
+            />
+            {errors.email && <p className="errors">{errors.email}</p>}
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              variant="outlined"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              id="password"
+              autoComplete="current-password"
+              // type={userData.showPassword ? "text" : "password"}
+              onChange={onChange}
+            />
+
+            {errors.password && <p className="errors">{errors.password}</p>}
+          </Grid>
+          {/* Confirmation password */}
+          <Grid item xs={12}>
+            <TextField
+              variant="outlined"
+              required
+              fullWidth
+              name="confirm_password"
+              label="Confirm password"
+              id="confirm_password"
+              autoComplete="current-password"
+              onChange={onChange}
+            />
+            {errors.confirm_password && (
+              <p className="errors">{errors.confirm_password}</p>
+            )}
+          </Grid>
+
+          <Grid item xs={12}>
+            <FormControlLabel
+              control={<Checkbox value="allowExtraEmails" color="primary" />}
+              label="Subscribe our Newsletter"
+            />
+          </Grid>
+        </Grid>
+        <CustomButton
+          type="submit"
+          style={{ width: "100%", margin: theme.spacing(3, 0, 2) }}
+          text="Sign Up"
+        />
+
+        <Grid container justifyContent="flex-end">
+          <Grid item style={{ paddingBottom: "2rem" }}>
+            <Link href="#" variant="body2">
+              Already have an account?
+            </Link>
+          </Grid>
+        </Grid>
+      </form>
+
+      <Copyright />
+    </div>
   );
 }
