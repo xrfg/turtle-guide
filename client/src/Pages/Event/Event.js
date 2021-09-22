@@ -2,8 +2,6 @@
  * @desc Event Page at route /admin/event/:slug either for creating a new event or editing an existing one
  */
 
-// TODO Fix Section Rendering after having changed the IDS of the sections from 2 onwards. since 1 is Intro,, there is also type="intro" and type="section"
-
 import React, { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -15,11 +13,7 @@ import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 
 // * ACTIONS
-import {
-  eventCreate,
-  eventUpdate,
-  eventDelete,
-} from "../../store/actions/eventsActions";
+import { eventUpdate, eventDelete } from "../../store/actions/eventsActions";
 
 // * Components Imports (children)
 import EventSection from "./EventSection";
@@ -59,9 +53,6 @@ const useStyles = makeStyles((theme) => ({
   btnGroup: { ...theme.admin.btnGroup },
 }));
 
-// TODO goBack prevention
-// TODO goBack Button
-// ! takes event slug
 export default function Event(props) {
   // * Hooks
   const classes = useStyles(props);
@@ -86,12 +77,6 @@ export default function Event(props) {
   // for the drag and drop sections re-ordering
   const [dragId, setDragId] = useState();
 
-  // TODO remove if not necessary
-  // * Refs
-  // just to skip the first and second render
-  // const firstUpdate = useRef(true);
-  // const secondUpdate = useRef(true);
-
   // * Hooks
   // loads event from reducer
   const events = useSelector((state) => state.events.events);
@@ -99,22 +84,10 @@ export default function Event(props) {
 
   // get the slug to search for the event
   const slug = props.match.params.name;
-  // to allow if is a new event
-  // props comming from account
-
-  // to allow if is a new event
-  // props comming from account
-  // let isNewEvent = props.location.state?.isNew === true ? true : false;
 
   // * LifeCycles -> UseEffect
-
+  // load event
   useEffect(() => {
-    // create a new event
-    // if (isNewEvent) {
-    //   const obj = props.location.state;
-    //   return createAndSendEvent(obj);
-    // }
-
     // search for the event into redux
     const getEvent = events.find((x) => x.slug === slug);
     // set the whole event
@@ -143,41 +116,8 @@ export default function Event(props) {
     }
     saveData();
 
-    // if event is empty do not dispatch
-    // ! isNewevent Stops it from a recreating of an existing event
-    // ! keep as an option
-    // if (!event || !isNewEvent || needsToSave) {
-    //   return null;
-    // }
-
-    // dispatch the event to redux
-    // return dispatch(eventCreate({ event: event, token: token }));
     //eslint-disable-next-line
   }, [event]);
-
-  // handles the save button
-  // useEffect(() => {
-  //   // if true skips the first render
-  //   if (firstUpdate.current) {
-  //     return (firstUpdate.current = false);
-  //   }
-  //   // ! disabled!! is important ?
-  //   // in case the event is new can be saved on second render
-  //   // if (!firstUpdate.current && isNewEvent) {
-  //   //   return setNeedsToSave(true);
-  //   // }
-
-  //   // ! disabled!! is important ?
-  //   // if true skips the second render
-  //   // if (secondUpdate.current) {
-  //   //   return (secondUpdate.current = false);
-  //   // }
-
-  //   // do things after first render
-  //   return setNeedsToSave(true);
-
-  //   //eslint-disable-next-line
-  // }, [sections]);
 
   // * Functions
 
@@ -228,8 +168,6 @@ export default function Event(props) {
     // if [contents] s empty assigns the index
 
     const bigId = findBiggestId();
-
-    // const bigId = sections
 
     newSectionsArr.forEach((section, i) => {
       if (sections.length === 0) {
@@ -353,11 +291,6 @@ export default function Event(props) {
   const saveEvent = (obj) => {
     // set to true or stops it in use effect
     setNeedsToSave(true);
-    // if the event is new skips it
-    // if (isNewEvent) {
-    //   return;
-    // }
-    // update event
 
     // destruc
     // if no new title provided (can come just if event name is changed)
@@ -374,7 +307,6 @@ export default function Event(props) {
       oldNameIdentifier: event.slug, // old name identifier just for the search
       sections: [...sections],
     });
-    // setNeedsToSave(false) is into useEffect
   };
 
   /**
@@ -399,7 +331,6 @@ export default function Event(props) {
    * @desc redirects and creates an object to create the event
    */
   const goToAndSlugify = (id, title) => {
-    // TODO do it with regex
     // if a title is not set it uses the id of the section
     if (title === "Title" || title === "title" || title === "TITLE") {
       return history.push(`/admin/event/sections/${id}`, {
