@@ -213,7 +213,7 @@ function GetStepContent(props) {
       );
     case 1:
       return (
-        <div style={{ backgroundColor: "red" }}>
+        <div style={{ paddingBottom: "4rem" }}>
           <SignUp plan={chosenPlan} isSignUpOver={signUpOver} />
         </div>
       );
