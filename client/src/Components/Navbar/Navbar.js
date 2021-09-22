@@ -16,10 +16,13 @@ import logoFilled from "../../assets/images/logo/turtle_logo-filled.png";
 
 // * Component Imports
 import Menu from "../Menu/Menu";
+import { ourColors } from "../../styles/Theme";
 
 const Navbar = () => {
   return (
-    <AppBar style={{ backgroundColor: "#D9D9D9", position: "relative" }}>
+    <AppBar
+      style={{ backgroundColor: ourColors.lightGrey, position: "relative" }}
+    >
       <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
         <Link className="navbar-brand" to="/">
           <img

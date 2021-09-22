@@ -1,5 +1,5 @@
 import { Container, Grid, Box, Link } from "@material-ui/core";
-import { theme } from "../../styles/Theme";
+import { ourColors, theme } from "../../styles/Theme";
 
 export default function Footer() {
   return (
@@ -10,14 +10,11 @@ export default function Footer() {
         bottom: "0",
         width: "100%",
         fontFamily: theme.typography.fontFamily,
+        backgroundColor: ourColors.lightGrey,
+        boxShadow: "#d0d0d0 0px -3px 14px 1px",
       }}
     >
-      <Box
-        px={{ xs: 3, sm: 10 }}
-        py={{ xs: 5, sm: 10 }}
-        bgcolor="lightgrey"
-        color="black"
-      >
+      <Box px={{ xs: 3, sm: 10 }} py={{ xs: 5, sm: 10 }} color="black">
         <Container maxWidth="lg">
           <Grid container spacing={3}>
             <Grid item xs={12} sm={4}>

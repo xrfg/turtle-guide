@@ -40,17 +40,20 @@ import CustomIconButton from "../../Components/Buttons/CustomIconButtons/CustomI
 import { ourColors } from "../../styles/Theme";
 
 const useStyles = makeStyles((theme) => ({
-  card: { position: "relative", marginBottom: "1rem" },
-  card__title: {},
-  card__desc: {},
-  forwardIcon: {
-    position: "absolute",
-    top: 0,
-    right: 0,
+  card: { marginBottom: "1rem" },
+  cardTitleBox: { display: "flex", alignItems: "center" },
+  cardTitle: {
+    fontSize: "1rem",
+    fontWeight: "bold",
+    color: "black",
+    // backgroundColor: "rgb(53,53,53,0.4)",
+    display: "inline-block",
+    zIndex: "15",
   },
-  sectionCover: {},
+  cardDesc: {},
+  cardContent: { position: "relative" },
   onDrag: { backgroundColor: "green" },
-  textField: { display: "block" },
+  textField: { display: "block", marginRight: "1rem", zIndex: "15" },
 }));
 
 export default function EventSection(props) {
@@ -66,8 +69,7 @@ export default function EventSection(props) {
     order,
     title,
     description,
-    url,
-    sectionCover: { url_thumb },
+    sectionCover: { url },
   } = props.section;
 
   // * States
@@ -118,7 +120,7 @@ export default function EventSection(props) {
    * @desc sends the edit mode of the ENTIRE section
    */
 
-  const editSection = () => {
+  const editSection = (e) => {
     props.editSection(id, title);
   };
 
@@ -131,6 +133,7 @@ export default function EventSection(props) {
     setOpenDeleteDialogBox((prev) => !prev);
   };
 
+  console.log(props.section);
   return (
     <Card
       disableRipple={true}
@@ -158,9 +161,24 @@ export default function EventSection(props) {
         // the title of the section
         disableRipple={true}
       >
-        <CardContent>
-          {editing ? (
-            <Box>
+        <CardContent className={classes.CardContent}>
+          <div
+            style={{
+              height: "100%",
+              width: "100%",
+              position: "absolute",
+              opacity: "0.5",
+              zIndex: "5",
+              top: 0,
+              right: 0,
+              background:
+                url.length !== 0
+                  ? `center / cover no-repeat url(${url})`
+                  : "none",
+            }}
+          ></div>
+          <Box className={classes.cardTitleBox}>
+            {editing ? (
               <TextField
                 id="eventName"
                 type="text"
@@ -172,56 +190,22 @@ export default function EventSection(props) {
                 }}
                 onChange={(e) => handleTitle(e.target.value)}
               />
-              {/* //! temporarly disabled */}
-              {/* //? shall we make a edit options from here  */}
-              {/* //? i.e. <TextEditor setText={setMediaText} content={content} />  */}
+            ) : (
+              <Typography className={classes.cardTitle}>{title}</Typography>
+            )}
+            <EditSaveButton
+              className={classes.hoverSaveEdit}
+              editStatus={editing}
+              editHandler={handleSaveEditBtn}
+            />
+          </Box>
 
-              {/* <TextField
-              id="eventName"
-              type="text"
-              className={classes.textField}
-              fullWidth
-              defaultValue={description === "Description" ? null : description}
-              placeholder="Description"
-              multiline={true}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              onChange={(e) => handleDescription(e.target.value)}
-            /> */}
-            </Box>
-          ) : (
-            <Box>
-              <Typography
-                className={classes.card__title}
-                variant="h6"
-                component="h6"
-              >
-                {title}
-              </Typography>
-              {url_thumb.length !== 0 ? (
-                <img
-                  className={classes.sectionCover}
-                  alt="section-cover"
-                  src={url_thumb}
-                />
-              ) : null}
-
-              {/* //! temporarly disabled */}
-              {/* <Typography
-              className={classes.card__desc}
-              variant="subtitle1"
-              component="p"
-            >
-              {description} */}
-              <ReactQuill
-                value={description}
-                readOnly={true}
-                theme={"bubble"}
-              />
-              {/* </Typography> */}
-            </Box>
-          )}
+          <ReactQuill
+            style={{ zIndex: "25" }}
+            value={description}
+            readOnly={true}
+            theme={"bubble"}
+          />
         </CardContent>
       </CardActionArea>
 
@@ -230,27 +214,10 @@ export default function EventSection(props) {
         <CardActions
           style={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "flex-end",
             borderTop: `1px solid ${ourColors.gainsboro}`,
           }}
         >
-          <ButtonGroup
-            orientation="horizontal"
-            aria-label="horizontal button group"
-          >
-            {/* Save Edit  */}
-            <EditSaveButton
-              className={classes.hoverSaveEdit}
-              editStatus={editing}
-              editHandler={handleSaveEditBtn}
-            />
-            {/* Got to Edit section   */}
-            {/* <CustomIconButton
-              href={`${url}`}
-              onClickFunc={editSection}
-              icon="forward"
-            /> */}
-          </ButtonGroup>
           <ButtonGroup
             orientation="horizontal"
             aria-label="horizontal button group"

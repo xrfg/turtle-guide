@@ -17,6 +17,7 @@ import {
   DragIndicator,
   NavigateBefore,
   NavigateNext,
+  PlayArrow,
 } from "@material-ui/icons";
 
 // MatUi Style Imports
@@ -65,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
       color: ourColors.jet, // white},
     },
   },
+  audio: { color: "gray", fontSize: "4rem" },
 }));
 
 export default function CustomIconButton(props) {
@@ -95,6 +97,7 @@ export default function CustomIconButton(props) {
           drag: <DragIndicator className={classes.drag} />, // ! fix the chrome cursor
           prev: <NavigateBefore className={classes.prev} />,
           next: <NavigateNext />,
+          audio: <PlayArrow className={classes.audio} />,
         }[icon]
       }
     </IconButton>
