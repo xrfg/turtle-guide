@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch,Redirect } from "react-router-dom";
 
 // * Imports
 import { ToastContainer } from "react-toastify";
@@ -15,6 +15,8 @@ import Footer from "./Components/Footer/Footer";
 // * Import Custom  Components
 import Navbar from "./Components/Navbar/Navbar";
 import AuthRoute from "./Components/AuthRoute/AuthRoute";
+import PageNotFoundAdmin from "./Components/PageNotFoundAdmin/PageNotFoundAdmin";
+
 
 // REDUX
 import { Provider } from "react-redux";
@@ -32,6 +34,7 @@ import AdminApp from "./AdminApp";
 //  * Pages
 import Subscription from "./Pages/Subscription/Subscription";
 import SignIn from "./Pages/SignIn/SignIn";
+import PageNotFoundGuide from "./Components/Guide/Components/PageNotFoundGuide/PageNotFoundGuide";
 
 // Important for the general styling
 const useStyles = makeStyles((theme) => ({
@@ -80,6 +83,9 @@ function App() {
                 <Route path="/events" component={GuideApp} />
                 <Route path="/subscription" component={Subscription} />
                 <Route path="/signin" component={SignIn} />
+                <Route path="/404admin"  component={PageNotFoundAdmin}/>
+                <Route path="/404guide" component={PageNotFoundGuide}/>
+                <Redirect to="/404admin"/>
               </Switch>
               {window.location.pathname.includes("/events") ? null : <Footer />}
             </div>

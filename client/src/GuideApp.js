@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch, useLocation } from "react-router-dom";
+import { Route, Switch, useLocation, Redirect } from "react-router-dom";
 
 //* Import Pages -- GUIDE
 import Guide from "./Components/Guide/Guide";
@@ -9,6 +9,7 @@ import Map from "./Components/Guide/Pages/Map/Map";
 
 // * Import Custom  Components
 import BottomNavBar from "./Components/Guide/Components/Navbar/BottomNavBar";
+import PageNotFoundGuide from "./Components/Guide/Components/PageNotFoundGuide/PageNotFoundGuide";
 
 // * Imports
 import { AnimatePresence } from "framer-motion";
@@ -30,6 +31,8 @@ export default function GuideApp({ match }) {
             path="/events/:name/sections/:id"
             component={SectionGuide}
           />
+          <Route path="/404guide" component={PageNotFoundGuide} />
+          <Redirect to="/404guide" />
         </Switch>
       </AnimatePresence>
     </>
