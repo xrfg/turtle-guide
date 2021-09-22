@@ -104,7 +104,7 @@ export default function Event(props) {
 
   // to allow if is a new event
   // props comming from account
-  let isNewEvent = props.location.state?.isNew === true ? true : false;
+  // let isNewEvent = props.location.state?.isNew === true ? true : false;
 
   // * LifeCycles -> UseEffect
 
