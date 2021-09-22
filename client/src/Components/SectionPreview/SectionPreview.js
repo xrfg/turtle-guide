@@ -211,6 +211,29 @@ const SectionPreview = (props) => {
               </div>
             );
           }
+          /*  audio */
+          if (x.type === "audio") {
+            console.log("x audio", x);
+            // passes the url audio to audio
+            return (
+              <div className="video-card">
+                <audio controls>
+                  {/* Select audio format */}
+                  {x.content.filename === "MP3" && (
+                    <source src={x.content.url} type="audio/mp3" />
+                  )}
+                  {x.content.filename === "WAV" && (
+                    <source src={x.content.url} type="audio/x-wav" />
+                  )}
+                  {x.content.filename === "OGG" && (
+                    <source src={x.content.url} type="application/ogg" />
+                  )}
+                </audio>
+                <h3>{x.content.caption?.title}</h3>
+                <h4>{x.content.caption?.description}</h4>
+              </div>
+            );
+          }
 
           /*  text */
           if (x.type === "text") {

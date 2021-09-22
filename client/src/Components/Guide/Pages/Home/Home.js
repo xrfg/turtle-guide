@@ -80,41 +80,10 @@ const useStyles = makeStyles((theme) => ({
 export default function Home(props) {
   // * Hooks
   const classes = useStyles();
-  const history = useHistory();
-
-  // * States
-  const [expanded, setExpanded] = useState(false);
 
   // * Destruc
-  const { title, sections, id, eventSlug, nameIdentifier } = props;
+  const { title, sections, eventSlug, nameIdentifier } = props;
 
-  // console.log("eventSlug, nameIdentifier", eventSlug, nameIdentifier);
-
-  // const [product] = React.useState({
-  //   name: "Buy Guide",
-  //   price: 64998.67,
-  //   description: "Cool car",
-  // });
-
-  // async function handleToken(token, addresses) {
-  //   const response = await axios.post(
-  //     "https://ry7v05l6on.sse.codesandbox.io/checkout",
-  //     { token, product }
-  //   );
-  //   const { status } = response.data;
-  //   console.log("Response:", response.data);
-  //   if (status === "success") {
-  //     toast("Success! Check email for details", { type: "success" });
-  //   } else {
-  //     toast("Something went wrong", { type: "error" });
-  //   }
-  // }
-
-  /**
-   * @desc Component to create a card (section)
-   */
-  // TODO to ext
-  console.log(BlockSection);
   return (
     <>
       <Typography variant="h1" component="h1" className={classes.eventsTitle}>
