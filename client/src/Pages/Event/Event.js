@@ -350,7 +350,6 @@ export default function Event(props) {
    */
 
   const saveEvent = (obj) => {
-    console.log("saveEvent()");
     // set to true or stops it in use effect
     setNeedsToSave(true);
     // if the event is new skips it
