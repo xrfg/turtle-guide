@@ -16,6 +16,7 @@ import { Typography } from "@material-ui/core";
 import { ourColors, theme } from ".././../../../styles/Theme";
 
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
+import styles from "./styles.module.css";
 
 const useStyles = makeStyles((theme) => ({
   /*hero: {
@@ -116,75 +117,80 @@ export default function Home(props) {
    * @desc Component to create a card (section)
    */
   // TODO to ext
-  console.log(BlockSection);
+  const alignCenter = { display: "flex", alignItems: "center" };
   return (
     <>
-      <Parallax pages={3} style={{ top: "0", left: "0" }}>
-        <ParallaxLayer
-          offset={1}
-          speed={2}
-          style={{ backgroundColor: "#ff6d6d" }}
-        />
-        <div>
-          <Typography
-            variant="h1"
-            component="h1"
-            className={classes.eventsTitle}
-          >
-            {title}
-          </Typography>
-        </div>
-
+      {/* <Parallax pages={5}>
         <ParallaxLayer
           offset={0}
-          speed={2.5}
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <p>code {title}</p>
-        </ParallaxLayer>
-
-        <ParallaxLayer
-          offset={1}
-          speed={2}
-          style={{ backgroundColor: "#ff6d6d" }}
-        />
-
-        <ParallaxLayer
-          offset={1}
           speed={0.5}
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            color: "white",
-          }}
+          style={{ ...alignCenter, justifyContent: "center" }}
         >
-          <p>Scroll up</p>
+          <p className={styles.scrollText}>Scroll down</p>
         </ParallaxLayer>
-      </Parallax>
 
-      {/* <div className={classes.mainContainer}> */}
-      {/* Map to create cards */}
-      {/* {sections.map((x, index) => {
-          // skip intro from general rendering
-          if (x.type === "intro") {
-            return null;
-          }
-          // renders the rest
-          return (
-            <BlockSection
-              sectionIndex={index} // pass for the order in the navbar
-              nameIdentifier={nameIdentifier}
-              eventSlug={eventSlug}
-              data={x}
-            />
-          );
-        })} */}
-      {/* </div> */}
+        <ParallaxLayer
+          sticky={{ start: 1, end: 3 }}
+          style={{ ...alignCenter, justifyContent: "flex-start" }}
+        >
+          <div className={`${styles.card} ${styles.sticky}`}>
+            <p>I'm a sticky layer</p>
+          </div>
+        </ParallaxLayer>
+
+        <ParallaxLayer
+          offset={1.5}
+          speed={1.5}
+          style={{ ...alignCenter, justifyContent: "flex-end" }}
+        >
+          <div className={`${styles.card} ${styles.parallax} ${styles.purple}`}>
+            <p>I'm not</p>
+          </div>
+        </ParallaxLayer>
+
+        <ParallaxLayer
+          offset={2.5}
+          speed={1.5}
+          style={{ ...alignCenter, justifyContent: "flex-end" }}
+        >
+          <div className={`${styles.card} ${styles.parallax} ${styles.blue}`}>
+            <p>Neither am I</p>
+          </div>
+        </ParallaxLayer>
+      </Parallax> */}
+
+      {/* <Typography variant="h1" component="h1" className={classes.eventsTitle}>
+        {title}
+      </Typography> */}
+
+      <Parallax pages={sections.length}>
+        <div className={classes.mainContainer}>
+          {/* Map to create cards */}
+          {sections.map((x, index) => {
+            // skip intro from general rendering
+            if (x.type === "intro") {
+              return null;
+            }
+            // renders the rest
+            return (
+              <ParallaxLayer
+                offset={0}
+                speed={0.5}
+                style={{ ...alignCenter, justifyContent: "center" }}
+              >
+                <div style={{ display: "block" }}>
+                  <BlockSection
+                    sectionIndex={index} // pass for the order in the navbar
+                    nameIdentifier={nameIdentifier}
+                    eventSlug={eventSlug}
+                    data={x}
+                  />
+                </div>
+              </ParallaxLayer>
+            );
+          })}
+        </div>
+      </Parallax>
     </>
   );
 }
