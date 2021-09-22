@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) =>
     root: {
       // height: "40%",
     },
+    page: { ...theme.admin.page },
     media: {
       height: 140,
     },
@@ -212,9 +213,9 @@ function GetStepContent(props) {
       );
     case 1:
       return (
-        <>
+        <div style={{ backgroundColor: "red" }}>
           <SignUp plan={chosenPlan} isSignUpOver={signUpOver} />
-        </>
+        </div>
       );
     case 2:
       return (
@@ -234,6 +235,7 @@ function GetStepContent(props) {
 }
 
 const Subscription = () => {
+  const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
 
   const steps = getSteps();
@@ -256,36 +258,38 @@ const Subscription = () => {
   };
 
   return (
-    <Container maxWidth="md" style={{ marginTop: "2rem" }}>
-      <Stepper
-        style={{ backgroundColor: "transparent" }}
-        activeStep={activeStep}
-      >
-        {steps.map((step, index) => {
-          return (
-            <Step>
-              <StepLabel> {step} </StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
-      <GetStepContent
-        activeStep={activeStep}
-        handleNext={handleNext}
-        handleBack={handleBack}
-        goToPayment={goToPayment}
-      />
-      {activeStep === 4 ? (
-        <Typography variant="h3" align="center">
-          Thanks for Subscribing
-        </Typography>
-      ) : (
-        <>
-          {/* <Button variant="contained" color="primary" disabled={activeStep === 0} onClick={handleBack} >Back</Button>
+    <div className={classes.page}>
+      <Container maxWidth="md">
+        <Stepper
+          style={{ backgroundColor: "transparent" }}
+          activeStep={activeStep}
+        >
+          {steps.map((step, index) => {
+            return (
+              <Step>
+                <StepLabel> {step} </StepLabel>
+              </Step>
+            );
+          })}
+        </Stepper>
+        <GetStepContent
+          activeStep={activeStep}
+          handleNext={handleNext}
+          handleBack={handleBack}
+          goToPayment={goToPayment}
+        />
+        {activeStep === 4 ? (
+          <Typography variant="h3" align="center">
+            Thanks for Subscribing
+          </Typography>
+        ) : (
+          <>
+            {/* <Button variant="contained" color="primary" disabled={activeStep === 0} onClick={handleBack} >Back</Button>
                     <Button variant="contained" color="primary" onClick={handleNext} > {activeStep === 3 ? "Finish" : "Next"}  </Button> */}
-        </>
-      )}
-    </Container>
+          </>
+        )}
+      </Container>
+    </div>
   );
 };
 export default Subscription;

@@ -45,9 +45,14 @@ function Copyright() {
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
+    margin: "0 auto",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    backgroundColor: "white",
+    borderRadius: "8px",
+    padding: "2rem",
+    width: "100%",
   },
   avatar: {
     margin: theme.spacing(1),
@@ -109,7 +114,6 @@ export default function SignUp(props) {
 
   return (
     <Container component="main" maxWidth="xs" className="pwd-container">
-      <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />

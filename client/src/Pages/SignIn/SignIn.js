@@ -42,12 +42,17 @@ function Copyright() {
 }
 
 const useStyles = makeStyles((theme) => ({
+  page: { ...theme.admin.page },
   container: { ...theme.admin.container },
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    backgroundColor: "white",
+    borderRadius: "8px",
+    padding: "2rem",
+    width: "110%",
   },
   avatar: {
     margin: theme.spacing(1),
@@ -121,56 +126,59 @@ export default function SignIn() {
   };
 
   return (
-    <Container component="main" maxWidth="xs" className={classes.container}>
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-            // ! REMOVE
-            // TODO
-            defaultValue={loginData.email}
-            onChange={onChange}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            // ! REMOVE
-            // TODO
-            defaultValue={loginData.email}
-            onChange={onChange}
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <CustomButton
-            type="submit"
-            style={{ width: "100%", margin: theme.spacing(3, 0, 2) }}
-            onClickFunc={(e) => submitLoginData(e)}
-            text="Sign In"
-          />
-          {/* <Button
+    <div className={classes.page}>
+      <Container component="main" maxWidth="xs" className={classes.container}>
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <form className={classes.form} noValidate>
+            <TextField
+              className={classes.textField}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              // ! REMOVE
+              // TODO
+              defaultValue={loginData.email}
+              onChange={onChange}
+            />
+            <TextField
+              className={classes.textField}
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              // ! REMOVE
+              // TODO
+              defaultValue={loginData.email}
+              onChange={onChange}
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <CustomButton
+              type="submit"
+              style={{ width: "100%", margin: theme.spacing(3, 0, 2) }}
+              onClickFunc={(e) => submitLoginData(e)}
+              text="Sign In"
+            />
+            {/* <Button
             type="submit"
             fullWidth
             variant="contained"
@@ -182,23 +190,24 @@ export default function SignIn() {
           >
             Sign In
           </Button> */}
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
+            <Grid container>
+              <Grid item xs>
+                <Link href="#" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link href="#" variant="body2">
+                  {"Don't have an account?"}
+                </Link>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
-    </Container>
+          </form>
+        </div>
+        <Box mt={8}>
+          <Copyright />
+        </Box>
+      </Container>
+    </div>
   );
 }
