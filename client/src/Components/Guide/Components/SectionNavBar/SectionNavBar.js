@@ -89,9 +89,6 @@ const SectionNavBar = () => {
   const idPrevSection = event.sections[indexCurrentSection - 1]?.id; //
   const idNextSection = event.sections[indexCurrentSection + 1]?.id;
 
-  // setGoPrev(idPrevSection || ? true: false);
-  // setGoNext(idNextSection || ? true: false)
-
   // extract in case the page is called directly
   const nameIdentifier = extractNameIdentifier(window.location.pathname);
   const eventSlug = nameIdentifier;
@@ -110,8 +107,8 @@ const SectionNavBar = () => {
         <>
           <div className={classes.nav}>
             <CustomIconButton
-              // TODO disabled if is 1
               // with states goPrev go Next bool values
+              // if is 1 is the intro so do not go
               disabled={idPrevSection === 1 ? true : false}
               onClickFunc={() =>
                 goToSection(
