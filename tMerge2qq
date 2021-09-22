@@ -1,0 +1,2327 @@
+[33mcommit d1cd27beac3e3a88f6d0bdc556fef2da166bf72d[m[33m ([m[1;36mHEAD -> [m[1;32mboiler_5.1.1[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 21 12:17:36 2021 +0200
+
+    Removed fading navbar
+
+[33mcommit 156c79e85a0f22d9e456d72f0fa8e8f95d22f97e[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 21 12:10:09 2021 +0200
+
+    Removed fading navbar
+
+[33mcommit 2e0e719964ae9f4c4b779c540858690a97737d1c[m[33m ([m[1;32mtestMerge2[m[33m, [m[1;32mboiler_5.1.0[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 21 12:05:16 2021 +0200
+
+    Merged page transitions
+
+[33mcommit caad805a079a2bf195c39526e0fb631603c250d2[m
+Merge: 6bea94e b72d9e1
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 21 12:03:50 2021 +0200
+
+    Merged page transitions
+
+[33mcommit b72d9e15d8bacd4656365ec73a8fe3c5ae10da5d[m[33m ([m[1;32mframer1[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 21 12:01:07 2021 +0200
+
+    opacity animation ok
+
+[33mcommit 6bea94edc0f8fa80c378caf673d058f79fea0127[m[33m ([m[1;31morigin/boiler_5.0.0[m[33m, [m[1;32mnewMsg[m[33m, [m[1;32mboiler_5.0.0[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 15:56:45 2021 +0200
+
+    Added toast
+
+[33mcommit 347fb8ccbb99b8e37e1b2fe3afd948c48c540772[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 15:56:21 2021 +0200
+
+    Added toast
+
+[33mcommit 652e97881f6813298c5f73141b99b9cca9fe9b04[m[33m ([m[1;32mredirect[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 14:52:47 2021 +0200
+
+    Redirect payment ok
+
+[33mcommit 30b5b1d7838dac228aa0aa0dc43551ec7fe018c2[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 14:46:33 2021 +0200
+
+    Minor cleaning
+
+[33mcommit dbdf9105496f7d9b627d26632fa388d26763a830[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 14:24:28 2021 +0200
+
+    Minor cleaning
+
+[33mcommit 7965ac26b57946888741bafe02c04fd569a60f48[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 14:24:07 2021 +0200
+
+    Minor cleaning
+
+[33mcommit d69caf1462cfcbd47505b58342d269d5b2fdf8b5[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 14:20:29 2021 +0200
+
+    Removed divs into <AdminApp/>
+
+[33mcommit 5121d6455b34d876a61a7c1a7a502ac45eb27ed8[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 14:18:33 2021 +0200
+
+    Fixed eventUpdate
+
+[33mcommit cdabf39d84632f13c73de06675a0d56be345dd51[m[33m ([m[1;32mrouteTest[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 13:58:21 2021 +0200
+
+    Routes ok
+
+[33mcommit f4a73eb14e8ce08e3290d0b5df27ebacf74ffa9c[m
+Merge: df5f01a 6971d64
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 13:57:55 2021 +0200
+
+    Merge remote-tracking branch 'origin/abdullah_guide_home_styling_0.2' into routeTest
+
+[33mcommit 6971d64ec4e1f86145a3a55919004dffd3bc0e25[m[33m ([m[1;31morigin/abdullah_guide_home_styling_0.2[m[33m)[m
+Author: abdullah0o0 <abdullah.syallah0@gmail.com>
+Date:   Thu Sep 16 13:57:30 2021 +0200
+
+    delete logo from guide </home>
+
+[33mcommit df5f01ae83eca01da63d89840f63cd0341e8187c[m
+Merge: 6b974af f4d3bc0
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 13:54:49 2021 +0200
+
+    Merge remote-tracking branch 'origin/abdullah_guide_home_styling_0.2' into routeTest
+
+[33mcommit 6b974af9ed22d1370233487fa434bae2c720b14e[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 13:53:57 2021 +0200
+
+    Routes ok
+
+[33mcommit f4d3bc0482d81a68438e2ee6485fd6f58f9717af[m
+Author: abdullah0o0 <abdullah.syallah0@gmail.com>
+Date:   Thu Sep 16 13:53:17 2021 +0200
+
+    add logo to guide </home>
+
+[33mcommit f4487a3ba55f44e44020a62fb7e8c659d37b45ac[m[33m ([m[1;32mmarco_FE_authroute[m[33m)[m
+Merge: e01aa6b b1e447a
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 13:32:40 2021 +0200
+
+    Merged
+
+[33mcommit 0231d367663658b5e230070b5dc42b6f5df19f05[m
+Author: abdullah0o0 <abdullah.syallah0@gmail.com>
+Date:   Thu Sep 16 13:23:43 2021 +0200
+
+    guide home styilng 0.2
+
+[33mcommit 1f034fab2a407a638a28a0cabcb289c6167c9d16[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 13:22:49 2021 +0200
+
+    Framer package
+
+[33mcommit e01aa6b535fbab888eec6091be94895b0c8da99a[m[33m ([m[1;31morigin/marco_FE_authroute[m[33m, [m[1;32mauthRoute2[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 12:46:33 2021 +0200
+
+    AuthRoute ok
+
+[33mcommit 63575836867dd663bebc1307763893713754479d[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 12:38:50 2021 +0200
+
+    Removed Token from eventAction
+
+[33mcommit 72d2412fe91eb0e5201d9b245d3ae78e3c24d5e5[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 12:37:03 2021 +0200
+
+    Removed Token from userAction
+
+[33mcommit 55b0f306cbb4395e254cdc9405fc44739b1509a2[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 12:17:02 2021 +0200
+
+    Multi user test ok, added EVENTS_CLEAN on sign out
+
+[33mcommit b1e447a630b715b8a8643a8073b4635c0df2a827[m[33m ([m[1;31morigin/henr_FE_Admin_OverallStylingStructuring[m[33m)[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Thu Sep 16 12:04:56 2021 +0200
+
+    FIXING FOOTER AND NAV PROBLEMS. fixed page height
+
+[33mcommit 980e0b9c7e33e575f2e3c9ccb85d972b9fee4c0c[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Thu Sep 16 11:06:27 2021 +0200
+
+    add container and page classes
+
+[33mcommit ae58e8e3a11ec05d5535c196befa06e6bcd93a1a[m[33m ([m[1;32mauthRoute1[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 10:44:59 2021 +0200
+
+    Signin ok
+
+[33mcommit 7c89be41f1ab18b831fd4037e9330887ba2aa733[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Thu Sep 16 10:40:20 2021 +0200
+
+    styling and refactoring of Home
+
+[33mcommit 02bb4ea048f9e50bf0a4056a1bcb10b525863576[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 10:21:46 2021 +0200
+
+    Signin ok
+
+[33mcommit 95ffcee7380ba9b63380a76d051c72fada9b23ad[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 10:03:04 2021 +0200
+
+    First auth menu ok
+
+[33mcommit aacbbe4bbaf69f16efbc85e28ea872c6890be897[m[33m ([m[1;31morigin/boiler_4.2.0[m[33m, [m[1;32mboiler_4.2.0[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 09:35:11 2021 +0200
+
+    last merge
+
+[33mcommit ac621410b4e7f71b429f3222d89cc6dd1181a3a6[m
+Merge: e8fc5c3 82b07b4
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 09:27:04 2021 +0200
+
+    last merge
+
+[33mcommit e8fc5c39d3e283e7c1781d54de07f07a041db3d1[m
+Merge: 6bcac52 d7ac70a
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 09:18:38 2021 +0200
+
+    Merge branch 'unitT2' into boiler_4.2.0
+
+[33mcommit d13b259d2956ae971e99939d9bcb2e40d8e48c1b[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 09:17:02 2021 +0200
+
+    motion frame package installed
+
+[33mcommit 0e4f6d26053de8d9a7766ae9d66b7ef0d4f20a2a[m[33m ([m[1;31morigin/boiler_4.1.0[m[33m, [m[1;32mboiler_4.1.0[m[33m)[m
+Merge: ecba3b7 d7ac70a
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 16 09:05:09 2021 +0200
+
+    Merge branch 'unitT2' into boiler_4.1.0
+
+[33mcommit d7ac70ad50130dbf1e053ffc3a31a59bdffa7eff[m[33m ([m[1;32munitT2[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 15 16:28:39 2021 +0200
+
+    user put UT ok
+
+[33mcommit 6bcac52d182324c9967bca188d8968ae6c990c4f[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Wed Sep 15 16:14:50 2021 +0200
+
+    minor readjustments on classnames and attributes
+
+[33mcommit ecba3b745420d0816fd0097cd958d10f71e5e8dc[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Wed Sep 15 16:00:59 2021 +0200
+
+    Merge branch 'henrique_FE_Admin_SectionContentManager_Styling' into boiler_4.1.0
+
+[33mcommit 9eb94056a1554749252f6a026695457ada2db209[m
+Merge: 359c82a 01896a4
+Author: henriquemartins <henrm@riseup.net>
+Date:   Wed Sep 15 15:55:01 2021 +0200
+
+    Merge branch 'henrique_FE_Admin_SectionContentManager_Styling' into boiler_4.1.0
+
+[33mcommit 359c82a9b87ddb540c30737d519871c983a63042[m
+Merge: 3f6f565 ff7b552
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 15 15:47:48 2021 +0200
+
+    Added subscription
+
+[33mcommit ff7b5520ff684fe84ebeaf30e043676aabc70d6d[m[33m ([m[1;32mfixSignUp[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 15 15:44:57 2021 +0200
+
+    Subscription ok
+
+[33mcommit 01896a4765b7b46803f7c50346a72441a6607230[m[33m ([m[1;31morigin/henrique_FE_Admin_SectionContentManager_Styling[m[33m)[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Wed Sep 15 15:42:31 2021 +0200
+
+    styling on modal custom - texteditor
+
+[33mcommit 3f6f56577287b9ced9d6876091d7f480de377cc2[m[33m ([m[1;31morigin/boiler_4.0.0[m[33m, [m[1;32mboiler_4.0.0[m[33m, [m[1;32maboutAdmin6[m[33m)[m
+Merge: 8a7f1d9 d17c7c9
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 15 14:30:22 2021 +0200
+
+    Merge remote-tracking branch 'origin/henrique_FE_Admin_ModalCustom-textEditorJS_Styling' into aboutAdmin6
+
+[33mcommit d17c7c9f9a8e070beea697ea18ae750ee54b8f5a[m[33m ([m[1;31morigin/henrique_FE_Admin_ModalCustom-textEditorJS_Styling[m[33m)[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Wed Sep 15 14:30:06 2021 +0200
+
+    styling custom modal and text editor
+
+[33mcommit 8a7f1d9cb004b89f23fd0f2be47e00111e9c86a8[m
+Merge: 9df9611 c93db65
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 15 14:28:37 2021 +0200
+
+    Merge remote-tracking branch 'origin/henrique_FE_Guide_SettingsPage' into aboutAdmin6
+
+[33mcommit 9df9611b7dc81787766d88b40941753a0e91519d[m[33m ([m[1;32maboutAdmin5[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 15 14:27:06 2021 +0200
+
+    Confirmation delete in <SectionContentManager/>
+
+[33mcommit 82b07b4b8e1de6df36c2fc523576d8b5bbbcc5fa[m[33m ([m[1;31morigin/abdullah_guide_home_styling_0.1[m[33m)[m
+Author: abdullah0o0 <abdullah.syallah0@gmail.com>
+Date:   Wed Sep 15 13:54:36 2021 +0200
+
+    theming example
+
+[33mcommit 63aa31d8d35649e0cdfa8449e27d708bf779a12c[m
+Author: abdullah0o0 <abdullah.syallah0@gmail.com>
+Date:   Wed Sep 15 13:30:13 2021 +0200
+
+    add global styles for guide
+
+[33mcommit f5660621c2abe301b2211db5a959deb51aa0fe36[m[33m ([m[1;32maboutAdmin4[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 15 13:20:10 2021 +0200
+
+    Implemented top accordion <AboutAdmin/>
+
+[33mcommit c93db655a83772c11247f26b39aae57ce834c358[m[33m ([m[1;31morigin/henrique_FE_Guide_SettingsPage[m[33m)[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Wed Sep 15 13:04:21 2021 +0200
+
+    Settings page done
+
+[33mcommit 7cfc73aac1e937464aaba2eedc58498a22dd03eb[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Wed Sep 15 13:03:51 2021 +0200
+
+    adding to the global theme
+
+[33mcommit 2685cfd9532d4218a2c5c56d6e6281627fd9aff7[m[33m ([m[1;32maboutAdmin3[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 15 12:54:56 2021 +0200
+
+    user info update ok
+
+[33mcommit 4136b5ec7c37d320d1ef2ba5898072c547b78d99[m[33m ([m[1;31morigin/boiler_3.9.0[m[33m, [m[1;32mmergeTest3[m[33m, [m[1;32mboiler_3.9.0[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 15 09:49:31 2021 +0200
+
+    Last merge
+
+[33mcommit 5029e3afbb71235249264a074a56a3cb29455eff[m
+Merge: 13fe40e 42aaabb
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 15 09:44:13 2021 +0200
+
+    Merge remote-tracking branch 'origin/henrique_FE_Guide_BottomNav_fixingLinks' into mergeTest3
+
+[33mcommit 88983dd26b87ab68dd19a6dcdd95ee2a4d8146a0[m
+Author: abdullah0o0 <abdullah.syallah0@gmail.com>
+Date:   Wed Sep 15 09:42:51 2021 +0200
+
+    home styling 0.2
+
+[33mcommit 13fe40ec7e712ae475b7e12dd239869eec222ead[m[33m ([m[1;31morigin/fixSignUp[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 15 09:38:54 2021 +0200
+
+    Goes to last step
+
+[33mcommit 76e4a889c741b64994eb77576e28e6ff55d0943f[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 14 16:12:12 2021 +0200
+
+    Redirect ok
+
+[33mcommit 72a63fb01e599cc10b78c87a05e3877740dbf0b6[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 14 16:00:21 2021 +0200
+
+    Fixed <Signup/>
+
+[33mcommit 11b93bcd4daf0954a03d46584ddb0eb78ee91a26[m
+Merge: 2cfbf03 260a597
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 14 15:56:40 2021 +0200
+
+    Fixed <Signup/>
+
+[33mcommit 260a597c349fee1beb15ff76c56b20679e7f6316[m[33m ([m[1;31morigin/Abdilkani_FE_Subscription_2[m[33m)[m
+Author: cmi112 <cabdiqanimuuse7@gmail.com>
+Date:   Tue Sep 14 15:33:08 2021 +0200
+
+    sign up Buy payment connection
+
+[33mcommit 42aaabbc97818504c916ab3c0c788af37dde79da[m[33m ([m[1;31morigin/henrique_FE_Guide_BottomNav_fixingLinks[m[33m)[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Tue Sep 14 15:03:14 2021 +0200
+
+    Add dynamic link in the Event NavBtn
+
+[33mcommit cd1669d4baf400e175486409c013b40601859094[m
+Author: abdullah0o0 <abdullah.syallah0@gmail.com>
+Date:   Tue Sep 14 14:39:38 2021 +0200
+
+    home styling 0.1
+
+[33mcommit 2cfbf0303301c022a475b4b6e4d1f445a3b4acf8[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 14 14:18:56 2021 +0200
+
+    <AboutAdmin /> handles contents correctly
+
+[33mcommit 25406148accf6d4aeac76ff178aad94e92e76f2b[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 14 13:46:22 2021 +0200
+
+    New route PUT /users/, ok
+
+[33mcommit dff83a6c0cc33a4638ae364f357a0c2ec577e686[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 14 13:25:34 2021 +0200
+
+    About Admin userInfo ok
+
+[33mcommit 5473d7be6da668d0998f1fad7ae1c4a88139e9d3[m[33m ([m[1;32mnewRouting[m[33m, [m[1;32mmergeTest2[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 14 12:49:41 2021 +0200
+
+    Fixed new routing
+
+[33mcommit 9c85eeb1f0e9125d6cfb51ed4aa12bcd4275a4d6[m
+Merge: b783be3 7fe194a
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 14 12:43:41 2021 +0200
+
+    merged
+
+[33mcommit 7fe194a25c232b72b64e1a20c0f96cb4b15da12f[m[33m ([m[1;31morigin/henrique_FE_switchDebugAPPJS[m[33m)[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Tue Sep 14 12:40:53 2021 +0200
+
+    new wrap App js with GuideApp and AdminApp
+
+[33mcommit b783be3dc035f1a2f89e0773e87347f4a1681f5a[m[33m ([m[1;32maddAboutAdmin[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 14 12:19:01 2021 +0200
+
+    User info created
+
+[33mcommit 134521c6c322838f729579877fbe7a65bfdd8e3a[m[33m ([m[1;31morigin/henrique_FE_Guide_PrevNextBtnSections_Styling[m[33m)[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Tue Sep 14 12:16:57 2021 +0200
+
+    add a stepper and implement custom icon btn
+
+[33mcommit 1fc66c7b95bdac4bbf6bdaf0ae21cf95062a6a2e[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Tue Sep 14 12:16:43 2021 +0200
+
+    add two new icons to the custom icon btn
+
+[33mcommit 380b11e3b81302b56c24dbdd4c8d826ac1fcff29[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 14 11:46:55 2021 +0200
+
+    Inserted hard coded objs
+
+[33mcommit dc9c254184ea678edb13073e0c09f64e846409be[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 14 11:11:39 2021 +0200
+
+    Inserted hard coded objs
+
+[33mcommit 969fad23363e4415ef59ab21ceb68c382c44f739[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 14 10:39:39 2021 +0200
+
+    Implemented USER_FETCH
+
+[33mcommit 406f281d74c08b10835d4091355a84599b49b59d[m[33m ([m[1;32mboiler_3.8.4[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 14 10:06:19 2021 +0200
+
+    Small fixes
+
+[33mcommit 7e2357334e688e1680b76fa014552eedd38c2f40[m[33m ([m[1;31morigin/henrique_FE_Guide_ImplementingBottomNavBar[m[33m)[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Tue Sep 14 10:02:07 2021 +0200
+
+    adding Link for routing with the bottom navbar
+
+[33mcommit c2e132b80556cf540dc1512b869ef837b0fde0ba[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Tue Sep 14 10:01:53 2021 +0200
+
+    add map and settings page
+
+[33mcommit 37ce36d1bd1d58ab7efd0930ba13720d4b111d44[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Tue Sep 14 10:01:36 2021 +0200
+
+    deleting the OLD navbar
+
+[33mcommit cbf4d7f434d8e7c2514ab9186272cc753167bd6b[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Tue Sep 14 10:01:24 2021 +0200
+
+    Adding a Switch inside of the <div>GUIDE</div> for correct routing
+
+[33mcommit 9bdacf04ce766c14060013f0553d88b40fc9101f[m[33m ([m[1;31morigin/boiler_3.8.1[m[33m)[m
+Merge: 69d4f1c 53fbf5e
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 14 09:37:13 2021 +0200
+
+    Sticky navbar in <Guide/>
+
+[33mcommit 53fbf5e49ea699c8df4bde772e8b21f83e4438e6[m[33m ([m[1;31morigin/abdullah_guide_sections_0.2[m[33m)[m
+Author: abdullah0o0 <abdullah.syallah0@gmail.com>
+Date:   Tue Sep 14 09:35:14 2021 +0200
+
+    test
+
+[33mcommit 69d4f1c65ed862c15a9da03118a495f7f0524cbc[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 14 09:35:13 2021 +0200
+
+    Arrow navbar
+
+[33mcommit f47da12c5c9bfbd46fc9a1f7fa77eb62fe36b6f3[m[33m ([m[1;32mabdullah_guide_sections_0.3[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 14 09:20:56 2021 +0200
+
+    <SignUp /> fixed
+
+[33mcommit e47764ceb2411d5cb3eea30633fa7aca8f2a27d7[m[33m ([m[1;32mvideoFix2[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 13 16:16:06 2021 +0200
+
+    Fixing text overflow in <Section/>
+
+[33mcommit a0215a4ff4e06f47d4620c0f7e85ef47a654167e[m
+Author: abdullah0o0 <abdullah.syallah0@gmail.com>
+Date:   Mon Sep 13 16:02:16 2021 +0200
+
+    style sections navbar
+
+[33mcommit d4e34249dfe06e01670e2b76632738f0c461da72[m
+Author: abdullah0o0 <abdullah.syallah0@gmail.com>
+Date:   Mon Sep 13 16:02:02 2021 +0200
+
+    add fonts to the theme
+
+[33mcommit e99d93ae0d8e3b79cde8492f266a21ef89b02cfe[m[33m ([m[1;32mboiler_3.8.0[m[33m, [m[1;32mabdullah_guide_sections_0.2[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 13 15:25:56 2021 +0200
+
+    Merged
+
+[33mcommit c397d05b9161fa38b74970cd935565a3edf7526b[m
+Merge: e3d6802 b158b46
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 13 15:24:33 2021 +0200
+
+    Merged
+
+[33mcommit e3d6802b8ccab6990d068cb0e16f91c0e79d83b7[m
+Merge: c847c99 d78a5a1
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 13 15:20:22 2021 +0200
+
+    Merge branch 'boiler_3.7.0' into abdullah_guide_sections_0.2
+
+[33mcommit c847c991a8bb5d1c933b56e2b63c8341ec83a346[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 13 15:14:33 2021 +0200
+
+    Styling title
+
+[33mcommit b158b4631e4105cc136260dd9864cccd4c8d0064[m[33m ([m[1;31morigin/henrique_FE_refactoringButtons_0.6[m[33m)[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Mon Sep 13 15:12:36 2021 +0200
+
+    further styling on the buttons
+
+[33mcommit 8e7b3850804dee4a30dc710b25e62d893b2ce7bc[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 13 15:08:59 2021 +0200
+
+    Styling title
+
+[33mcommit 1b3aeeff6d28985eb844b6718ae770e84017f770[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Mon Sep 13 14:34:33 2021 +0200
+
+    adding a focus green light on save abled
+
+[33mcommit 99c7fb7b43fdae01cfac859f59351579adc9482f[m[33m ([m[1;31morigin/abdullah_guide_sections_styling_0.2[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 13 14:07:39 2021 +0200
+
+    Fixed Section CSS
+
+[33mcommit 9a4a20ead2c9f700889b58b83d89b6c29556d6e1[m[33m ([m[1;31morigin/abdullah_guide_sections_0.1[m[33m)[m
+Author: abdullah0o0 <abdullah.syallah0@gmail.com>
+Date:   Mon Sep 13 13:42:23 2021 +0200
+
+    sections styleing 0.2
+
+[33mcommit d78a5a16fa23871e591b44fc99fa0925476dae09[m[33m ([m[1;32mconfirmBtn[m[33m, [m[1;32mboiler_3.7.0[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 13 13:36:20 2021 +0200
+
+    Added EVENT_DELETE with comfirmation
+
+[33mcommit 9e18ce7963ebcfb0e0cab7c6c4de0ef799e4beee[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 13 13:09:33 2021 +0200
+
+    Implemented <PopUpDialogBox />
+
+[33mcommit 8dd5bf8ce0397e885b32233195fb06ebe8b808d5[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 13 13:05:24 2021 +0200
+
+    Implemented <PopUpDialogBox />
+
+[33mcommit 26b3b4052564d8c19d40367ccfd662d754090aca[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 13 12:15:51 2021 +0200
+
+    Implementing <PopUpDialogBox />
+
+[33mcommit 4f176711db66347411490bafa67004ea2828dfcc[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Mon Sep 13 12:14:05 2021 +0200
+
+    further styling
+
+[33mcommit 0f40513d1d14bb10f15d5a3a8350c02d996d21aa[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Mon Sep 13 11:24:46 2021 +0200
+
+    further implementation
+
+[33mcommit 6f577b9110aad30fd54f78de6a6adc868903a485[m
+Merge: 4e9e452 3cd057f
+Author: abdullah0o0 <abdullah.syallah0@gmail.com>
+Date:   Mon Sep 13 11:17:08 2021 +0200
+
+    Merge branch 'marco_FE_sectionImageCaptions' into abdullah_guide_sections_0.1
+
+[33mcommit 4e9e452157d0af1ff8d13c74e2aefa737fb65b01[m
+Author: abdullah0o0 <abdullah.syallah0@gmail.com>
+Date:   Mon Sep 13 11:10:45 2021 +0200
+
+    sections styles 0.1
+
+[33mcommit 3cd057facd52a3e12b85c7dffa52ef4ca3d1eaf4[m[33m ([m[1;31morigin/marco_FE_sectionImageCaptions[m[33m, [m[1;32mmarco_FE_sectionImageCaptions[m[33m, [m[1;32mimagesDesc1[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 13 10:53:42 2021 +0200
+
+    Addedrendering and saving of Image title/description
+
+[33mcommit d205ee14bae33e910f12b3c88ff2d79e63379ace[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Thu Sep 9 16:18:30 2021 +0200
+
+    CustomIconButton is done, only needs styling,, CustomButtom still needs to be implemented throughout the Admin and styled
+
+[33mcommit 350a1a1c697fa88276768e924b31feee88e86227[m[33m ([m[1;31morigin/abdullah_guide_sections_styling_0.1[m[33m, [m[1;32msectionNavWithREDUX5[m[33m, [m[1;32mboiler_3.6.1[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 9 14:04:38 2021 +0200
+
+    Section Navigation works
+
+[33mcommit 7be57c6ab85c6d67370d35244decb60f7a952619[m
+Merge: aceb56c 27e6eba
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 9 12:38:56 2021 +0200
+
+    Merge remote-tracking branch 'origin/henrique_FE_FixingSectionOrder_0.5' into sectionNavWithREDUX5
+
+[33mcommit aceb56c865e2de179e263bca9911ccd55901ada0[m[33m ([m[1;32msectionNavWithREDUX4[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 9 12:38:34 2021 +0200
+
+    goToSection as ext func
+
+[33mcommit 27e6eba58e5224ac100ded1f7df0b5543fc0bbf7[m[33m ([m[1;31morigin/henrique_FE_FixingSectionOrder_0.5[m[33m)[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Thu Sep 9 12:24:25 2021 +0200
+
+    Fixing the assign of order in each content inside of section
+
+[33mcommit 2d8649a57a52f670513579c6fbe88076d71bc88f[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Thu Sep 9 12:20:23 2021 +0200
+
+    Fixing order:x assinging of sections
+
+[33mcommit 8bd3dd0a3a5eb5ab3e177d28df8271b594a57d54[m[33m ([m[1;31morigin/henrique_FE_refactoringButtons_0.5[m[33m)[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Thu Sep 9 12:13:10 2021 +0200
+
+    Externalizing and Creating new Custom Button and Icon Components
+
+[33mcommit 8485fbd15fb6f405e3f7fd35757fa18c7f0b294b[m[33m ([m[1;32msectionNavWithREDUX3[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 9 11:57:08 2021 +0200
+
+    goToSection as ext func
+
+[33mcommit cdb829f57d709ca9949912f028e2979086260c2c[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 9 11:51:50 2021 +0200
+
+    WIP <SectionNavBar />
+
+[33mcommit 33802c22f942cb0ce02294b58c7e5ed4e62c123a[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 9 11:36:12 2021 +0200
+
+    <Section /> loads directly
+
+[33mcommit 0b1e3bde2696793145b9fb2d493b3ca149d1d111[m[33m ([m[1;32msectionNavWithREDUX1[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 9 11:21:56 2021 +0200
+
+    Section hook, ok
+
+[33mcommit 750104161bf100003823d06768cafcdf2ed540f6[m
+Merge: 104f22c 5193105
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 9 10:18:09 2021 +0200
+
+    Merge 3.6.1 ok
+
+[33mcommit 104f22c5e10a657c3ad578cefa9f002e8d5a11b6[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 9 10:17:10 2021 +0200
+
+    useGetAndSaveEvent gets ok
+
+[33mcommit afa152380bca6125f04d34817a0da5657bf84e53[m[33m ([m[1;32msectionNavWithREDUX[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 9 10:15:20 2021 +0200
+
+    useGetAndSaveEvent gets ok
+
+[33mcommit 5193105c3404839c81c8edcddbd65779b794e69a[m[33m ([m[1;32mguideRedux1[m[33m)[m
+Merge: 66d957f 23b7593
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 9 09:48:01 2021 +0200
+
+    Merge branch 'mergeTest' into boiler_3.6.1
+
+[33mcommit 23b7593c06c522a3afe5219cd165552acaa8584c[m[33m ([m[1;32mmergeTest[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 9 09:47:16 2021 +0200
+
+    Merge ok
+
+[33mcommit 66d957f3f0db0b9b5916b4b53c4a646ca48befb7[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 9 09:39:56 2021 +0200
+
+    Merge
+
+[33mcommit f5e45a73a43e388b5185a8dfb205f5c81e42c281[m
+Merge: ab68452 39889ad
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 9 09:35:53 2021 +0200
+
+    Merge remote-tracking branch 'origin/abdullah_custom_buttons+inputs' into boiler_3.6.1
+
+[33mcommit 9af054f1042580ae5b8a53b3ea1c3a98bc7c3e84[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 9 09:35:45 2021 +0200
+
+    buttons merged
+
+[33mcommit 71191a3c735414da2e09865b7fbaf76fd933170a[m
+Merge: ab68452 39889ad
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 9 09:32:02 2021 +0200
+
+    Merge remote-tracking branch 'origin/abdullah_custom_buttons+inputs' into mergeTest
+
+[33mcommit ab6845260b91ddf328ca1c29136ffbc0a2f79810[m
+Merge: a94305c b7a940c
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 9 09:21:14 2021 +0200
+
+    Merge remote-tracking branch 'origin/henr_FE_Guide-BottomNavBar_0.5' into boiler_3.6.1
+
+[33mcommit 39889ade0b7e3eaf8582a49f5061788c8fc2509c[m[33m ([m[1;31morigin/abdullah_custom_buttons+inputs[m[33m)[m
+Author: abdullah0o0 <abdullah.syallah0@gmail.com>
+Date:   Wed Sep 8 16:28:11 2021 +0200
+
+    add buttons prototypes+application basic styles
+
+[33mcommit a94305c6e65768552d64c8189a93f7df78baf6a2[m
+Merge: 84feab4 865dfdd
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 8 16:22:49 2021 +0200
+
+    New Merging
+
+[33mcommit b7a940ce8416b4d99f28ae5fc3f9a3226bcbde03[m[33m ([m[1;31morigin/henr_FE_Guide-BottomNavBar_0.5[m[33m)[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Wed Sep 8 16:16:46 2021 +0200
+
+    adding styles and fixed bottomnavbar to the guide
+
+[33mcommit e54e225a2658e2a2dc8c15e296cba850a6b49b5a[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 8 16:10:23 2021 +0200
+
+    Test with redux
+
+[33mcommit 865dfdd8c03c42804d201ba8fe80d36e9d924f8f[m[33m ([m[1;31morigin/Abdilkani_FE_Guide_payment_Gateway[m[33m)[m
+Author: cmi112 <cabdiqanimuuse7@gmail.com>
+Date:   Wed Sep 8 16:03:41 2021 +0200
+
+    payment Gateway added
+
+[33mcommit 84feab4c99311ca9b98e412436de7270a258bcb1[m[33m ([m[1;31morigin/boiler_3.5.1[m[33m, [m[1;32msectionNavWithPush[m[33m, [m[1;32mboiler_3.5.1[m[33m, [m[1;32mboiler_3.5.0[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 8 15:18:08 2021 +0200
+
+    React quill into <Home/>
+
+[33mcommit 65e662c94f3d51a326976c194b53fd1b65e96dd5[m[33m ([m[1;31morigin/boiler_3.5.0[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 8 15:14:15 2021 +0200
+
+    Added title in preview
+
+[33mcommit 5d84491a27d0cda16a5e49d37a8df736860e07c6[m[33m ([m[1;32mguideSection4[m[33m)[m
+Merge: c05512c db045b6
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 8 15:06:36 2021 +0200
+
+    Merge remote-tracking branch 'origin/henr_FE_fixingDragDropDescriptionSection' into guideSection4
+
+[33mcommit c05512c70b6206a4a0791c38bee6eede80956d40[m[33m ([m[1;32mguideSection3[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 8 15:05:54 2021 +0200
+
+    First Guide Section rendering ok
+
+[33mcommit db045b62b088203892706a6c174c341289f94a54[m[33m ([m[1;31morigin/henr_FE_fixingDragDropDescriptionSection[m[33m)[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Wed Sep 8 15:00:47 2021 +0200
+
+    adding props.isDraggable for blocking the dragging of the intro description and disasbling the btn
+
+[33mcommit 5037bd862bb957361b23b939e466e92e93206950[m[33m ([m[1;32mguideSection2[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 8 14:31:42 2021 +0200
+
+    Cover into <BlockSection/>
+
+[33mcommit 4f6a36ff391589ff15d3d43525306d9d4648cc71[m[33m ([m[1;31morigin/boiler_3.4.0[m[33m, [m[1;32msectionCoverHover2[m[33m, [m[1;32mboiler_3.4.0[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 8 14:27:31 2021 +0200
+
+    Added cover and section description in <SectionPreview/>
+
+[33mcommit 133b749a0fb4457e71ff0385110e79dfe290cb31[m[33m ([m[1;31morigin/boiler_3.3.0[m[33m, [m[1;32mmerge[m[33m, [m[1;32mboiler_3.3.0[m[33m)[m
+Merge: dc99d81 58f71ad
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 8 14:03:54 2021 +0200
+
+    Merge remote-tracking branch 'origin/henr_FE_AccountPage-styling_0.5' into merge
+
+[33mcommit dc99d812e5f4e3f24a75e0a6f2cc4e4265cff4f2[m[33m ([m[1;32msectionCoverHover1[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 8 14:02:38 2021 +0200
+
+    Upload/Change cover image, ok. Created <ImageHoverButton/>
+
+[33mcommit 58f71adb30c560a279dcf685d343a69069d551da[m[33m ([m[1;31morigin/henr_FE_AccountPage-styling_0.5[m[33m)[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Wed Sep 8 14:02:24 2021 +0200
+
+    fixing the footer to the bottom of the page by setting the page min height and positioning the footer absolutely
+
+[33mcommit e0049c074f0c2ac5993af3b8f766c8786bb29ae2[m[33m ([m[1;32msectionCoverHover[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 8 13:50:40 2021 +0200
+
+    Button ok
+
+[33mcommit f5b55895c09f1166edf4b043c01a4a6a7609ee0b[m[33m ([m[1;32msectionCover1[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 8 13:29:54 2021 +0200
+
+    Added thumb in event section
+
+[33mcommit 58dfc18ce29b13c1a8ac31c93e393b1aaa3f59c7[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Wed Sep 8 12:55:37 2021 +0200
+
+    minor styling
+
+[33mcommit 2bab60c0484561d5601fb4fda2ec49c58ff31d92[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 8 12:21:57 2021 +0200
+
+    WIP on add cover img
+
+[33mcommit f36669562f19248219034966de42cdf027584e43[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 8 12:17:59 2021 +0200
+
+    WIP on add cover img
+
+[33mcommit 0414acef0827d02f5004c9589c8e3301b9d06d11[m[33m ([m[1;31morigin/henr_FE_FixingFooter_0.5[m[33m)[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Wed Sep 8 12:09:26 2021 +0200
+
+    replacing Logo
+
+[33mcommit 3bd94dba7075ab28d1c8a98afe8edfb95f3b5c1b[m
+Merge: d91980b 915e44b
+Author: henriquemartins <henrm@riseup.net>
+Date:   Wed Sep 8 11:36:33 2021 +0200
+
+    Merge branch 'henr_FE_AdminNavbar_0.5' into henr_FE_FixingFooter_0.5
+
+[33mcommit 915e44b213d9f4d14f74f9828b12e0ae076ca47c[m[33m ([m[1;31morigin/henr_FE_AdminNavbar_0.5[m[33m)[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Wed Sep 8 11:34:36 2021 +0200
+
+    Adding position relative to the navbar
+
+[33mcommit d91980be5c746e5f5413d5bafbc963d73b6403a7[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Wed Sep 8 11:31:39 2021 +0200
+
+    add the Footer to App.js
+
+[33mcommit e643a51fb124e8de328ee66b3a99da79aaa5b421[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 8 11:29:37 2021 +0200
+
+    WIP on add cover img
+
+[33mcommit aeb9940d9831ddbb096d97afee486f0c5c21dc64[m[33m ([m[1;32msectionCover[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 8 11:15:26 2021 +0200
+
+    Section description, ok
+
+[33mcommit 8f434aec22daa98ad49120e430aa6658a88623e5[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Wed Sep 8 11:13:13 2021 +0200
+
+    minimal styling on Navbar and adding the Logo
+
+[33mcommit 8703d15fc310dfd7f6d9cec70219556fd0e25553[m[33m ([m[1;31morigin/boiler_3.2.0[m[33m, [m[1;32mboiler_3.2.0[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 8 10:24:36 2021 +0200
+
+    Guide <Home/>
+
+[33mcommit 38e89e41b6c15fe1ff9ff235965bd365927313d9[m[33m ([m[1;32mher_debug[m[33m, [m[1;32mguideSection1[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 8 10:09:05 2021 +0200
+
+    Working on sections guide
+
+[33mcommit 94c7d67fab5f637c8ef95382b844da03d4b02b84[m
+Merge: be5de56 f8ce7f0
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 8 08:57:02 2021 +0200
+
+    bug fixed
+
+[33mcommit be5de5690ad0e031460a75a6cd3b7e1eb717e7f1[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 8 08:54:19 2021 +0200
+
+    Fixing bug
+
+[33mcommit 499042dd3784d3ed7d15f5284d263210126e40eb[m
+Author: abdullah0o0 <abdullah.syallah0@gmail.com>
+Date:   Tue Sep 7 16:34:33 2021 +0200
+
+    custom buttons v1
+
+[33mcommit f8ce7f03ee1f1cd1df3644f5dddb0ac50248ac65[m[33m ([m[1;31morigin/her_debug[m[33m)[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Tue Sep 7 16:06:49 2021 +0200
+
+    fixing saveContent  func --> section ids are no longer mixed up upon saving inside the section
+
+[33mcommit bce8ce080629bf877316671916bb3ce9e557cdf3[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 7 15:25:31 2021 +0200
+
+    Debbuging
+
+[33mcommit f295dae0e9a9d4375b0ec8942e69ecd08159a358[m[33m ([m[1;31morigin/boiler_3.1.1[m[33m, [m[1;32mboiler_3.1.1[m[33m)[m
+Merge: fb0a9fe 2d84645
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 7 14:32:23 2021 +0200
+
+    Merge remote-tracking branch 'origin/henr_FE_SectionContentManager_styles_0.5' into boiler_3.1.1
+
+[33mcommit fb0a9fe30a4c134aad93bd457a9838395997ba00[m[33m ([m[1;32mboiler_3.1.0[m[33m)[m
+Merge: d4961bc 038548b
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 7 14:28:47 2021 +0200
+
+    Merge remote-tracking branch 'origin/henrmMarco_FE_contentsDrandNdDrop' into boiler_3.1.0
+
+[33mcommit d4961bc9abeadcc7fe0d1e0044799de74a911813[m[33m ([m[1;32mgoToSectionGuide[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 7 14:27:16 2021 +0200
+
+    go to section guide, ok
+
+[33mcommit 2d84645ff5f5e92d1efcfafad1db69a3c48b2fdc[m[33m ([m[1;31morigin/henr_FE_SectionContentManager_styles_0.5[m[33m)[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Tue Sep 7 12:23:28 2021 +0200
+
+    adding styles to sectioncontentmanager component
+
+[33mcommit 79bd68e8480631becc9b3b8cadabac94b4c1cc8b[m[33m ([m[1;32museMemoTest[m[33m, [m[1;32mfixEventSectionSaving3[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 7 12:22:42 2021 +0200
+
+    Updates new title when the event is created
+
+[33mcommit 4a770da7d3e12293289c1532fa6ab3745ee6314e[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 7 12:22:32 2021 +0200
+
+    Updates new title when the event is created
+
+[33mcommit 5ca59569f19b61a0fccb5a0dd12936b513b8ea3c[m[33m ([m[1;32mfixEventSectionSaving2[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 7 11:34:42 2021 +0200
+
+    Section content is saving
+
+[33mcommit 2eb6fc33ca32f18ae6c463277811ab333fe0e4ee[m[33m ([m[1;32mfixEventSectionSaving1[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 7 11:29:44 2021 +0200
+
+    New event title works
+
+[33mcommit 038548b10f59af6c3b4b22e2b4f757cc0234818f[m[33m ([m[1;31morigin/henrmMarco_FE_contentsDrandNdDrop[m[33m)[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Tue Sep 7 10:34:57 2021 +0200
+
+    add drag and drop func and .sort on mapping the contents
+
+[33mcommit da31ce3e2faed4f23a5c3ee5e8749989d3c4c5f2[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Tue Sep 7 10:34:28 2021 +0200
+
+    add attributes to content component for drag and drop func
+
+[33mcommit 25a64f910236122a5c3aeef22ac17eb3b58fd818[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Tue Sep 7 10:34:08 2021 +0200
+
+    Add atributes to content component for drag and drop func
+
+[33mcommit 4bde733222dbf4265226925b23f43f5e51faa690[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 7 09:51:47 2021 +0200
+
+    Fixed saving section
+
+[33mcommit 48c655680cb0a029d70171934be4a356a9188d22[m[33m ([m[1;31morigin/Abdilkani_FE_Guide_Component_Home[m[33m)[m
+Author: cmi112 <cabdiqanimuuse7@gmail.com>
+Date:   Tue Sep 7 09:50:59 2021 +0200
+
+    Home page for the Guide done
+
+[33mcommit 49e36f05fe45cd9f871c2a57ac21e9ea9e80d85f[m[33m ([m[1;32mfixSaveTitle1[m[33m, [m[1;32mfixSaveTitle[m[33m, [m[1;32mfixSaveSlug[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Sep 7 08:54:24 2021 +0200
+
+    Section Title update, ok
+
+[33mcommit c3a9f8ae926b26eb1c3d8e51e5346cb75c19e3c2[m[33m ([m[1;31morigin/boiler_3.0.0[m[33m, [m[1;32mboiler_3.0.0[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 6 18:53:05 2021 +0200
+
+    Added update event title
+
+[33mcommit 7b5d06b7848980f70f89a1a28bc6cec6c844c332[m[33m ([m[1;32mupdateTitle[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 6 18:07:59 2021 +0200
+
+    Added update event title
+
+[33mcommit 56c149fb9a759d4792d292d36219e4fd1184d24b[m[33m ([m[1;32mguide_overview[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 6 17:48:25 2021 +0200
+
+    Added Spinner
+
+[33mcommit 0728864733469c7e3c603ee50d2f9f797f24d8e9[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 6 17:24:51 2021 +0200
+
+    First <Home/> in Guide setup, ok
+
+[33mcommit 556f62f25e75c0752ddfbad265892b3a4a9f842b[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 6 17:09:20 2021 +0200
+
+    First <Guide /> setup, ok
+
+[33mcommit 4a7688ec7af6ceb58e0371cf0a34cb3f4df9c9eb[m[33m ([m[1;32menrMarco_FE_eventManager_0.9.0[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 6 16:23:57 2021 +0200
+
+    <CustomMessage /> ok
+
+[33mcommit 5f6f0c99775f4deb17795df067c2856fcaf1335b[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 6 16:18:12 2021 +0200
+
+    Setting up <CustomMessage/>
+
+[33mcommit 51a9537d9e71e81efac794a04cb441aab60f5ec9[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 6 15:31:36 2021 +0200
+
+    Setting up <CustomMessage/>
+
+[33mcommit 87ca01dd0281f784a8d66a56629a86a51a470ae4[m[33m ([m[1;31morigin/enrMarco_FE_eventManager_0.8.6[m[33m, [m[1;31morigin/boiler_2.3.0[m[33m, [m[1;32menrMarco_FE_eventManager_0.8.6[m[33m, [m[1;32mboiler_2.3.0[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 6 13:36:34 2021 +0200
+
+    Ext functions for goBack and implemented into <Event />
+
+[33mcommit 2a7367ffde1afd788cd381a332c29adcb507906b[m
+Merge: c5b7f3a ef50fda
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 6 13:18:21 2021 +0200
+
+    Merge remote-tracking branch 'origin/abdullah_FE_Guide_boiler_restructure_1.0.0' into sectionContentManager4
+
+[33mcommit c5b7f3a0004b2e14ca694e4d684971f78955c9e3[m[33m ([m[1;31morigin/enrMarco_FE_eventManager_0.8.5[m[33m, [m[1;32menrMarco_FE_eventManager_0.8.5[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 6 12:20:48 2021 +0200
+
+    Fixed Save in event
+
+[33mcommit f7fe795bab07346cd372b7bd5ba374408092e348[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 6 12:09:40 2021 +0200
+
+    Saves and update <Section /> ok
+
+[33mcommit ef50fda77b1f789bb3d89d01805cafd4df7ab33d[m[33m ([m[1;31morigin/abdullah_FE_Guide_boiler_restructure_1.0.0[m[33m)[m
+Author: abdullah0o0 <abdullah.syallah0@gmail.com>
+Date:   Mon Sep 6 10:47:47 2021 +0200
+
+    remove QRcode from guide.js
+
+[33mcommit 2852d458f99577b9bfcfebedb33f912eb7a01ce6[m
+Author: abdullah0o0 <abdullah.syallah0@gmail.com>
+Date:   Mon Sep 6 10:41:05 2021 +0200
+
+    move QRcode popup to components folder
+
+[33mcommit 11d54ffe36d7d4b07a8eadd915e09ba2e0f61668[m
+Merge: 83efe97 61af247
+Author: abdullah0o0 <abdullah.syallah0@gmail.com>
+Date:   Mon Sep 6 10:39:35 2021 +0200
+
+    Merge branch 'boiler_2.2.0' into abdullah_FE_Guide_boiler_restructure_0.1
+
+[33mcommit 83efe971a6e3488e79319570ec7160b698ea18d6[m
+Author: abdullah0o0 <abdullah.syallah0@gmail.com>
+Date:   Mon Sep 6 10:39:00 2021 +0200
+
+    boiler-restructure_1.0.0
+
+[33mcommit 3be5f8b61826d563a4fcb1434147a1a56791d731[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 6 10:24:01 2021 +0200
+
+    Section loads correctly
+
+[33mcommit 61af247a34d06e8a99c9a43211a9876fb42f1802[m[33m ([m[1;31morigin/boiler_2.2.0[m[33m, [m[1;32mboiler_2.2.0[m[33m)[m
+Merge: 892b9a5 2ed09f6
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 6 09:48:01 2021 +0200
+
+    SIGN_OUT and Localstorage ok
+
+[33mcommit 892b9a503ba8c2a1fc35f220be3861f20d0b4fd7[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 6 09:46:53 2021 +0200
+
+    SIGN_OUT and Localstorage ok
+
+[33mcommit bfaf2dcbbfed0de1411a320d7a3394b3ebd5d57a[m
+Merge: c02b231 958ef19
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 6 09:40:26 2021 +0200
+
+    new merge
+
+[33mcommit c02b2315648972e3ebb9aa19f1d2e53c23a3d452[m[33m ([m[1;32menrMarco_FE_eventManager_0.7.9[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 6 09:34:40 2021 +0200
+
+    added new fuction to load edit Section
+
+[33mcommit 72b34cc99e518d16e9322d0e87de72ed6ce6e6d1[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Sep 6 09:07:50 2021 +0200
+
+    <SectionContentManager /> Created
+
+[33mcommit 3d9bc61945d71a09d25938f887293f4cad900c90[m[33m ([m[1;31morigin/henrMarco_FE_eventManager_0.7.8[m[33m, [m[1;31morigin/henrMarco_FE_eventManager_0.7.5[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Fri Sep 3 14:25:38 2021 +0200
+
+    Added <EventSectionNew />
+
+[33mcommit 374421edb888f83497be9ece230b5c8a58a0a311[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Fri Sep 3 13:39:09 2021 +0200
+
+    sections editing settings
+
+[33mcommit c08500b5342dd8cc4b3b2a3b55aaba72157f85d5[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Fri Sep 3 13:05:14 2021 +0200
+
+    added content to default seciton obj
+
+[33mcommit cbbbfedd555d2bb8cfe1311e69670df72be71282[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Fri Sep 3 12:14:52 2021 +0200
+
+    Go to edit section, ok
+
+[33mcommit ba8a653a8e426d68f611c21075c7978298b7acb3[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Fri Sep 3 11:58:46 2021 +0200
+
+    Mapping sections in evetn, ok
+
+[33mcommit 9c6c1cdd725b4951003309eb0355edc0c4ab9539[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Fri Sep 3 11:43:13 2021 +0200
+
+    save event, ok
+
+[33mcommit 8edee9a322f176408ef4d35cd3eeb451d0700226[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Fri Sep 3 11:42:52 2021 +0200
+
+    Update event, ok
+
+[33mcommit d7d34795de15aeafa1402086bcab703b5bd337e0[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Fri Sep 3 11:27:10 2021 +0200
+
+    Changed schema name Guide > Event
+
+[33mcommit fc0988a6ecd57c7e25beaa84ca4dd76903617544[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Fri Sep 3 10:59:58 2021 +0200
+
+    Changed schema name Guide > Event
+
+[33mcommit b6290ec510f7fcb85d9ead23b6ba0a8181170585[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Fri Sep 3 10:51:50 2021 +0200
+
+    First saving event logic, ok
+
+[33mcommit c4c7714219ac775155067cf73514568adef57233[m[33m ([m[1;31morigin/henrMarco_FE_eventManager_0.7[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Fri Sep 3 10:16:49 2021 +0200
+
+    Added concurrently
+
+[33mcommit af12877eaa0c85b999bd3c13676324d88c9d875a[m[33m ([m[1;31morigin/henrMarco_FE_eventManager_0.6[m[33m)[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Thu Sep 2 15:02:42 2021 +0200
+
+    only changing some comments
+
+[33mcommit e31e67dc69b589cbbdcd0990be025b6a4a419895[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Thu Sep 2 14:37:10 2021 +0200
+
+    little code refactoring
+
+[33mcommit ff41459adc9eb5f9eec5ed949403d5a0a175dbfd[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Thu Sep 2 14:28:18 2021 +0200
+
+    refactoring the code and styling
+
+[33mcommit 2ed09f6e89e69811055c3ec391474816650e18a9[m[33m ([m[1;31morigin/abdullah_giorg_FE_logout+localstorage_implementation[m[33m, [m[1;31morigin/abdullah/giorg_FE_logout[m[33m)[m
+Author: abdullah0o0 <abdullah.syallah0@gmail.com>
+Date:   Thu Sep 2 13:55:02 2021 +0200
+
+    sign out logic + implement  presistedState into  the initialState
+
+[33mcommit 4b88136f05f0c9e8b5283e96e53938fd3689d312[m
+Author: abdullah0o0 <abdullah.syallah0@gmail.com>
+Date:   Thu Sep 2 13:51:32 2021 +0200
+
+    send the state to localStorage
+
+[33mcommit 9929b3fc68ab58a2bacd36ad5e69c2611b529f87[m[33m ([m[1;31morigin/henrMarco_FE_eventManager_0.5[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 2 12:05:11 2021 +0200
+
+    Event slug/title ok
+
+[33mcommit 5bfa54416ba283762adc3086c25bea18a7bd3302[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 2 11:45:39 2021 +0200
+
+    Create second name component
+
+[33mcommit f07842fb602aa084f958737cce56d0d821590769[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 2 11:32:50 2021 +0200
+
+    New event gets saved
+
+[33mcommit 8d7a34f4486a69285e0d6e00c6789ae24ef7567b[m[33m ([m[1;31morigin/Abdilkani_FE_Guide_SingUp_2.0.0[m[33m)[m
+Author: cmi112 <cabdiqanimuuse7@gmail.com>
+Date:   Thu Sep 2 10:50:18 2021 +0200
+
+    sing up validation and password confirmation done
+
+[33mcommit 729560d26c264d169f7dfa542888d3bc76abc892[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 2 10:11:07 2021 +0200
+
+    Event find in <Event /> ok
+
+[33mcommit d65a0503809634b3c8a4d2ef44b16e5ea6692ba2[m[33m ([m[1;31morigin/boiler_2.1.1[m[33m, [m[1;32mboiler_2.1.1[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Sep 2 09:13:45 2021 +0200
+
+    win-env package removed
+
+[33mcommit 2c546323c93bd262d35d72ff65b1476e81c00e02[m[33m ([m[1;31morigin/henrique_IdExistingEventPage_0.1[m[33m)[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Wed Sep 1 16:18:54 2021 +0200
+
+    new restructuring with the modal of the name
+
+[33mcommit 47688db01499402f80767ae9d3c186354f77ef09[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Wed Sep 1 16:18:33 2021 +0200
+
+    add new dynamic route to make it easy my fetching with useParams
+
+[33mcommit 7903a5e575a3a7fea86f114eafdcbc519d9664e5[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Wed Sep 1 16:17:31 2021 +0200
+
+    deleting "win..." dependency and reinstalling node modules nad package lock
+
+[33mcommit f58784ad371ff4a2b5c315c95b5e50c1e2436532[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 1 14:09:16 2021 +0200
+
+    win-env package removed
+
+[33mcommit 93cf9c81927ea144d0dcb0575e744296731d66ac[m[33m ([m[1;31morigin/boiler_2.1.0[m[33m, [m[1;32mboiler_2.1.0[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 1 14:00:21 2021 +0200
+
+    SIGN_IN, ok
+
+[33mcommit 9501c3bcda3ff0a137fba53328bebf7336de2365[m[33m ([m[1;31morigin/boiler_2.0.1[m[33m, [m[1;32mboiler_2.0.1[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 1 13:26:40 2021 +0200
+
+    fixed errors
+
+[33mcommit 1c5de689e5ad617f67a96773eddcafc8c44741f9[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 1 13:15:18 2021 +0200
+
+    fixed errors
+
+[33mcommit 54e4b6c35671fa0aed82f303eef97631fe934326[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 1 11:49:36 2021 +0200
+
+    EVENTS_FETCH ok
+
+[33mcommit e0a97583dd9587f1147a2578e1ab28cba598956f[m[33m ([m[1;32mboiler_2.0[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 1 11:10:12 2021 +0200
+
+    EVENT_CREATE ok
+
+[33mcommit 966d8d3e8255e7fa1067de48cd4c94b081a64593[m[33m ([m[1;31morigin/boiler_2.0[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Sep 1 10:01:50 2021 +0200
+
+    Working on EVENT_CREATE
+
+[33mcommit 0b7ecd07f02f0ecfb0503bf497e44d3a5b6dc175[m[33m ([m[1;31morigin/eventSection1[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 31 16:08:51 2021 +0200
+
+    createEvent ok
+
+[33mcommit 424168cd4af179b28a71552b7294df19325eed08[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 31 15:40:13 2021 +0200
+
+    createEvent ok
+
+[33mcommit 8324b02c324ba49fe94baa0ae7ab7efbdfb3d75c[m[33m ([m[1;31morigin/merge_1.1[m[33m, [m[1;31morigin/abdullah_giorg_FE_signIn_autehntication_0.1[m[33m, [m[1;31morigin/abdullah/giorg_FE_signIn_autehntication_0.1[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 31 15:14:24 2021 +0200
+
+    SIGN_IN first setup
+
+[33mcommit d378b436de1a781a6fe7fb9b9576195535cf6263[m[33m ([m[1;31morigin/henrMarco_FE_eventManager_0.7.7[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 31 14:59:56 2021 +0200
+
+    SIGN_UP, ok
+
+[33mcommit af01e3311e30e72a90bbf9beec082b30d8a3fcee[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 31 14:30:19 2021 +0200
+
+    SIGN_UP, ok
+
+[33mcommit 283f80766bf1d36f5ba5d91462dfd97b6994850c[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 31 12:51:09 2021 +0200
+
+    First Redux action
+
+[33mcommit 597fd44bc472e8d40c21155ccee51ca5be022364[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 31 12:44:57 2021 +0200
+
+    First Redux action
+
+[33mcommit ffe295e666483f1698bed5019a34b78634858fb6[m[33m ([m[1;31morigin/merge_1.0[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 9cc9314 368378f
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 31 10:55:26 2021 +0200
+
+    merge 8
+
+[33mcommit 9cc9314be799ae561b5f4bfe45379d2f15b94f49[m
+Merge: d1d9034 72c1770
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 31 10:51:26 2021 +0200
+
+    merge 7
+
+[33mcommit d1d9034babe725496f1b2de3373cb60d58765c5d[m
+Merge: bd3b979 535c9c6
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 31 10:48:44 2021 +0200
+
+    merge 6
+
+[33mcommit bd3b979b9e68232a12e0141e6305e48ba44d606a[m
+Merge: 30c9eb6 0ca6a59
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 31 10:47:23 2021 +0200
+
+    merge 5
+
+[33mcommit 30c9eb681700d85ef9a799d49133d26e6680b67b[m
+Merge: b49abe4 8ab0c35
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 31 10:44:02 2021 +0200
+
+    Fourth merge
+
+[33mcommit b49abe43f6e06ad4f71ce722075353ae043ef9b1[m
+Merge: c3ea5b1 0b85720
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 31 10:39:19 2021 +0200
+
+    Secodn merge
+
+[33mcommit c3ea5b1d0bfaa11d04ca24d9176437819b0fa5df[m
+Merge: b1acc7a 261c91b
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 31 10:19:27 2021 +0200
+
+    First merge
+
+[33mcommit 5a8647566bec02c1319242456df3559eab9f0062[m[33m ([m[1;31morigin/Abdilkani_FE_Guide_Component_Navbar[m[33m)[m
+Author: cmi112 <cabdiqanimuuse7@gmail.com>
+Date:   Tue Aug 31 10:17:33 2021 +0200
+
+    update the style on guide navbar
+
+[33mcommit 368378f166e4190128d846c9664d233a370b777e[m[33m ([m[1;31morigin/marco_BE_swagger0.2[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 31 10:03:24 2021 +0200
+
+    Swagger for routes auth and user, ok
+
+[33mcommit 0ca6a595d1d62e0e191f8c135b4b147d6da5e6a7[m[33m ([m[1;31morigin/guide-component-footer[m[33m)[m
+Author: cmi112 <cabdiqanimuuse7@gmail.com>
+Date:   Mon Aug 30 22:20:02 2021 +0200
+
+    add some style footer and navbar
+
+[33mcommit b48a04abe5f92dbbaf3974f8f1359b3ece53102f[m
+Author: cmi112 <cabdiqanimuuse7@gmail.com>
+Date:   Mon Aug 30 21:33:32 2021 +0200
+
+    guide footer initial style done
+
+[33mcommit b1acc7a285491e632d16c561ba91c9edaa022652[m[33m ([m[1;31morigin/marc_abdu_FE_adminOverview_0.9[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Aug 30 18:49:17 2021 +0200
+
+    Cleaned <ContentBlockTest />
+
+[33mcommit 8ab0c35c079a0c31bf67317605a31bdcb34b3076[m[33m ([m[1;31morigin/henrique_FE_EventPage_0.2[m[33m)[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Mon Aug 30 16:09:17 2021 +0200
+
+    add DragIndicator btn
+
+[33mcommit 3487a65027c6789d2fb02c788c5cfaaa28d61120[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Mon Aug 30 16:09:02 2021 +0200
+
+    trying to make btn save as others, but somehow being a children is not letting me do it
+
+[33mcommit 97c04cf41af27610092933e0ede13a7ecc5ece9a[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Mon Aug 30 16:08:34 2021 +0200
+
+    add inspo for drag and drop func
+
+[33mcommit 44da89334252175fc26bb631fbbc8f6ef6e1ccaf[m
+Author: cmi112 <cabdiqanimuuse7@gmail.com>
+Date:   Mon Aug 30 16:07:11 2021 +0200
+
+    add footer component
+
+[33mcommit ea4ea8f27d6c2896e84dab36fa1a4fa201733510[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Mon Aug 30 15:29:27 2021 +0200
+
+    Drag and Drop Re-Order function working!
+
+[33mcommit a8cc37b2d02d2d313e1a4e6f8b3be12f7a408cf3[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Aug 30 14:51:19 2021 +0200
+
+    Contents Preview ok
+
+[33mcommit c3857335ad10325cbbb01bfb58f668a2cde0dbd8[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Aug 30 14:29:40 2021 +0200
+
+    Contents Preview ok
+
+[33mcommit a56f38f08d2c2550133fa1821cf7443cc02bfc7e[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Aug 30 13:35:13 2021 +0200
+
+    Modal Close fixed
+
+[33mcommit 1c31cc591bf01655cc272ee720c4d18bee93a9e0[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Mon Aug 30 12:43:45 2021 +0200
+
+    Drag and Re-order func -> still not working properly
+
+[33mcommit 11c10709c137ba1a451ca8283ffe9737b252d485[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Aug 30 12:16:58 2021 +0200
+
+    Text field render and update works, not closing on insert to fix
+
+[33mcommit 9252d5efabb2feaf0a3683bc2419f8fb555f8b8b[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Aug 30 11:44:13 2021 +0200
+
+    Added rendering with Quill, ok
+
+[33mcommit d64e18f3f2ab217fc720ac69fc8670ec6cec5ed8[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Aug 30 11:40:18 2021 +0200
+
+    Quill first setting ok
+
+[33mcommit a6844c1cc6d8d8eaadfe499a93a2406fcadf38e9[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Aug 30 10:48:49 2021 +0200
+
+    <ModalCustom, ok. Working on editing text
+
+[33mcommit a9c2802c7a37697a47e8030d81f636acf7fa56ee[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Aug 30 10:07:16 2021 +0200
+
+    Created <ModalCustom />, problem on closing
+
+[33mcommit cee1440c69508710016d5301a66c9b282e09eeb4[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Aug 30 09:32:50 2021 +0200
+
+    Creating <ModalCustom />
+
+[33mcommit 3af307e4b34281eb032508df17ead33577b99856[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Aug 30 09:19:00 2021 +0200
+
+    Created <TextEditor />
+
+[33mcommit 6ce503bef78b70c2da31e5a2c23f0b8174d6bdee[m[33m ([m[1;31morigin/aboutAdNew8[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Fri Aug 27 16:43:16 2021 +0200
+
+    <ContentBlockText />, ok. Not WYSIWYG editor for editing yet
+
+[33mcommit f8ae183f4907cc06b6dacf92b88a5a1d5f95076b[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Fri Aug 27 16:20:55 2021 +0200
+
+    Event add functionality to all of it
+
+[33mcommit 4f5737060f898a754ae71c6df0c66f83a8f9c0c2[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Fri Aug 27 15:19:03 2021 +0200
+
+    Input text ok
+
+[33mcommit da2a502a5c418c144c3174a2c7b0a72ce4e7f688[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Fri Aug 27 14:39:42 2021 +0200
+
+    Created <TextInput/>
+
+[33mcommit d87c9ddfc2be4112a863357a31b04b4d5e2d6484[m[33m ([m[1;31morigin/marc_abdu_FE_adminOverview_0.7.5[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Fri Aug 27 13:59:45 2021 +0200
+
+    Added Modal for WYSIWYG Editor
+
+[33mcommit 3a39a5acf520da4427646ee7dfa83c24d53cf1c4[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Fri Aug 27 11:17:35 2021 +0200
+
+    Media caption sent and saved into array
+
+[33mcommit 03ec1d4fcd317d81d6142a1a334c35a25dd638ae[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Fri Aug 27 10:33:41 2021 +0200
+
+    Media caption  undo handling ok
+
+[33mcommit af0c56f5cf7a0743039b9382d592bdf6dd526477[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Fri Aug 27 10:18:41 2021 +0200
+
+    Image captions ok, not sending to parent yet
+
+[33mcommit f18af34a162a2d831e5896703f45e1a1ba89623e[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Fri Aug 27 09:31:51 2021 +0200
+
+    New <ContentBlock/>
+
+[33mcommit 1fd3083b1ed21ff41615c8ca0572d4da7e8adcc7[m[33m ([m[1;31morigin/marco_FE_CloudinaryVP_0.6[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Aug 26 17:16:27 2021 +0200
+
+    Cloudinary Video Player crashes when reloads
+
+[33mcommit df4aaa6834b17786e1bed2cad238e0eaa844d59a[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Aug 26 16:37:36 2021 +0200
+
+    video player iFrame, not working
+
+[33mcommit 72c1770d5300c90e60e2ec8dc02a97f0be706b90[m[33m ([m[1;31morigin/abdullah_FE_Guide-QR_page-0.1[m[33m)[m
+Author: abdullah0o0 <abdullah.syallah0@gmail.com>
+Date:   Thu Aug 26 16:34:33 2021 +0200
+
+    add the QR code skeleton
+
+[33mcommit 73ad9c341e5f2446bf8734a105cdc7c6a1afacc7[m
+Author: abdullah0o0 <abdullah.syallah0@gmail.com>
+Date:   Thu Aug 26 16:33:25 2021 +0200
+
+    add react-qr-reader package
+
+[33mcommit 62388f6ef035b1ec0e3f83d8a9f8559151307fcb[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Aug 26 16:12:05 2021 +0200
+
+    Render Images ok
+
+[33mcommit 9b0ddd84dda66d3e0381dc935bd0280ee6f473e5[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Thu Aug 26 16:07:39 2021 +0200
+
+    Main Event Page (ADMIN) -> further structuring
+
+[33mcommit 7b8114a230984c195320ca5580aa9b40f885f15b[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Thu Aug 26 16:07:14 2021 +0200
+
+    New Component for the Event's Name
+
+[33mcommit b6e7dc5793cc19bfb92efe7197b0979056591f4b[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Thu Aug 26 16:06:52 2021 +0200
+
+    New Component for the Event's Sections
+
+[33mcommit 7bdeb4de090667c0bba6368f05cf87714ce3945e[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Thu Aug 26 16:06:24 2021 +0200
+
+    Toggle EDIT / SAVE Button handling props giving the Parent Component info the editingStatus
+
+[33mcommit 7cb18bec79545955602b265ae223cecde6996348[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Aug 26 15:38:34 2021 +0200
+
+    Preview first step
+
+[33mcommit b0aea9ff5f4ca1f19543f4151f6340e4fac761aa[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Aug 26 14:44:24 2021 +0200
+
+    Delete content ok, changed id assignment
+
+[33mcommit 8eba89dcfbd600180d3f3c7b502ae0a5b0a2015a[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Aug 26 13:45:43 2021 +0200
+
+    Defined different media type, added icons
+
+[33mcommit 0a76a3bc9af2a900f8769769f9ad5ac650505b81[m
+Author: cmi112 <cabdiqanimuuse7@gmail.com>
+Date:   Thu Aug 26 13:25:46 2021 +0200
+
+    Guide-component-Navbar initial commit
+
+[33mcommit c98cde2eba46036c76952847e94dfafcc9601b94[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Aug 26 13:24:30 2021 +0200
+
+    Test with Thme.js ok
+
+[33mcommit d2e5fa6bbb8ce02e487ba5e4fa8521206dabb544[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Aug 26 11:46:58 2021 +0200
+
+    Upload more images ok
+
+[33mcommit 958ef190c03a3ec2ae8cc91ca93e23ff1f541884[m
+Author: giorgossgggggg <gakidisgiorgos@windowslive.com>
+Date:   Thu Aug 26 12:35:47 2021 +0300
+
+    still a lot to do
+
+[33mcommit 2539850372fa25bd6183a80bc08223a06c1f62a7[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Thu Aug 26 10:56:50 2021 +0200
+
+    further styling
+
+[33mcommit efeb1c3ca464c657dcc75e6b7256c9b3aa68dc04[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Aug 26 10:07:09 2021 +0200
+
+    Set up grid classes
+
+[33mcommit 1928687101226633dee0c515622391e92587de9b[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Aug 26 09:52:46 2021 +0200
+
+    Set up grid classes
+
+[33mcommit f9bba004ae8580d594eee162b7666841c6396588[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Thu Aug 26 09:47:44 2021 +0200
+
+    merging boiler 0.5.1 w/event page
+
+[33mcommit 8d898e29b2e26c1b1041297004ea6c5b64c16c12[m
+Merge: 44473ad a5b42cf
+Author: henriquemartins <henrm@riseup.net>
+Date:   Thu Aug 26 09:45:29 2021 +0200
+
+    Merge remote-tracking branch 'origin/boiler_FE_0.5.1' into henrique_FE_EventPage_0.2
+
+[33mcommit a5b42cfe55acce17e25a7529aca31ff26e169d42[m[33m ([m[1;31morigin/boiler_FE_0.5.1[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Aug 26 09:37:04 2021 +0200
+
+    Theme linked with MuiThemeProvider in <App/>
+
+[33mcommit 389e7210166ed9e6bae081387c56b1c6d4862942[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Thu Aug 26 09:28:33 2021 +0200
+
+    Theme linked with MuiThemeProvider in <App/>
+
+[33mcommit 811d05d39008d8feb13a6368ca87ebb73e21d023[m[33m ([m[1;31morigin/boiler_FE_0.5[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Aug 25 16:44:25 2021 +0200
+
+    Fixed menu, removed Dropdown
+
+[33mcommit e9d05741c23a4a040933c9728e33e5caadf0efc9[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Aug 25 16:44:08 2021 +0200
+
+    Exported and created <ContentBlock />
+
+[33mcommit 4f473b3bd6ce873a70e0958900111d926e91dfc9[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Aug 25 16:42:45 2021 +0200
+
+    Fixed menu, removed Dropdown
+
+[33mcommit dddb1cb3be7c8858bb1e200ac1797272a8fa28bd[m
+Merge: 3061afd 23a193f
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Aug 25 16:31:21 2021 +0200
+
+    Exported and created <ContentBlock />
+
+[33mcommit baf26ea78b249e52258ddd27715f955a0f6b84bd[m[33m ([m[1;31morigin/abdullah_FE_Guide_boiler_restructure_0.1[m[33m, [m[1;31morigin/Abdilkani_FE_guide_pages[m[33m)[m
+Author: cmi112 <cabdiqanimuuse7@gmail.com>
+Date:   Wed Aug 25 16:20:05 2021 +0200
+
+    boilerplate done nav and guide
+
+[33mcommit 44473ad58116303f2ca6960374abbc0ef6223248[m[33m ([m[1;31morigin/henrique_FE_EventPage_0.1[m[33m)[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Wed Aug 25 15:59:09 2021 +0200
+
+    Further Event skeleton, with addSections func working
+
+[33mcommit 23a193f29106e1bba3fea83a7a7df0496cce9d74[m[33m ([m[1;31morigin/marc_abdu_FE_adminOverview_0.2[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Aug 25 15:27:08 2021 +0200
+
+    Created draft for <AboutAdmin />
+
+[33mcommit 143e6440249b5ecaf28cf7c8fabd039902244b34[m[33m ([m[1;31morigin/Abdilkani_FE_0.1[m[33m)[m
+Author: cmi112 <cabdiqanimuuse7@gmail.com>
+Date:   Wed Aug 25 13:30:12 2021 +0200
+
+    singin sing up
+
+[33mcommit f7fd7da03eca2c648997e19726e271eabfa3255b[m
+Author: cmi112 <cabdiqanimuuse7@gmail.com>
+Date:   Wed Aug 25 13:28:48 2021 +0200
+
+    sing in sing up done
+
+[33mcommit 038957dfa7f391fe40dc376d330a23f708031d22[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Aug 25 12:56:15 2021 +0200
+
+    First setup
+
+[33mcommit 3061afd7ba156bac01efa1b043be354b8b53b910[m[33m ([m[1;31morigin/boiler_FE_0.4.1[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Aug 25 12:44:10 2021 +0200
+
+    Removes SASS script and tested css links
+
+[33mcommit 5def71b138812898804ab623d52cb97e71e3eeac[m[33m ([m[1;31morigin/abdullah_FE_adminOverviewPage_0.1[m[33m)[m
+Author: abdullah0o0 <abdullah.syallah0@gmail.com>
+Date:   Wed Aug 25 11:27:27 2021 +0200
+
+    about page boilerplate
+
+[33mcommit 14c10f546d9487fc72a669f1de834125f1d4728a[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Wed Aug 25 11:09:14 2021 +0200
+
+    Working on Event, currently not rendering the sections
+
+[33mcommit 261c91b4b03f793e0ba241a5ac2dca5b4048ae0e[m[33m ([m[1;31morigin/marco_FE_redux_boiler_0.1[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Aug 25 10:03:18 2021 +0200
+
+    Redux boiler ok
+
+[33mcommit 2eb514d87976eef25286f725bd76c7b87135aeda[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Aug 25 09:49:35 2021 +0200
+
+    First SASS
+
+[33mcommit 57dd2810ce7a4558d8bb2c37e621fe3fbb9819f5[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Wed Aug 25 09:21:37 2021 +0200
+
+    Redux Boiler Plate ok
+
+[33mcommit 4812f75da2c7cc30e93b3717a69abd73e184bf55[m[33m ([m[1;31morigin/boiler_FE_0.4.0[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 24 16:38:20 2021 +0200
+
+    Concurrently ok, README ok
+
+[33mcommit 1b3b751044ae12ef150bd821be46680ffb47ddfc[m[33m ([m[1;31morigin/boiler_FE_0.3.0[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 24 16:16:18 2021 +0200
+
+    SASS Added
+
+[33mcommit 2da9f4dc990a2cc63b6ed60b0be1a3702c5f1317[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 24 16:15:59 2021 +0200
+
+    SASS Added
+
+[33mcommit 5ce6b0b2d1f8dec5731c8a8f846e29e79a2a054d[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 24 16:12:09 2021 +0200
+
+    SASS Added
+
+[33mcommit 35e16a9f88563cef16264ade02e793b50725ed6f[m[33m ([m[1;31morigin/boiler_FE_0.2.5[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 24 15:47:55 2021 +0200
+
+    Added <MenuItem/> as ext comp
+
+[33mcommit bb79b18934a3902aabc54ae59f2da3b7ed1f05f5[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Tue Aug 24 15:07:19 2021 +0200
+
+    Structuring the event page
+
+[33mcommit 535c9c6038af790cdf6fd2fbfa5a128da99a14cc[m[33m ([m[1;31morigin/giorg_FE_footer_0.2[m[33m)[m
+Merge: a9e8824 08703b9
+Author: giorgossgggggg <gakidisgiorgos@windowslive.com>
+Date:   Tue Aug 24 15:44:41 2021 +0300
+
+    footer
+
+[33mcommit 05d4b489262412d9eb2d8d752fbf7173deee1c0b[m
+Author: cmi112 <cabdiqanimuuse7@gmail.com>
+Date:   Tue Aug 24 14:15:39 2021 +0200
+
+    add company and Account Fields
+
+[33mcommit 184a1bda053ca48978f67b9645949390c496bb9a[m[33m ([m[1;31morigin/marco_FE_menu_0.2.5[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 24 14:14:34 2021 +0200
+
+    New Menu Drop Down OK
+
+[33mcommit 7dce5fbe969e02e00fc2bc84d9a8f2159ea29590[m
+Merge: cdf2588 caccea2
+Author: A. Eidle <65272659+cmi112@users.noreply.github.com>
+Date:   Tue Aug 24 13:46:25 2021 +0200
+
+    Merge pull request #27 from dci-fbw44-2-team3/Abdilkani_FE_0.1
+    
+    Abdilkani fe 0.1
+
+[33mcommit 3b581c5ca47e8eff561e725cf5ed4ea859d4faa0[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 24 13:42:55 2021 +0200
+
+    New Menu ok
+
+[33mcommit caccea2975b8e007db5ead3335655c88d0769f61[m
+Author: cmi112 <cabdiqanimuuse7@gmail.com>
+Date:   Tue Aug 24 13:41:14 2021 +0200
+
+    add sign in
+
+[33mcommit f36a3306131b01604379dc15906e377c0fff950c[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 24 13:20:46 2021 +0200
+
+    <Navbar /> fixed
+
+[33mcommit 419691c0e81e57f8f94bf35753f732255b22fa20[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 24 13:17:06 2021 +0200
+
+    Swagger Docs Components
+
+[33mcommit e64370945b864b072bf455b21a4c1b41a30034b2[m[33m ([m[1;31morigin/henrique_FE_AccountPage_0.2[m[33m)[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Tue Aug 24 12:29:47 2021 +0200
+
+    Creating Account Page w/MUI
+
+[33mcommit 426ff7a5ecc068e440d6a3e2b3ee4de4590e67b2[m
+Author: cmi112 <cabdiqanimuuse7@gmail.com>
+Date:   Tue Aug 24 12:08:50 2021 +0200
+
+    sing up form
+
+[33mcommit 7b43f9dac6ae3f2eb373ccee55c8f60dd8e7ca12[m
+Merge: 7350985 40f2428
+Author: henriquemartins <henrm@riseup.net>
+Date:   Tue Aug 24 10:14:44 2021 +0200
+
+    merging previous things done in Account page
+    Merge remote-tracking branch 'origin/henrique_FE_AccountPage_0.1' into henrique_FE_AccountPage_0.2
+
+[33mcommit 665fe7139cf8714e90f45433e04c57b9a7710150[m[33m ([m[1;31morigin/boiler_FE_0.1[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 24 10:06:35 2021 +0200
+
+    First FE Boiler Plate
+
+[33mcommit 08703b961a847920afe5be271b389ee22691af91[m
+Author: giorgossgggggg <gakidisgiorgos@windowslive.com>
+Date:   Tue Aug 24 11:06:34 2021 +0300
+
+    uninstall bootstrap
+
+[33mcommit a9e88246c41abef592efdc48ba600f23f52f206a[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 24 10:03:58 2021 +0200
+
+    First FE Boiler Plate
+
+[33mcommit 73509855e389760c6a71e9884534e2d1515394ee[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Tue Aug 24 09:53:00 2021 +0200
+
+    First FE Boiler Plate
+
+[33mcommit 6957cadc4c0b5c9ff236daf12d53f2bf0926ae51[m[33m ([m[1;31morigin/marco_FE_menu_0.1[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Aug 23 16:43:54 2021 +0200
+
+    First dynamic <Menu/> setup
+
+[33mcommit 40f24289afffd5f291d6f3b7dc33506f1f9b0a14[m[33m ([m[1;31morigin/henrique_FE_AccountPage_0.1[m[33m)[m
+Author: henriquemaria <henrm@riseup.net>
+Date:   Mon Aug 23 16:25:54 2021 +0200
+
+    starting acc page
+
+[33mcommit d1008aae44526bb42b93a3586da35fdaf3e7f5ba[m[33m ([m[1;31morigin/marco_BE_swagger0.1[m[33m)[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Aug 23 16:08:06 2021 +0200
+
+    Swagger setup
+
+[33mcommit df0e4eb09095f149440fa231b8c3955f032d53fb[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Aug 23 16:00:53 2021 +0200
+
+    Swagger setup
+
+[33mcommit d26ea965bc29582ee830483bcd9db9ba661e1363[m[33m ([m[1;31morigin/henrm_FE_Navbar_0.1[m[33m)[m
+Author: henriquemaria <henrm@riseup.net>
+Date:   Mon Aug 23 15:08:31 2021 +0200
+
+    creating a navbar
+
+[33mcommit 0b857205ceb7d096814a37cb0e5c852928850b89[m[33m ([m[1;31morigin/abdilkani_FE_singin[m[33m)[m
+Author: cmi112 <cabdiqanimuuse7@gmail.com>
+Date:   Mon Aug 23 14:58:17 2021 +0200
+
+    singup,basic validation and some style
+
+[33mcommit 914c2d4ba5917715cfbcff55714b04f41ac50dc5[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Aug 23 14:16:39 2021 +0200
+
+    Setting up YAML
+
+[33mcommit 8e95779b06615d44e020f88f9ded75d51ad06bb4[m
+Author: Marco Vignotto <writeme@marcovignotto.com>
+Date:   Mon Aug 23 12:29:08 2021 +0200
+
+    Swagger setup ok
+
+[33mcommit f1181c3ecfe8388645ce3750ce73a6ed76b35f5c[m[33m ([m[1;31morigin/marco_gior_BE_0.7[m[33m)[m
+Author: Marco Vignotto <marcovignotto81@gmail.com>
+Date:   Fri Aug 20 16:55:25 2021 +0200
+
+    Unit testing /api/guides ok
+
+[33mcommit aede400bd9f6edd5c0fa6b0e64bba57d34ec9604[m
+Author: Marco Vignotto <marcovignotto81@gmail.com>
+Date:   Fri Aug 20 15:50:37 2021 +0200
+
+    api/guides testing
+
+[33mcommit 093516bad6b82163252ec05faef2d85c7bfe8014[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Fri Aug 20 15:46:45 2021 +0200
+
+    testing if guide can host own routes
+
+[33mcommit 3183c179759ecb3dd024a11b4fb74b087644a324[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Fri Aug 20 15:23:26 2021 +0200
+
+    finishing boilerplate
+
+[33mcommit 0afb2169742d9565046d2f3b8e7a91636ac07a29[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Fri Aug 20 15:03:05 2021 +0200
+
+    Making BoilerPlate part2
+
+[33mcommit fecac976625e6b376c8e94c8c39403cdeb1ad1a9[m
+Merge: 9a1039e 8e6d116
+Author: Marco Vignotto <marcovignotto81@gmail.com>
+Date:   Fri Aug 20 14:26:24 2021 +0200
+
+    Merge branch 'marco_BE_unitTesting_1' into marco_BE_unitTesting_2
+
+[33mcommit 9a1039eb9700c6660b0f2ef0d8970bfb829e1713[m
+Author: Marco Vignotto <marcovignotto81@gmail.com>
+Date:   Fri Aug 20 14:24:33 2021 +0200
+
+    api/get for all the account's guides ok
+
+[33mcommit 8e6d11656376f4da728b599223755fea616b45b7[m
+Author: Marco Vignotto <marcovignotto81@gmail.com>
+Date:   Fri Aug 20 14:10:16 2021 +0200
+
+    UT api/auth  api/users ok
+
+[33mcommit 881ec4b1384e0b7e1cc3c6daae0227871c8fa7cf[m[33m ([m[1;31morigin/marco_gior_BE_0.5[m[33m)[m
+Author: Marco Vignotto <marcovignotto81@gmail.com>
+Date:   Fri Aug 20 13:36:58 2021 +0200
+
+    api/guides PUT/DELETE ok
+
+[33mcommit 6c339fe383ef1a68036797bba133a8d73aac85f3[m
+Author: Marco Vignotto <marcovignotto81@gmail.com>
+Date:   Fri Aug 20 12:56:06 2021 +0200
+
+    api/guides PUT ok
+
+[33mcommit 779d9f25db2c9a48282c10487123024e613443a2[m
+Author: Marco Vignotto <marcovignotto81@gmail.com>
+Date:   Fri Aug 20 12:54:23 2021 +0200
+
+    api/guides working on PUT, added nameIdentifier required
+
+[33mcommit 1ca9d60c47df2a6cbee03f0f22667cb0885c67c9[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Fri Aug 20 12:52:02 2021 +0200
+
+    making folder structure
+
+[33mcommit d8575ed925a04823c1fdefa77cfcc50807ce80a3[m[33m ([m[1;31morigin/marc_gior_BE_0.4.5[m[33m)[m
+Author: Marco Vignotto <marcovignotto81@gmail.com>
+Date:   Fri Aug 20 12:01:34 2021 +0200
+
+    api/guide GET ok
+
+[33mcommit 2a3a1ad0d61ae010ffc10735a8c0635b713a8be2[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Fri Aug 20 12:01:10 2021 +0200
+
+    deleted Abdi client and made new one
+
+[33mcommit 9355e8594de853aa56a9ea479e3f9f28dcdc267c[m
+Author: Marco Vignotto <marcovignotto81@gmail.com>
+Date:   Fri Aug 20 11:47:58 2021 +0200
+
+    api/guides POST ok
+
+[33mcommit bcb22dcd6f1d2bf4cbf5596d082b2958143b6fff[m
+Author: Marco Vignotto <marcovignotto81@gmail.com>
+Date:   Fri Aug 20 10:41:07 2021 +0200
+
+    signupValidator ok
+
+[33mcommit 99e013a3976dc45976e906aea344ab17f3f2096d[m
+Author: Marco Vignotto <marcovignotto81@gmail.com>
+Date:   Fri Aug 20 10:01:04 2021 +0200
+
+    Auth middleware ok
+
+[33mcommit f2b2a27274b59eb37d8d26bbd11320e9b8988cdb[m
+Author: Marco Vignotto <marcovignotto81@gmail.com>
+Date:   Thu Aug 19 16:04:08 2021 +0200
+
+    route /api/auth POST ok
+
+[33mcommit 0b3e05efe055d84bc6e5cdff2c948b1bee1a8e87[m
+Author: Marco Vignotto <marcovignotto81@gmail.com>
+Date:   Thu Aug 19 15:22:54 2021 +0200
+
+    route /api/users POST ok
+
+[33mcommit 027efd320b587642908816d3a0464e86f9f2ae76[m
+Author: Marco Vignotto <marcovignotto81@gmail.com>
+Date:   Thu Aug 19 15:03:58 2021 +0200
+
+    User Schema ok
+
+[33mcommit cdf25885a2360808350a01de1139f635ee4111fe[m[33m ([m[1;32mdefault[m[33m)[m
+Merge: acc3feb 6778d72
+Author: A. Eidle <65272659+cmi112@users.noreply.github.com>
+Date:   Thu Aug 19 15:00:09 2021 +0200
+
+    Merge pull request #5 from dci-fbw44-2-team3/eidle
+    
+    add css files
+
+[33mcommit 6778d7228031b4c075321fe1b35fd8a5356d0dcc[m[33m ([m[1;31morigin/eidle[m[33m)[m
+Author: cmi112 <cabdiqanimuuse7@gmail.com>
+Date:   Thu Aug 19 14:56:38 2021 +0200
+
+    add css files
+
+[33mcommit 370f39ee8b350e1014bd27080eee8dfcadb6a9a8[m
+Author: Marco Vignotto <marcovignotto81@gmail.com>
+Date:   Thu Aug 19 14:35:17 2021 +0200
+
+    Schema ok
+
+[33mcommit 858f6c2a885fb228a3c983bb649e214d78e39534[m
+Author: Marco Vignotto <marcovignotto81@gmail.com>
+Date:   Thu Aug 19 13:45:48 2021 +0200
+
+    Routes boiler plate ok
+
+[33mcommit 40929ef5d8504fc4088788400beca0688bf79b43[m
+Author: Marco Vignotto <marcovignotto81@gmail.com>
+Date:   Thu Aug 19 13:27:46 2021 +0200
+
+    First server.js ok
+
+[33mcommit acc3febf96bd3641786a612e7b541d54762594ab[m
+Merge: d371cb7 ee3fcf1
+Author: A. Eidle <65272659+cmi112@users.noreply.github.com>
+Date:   Thu Aug 19 10:03:04 2021 +0200
+
+    Merge pull request #4 from dci-fbw44-2-team3/eidle
+    
+    create server.js file
+
+[33mcommit ee3fcf1415ffe25f882b4b16de376a2b9aa71a00[m
+Author: cmi112 <cabdiqanimuuse7@gmail.com>
+Date:   Thu Aug 19 10:02:11 2021 +0200
+
+    create server.js file
+
+[33mcommit 5ea762308fb6d00500ad4ea68c1519453a1c673a[m
+Author: Marco Vignotto <marcovignotto81@gmail.com>
+Date:   Wed Aug 18 16:12:58 2021 +0200
+
+    First BE boilerplate, packages installed
+
+[33mcommit d371cb71056423cd27de82a5605e1066c49592ab[m
+Merge: f4e9497 5e29ff9
+Author: A. Eidle <65272659+cmi112@users.noreply.github.com>
+Date:   Wed Aug 18 16:00:09 2021 +0200
+
+    Merge pull request #3 from dci-fbw44-2-team3/eidle
+    
+    create pages,singin/up assets
+
+[33mcommit 5e29ff9fd411101854f18d6d979cff69e6698512[m
+Author: cmi112 <cabdiqanimuuse7@gmail.com>
+Date:   Wed Aug 18 15:59:14 2021 +0200
+
+    create pages,singin/up assets
+
+[33mcommit f4e94977d1dfe5b19900549cad8e62cd51b85a60[m
+Merge: 55927fe b81e459
+Author: A. Eidle <65272659+cmi112@users.noreply.github.com>
+Date:   Wed Aug 18 15:27:47 2021 +0200
+
+    Merge pull request #2 from dci-fbw44-2-team3/eidle
+    
+    install dotenv create .gitignore
+
+[33mcommit b81e459d706939714ba172a2f05bf379c76dc252[m
+Author: cmi112 <cabdiqanimuuse7@gmail.com>
+Date:   Wed Aug 18 15:24:57 2021 +0200
+
+    install dotenv create .gitignore
+
+[33mcommit 55927fe0b1283600e0336b010b5035c7430307da[m
+Merge: dbbbd16 c197e9a
+Author: A. Eidle <65272659+cmi112@users.noreply.github.com>
+Date:   Wed Aug 18 14:35:13 2021 +0200
+
+    Merge pull request #1 from dci-fbw44-2-team3/eidle
+    
+    A.Eidle
+
+[33mcommit c197e9a410c161bf893d5831795e8ea90531ba8f[m
+Author: cmi112 <cabdiqanimuuse7@gmail.com>
+Date:   Wed Aug 18 14:25:44 2021 +0200
+
+    installed React-router and axios
+
+[33mcommit 678dc05b87035a19cfe66f0263a76db03c15fe3e[m
+Author: cmi112 <cabdiqanimuuse7@gmail.com>
+Date:   Wed Aug 18 14:15:49 2021 +0200
+
+    add client folder
+
+[33mcommit dbbbd16b8b845fa0169d0235f1056ba8e14ba8a5[m
+Author: henriquemartins <henrm@riseup.net>
+Date:   Wed Aug 18 10:17:57 2021 +0200
+
+    first commit

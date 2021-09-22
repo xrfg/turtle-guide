@@ -1,4 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+// import styles from "./home.css";
+import axios from "axios";
+// import toast from "toast";
+
+// * Components
+import { Link, useHistory } from "react-router-dom";
 
 // * Components
 import BlockSection from "../../Components/BlockSection/BlockSection";
@@ -9,7 +15,13 @@ import { Typography } from "@material-ui/core";
 
 import { ourColors, theme } from ".././../../../styles/Theme";
 
+import { Parallax, ParallaxLayer } from "@react-spring/parallax";
+import styles from "./styles.module.css";
+
 const useStyles = makeStyles((theme) => ({
+  root: {
+    background: "linear-gradient(#e66465, #9198e5)",
+  },
   /*hero: {
     backgroundImage: `linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0.5)),url("https://ernst-leitz-museum.de/wp-content/uploads/2019/03/das-ernst-leitz-museum-in-wetzlar-2-2-1440x566.jpg")`,
     height: "500px",
@@ -46,15 +58,36 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
   },*/
   mainContainer: {
+    background: "linear-gradient(#e66465, #9198e5)",
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
+    // width: "100vw",
+    // height: "100vh",
+
+    // margin: "6rem 0 30px 0",
+    // padding: "1.6rem",
+    // // // background:
+    // // //   "linear-gradient(4deg, rgba(121,16,9,1) 44%, rgba(0,212,255,1) 100%)",
+    // // // backgroundColor: ourColors.primaryLight,
+    // display: "flex",
+    // flexDirection: "column",
+    // justifyContent: "center",
+    // alignItems: "center",
+    // width: "100vw",
+  },
+  parallaxLayerContainer: {
     margin: "6rem 0 30px 0",
-    padding: "1.6rem",
-    backgroundColor: ourColors.primaryLight,
+    // padding: "1.6rem",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     width: "100vw",
   },
+
   eventsTitle: {
     position: "fixed",
     display: "flex",
@@ -78,28 +111,89 @@ export default function Home(props) {
   // * Destruc
   const { title, sections, eventSlug, nameIdentifier } = props;
 
+  const imgUrl =
+    "https://cms.hostelworld.com/hwblog/wp-content/uploads/sites/2/2018/12/kirkjufell.jpg";
+
+  /**
+   * @desc Component to create a card (section)
+   */
+  // TODO to ext
+  const alignCenter = { display: "flex", alignItems: "center" };
   return (
     <>
+      {/* <Parallax pages={5}>
+        <ParallaxLayer
+          offset={0}
+          speed={0.5}
+          style={{ ...alignCenter, justifyContent: "center" }}
+        >
+          <p className={styles.scrollText}>Scroll down</p>
+        </ParallaxLayer>
+
+        <ParallaxLayer
+          sticky={{ start: 1, end: 3 }}
+          style={{ ...alignCenter, justifyContent: "flex-start" }}
+        >
+          <div className={`${styles.card} ${styles.sticky}`}>
+            <p>I'm a sticky layer</p>
+          </div>
+        </ParallaxLayer>
+
+        <ParallaxLayer
+          offset={1.5}
+          speed={1.5}
+          style={{ ...alignCenter, justifyContent: "flex-end" }}
+        >
+          <div className={`${styles.card} ${styles.parallax} ${styles.purple}`}>
+            <p>I'm not</p>
+          </div>
+        </ParallaxLayer>
+
+        <ParallaxLayer
+          offset={2.5}
+          speed={1.5}
+          style={{ ...alignCenter, justifyContent: "flex-end" }}
+        >
+          <div className={`${styles.card} ${styles.parallax} ${styles.blue}`}>
+            <p>Neither am I</p>
+          </div>
+        </ParallaxLayer>
+      </Parallax> */}
+
       <Typography variant="h1" component="h1" className={classes.eventsTitle}>
         {title}
       </Typography>
       <div className={classes.mainContainer}>
-        {/* Map to create cards */}
-        {sections.map((x, index) => {
-          // skip intro from general rendering
-          if (x.type === "intro") {
-            return null;
-          }
-          // renders the rest
-          return (
-            <BlockSection
-              sectionIndex={index} // pass for the order in the navbar
-              nameIdentifier={nameIdentifier}
-              eventSlug={eventSlug}
-              data={x}
-            />
-          );
-        })}
+        <Parallax pages={5}>
+          <ParallaxLayer
+            // factor={0.1}
+            offset={0}
+            speed={0.5}
+            // style={{ ...alignCenter, justifyContent: "center" }}
+            // style={{
+            //   backgroundImage: `url(${imgUrl})`,
+            // }}
+          >
+            <div className={classes.parallaxLayerContainer}>
+              {/* Map to create cards */}
+              {sections.map((x, index) => {
+                // skip intro from general rendering
+                if (x.type === "intro") {
+                  return null;
+                }
+                // renders the rest
+                return (
+                  <BlockSection
+                    sectionIndex={index} // pass for the order in the navbar
+                    nameIdentifier={nameIdentifier}
+                    eventSlug={eventSlug}
+                    data={x}
+                  />
+                );
+              })}
+            </div>
+          </ParallaxLayer>
+        </Parallax>
       </div>
     </>
   );

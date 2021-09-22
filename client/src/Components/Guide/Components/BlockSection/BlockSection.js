@@ -20,30 +20,29 @@ import CardActions from "@material-ui/core/CardActions";
 
 // * Imports
 import { goToSection } from "../../Functions/functions";
-import {ourColors,theme} from '.././../../../styles/Theme'
-
+import { ourColors, theme } from ".././../../../styles/Theme";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 484,
-    margin:"0 0 4rem 0",
-    width:"100%",
+  card: {
+    maxWidth: 450,
+    margin: "0 0 4rem 0",
+    width: "80%",
   },
-  cardContent:{
-    margin:"0 0 0 0",
-    padding:"1rem 0 0 0.4rem",
-    backgroundColor:ourColors.lightGrey,
+  cardContent: {
+    margin: "0 0 0 0",
+    padding: "1rem 1rem 0rem 1rem",
+    backgroundColor: ourColors.lightGrey,
   },
-  cardTitle:{
-    color:"#424242",
+  cardTitle: {
+    color: "#424242",
     ...theme.guide.header,
   },
-  cardDesc:{
-    margin:"0 0 0 -15px",
+  cardDesc: {
+    margin: "0 0 0 -15px",
   },
 
   media: {
-    margin:"0",
+    margin: "0",
     height: 0,
     paddingTop: "56.25%", // 16:9
   },
@@ -85,7 +84,7 @@ const BlockSection = (props) => {
 
   return (
     <Card
-      className={classes.root}
+      className={classes.card}
       maxWidth="lg"
       onClick={() =>
         goToSection(history, id, order, sectionIndex, eventSlug, nameIdentifier)
@@ -98,19 +97,22 @@ const BlockSection = (props) => {
           image={props.data.sectionCover.url}
           title={props.data.sectionCover.filename}
         />
-        <CardContent
-        className={classes.cardContent}
-        >
-          <Typography 
-          className={classes.cardTitle}
-          gutterBottom variant="h2" component="h2">
+        <CardContent className={classes.cardContent}>
+          <Typography
+            className={classes.cardTitle}
+            gutterBottom
+            variant="h2"
+            component="h2"
+          >
             {title}
           </Typography>
-          <Typography 
-          variant="body2" component="p">
+          <Typography variant="body2" component="p">
             <ReactQuill
-            className={classes.cardDesc}
-             value={description} readOnly={true} theme={"bubble"} />
+              className={classes.cardDesc}
+              value={description}
+              readOnly={true}
+              theme={"bubble"}
+            />
           </Typography>
         </CardContent>
       </CardActionArea>

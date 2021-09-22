@@ -22,6 +22,8 @@
   },
   "homepage": "https://github.com/dci-fbw44-2-team3/turtle-guide#readme",
   "dependencies": {
+    "@react-spring/parallax": "^9.2.4",
+    "@react-spring/web": "^9.2.4",
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "cloudinary-core": "^2.11.4",
