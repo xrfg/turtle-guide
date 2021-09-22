@@ -33,12 +33,12 @@ const Store = createStore(
 console.log("Store.getState()", Store.getState());
 
 Store.subscribe(() => {
-  throttle(() => {
-    saveState({
-      events: Store.getState().events,
-      user: Store.getState().user,
-    });
-  }, 1000);
+  // throttle(() => {
+  saveState({
+    events: Store.getState().events,
+    user: Store.getState().user,
+  });
+  // }, 1000);
 });
 
 export default Store;
