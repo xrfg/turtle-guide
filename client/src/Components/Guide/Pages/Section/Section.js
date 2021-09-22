@@ -50,11 +50,12 @@ const Section = (props) => {
 
   return (
     <>
-      {section === null ? (
+      {!section ? (
         <Spinner />
       ) : (
         <>
-          <SectionNavBar />
+          {/* if is intro do not render the section navbar */}
+          {section.type === "intro" ? null : <SectionNavBar />}
           <motion.div
             layout
             initial={{ opacity: 0 }}

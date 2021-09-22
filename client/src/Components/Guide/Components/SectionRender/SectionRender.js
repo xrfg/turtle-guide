@@ -21,7 +21,6 @@ const SectionRender = (props) => {
   const { contents, sectionCover, sectionDescription, sectionTitle } = props;
 
   return (
-    // <div className={classes.sectionContainer}>
     <SectionPreview
       contents={contents}
       sectionCover={sectionCover}

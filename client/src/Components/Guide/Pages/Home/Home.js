@@ -1,16 +1,10 @@
-import React, { useState } from "react";
-import axios from "axios";
-// import toast from "toast";
-
-// * Components
-import { Link, useHistory } from "react-router-dom";
+import React from "react";
 
 // * Components
 import BlockSection from "../../Components/BlockSection/BlockSection";
 
 // * MatUI
 import { makeStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
 import { Typography } from "@material-ui/core";
 
 import { ourColors, theme } from ".././../../../styles/Theme";
