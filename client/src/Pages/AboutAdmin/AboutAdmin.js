@@ -2,35 +2,18 @@
  * @desc Component to handle the contents into the Section
  */
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 // * Imports
 import SectionContentManager from "../../Components/SectionContentManager/SectionContentManager";
 import Spinner from "../../Components/Spinner/Spinner";
 
 // * Redux
-import { useDispatch, useSelector } from "react-redux";
-import { userFecth } from "../../store/actions/userActions";
+import { useSelector } from "react-redux";
 
 const AboutAdmin = (props) => {
   // * Hooks
-  const dispatch = useDispatch();
-  const token = useSelector((state) => state.user.token);
-  // * States
-  const [userInfo, setUserInfo] = useState(null);
-
-  useEffect(() => {
-    async function fetchData() {
-      // fetch data with token to find the right user
-      const res = await dispatch(userFecth(token));
-      // set in state
-      setUserInfo(res);
-    }
-
-    fetchData();
-
-    // eslint-disable-next-line
-  }, []);
+  const userInfo = useSelector((state) => state.user.userProfile);
 
   return (
     <>
