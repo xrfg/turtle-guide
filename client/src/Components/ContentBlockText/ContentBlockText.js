@@ -32,16 +32,11 @@ import CustomIconButton from "../Buttons/CustomIconButtons/CustomIconButton";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    root: {
-      "& > *": {
-        margin: theme.spacing(1),
-      },
-      maxWidth: 345,
-    },
     paper: {
       marginBottom: "1rem",
       overflow: "hidden",
     },
+    // class for Section's Description
     paperDesc: {
       width: "90%",
       borderRadius: "0",

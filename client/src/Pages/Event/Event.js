@@ -72,6 +72,7 @@ const useStyles = makeStyles((theme) => ({
   },
   btnSidebar: { ...theme.admin.btnSidebar },
   btnGroup: { ...theme.admin.btnGroup },
+  sectionsContainer: { ...theme.admin.sectionsContentsContainer },
 }));
 
 // TODO goBack prevention
@@ -614,7 +615,11 @@ export default function Event(props) {
                 </ButtonGroup>
               </Grid>
             </Grid>
-
+            {/* // * Header */}
+            <Grid item xs={3}></Grid> {/* empty for styling */}
+            <Grid item xs={9}>
+              <h3 className={classes.gridContentHeader}>Guide</h3>
+            </Grid>
             {/* 
         // * Add BTN + Disabled ones
         */}
@@ -644,27 +649,24 @@ export default function Event(props) {
             {/* 
         // * SECTIONS CONTAINER -> GUIDE
         */}
-            <Grid item xs={9}>
-              <CardContent>
-                <h3 className={classes.gridContentHeader}>Guide</h3>
-                {/* Displaying the current sections */}
+            <Grid item xs={9} className={classes.sectionsContainer}>
+              {/* Displaying the current sections */}
 
-                {sections
-                  .sort((a, b) => a.order - b.order)
-                  .map((section, i) => {
-                    return (
-                      <EventSection
-                        key={i}
-                        section={section}
-                        sectionToDelete={deleteSection}
-                        handleDrag={handleDrag}
-                        handleDrop={handleDrop}
-                        editSection={editSectionMode}
-                        saveSectionTitle={saveSectionTitle} // to save when sectin title changes
-                      />
-                    );
-                  })}
-              </CardContent>
+              {sections
+                .sort((a, b) => a.order - b.order)
+                .map((section, i) => {
+                  return (
+                    <EventSection
+                      key={i}
+                      section={section}
+                      sectionToDelete={deleteSection}
+                      handleDrag={handleDrag}
+                      handleDrop={handleDrop}
+                      editSection={editSectionMode}
+                      saveSectionTitle={saveSectionTitle} // to save when sectin title changes
+                    />
+                  );
+                })}
             </Grid>
           </Grid>
         )}

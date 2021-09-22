@@ -37,6 +37,8 @@ import PopUpDialogBox from "../../Components/PopUpDialogBox/PopUpDialogBox";
 import ReactQuill from "react-quill"; // ES6
 import CustomIconButton from "../../Components/Buttons/CustomIconButtons/CustomIconButton";
 
+import { ourColors } from "../../styles/Theme";
+
 const useStyles = makeStyles((theme) => ({
   card: { position: "relative", marginBottom: "1rem" },
   card__title: {},
@@ -226,7 +228,11 @@ export default function EventSection(props) {
       {/* // ! all the section is draggable, should only work when dragstart is this button */}
       {isIntro ? null : (
         <CardActions
-          style={{ display: "flex", justifyContent: "space-between" }}
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            borderTop: `1px solid ${ourColors.gainsboro}`,
+          }}
         >
           <ButtonGroup
             orientation="horizontal"

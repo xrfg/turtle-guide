@@ -63,32 +63,15 @@ import CustomButton from "../Buttons/CustomButtons/CustomButton";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    root: {
-      "& > *": {
-        margin: theme.spacing(1),
-      },
-      maxWidth: 345,
-    },
     page: { ...theme.admin.page },
-    container: { ...theme.admin.container }, // main Admin container class
-    heading: {
-      fontSize: theme.typography.pxToRem(15),
-      fontWeight: theme.typography.fontWeightRegular,
-    },
-    paper: {
-      backgroundColor: theme.palette.background.paper,
-      // border: "2px solid #000",
-      boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
-    },
+    container: { ...theme.admin.container, paddingTop: "3.4rem" }, // main Admin container class
+
     coverImg: {},
-    // * Custom CSS
+
     // Custom margins container buttons
     sectionTitle: { textAlign: "center", fontSize: "2rem" },
-    gridItem: {
-      marginTop: "10px",
-      marginBottom: "10px",
-      // backgroundColor: theme.palette.common.blue,
+    contentsContainer: {
+      ...theme.admin.sectionsContentsContainer,
     },
     btnSidebar: {
       ...theme.admin.btnSidebar,
@@ -96,29 +79,7 @@ const useStyles = makeStyles((theme) =>
     btnGroup: {
       ...theme.admin.btnGroup,
     },
-
-    // Custom margins nested grid
-    // ! Classes created but not styled yet
-    sectionCover: {},
-    containerGrids: {},
-    gridContent: {},
     gridContentHeader: { ...theme.admin.gridContentHeader },
-    gridPreview: {},
-
-    mainContainer: {
-      display: "flex",
-    },
-    btnSection: {},
-
-    overview: {
-      height: "fit-content",
-    },
-    input: {
-      display: "none",
-    },
-    media: {
-      height: 140,
-    },
   })
 );
 
@@ -838,14 +799,18 @@ export default function SectionContentManager(props) {
               {section.sectionCover?.url === "" ? (
                 // show button
                 // important to upload the cover pass true
-                <Button
-                  onClick={() => {
+                <CustomButton
+                  style={{
+                    transform: "translate(0,-1.4rem)",
+                    marginBottom: "0.6rem",
+                  }}
+                  onClickFunc={() => {
                     isAddingCover = true;
                     showCloudinaryWidget(cloudinaryWidget);
                   }}
-                >
-                  Add a cover Image
-                </Button>
+                  text="Cover Image"
+                  endIcon="add"
+                />
               ) : (
                 <ImageHoverButton
                   title={"Change Cover Image"}
@@ -876,9 +841,15 @@ export default function SectionContentManager(props) {
                 </>
               )}
             </Grid>
-
+            {/* // * Header */}
+            <Grid item xs={3}></Grid> {/* ! empty for styling purposes */}
+            <Grid item xs={9}>
+              <h3 className={classes.gridContentHeader}>
+                {toggleSelected ? "Preview" : "Contents"}
+              </h3>
+            </Grid>
             {/* // * Buttons Top container */}
-            <Grid item xs={3} className={classes.btnSidebar}>
+            <Grid /* item */ xs={3} className={classes.btnSidebar}>
               <CustomButton
                 style={{ marginBottom: "1rem" }}
                 startIcon="arrowBack"
@@ -910,11 +881,11 @@ export default function SectionContentManager(props) {
                   endIcon="add"
                   onClickFunc={() => showCloudinaryWidget(cloudinaryWidget)}
                 />
-                <CustomButton
+                {/* <CustomButton
                   text="qrCode"
                   endIcon="add"
                   onClickFunc={() => addToContents(createObj("qrcode"))}
-                />
+                /> */}
               </div>
               <ToggleButton
                 value="preview"
@@ -928,17 +899,15 @@ export default function SectionContentManager(props) {
                 Preview
               </ToggleButton>
             </Grid>
-
             {/* if toggleSelected */}
-
             {/* // ? Contents container */}
             {/* // ? Add content */}
-
-            <Grid item xs={9} className={classes.gridContent}>
-              <h3 className={classes.gridContentHeader}>
-                {toggleSelected ? "Preview" : "Contents"}
-              </h3>
-
+            <Grid
+              // item -> is fucking up the styles???
+              xs={9}
+              className={classes.contentsContainer}
+              /* style={{ padding: "0" }} */
+            >
               {toggleSelected ? (
                 <SectionPreview
                   contents={contents}

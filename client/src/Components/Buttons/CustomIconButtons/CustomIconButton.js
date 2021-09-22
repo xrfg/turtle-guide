@@ -5,6 +5,8 @@ import React from "react";
 // MatUi Component Imports
 import { IconButton } from "@material-ui/core";
 
+import { ourColors } from "../../../styles/Theme";
+
 // MatUi Icon imports
 import {
   Add,
@@ -57,6 +59,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   prev: {},
+  drag: {
+    color: "inherit", // grey
+    "&:hover": {
+      color: ourColors.jet, // white},
+    },
+  },
 }));
 
 export default function CustomIconButton(props) {
