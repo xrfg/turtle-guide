@@ -175,6 +175,9 @@ export const theme = createTheme({
     imgDesc: { fontWeight: 400, fontSize: "0.8rem", color: ourColors.jet },
   },
   guide: {
+    root: {
+      backgroundColor: "red",
+    },
     container: { backgroundColor: "white", padding: "0" },
     mainHeader: {
       top: 0,

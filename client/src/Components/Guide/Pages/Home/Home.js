@@ -54,6 +54,9 @@ const useStyles = makeStyles((theme) => ({
     margin: "0 10px",
     justifyContent: "space-between",
   },*/
+  root: {
+    ...theme.guide.root,
+  },
   mainContainer: {
     // ! gradients samples NOT DELETE
     // background: "linear-gradient(#e66465, #9198e5)",
@@ -118,11 +121,9 @@ export default function Home(props) {
   const classes = useStyles();
   // * refs
   const mainContainerRef = useRef();
-  const parallaxContainerRef = useRef();
 
   // * States
   const [totalParallaxPages, setTotalParallaxPages] = useState(0);
-  const [parallaxContainerSize, setParallaxContainerSize] = useState(0);
 
   useEffect(() => {
     const getViewportSize = window.innerHeight;
@@ -130,11 +131,29 @@ export default function Home(props) {
     const totalCards = sections.length;
     const totalPixels = totalCards * 385;
 
-    const pages = Math.floor(totalPixels / getViewportSize);
+    const pages = totalPixels / getViewportSize;
 
-    // TODO -10% - 30 % from pages
+    // remove a percantage of pages to correct the length of the scrolling
 
-    setTotalParallaxPages(pages);
+    const removedPercentage = (pages) => {
+      if (pages > 3 && pages < 6) {
+        return pages - (pages / 100) * 9;
+      }
+      if (pages > 6 && pages < 9) {
+        return pages - (pages / 100) * 11;
+      }
+      if (pages > 9 && pages < 12) {
+        return pages - (pages / 100) * 15;
+      }
+      if (pages > 12) {
+        return pages - (pages / 100) * 16.25;
+      }
+    };
+
+    // console.log("totalpages", pages);
+    // console.log("removedPercentage", removedPercentage(pages));
+
+    setTotalParallaxPages(removedPercentage(pages));
 
     //eslint-disable-next-line
   }, []);
@@ -157,13 +176,7 @@ export default function Home(props) {
               >
                 {title}
               </Typography>
-              <div
-                ref={(el) => {
-                  // sets the size of the container
-                  setParallaxContainerSize(el?.offsetHeight);
-                }}
-                className={classes.parallaxLayerContainer}
-              >
+              <div className={classes.parallaxLayerContainer}>
                 {/* Map to create cards */}
                 {sections.map((x, index) => {
                   // skip intro from general rendering
