@@ -54,6 +54,33 @@ const useStyles = makeStyles((theme) => ({
   cardContent: { position: "relative" },
   onDrag: { backgroundColor: "green" },
   textField: { display: "block", marginRight: "1rem", zIndex: "15" },
+  // ! change name
+  text: {
+    // zIndex: 10000,
+    // backgroundColor: "red",
+    // padding: "0.1rem",
+    // // fontSize: "1.5rem",
+    // margin: "50px 0  40px 0",
+    // color: "#4d4b46",
+    // fontFamily: "raleway",
+    // letterSpacing: "0.60000px",
+    // width: "100%",
+    // borderTop: "0.02rem grey solid",
+    // borderBottom: "0.02rem grey solid",
+    "& > *": {
+      zIndex: 10000,
+      opacity: 1,
+      // padding: "2px",
+      // alignSelf: "start",
+      // fontWeight: "400",
+      // fontSize: "1.7rem !important",
+      // fontStyle: "italic",
+      color: "black",
+      // fontFamily: "raleway",
+      // letterSpacing: "0.30000px",
+      // overflowWrap: "anywhere",
+    },
+  },
 }));
 
 export default function EventSection(props) {
@@ -201,6 +228,7 @@ export default function EventSection(props) {
           </Box>
 
           <ReactQuill
+            className={classes.text}
             style={{ zIndex: "25" }}
             value={description}
             readOnly={true}

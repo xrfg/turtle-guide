@@ -32,14 +32,21 @@ const useStyles = makeStyles((theme) => ({
   cardContent: {
     margin: "0 0 0 0",
     padding: "1rem 1rem 0rem 1rem",
-    backgroundColor: ourColors.lightGrey,
+    // backgroundColor: ourColors.lightGrey,
   },
   cardTitle: {
+    margin: "0 0 0 0",
     color: "#424242",
     ...theme.guide.header,
   },
   cardDesc: {
+    // fontSize: "2rem",
     margin: "0 0 0 -15px",
+    // width: "150px",
+    // whiteSpace: "nowrap",
+    // overflow: "hidden",
+    // textOverflow: "ellipsis",
+    // wordWrap: "break-word",
   },
 
   media: {
