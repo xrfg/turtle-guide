@@ -14,7 +14,7 @@ import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
 // * Mat UI
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import { Container, Button, Typography } from "@material-ui/core";
+import { Container, Button, Typography, Card } from "@material-ui/core";
 
 // * Components
 import { ourColors } from "../../styles/Theme";
@@ -24,6 +24,7 @@ import ReactQuill from "react-quill"; // ES6
 
 // CSS vars
 const windowWidth = window.innerWidth;
+const windowHeight = window.innerHeight;
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -35,11 +36,16 @@ const useStyles = makeStyles((theme) =>
       },
 
       backgroundColor: theme.palette.common.white,
-
+      minWidth: "100%",
+      minHeight: windowHeight - 70 + "px", // the height of the bottom navbar
       maxWidth: "100%",
       overflow: "hidden",
     },
-
+    introBackground: {
+      width: "100%",
+      /* Full height */
+      height: "100%",
+    },
     adminPreview: {
       "& > *": {
         // margin: theme.spacing(1),
@@ -108,15 +114,27 @@ const useStyles = makeStyles((theme) =>
       marginTop: "70px",
     },
     sectionTitleWrap: {
+      marginTop: "-40px",
       // clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 81%)",
       // backgroundColor: "white",
     },
     sectionTitle: {
       marginTop: "-20px",
-      backgroundColor: "white",
+      // backgroundColor: "white",
       padding: "10px",
-      boxShadow: "5px 3px 15px -13px rgba(0,0,0,0.7)",
+      // boxShadow: "5px 3px 15px -13px rgba(0,0,0,0.7)",
       // clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 81%)",
+      paddingBottom: "0px",
+    },
+    introTitle: {
+      marginTop: "20px",
+      marginBottom: "50px",
+      border: "none",
+      boxShadow: "none",
+      backgroundColor: "transparent",
+      padding: "15px",
+      paddingBottom: "0px",
+      fontSize: "1.5rem",
     },
     sectionDescription: {
       // margin: "10px 0 40px 0",
@@ -161,15 +179,17 @@ const useStyles = makeStyles((theme) =>
       },
     },
     text: {
-      padding: "0.1rem",
+      padding: "0.4rem",
       fontSize: "1.5rem",
-      margin: "50px 0  40px 0",
+      // margin: "50px 0  40px 0",
       color: "#4d4b46",
       fontFamily: "raleway",
       letterSpacing: "0.60000px",
       width: "100%",
-      borderTop: "0.02rem grey solid",
-      borderBottom: "0.02rem grey solid",
+      marginTop: "10px",
+      marginBottom: "-30px",
+      // borderTop: "0.02rem grey solid",
+      // borderBottom: "0.02rem grey solid",
     },
     btnSection: {
       display: "flex",
@@ -222,7 +242,24 @@ const SectionPreview = (props) => {
     <>
       <Container
         maxWidth="xs"
-        className={adminPreview ? classes.adminPreview : classes.root}
+        className={
+          adminPreview
+            ? classes.adminPreview
+            : // : isIntro
+              // ? classes.introBackground
+              classes.root
+        }
+        style={
+          isIntro
+            ? {
+                backgroundPosition: "center center",
+                backgroundSize: "cover",
+                backgroundImage: `url(${sectionCover.url})`,
+                position: "relative",
+                overflow: "hidden",
+              }
+            : {}
+        }
       >
         {sectionCover.url === "" ? (
           isIntro ? (
@@ -231,32 +268,41 @@ const SectionPreview = (props) => {
             <h1>No cover image yet, please choose one</h1>
           )
         ) : (
-          <div className={classes.sectionCoverWrap}>
-            <div
-              className={classes.sectionCover}
-              style={{
-                backgroundImage: `url(${sectionCover.url})`,
-              }}
-              alt="section-cover"
-              // src={sectionCover.url}
-            />
-          </div>
+          !isIntro && (
+            <div className={classes.sectionCoverWrap}>
+              <div
+                className={classes.sectionCover}
+                style={{
+                  backgroundImage: `url(${sectionCover.url})`,
+                }}
+                alt="section-cover"
+                // src={sectionCover.url}
+              />
+            </div>
+          )
         )}
-        <div className={classes.sectionTitleWrap}>
-          <Typography
-            gutterBottom={true}
-            variant={"h5"}
-            className={classes.sectionTitle}
-          >
-            {sectionTitle}
-          </Typography>
+        <div className={isIntro ? "" : classes.sectionTitleWrap}>
+          <Card className={classes.introTitle}>
+            <Typography
+              gutterBottom={true}
+              variant={"h5"}
+              className={isIntro ? "" : classes.sectionTitle}
+            >
+              {sectionTitle}
+            </Typography>
+          </Card>
         </div>
-        <ReactQuill
-          className={classes.sectionDescription}
-          value={sectionDescription}
-          readOnly={true}
-          theme={"bubble"}
-        />
+
+        {!isIntro && (
+          <>
+            <ReactQuill
+              className={classes.sectionDescription}
+              value={sectionDescription}
+              readOnly={true}
+              theme={"bubble"}
+            />
+          </>
+        )}
         {/* // * mapping to render divided by types */}
         {contents.map((x) => {
           /* images */
@@ -317,12 +363,14 @@ const SectionPreview = (props) => {
           /*  text */
           if (x.type === "text") {
             return (
-              <ReactQuill
-                className={classes.text}
-                value={x.content}
-                readOnly={true}
-                theme={"bubble"}
-              />
+              <Card>
+                <ReactQuill
+                  className={classes.text}
+                  value={x.content}
+                  readOnly={true}
+                  theme={"bubble"}
+                />
+              </Card>
             );
           }
           return null;

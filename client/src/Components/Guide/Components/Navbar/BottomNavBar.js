@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   footer: {
+    height: "70px",
     position: "fixed",
     bottom: "0",
     width: "100%",
@@ -37,7 +38,6 @@ export default function BottomNavBar() {
     setValue(newValue);
   };
 
-  console.log("event", event);
   return (
     <BottomNavigation
       value={value}

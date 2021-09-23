@@ -178,6 +178,7 @@ export const theme = createTheme({
     root: {
       backgroundColor: "red",
     },
+
     container: { backgroundColor: "white", padding: "0" },
     mainHeader: {
       top: 0,
