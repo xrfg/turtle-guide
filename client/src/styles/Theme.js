@@ -138,10 +138,11 @@ export const theme = createTheme({
       padding: "2rem",
     },
     pageTitleContainer: {
-      background: `linear-gradient(45deg, ${ourColorsTwo.darkOrange} 30%, transparent 90%)`,
-      borderRadius: "8px",
+      // background: `linear-gradient(45deg, ${ourColorsTwo.darkOrange} 30%, transparent 90%)`,
+      // borderRadius: "8px",
       padding: "1rem",
       marginBottom: "1rem",
+      borderBottom: `1px solid ${ourColorsTwo.darkOrange}`,
     },
     pageTitle: {
       textAlign: "left",
@@ -149,13 +150,13 @@ export const theme = createTheme({
       lineHeight: "2.6rem",
       letterSpacing: "0px",
       textTransform: "uppercase",
-      color: "white",
+      color: ourColorsTwo.darkOrange,
       // borderRadius: "8px",
 
       fontWeight: "bold",
 
       // borderBottom: `2px solid ${ourColors.jet}`,
-      // textShadow: `1px 2px 2px ${ourColors.indigoDye}`,
+      // textShadow: `1px 2px 2px ${ourColors.jet}`,
       /* textShadow: `-1px -1px 0 ${ourColors.indigoDye},
       1px -1px 0 ${ourColors.indigoDye},
       -1px 1px 0 ${ourColors.indigoDye},

@@ -80,7 +80,6 @@ const useStyles = makeStyles((theme) =>
     pageTitleContainer: { ...theme.admin.pageTitleContainer },
     pageTitle: {
       ...theme.admin.pageTitle,
-      fontWeight: "normal",
       fontSize: "1.6rem",
     },
     contentsContainer: {

@@ -4,6 +4,7 @@
  */
 
 import React from "react";
+import { ourColorsTwo } from "../../styles/Theme";
 
 // Custom Component Imports
 import CustomIconButton from "./CustomIconButtons/CustomIconButton";
@@ -12,7 +13,7 @@ export default function EditSaveButton(props) {
   // * Functions
   // changes the editStatus from
   // "editing" true to "non-editing" false
-  const { title, isFirstEditing } = props;
+  const { title, isFirstEditing, isEventTitle } = props;
 
   // console.log("EditSaveButton", title, isFirstEditing);
   const handleSaveEditBtn = (e) => {
@@ -34,7 +35,7 @@ export default function EditSaveButton(props) {
       style={{
         backgroundColor: !props.editStatus ? "inherit" : "#26b519",
         zIndex: "15",
-        color: "white",
+        color: isEventTitle ? ourColorsTwo.darkOrange : "gray",
       }}
       icon={props.editStatus ? "save" : "edit"}
       onClickFunc={handleSaveEditBtn}

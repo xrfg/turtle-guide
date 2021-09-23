@@ -105,7 +105,11 @@ const EventName = (props) => {
           {eventName ? eventName : "Event Name"}
         </Typography>
       )}
-      <EditSaveButton editStatus={editing} editHandler={handleSaveEditBtn} />
+      <EditSaveButton
+        isEventTitle={true}
+        editStatus={editing}
+        editHandler={handleSaveEditBtn}
+      />
       {/* <Typography className={classes.nameInput}>
         The address of your event is: /{slug}
       </Typography> */}
