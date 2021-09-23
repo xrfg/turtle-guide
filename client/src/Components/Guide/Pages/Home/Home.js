@@ -148,10 +148,11 @@ export default function Home(props) {
       if (pages > 12) {
         return pages - (pages / 100) * 16.25;
       }
+      return pages;
     };
 
-    // console.log("totalpages", pages);
-    // console.log("removedPercentage", removedPercentage(pages));
+    console.log("totalpages", pages);
+    console.log("removedPercentage", removedPercentage(pages));
 
     setTotalParallaxPages(removedPercentage(pages));
 

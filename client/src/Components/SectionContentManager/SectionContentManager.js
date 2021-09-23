@@ -841,11 +841,7 @@ export default function SectionContentManager(props) {
               )}
               {/* If is editing admin */}
               {/* If is editing about admin do not show */}
-              {Object.keys(userInfo).length !== 0 ? (
-                <Typography variant={"h6"}>
-                  Shall we put opening hours?
-                </Typography>
-              ) : (
+              {Object.keys(userInfo).length !== 0 && (
                 <>
                   {/* Section description Edit */}
                   <ContentBlockText
