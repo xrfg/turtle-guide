@@ -122,9 +122,9 @@ export const theme = createTheme({
     },
     pageTitle: {
       textAlign: "left",
-      fontSize: "2rem",
+      fontSize: "1.8rem",
       lineHeight: "2.6rem",
-      // letterSpacing: "1px",
+      letterSpacing: "0px",
       textTransform: "uppercase",
       color: ourColors.indigoDye,
       // fontWeight: "bold",

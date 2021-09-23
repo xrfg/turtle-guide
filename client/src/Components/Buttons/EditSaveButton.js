@@ -16,6 +16,7 @@ export default function EditSaveButton(props) {
 
   // console.log("EditSaveButton", title, isFirstEditing);
   const handleSaveEditBtn = (e) => {
+    e.stopPropagation(); // makes it unable to trigger the forwarding link
     // if (title === "Title" || title === "title" || title === "") {
     //   return props.errorMsg("This is not a valid title");
     // } else
@@ -32,6 +33,7 @@ export default function EditSaveButton(props) {
       // make a focus light so the user knows to save
       style={{
         backgroundColor: !props.editStatus ? "inherit" : "#26b519",
+        zIndex: "15",
       }}
       icon={props.editStatus ? "save" : "edit"}
       onClickFunc={handleSaveEditBtn}

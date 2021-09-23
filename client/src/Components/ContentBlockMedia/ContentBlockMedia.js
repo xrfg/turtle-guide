@@ -163,7 +163,7 @@ const ContentBlockMedia = (props) => {
           {/* <ButtonBase className={classes.image}> */}
           {/* // * Sets icon if the file is audio */}
           {type === "audio" ? (
-            <PlayCircleOutlineIcon fontSize="large" />
+            <CustomIconButton icon="audio" disabled={true} />
           ) : type === "video" ? (
             <img
               className={classes.img}
