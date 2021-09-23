@@ -16,7 +16,6 @@ import { Typography } from "@material-ui/core";
 import { ourColors, theme } from ".././../../../styles/Theme";
 
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
-import styles from "./styles.module.css";
 
 const useStyles = makeStyles((theme) => ({
   /*hero: {

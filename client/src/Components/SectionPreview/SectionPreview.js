@@ -9,6 +9,9 @@
 
 import React, { useEffect, useState } from "react";
 
+// * Imports
+import { Parallax, ParallaxLayer } from "@react-spring/parallax";
+
 // * Mat UI
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import { Container, Button, Typography } from "@material-ui/core";
@@ -32,6 +35,7 @@ const useStyles = makeStyles((theme) =>
       },
 
       backgroundColor: theme.palette.common.white,
+
       maxWidth: "100%",
       overflow: "hidden",
     },
@@ -50,7 +54,36 @@ const useStyles = makeStyles((theme) =>
       maxWidth: "460px",
       overflow: "hidden",
     },
+    mainContainer: {
+      // ! gradients samples NOT DELETE
+      // background: "linear-gradient(#e66465, #9198e5)",
+      // background:
+      //   "linear-gradient(0deg, rgba(207,222,243,1) 0%, rgba(224,234,252,1) 100%)", // Sky
+      // background:
+      //   "linear-gradient(0deg, rgba(173,169,150,1) 0%, rgba(242,242,242,1) 40%, rgba(219,219,219,1) 68%, rgba(234,234,234,1) 100%)", // zinc
+      // background:
+      //   "linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(170,186,171,1) 100%)", // light green
+      background:
+        " linear-gradient(0deg, rgba(215,221,232,0.6) 0%, rgba(117,127,154,0.6) 100%)", // blue grey
+      position: "absolute",
+      top: 0,
+      bottom: 0,
+      right: 0,
+      left: 0,
+      // width: "100vw",
+      // height: "100vh",
 
+      // margin: "6rem 0 30px 0",
+      // padding: "1.6rem",
+      // // // background:
+      // // //   "linear-gradient(4deg, rgba(121,16,9,1) 44%, rgba(0,212,255,1) 100%)",
+      // // // backgroundColor: ourColors.primaryLight,
+      // display: "flex",
+      // flexDirection: "column",
+      // justifyContent: "center",
+      // alignItems: "center",
+      // width: "100vw",
+    },
     // * Custom CSS
     sectionCoverWrap: {
       // boxShadow: "3px 3px 15px -8px rgba(0,0,0,0.86)",
