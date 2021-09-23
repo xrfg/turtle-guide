@@ -57,6 +57,7 @@ const useStyles = makeStyles((theme) => ({
   // ! change name
   text: {
     // zIndex: 10000,
+    // zIndex: 10000,
     // backgroundColor: "red",
     // padding: "0.1rem",
     // // fontSize: "1.5rem",
@@ -67,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
     // width: "100%",
     // borderTop: "0.02rem grey solid",
     // borderBottom: "0.02rem grey solid",
-    "& > *": {
+    "& > div": {
       zIndex: 10000,
       opacity: 1,
       // padding: "2px",
@@ -75,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
       // fontWeight: "400",
       // fontSize: "1.7rem !important",
       // fontStyle: "italic",
-      color: "black",
+      color: "black !important",
       // fontFamily: "raleway",
       // letterSpacing: "0.30000px",
       // overflowWrap: "anywhere",
