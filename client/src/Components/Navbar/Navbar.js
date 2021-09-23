@@ -16,13 +16,13 @@ import logoFilled from "../../assets/images/logo/turtle_logo-filled.png";
 
 // * Component Imports
 import Menu from "../Menu/Menu";
-import { ourColorsTwo } from "../../styles/Theme";
+import { ourColors } from "../../styles/Theme";
 
 const Navbar = () => {
   return (
     <AppBar
       style={{
-        backgroundColor: ourColorsTwo.cultured,
+        backgroundColor: ourColors.lightGrey,
         position: "relative",
       }}
     >

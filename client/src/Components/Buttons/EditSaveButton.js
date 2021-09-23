@@ -13,7 +13,7 @@ export default function EditSaveButton(props) {
   // * Functions
   // changes the editStatus from
   // "editing" true to "non-editing" false
-  const { title, isFirstEditing, isEventTitle } = props;
+  const { title, isFirstEditing } = props;
 
   // console.log("EditSaveButton", title, isFirstEditing);
   const handleSaveEditBtn = (e) => {
@@ -35,7 +35,6 @@ export default function EditSaveButton(props) {
       style={{
         backgroundColor: !props.editStatus ? "inherit" : "#26b519",
         zIndex: "15",
-        color: isEventTitle ? ourColorsTwo.darkOrange : "gray",
       }}
       icon={props.editStatus ? "save" : "edit"}
       onClickFunc={handleSaveEditBtn}

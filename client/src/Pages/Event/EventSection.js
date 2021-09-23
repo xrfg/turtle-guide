@@ -50,6 +50,17 @@ const useStyles = makeStyles((theme) => ({
     display: "inline-block",
     zIndex: "15",
   },
+  reactquillthing: {
+    "& > *": {
+      color: "red",
+    },
+    "& > div": {
+      zIndex: "1000",
+      "& > *": {
+        color: "!important black",
+      },
+    },
+  },
   cardDesc: {},
   cardContent: { position: "relative" },
   onDrag: { backgroundColor: "green" },
@@ -201,6 +212,7 @@ export default function EventSection(props) {
           </Box>
 
           <ReactQuill
+            className={classes.reactquillthing}
             style={{ zIndex: "25" }}
             value={description}
             readOnly={true}

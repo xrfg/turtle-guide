@@ -22,6 +22,8 @@ const myTheme = theme;
 const useStyles = makeStyles((theme) => ({
   Modalbtn: {
     ...theme.buttons.modalbtn,
+    fontSize: "1rem",
+    marginTop: "1rem",
   },
 }));
 

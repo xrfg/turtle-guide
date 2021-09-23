@@ -92,14 +92,14 @@ const useStyles = makeStyles((theme) =>
       ...theme.admin.btnGroup,
     },
     togglePreviewBtn: {
-      backgroundColor: ourColorsTwo.cultured,
-      border: `1px solid ${ourColorsTwo.darkOrange}`,
-      color: ourColorsTwo.darkOrange,
+      backgroundColor: ourColors.lightGrey,
+      border: `1px solid ${ourColors.ming}`,
+      color: ourColors.ming,
       fontWeight: "bold",
       transition: "all 0.2s",
       "&:hover": {
-        backgroundColor: ourColorsTwo.darkOrange,
-        color: ourColorsTwo.cultured,
+        backgroundColor: ourColors.ming,
+        color: ourColors.lightGrey,
       },
       "&:selected": { backgroundColor: "black" },
     },
@@ -846,9 +846,12 @@ export default function SectionContentManager(props) {
               {/* If is editing admin */}
               {/* If is editing about admin do not show */}
               {Object.keys(userInfo).length !== 0 ? (
-                <Typography variant={"h6"}>
-                  Shall we put opening hours?
-                </Typography>
+                <>
+                  {/* <Typography variant={"h6"}>
+                    Shall we put opening hours?
+                  </Typography> */}
+                  {/* // TODO opening hours */}
+                </>
               ) : (
                 <>
                   {/* Section description Edit */}

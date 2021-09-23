@@ -72,11 +72,11 @@ export const theme = createTheme({
       white: `${ourColors.white}`,
     },
     primary: {
-      main: `${ourColorsTwo.persianIndigo}`,
-      light: `${ourColorsTwo.cornflowerBlue}`,
+      main: `${ourColors.indigoDye}`,
+      light: `${ourColors.gainsboro}`,
     },
     secondary: {
-      main: `${ourColorsTwo.darkOrange}`,
+      main: `${ourColors.indigoDye}`,
       darkGrey: `${colors.grey}`,
       darkGreen: `${colors.ming}`,
     },
@@ -130,8 +130,8 @@ export const theme = createTheme({
   admin: {
     // container maxWidth="md"
     page: {
-      /*  background: `linear-gradient(360deg, ${ourColorsTwo.cultured} 10%, ${ourColorsTwo.darkOrange} 360%)`, */
-      backgroundColor: ourColorsTwo.cultured,
+      background: `linear-gradient(360deg, ${ourColors.lightGrey} 10%, ${ourColors.indigoDye} 360%)`,
+      // backgroundColor: ourColorsTwo.cultured,
     },
     container: {
       minHeight: "calc(100vh - 80px)",
@@ -142,7 +142,7 @@ export const theme = createTheme({
       // borderRadius: "8px",
       padding: "1rem",
       marginBottom: "1rem",
-      borderBottom: `1px solid ${ourColorsTwo.darkOrange}`,
+      // borderBottom: `1px solid ${ourColors.indigoDye}`,
     },
     pageTitle: {
       textAlign: "left",
@@ -150,10 +150,10 @@ export const theme = createTheme({
       lineHeight: "2.6rem",
       letterSpacing: "0px",
       textTransform: "uppercase",
-      color: ourColorsTwo.darkOrange,
+      color: ourColors.indigoDye,
       // borderRadius: "8px",
 
-      fontWeight: "bold",
+      // fontWeight: "bold",
 
       // borderBottom: `2px solid ${ourColors.jet}`,
       // textShadow: `1px 2px 2px ${ourColors.jet}`,
@@ -164,8 +164,8 @@ export const theme = createTheme({
     },
     sectionsContentsContainer: { paddingLeft: "2rem" },
     btnSidebar: {
-      border: `1px solid ${ourColorsTwo.maxBluePurple}`,
-      backgroundColor: ourColorsTwo.cultured,
+      border: `1px solid ${ourColors.gainsboro}`,
+      backgroundColor: ourColors.lightGrey,
       display: "flex",
       flexDirection: "column",
       borderRadius: "5px",
@@ -263,8 +263,8 @@ export const theme = createTheme({
       letterSpacing: "1px",
       textTransform: "uppercase",
       // backgroundColor: ourColors.ming,
-      background: `linear-gradient(45deg, ${ourColorsTwo.persianIndigo} 30%, ${ourColorsTwo.cornflowerBlue} 90%)`,
-      boxShadow: `0 3px 5px 2px ${ourColors.jet}`,
+      background: `linear-gradient(45deg, ${ourColors.indigoDye} 30%, ${ourColors.ming} 90%)`,
+      boxShadow: `0 3px 5px 2px ${ourColors.gainsboro}`,
       color: "white",
       borderRadius: "5px",
       padding: "0.4rem 0.8rem",
@@ -277,26 +277,25 @@ export const theme = createTheme({
     },
     btnIcon: { backgroundColor: "transparent", padding: "0.6rem" },
     modalbtn: {
+      marginLeft: "auto",
       fontWeight: 800,
       letterSpacing: "1px",
       textTransform: "uppercase",
-      padding: "0.4rem 0.8rem",
-      background: "transparent",
+      padding: "0.5rem 1rem",
       borderRadius: "5px",
       border: `1px solid ${ourColors.jet}`,
       transition: "all 0.1s",
+      backgroundColor: ourColors.lightGrey,
       "&:hover": {
         cursor: "pointer",
-        background: ourColors.lightGrey,
+        backgroundColor: ourColors.indigoDye,
+        color: "white",
       },
       color: ourColors.jet,
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      position: "absolute",
-      bottom: "0",
-      right: 0,
-      transform: "scale(1.2)",
+      position: "relative",
     },
 
     //   btnUpdateItem: {

@@ -21,7 +21,7 @@ import { signOut } from "../../store/actions/userActions";
 import MenuItem from "../MenuItem/MenuItem";
 
 import { useDispatch, useSelector } from "react-redux";
-import { ourColorsTwo } from "../../styles/Theme";
+import { ourColors } from "../../styles/Theme";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -57,7 +57,7 @@ const Menu = () => {
 
   return (
     <div className={classes.root}>
-      <div className="">
+      <div>
         {isAuthenticated ? (
           <>
             <MenuItem path={"/admin/account"} title={"Your Account"} />
@@ -69,7 +69,7 @@ const Menu = () => {
                 dispatch(signOut());
                 history.push("/");
               }}
-              style={{ color: ourColorsTwo.darkOrange }}
+              style={{ color: ourColors.indigoDye }}
             >
               Log out
             </Button>
@@ -83,11 +83,12 @@ const Menu = () => {
               onClick={() => {
                 history.push("/subscription");
               }}
-              style={{ color: ourColorsTwo.darkOrange }}
+              style={{ color: ourColors.indigoDye }}
             >
               Subscribe
             </Button>
             <Button
+              style={{ color: ourColors.indigoDye }}
               aria-controls="simple-menu"
               aria-haspopup="true"
               onClick={() => {
