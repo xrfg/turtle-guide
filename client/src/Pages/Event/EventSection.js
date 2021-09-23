@@ -161,7 +161,6 @@ export default function EventSection(props) {
     setOpenDeleteDialogBox((prev) => !prev);
   };
 
-  console.log(props.section);
   return (
     <Card
       disableRipple={true}

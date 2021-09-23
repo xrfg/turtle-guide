@@ -151,8 +151,8 @@ export default function Home(props) {
       return pages;
     };
 
-    console.log("totalpages", pages);
-    console.log("removedPercentage", removedPercentage(pages));
+    // console.log("totalpages", pages);
+    // console.log("removedPercentage", removedPercentage(pages));
 
     setTotalParallaxPages(removedPercentage(pages));
 

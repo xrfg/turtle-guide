@@ -123,6 +123,11 @@ export default function SectionContentManager(props) {
   const [userInfo, setUserInfo] = useState({});
   const [isEditingUserInfo, setIsEditingUserInfo] = useState(false);
   const [subscriptionDate, setSubscriptionDate] = useState("");
+
+  // is intro state
+  // if id === 1 sets to true
+  const [isIntro, setIsIntro] = useState(false);
+
   // for save
   const [needsToSave, setNeedsToSave] = useState(false);
   // for dragging (and dropping)
@@ -149,6 +154,11 @@ export default function SectionContentManager(props) {
     if (isAboutAdmin) {
       return;
     }
+    // if id === 1 sets to true
+    if (id === 1) {
+      setIsIntro(true);
+    }
+
     // find the event
     const getEvent = events.find((x) => x.nameIdentifier === nameIdentifier);
     // set the event to be modified and sent for saving
@@ -193,9 +203,6 @@ export default function SectionContentManager(props) {
 
     //eslint-disable-next-line
   }, []);
-
-  console.log("section state", section);
-  console.log("contents state", contents);
 
   // * Modals CTRLs
   const handleOpen = (modal) => {
@@ -829,7 +836,8 @@ export default function SectionContentManager(props) {
                     isAddingCover = true;
                     showCloudinaryWidget(cloudinaryWidget);
                   }}
-                  text="Cover Image"
+                  // if intro changes title
+                  text={isIntro ? "Background Image" : "Cover Image"}
                   endIcon="add"
                 />
               ) : (
@@ -839,6 +847,9 @@ export default function SectionContentManager(props) {
                   image={section.sectionCover}
                 />
               )}
+
+              {/* // * set gradient */}
+
               {/* If is editing admin */}
               {/* If is editing about admin do not show */}
               {Object.keys(userInfo).length !== 0 && (
@@ -927,6 +938,7 @@ export default function SectionContentManager(props) {
             >
               {toggleSelected ? (
                 <SectionPreview
+                  id={id}
                   adminPreview={true}
                   contents={contents}
                   sectionCover={section?.sectionCover}

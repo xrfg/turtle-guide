@@ -66,6 +66,7 @@ const Section = (props) => {
             }}
           >
             <SectionRender
+              id={idSection}
               contents={section.contents}
               sectionCover={section.sectionCover}
               sectionDescription={section.description}

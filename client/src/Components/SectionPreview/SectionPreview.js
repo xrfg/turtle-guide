@@ -1,13 +1,13 @@
 /**
  * @desc Component that preview the Sections or
  * renders the sections into the Guide/Event
- * @requires props "contents" <SectionPreview contents={ } sectionCover={} sectionDescriptio={}/>
+ * @requires props "contents" <SectionPreview id={id} contents={ } sectionCover={} sectionDescriptio={}/>
  */
 
 // TODO Add video render from cloudinary
 // TODO clean code
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 // * Mat UI
 import { makeStyles, createStyles } from "@material-ui/core/styles";
@@ -157,16 +157,33 @@ const useStyles = makeStyles((theme) =>
 );
 
 const SectionPreview = (props) => {
+  // * Hooks
   const classes = useStyles();
 
   // destru
   const {
+    id,
     contents,
     sectionCover,
     sectionDescription,
     sectionTitle,
     adminPreview,
   } = props;
+
+  // * States
+  // is intro state
+  // if id === 1 sets to true
+  const [isIntro, setIsIntro] = useState(false);
+
+  // * Life cycles Methods
+  useEffect(() => {
+    // if id === 1 sets to true
+    if (id === 1) {
+      setIsIntro(true);
+    }
+
+    //eslint-disable-next-line
+  }, []);
 
   return (
     <>
@@ -175,7 +192,11 @@ const SectionPreview = (props) => {
         className={adminPreview ? classes.adminPreview : classes.root}
       >
         {sectionCover.url === "" ? (
-          <h1>No cover image yet, please choose one</h1>
+          isIntro ? (
+            <h1>No Background image yet, please choose one</h1>
+          ) : (
+            <h1>No cover image yet, please choose one</h1>
+          )
         ) : (
           <div className={classes.sectionCoverWrap}>
             <div

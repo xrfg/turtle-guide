@@ -18,10 +18,12 @@ const SectionRender = (props) => {
   // * Hooks
   // const classes = useStyles();
   // Destruct
-  const { contents, sectionCover, sectionDescription, sectionTitle } = props;
+  const { id, contents, sectionCover, sectionDescription, sectionTitle } =
+    props;
 
   return (
     <SectionPreview
+      id={id}
       contents={contents}
       sectionCover={sectionCover}
       sectionDescription={sectionDescription}
