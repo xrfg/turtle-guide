@@ -60,7 +60,7 @@ import { userUpdate } from "../../store/actions/userActions";
 import { goBackToPage, unBlock } from "../../functions/functions";
 import ImageHoverButton from "../Buttons/ImageHoverButton";
 import CustomButton from "../Buttons/CustomButtons/CustomButton";
-import { ourColors } from "../../styles/Theme";
+import { ourColors, ourColorsTwo } from "../../styles/Theme";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -70,8 +70,14 @@ const useStyles = makeStyles((theme) =>
     coverImg: {},
     accordion: { marginBottom: "2rem" },
     accordTxtField: { marginBottom: "0.6rem", marginRight: "0.6rem" },
+    eventHeaderTab: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
 
     // Custom margins container buttons
+    pageTitleContainer: { ...theme.admin.pageTitleContainer },
     pageTitle: {
       ...theme.admin.pageTitle,
       fontWeight: "normal",
@@ -85,6 +91,18 @@ const useStyles = makeStyles((theme) =>
     },
     btnGroup: {
       ...theme.admin.btnGroup,
+    },
+    togglePreviewBtn: {
+      backgroundColor: ourColorsTwo.cultured,
+      border: `1px solid ${ourColorsTwo.darkOrange}`,
+      color: ourColorsTwo.darkOrange,
+      fontWeight: "bold",
+      transition: "all 0.2s",
+      "&:hover": {
+        backgroundColor: ourColorsTwo.darkOrange,
+        color: ourColorsTwo.cultured,
+      },
+      "&:selected": { backgroundColor: "black" },
     },
     gridContentHeader: { ...theme.admin.gridContentHeader },
   })
@@ -771,44 +789,31 @@ export default function SectionContentManager(props) {
                 </AccordionDetails>
               </Grid>
             </Accordion>
-
-            <Typography
-              gutterBottom
-              variant="subtitle1"
-              // className={classes.descriptionContainer}
-            >
-              {/* {isEditing ? (
-                  <div>
-                    <ModalCustom
-                      content={
-                        <TextEditor setText={setMediaText} content={content} />
-                      }
-                      isOpen={true}
-                      isClose={closeEditingModal}
-                    />
-                    <html>{content}</html>
-                  </div>
-                ) : (
-                  <ReactQuill
-                    value={content}
-                    readOnly={true}
-                    theme={"bubble"}
-                    // className={classes.descriptionContainer}
-                  />
-                )} */}
-            </Typography>
-            <Typography className={classes.pageTitle}>
-              {userInfo.company}
-            </Typography>
           </>
         ) : null}
 
         {Object.keys(section).length !== 0 ? (
-          <Grid container direction="row" spacing={2}>
+          <Grid container direction="row" /* spacing={2} */>
             {/* // * Do not render title if is about admin */}
-            {userInfo.company ? null : (
-              <Grid /* item */ xs={12}>
-                <h2 className={classes.pageTitle}>{title}</h2>
+            {userInfo.company ? (
+              <Grid xs={12} className={classes.pageTitleContainer}>
+                <Typography className={classes.pageTitle}>
+                  {userInfo.company}
+                </Typography>
+              </Grid>
+            ) : (
+              <Grid container className={classes.eventHeaderTab}>
+                <Grid xs={9} className={classes.pageTitleContainer}>
+                  <Typography className={classes.pageTitle}>{title}</Typography>
+                </Grid>
+                <Grid xs={2}>
+                  <CustomButton
+                    startIcon="arrowBack"
+                    text={isAboutAdmin ? "Back" : "Event"}
+                    onClickFunc={() => goBackToPage(needsToSave, history)}
+                    style={{ width: "100%", marginTop: "-1rem" }}
+                  />
+                </Grid>
               </Grid>
             )}
             <Grid
@@ -871,25 +876,6 @@ export default function SectionContentManager(props) {
             </Grid>
             {/* // * Buttons Top container */}
             <Grid /* item */ xs={3} className={classes.btnSidebar}>
-              <CustomButton
-                style={{ marginBottom: "1rem" }}
-                startIcon="arrowBack"
-                text={isAboutAdmin ? "Back" : "Event"}
-                onClickFunc={() => goBackToPage(needsToSave, history)}
-              />{" "}
-              <CustomIconButton
-                style={{
-                  marginBottom: "1rem",
-                  borderRadius: "8px",
-                  backgroundColor: !needsToSave ? "inherit" : "#26b519",
-                }}
-                // make a focus light so the user knows to save
-
-                icon="save"
-                onClickFunc={saveContent}
-                disabled={!needsToSave}
-              />
-              {/* // * Buttons Top container */}
               <div className={classes.btnGroup}>
                 <CustomButton
                   text="text"
@@ -908,7 +894,20 @@ export default function SectionContentManager(props) {
                   onClickFunc={() => addToContents(createObj("qrcode"))}
                 /> */}
               </div>
+              <CustomIconButton
+                style={{
+                  marginBottom: "1rem",
+                  borderRadius: "8px",
+                  backgroundColor: !needsToSave ? "#A1FF84" : "#26b519",
+                }}
+                // make a focus light so the user knows to save
+
+                icon="save"
+                onClickFunc={saveContent}
+                disabled={!needsToSave}
+              />
               <ToggleButton
+                className={classes.togglePreviewBtn}
                 value="preview"
                 selected={toggleSelected}
                 onChange={() => {
@@ -917,7 +916,7 @@ export default function SectionContentManager(props) {
                 }}
                 /* onClick={() => handleOpen("preview")} */
               >
-                Preview
+                {toggleSelected ? "Edit" : "Preview"}
               </ToggleButton>
             </Grid>
             {/* if toggleSelected */}

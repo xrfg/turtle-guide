@@ -34,6 +34,7 @@ export default function EditSaveButton(props) {
       style={{
         backgroundColor: !props.editStatus ? "inherit" : "#26b519",
         zIndex: "15",
+        color: "white",
       }}
       icon={props.editStatus ? "save" : "edit"}
       onClickFunc={handleSaveEditBtn}

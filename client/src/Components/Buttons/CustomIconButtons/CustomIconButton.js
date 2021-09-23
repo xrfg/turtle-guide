@@ -5,7 +5,7 @@ import React from "react";
 // MatUi Component Imports
 import { IconButton } from "@material-ui/core";
 
-import { ourColors } from "../../../styles/Theme";
+import { ourColors, ourColorsTwo } from "../../../styles/Theme";
 
 // MatUi Icon imports
 import {
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
   edit: {
     "&:hover": {
-      color: "#4698f0", // blue
+      color: ourColorsTwo.persianIndigo, // blue
     },
   },
   save: {
@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
   drag: {
     color: "inherit", // grey
     "&:hover": {
-      color: ourColors.jet, // white},
+      color: ourColorsTwo.persianIndigo, // white},
     },
   },
   audio: { color: "gray", fontSize: "4rem" },

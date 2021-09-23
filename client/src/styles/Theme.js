@@ -31,6 +31,22 @@ export const ourColors = {
   lightGrey: "#ededed",
 };
 
+export const ourColorsTwo = {
+  persianIndigo: "#27187E", // blue
+  cornflowerBlue: "#758BFD", // baby blue
+  maxBluePurple: "#AEB8FE", // light blue
+  cultured: "#F1F2F6", // light gray
+  darkOrange: "#FF8600", // deep orange
+};
+
+export const ourColorsThree = {
+  spaceCadet: "#2B2D42", // dark grey
+  manatee: "#8D99AE", // grey
+  aliceBlue: "#EDF2F4", // light grey
+  imperialRed: "#EF233C", // light red
+  amaranthRed: "#D90429", // deep red
+};
+
 export const theme = createTheme({
   // overrides: {
   //   MuiFormLabel: {
@@ -56,11 +72,11 @@ export const theme = createTheme({
       white: `${ourColors.white}`,
     },
     primary: {
-      main: `${ourColors.ming}`,
-      light: `${ourColors.gainsboro}`,
+      main: `${ourColorsTwo.persianIndigo}`,
+      light: `${ourColorsTwo.cornflowerBlue}`,
     },
     secondary: {
-      main: `${ourColors.indigoDye}`,
+      main: `${ourColorsTwo.darkOrange}`,
       darkGrey: `${colors.grey}`,
       darkGreen: `${colors.ming}`,
     },
@@ -114,11 +130,18 @@ export const theme = createTheme({
   admin: {
     // container maxWidth="md"
     page: {
-      background: `linear-gradient(360deg, ${ourColors.lightGrey} 10%, ${ourColors.indigoDye} 360%)`,
+      /*  background: `linear-gradient(360deg, ${ourColorsTwo.cultured} 10%, ${ourColorsTwo.darkOrange} 360%)`, */
+      backgroundColor: ourColorsTwo.cultured,
     },
     container: {
       minHeight: "calc(100vh - 80px)",
       padding: "2rem",
+    },
+    pageTitleContainer: {
+      background: `linear-gradient(45deg, ${ourColorsTwo.darkOrange} 30%, transparent 90%)`,
+      borderRadius: "8px",
+      padding: "1rem",
+      marginBottom: "1rem",
     },
     pageTitle: {
       textAlign: "left",
@@ -126,9 +149,11 @@ export const theme = createTheme({
       lineHeight: "2.6rem",
       letterSpacing: "0px",
       textTransform: "uppercase",
-      color: ourColors.indigoDye,
-      // fontWeight: "bold",
-      marginBottom: "1rem",
+      color: "white",
+      // borderRadius: "8px",
+
+      fontWeight: "bold",
+
       // borderBottom: `2px solid ${ourColors.jet}`,
       // textShadow: `1px 2px 2px ${ourColors.indigoDye}`,
       /* textShadow: `-1px -1px 0 ${ourColors.indigoDye},
@@ -138,8 +163,8 @@ export const theme = createTheme({
     },
     sectionsContentsContainer: { paddingLeft: "2rem" },
     btnSidebar: {
-      border: `1px solid ${ourColors.gainsboro}`,
-      backgroundColor: ourColors.lightGrey,
+      border: `1px solid ${ourColorsTwo.maxBluePurple}`,
+      backgroundColor: ourColorsTwo.cultured,
       display: "flex",
       flexDirection: "column",
       borderRadius: "5px",
@@ -237,8 +262,8 @@ export const theme = createTheme({
       letterSpacing: "1px",
       textTransform: "uppercase",
       // backgroundColor: ourColors.ming,
-      background: `linear-gradient(45deg, ${ourColors.indigoDye} 30%, ${ourColors.ming} 90%)`,
-      boxShadow: `0 3px 5px 2px ${ourColors.gainsboro}`,
+      background: `linear-gradient(45deg, ${ourColorsTwo.persianIndigo} 30%, ${ourColorsTwo.cornflowerBlue} 90%)`,
+      boxShadow: `0 3px 5px 2px ${ourColors.jet}`,
       color: "white",
       borderRadius: "5px",
       padding: "0.4rem 0.8rem",
@@ -249,6 +274,7 @@ export const theme = createTheme({
         // color: ourColors.black,
       },
     },
+    btnIcon: { backgroundColor: "transparent", padding: "0.6rem" },
     modalbtn: {
       fontWeight: 800,
       letterSpacing: "1px",
@@ -271,7 +297,7 @@ export const theme = createTheme({
       right: 0,
       transform: "scale(1.2)",
     },
-    btnIcon: {},
+
     //   btnUpdateItem: {
     //     fontSize: "0.9rem",
     //     textTransform: "uppercase",

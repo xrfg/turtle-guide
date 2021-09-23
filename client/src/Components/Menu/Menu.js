@@ -21,6 +21,7 @@ import { signOut } from "../../store/actions/userActions";
 import MenuItem from "../MenuItem/MenuItem";
 
 import { useDispatch, useSelector } from "react-redux";
+import { ourColorsTwo } from "../../styles/Theme";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -68,6 +69,7 @@ const Menu = () => {
                 dispatch(signOut());
                 history.push("/");
               }}
+              style={{ color: ourColorsTwo.darkOrange }}
             >
               Log out
             </Button>
@@ -81,6 +83,7 @@ const Menu = () => {
               onClick={() => {
                 history.push("/subscription");
               }}
+              style={{ color: ourColorsTwo.darkOrange }}
             >
               Subscribe
             </Button>
