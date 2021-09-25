@@ -7,7 +7,7 @@
 // TODO Add video render from cloudinary
 // TODO clean code
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 
 // * Imports
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
@@ -90,6 +90,9 @@ const useStyles = makeStyles((theme) =>
       // alignItems: "center",
       // width: "100vw",
     },
+    // empty main container to do not use the grandient BG in intro
+    mainContainerIntro: {},
+
     // * Custom CSS
     sectionCoverWrap: {
       // boxShadow: "3px 3px 15px -8px rgba(0,0,0,0.86)",
@@ -224,6 +227,14 @@ const SectionPreview = (props) => {
   } = props;
 
   // * States
+  // for parallax
+  const [totalParallaxPages, setTotalParallaxPages] = useState(0);
+  // viewport
+  const [viewPortSize] = useState(window.innerHeight - 60);
+
+  // the toatl height of content
+  const [totalContentPixels, setTotalContentPixels] = useState(0);
+
   // is intro state
   // if id === 1 sets to true
   const [isIntro, setIsIntro] = useState(false);
@@ -237,6 +248,63 @@ const SectionPreview = (props) => {
 
     //eslint-disable-next-line
   }, []);
+
+  // useCallback instead of useRef
+  const mainContainerRef = useCallback((node) => {
+    // skips to avoid double set
+    if (totalContentPixels === 0) {
+      setTotalContentPixels(node?.scrollHeight);
+    }
+
+    //eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
+    // if the pages are already set skips
+    if (totalParallaxPages !== 0) {
+      return null;
+    }
+    let pages = 0;
+
+    console.log(
+      "totalContentPixels / viewPortSize",
+      totalContentPixels / viewPortSize
+    );
+
+    console.log("getViewportSize", viewPortSize);
+    console.log("totalPixels", totalContentPixels);
+
+    if (totalContentPixels / viewPortSize < 1.45) {
+      pages = totalContentPixels / viewPortSize;
+      console.log("totalpages", pages);
+      return setTotalParallaxPages(1);
+    }
+
+    if (totalContentPixels / viewPortSize < 2) {
+      pages = totalContentPixels / viewPortSize;
+      console.log("totalpages", pages);
+      return setTotalParallaxPages(pages);
+    }
+
+    if (totalContentPixels / viewPortSize < 4) {
+      pages = totalContentPixels / viewPortSize + 0.75;
+      console.log("totalpages", pages);
+      return setTotalParallaxPages(pages);
+    }
+
+    if (totalContentPixels / viewPortSize < 6) {
+      pages = totalContentPixels / viewPortSize + 1;
+      console.log("totalpages", pages);
+      return setTotalParallaxPages(pages);
+    }
+
+    pages = Math.ceil(totalContentPixels / viewPortSize) + 1.25;
+    console.log("totalpages", pages);
+
+    return setTotalParallaxPages(pages);
+
+    //eslint-disable-next-line
+  }, [totalContentPixels]);
 
   return (
     <>
@@ -261,120 +329,263 @@ const SectionPreview = (props) => {
             : {}
         }
       >
-        {sectionCover.url === "" ? (
-          isIntro ? (
-            <h1>No Background image yet, please choose one</h1>
-          ) : (
-            <h1>No cover image yet, please choose one</h1>
-          )
-        ) : (
-          !isIntro && (
-            <div className={classes.sectionCoverWrap}>
-              <div
-                className={classes.sectionCover}
-                style={{
-                  backgroundImage: `url(${sectionCover.url})`,
-                }}
-                alt="section-cover"
-                // src={sectionCover.url}
-              />
+        {totalParallaxPages === 0 ? (
+          <div
+            id="mockDiv"
+            className={`${
+              isIntro ? classes.mainContainerIntro : classes.mainContainer
+            }`}
+            ref={mainContainerRef}
+          >
+            {sectionCover.url === "" ? (
+              isIntro ? (
+                <h1>No Background image yet, please choose one</h1>
+              ) : (
+                <h1>No cover image yet, please choose one</h1>
+              )
+            ) : (
+              !isIntro && (
+                <div className={classes.sectionCoverWrap}>
+                  <div
+                    className={classes.sectionCover}
+                    style={{
+                      backgroundImage: `url(${sectionCover.url})`,
+                    }}
+                    alt="section-cover"
+                    // src={sectionCover.url}
+                  />
+                </div>
+              )
+            )}
+            <div className={isIntro ? "" : classes.sectionTitleWrap}>
+              <Card className={classes.introTitle}>
+                <Typography
+                  gutterBottom={true}
+                  variant={"h5"}
+                  className={isIntro ? "" : classes.sectionTitle}
+                >
+                  {sectionTitle}
+                </Typography>
+              </Card>
             </div>
-          )
-        )}
-        <div className={isIntro ? "" : classes.sectionTitleWrap}>
-          <Card className={classes.introTitle}>
-            <Typography
-              gutterBottom={true}
-              variant={"h5"}
-              className={isIntro ? "" : classes.sectionTitle}
-            >
-              {sectionTitle}
-            </Typography>
-          </Card>
-        </div>
 
-        {!isIntro && (
-          <>
-            <ReactQuill
-              className={classes.sectionDescription}
-              value={sectionDescription}
-              readOnly={true}
-              theme={"bubble"}
-            />
-          </>
-        )}
-        {/* // * mapping to render divided by types */}
-        {contents.map((x) => {
-          /* images */
-          if (x.type === "image") {
-            return (
-              <div className={classes.card}>
-                <img
-                  className={classes.image}
-                  key={x.content.public_id}
-                  alt="complex"
-                  src={x.content.url}
-                />
-                <p className={classes.imageCaptionTitle}>
-                  {x.content.caption?.title} -
-                  <span>{x.content.caption?.description}</span>
-                </p>
-              </div>
-            );
-          }
-
-          /*  video */
-          if (x.type === "video") {
-            // passes the url video to video
-            return (
-              <div className="video-card">
-                <video width="400" controls>
-                  <source src={x.content.url} type="video/mp4" />
-                </video>
-                <h3>{x.content.caption?.title}</h3>
-                <h4>{x.content.caption?.description}</h4>
-              </div>
-            );
-          }
-          /*  audio */
-          if (x.type === "audio") {
-            console.log("x audio", x);
-            // passes the url audio to audio
-            return (
-              <div className="video-card">
-                <audio controls>
-                  {/* Select audio format */}
-                  {x.content.filename === "MP3" && (
-                    <source src={x.content.url} type="audio/mp3" />
-                  )}
-                  {x.content.filename === "WAV" && (
-                    <source src={x.content.url} type="audio/x-wav" />
-                  )}
-                  {x.content.filename === "OGG" && (
-                    <source src={x.content.url} type="application/ogg" />
-                  )}
-                </audio>
-                <h3>{x.content.caption?.title}</h3>
-                <h4>{x.content.caption?.description}</h4>
-              </div>
-            );
-          }
-
-          /*  text */
-          if (x.type === "text") {
-            return (
-              <Card>
+            {!isIntro && (
+              <>
                 <ReactQuill
-                  className={classes.text}
-                  value={x.content}
+                  className={classes.sectionDescription}
+                  value={sectionDescription}
                   readOnly={true}
                   theme={"bubble"}
                 />
-              </Card>
-            );
-          }
-          return null;
-        })}
+              </>
+            )}
+            {/* // * mapping to render divided by types */}
+            {contents.map((x) => {
+              /* images */
+              if (x.type === "image") {
+                return (
+                  <div className={classes.card}>
+                    <img
+                      className={classes.image}
+                      key={x.content.public_id}
+                      alt="complex"
+                      src={x.content.url}
+                    />
+                    <p className={classes.imageCaptionTitle}>
+                      {x.content.caption?.title} -
+                      <span>{x.content.caption?.description}</span>
+                    </p>
+                  </div>
+                );
+              }
+
+              /*  video */
+              if (x.type === "video") {
+                // passes the url video to video
+                return (
+                  <div className="video-card">
+                    <video width="400" controls>
+                      <source src={x.content.url} type="video/mp4" />
+                    </video>
+                    <h3>{x.content.caption?.title}</h3>
+                    <h4>{x.content.caption?.description}</h4>
+                  </div>
+                );
+              }
+              /*  audio */
+              if (x.type === "audio") {
+                console.log("x audio", x);
+                // passes the url audio to audio
+                return (
+                  <div className="video-card">
+                    <audio controls>
+                      {/* Select audio format */}
+                      {x.content.filename === "MP3" && (
+                        <source src={x.content.url} type="audio/mp3" />
+                      )}
+                      {x.content.filename === "WAV" && (
+                        <source src={x.content.url} type="audio/x-wav" />
+                      )}
+                      {x.content.filename === "OGG" && (
+                        <source src={x.content.url} type="application/ogg" />
+                      )}
+                    </audio>
+                    <h3>{x.content.caption?.title}</h3>
+                    <h4>{x.content.caption?.description}</h4>
+                  </div>
+                );
+              }
+
+              /*  text */
+              if (x.type === "text") {
+                return (
+                  <Card>
+                    <ReactQuill
+                      className={classes.text}
+                      value={x.content}
+                      readOnly={true}
+                      theme={"bubble"}
+                    />
+                  </Card>
+                );
+              }
+              return null;
+            })}
+          </div>
+        ) : (
+          // {totalParallaxPages === 0 ? (
+          //   <Spinner />
+          // ) : (
+
+          <div
+            // ref={mainContainerRef}
+            className={`${
+              isIntro ? classes.mainContainerIntro : classes.mainContainer
+            }`}
+          >
+            <Parallax pages={totalParallaxPages}>
+              <ParallaxLayer offset={0} speed={0.5}>
+                {sectionCover.url === "" ? (
+                  isIntro ? (
+                    <h1>No Background image yet, please choose one</h1>
+                  ) : (
+                    <h1>No cover image yet, please choose one</h1>
+                  )
+                ) : (
+                  !isIntro && (
+                    <div className={classes.sectionCoverWrap}>
+                      <div
+                        className={classes.sectionCover}
+                        style={{
+                          backgroundImage: `url(${sectionCover.url})`,
+                        }}
+                        alt="section-cover"
+                        // src={sectionCover.url}
+                      />
+                    </div>
+                  )
+                )}
+                <div className={isIntro ? "" : classes.sectionTitleWrap}>
+                  <Card className={classes.introTitle}>
+                    <Typography
+                      gutterBottom={true}
+                      variant={"h5"}
+                      className={isIntro ? "" : classes.sectionTitle}
+                    >
+                      {sectionTitle}
+                    </Typography>
+                  </Card>
+                </div>
+
+                {!isIntro && (
+                  <>
+                    <ReactQuill
+                      className={classes.sectionDescription}
+                      value={sectionDescription}
+                      readOnly={true}
+                      theme={"bubble"}
+                    />
+                  </>
+                )}
+                {/* // * mapping to render divided by types */}
+                {contents.map((x) => {
+                  /* images */
+                  if (x.type === "image") {
+                    return (
+                      <div className={classes.card}>
+                        <img
+                          className={classes.image}
+                          key={x.content.public_id}
+                          alt="complex"
+                          src={x.content.url}
+                        />
+                        <p className={classes.imageCaptionTitle}>
+                          {x.content.caption?.title} -
+                          <span>{x.content.caption?.description}</span>
+                        </p>
+                      </div>
+                    );
+                  }
+
+                  /*  video */
+                  if (x.type === "video") {
+                    // passes the url video to video
+                    return (
+                      <div className="video-card">
+                        <video width="400" controls>
+                          <source src={x.content.url} type="video/mp4" />
+                        </video>
+                        <h3>{x.content.caption?.title}</h3>
+                        <h4>{x.content.caption?.description}</h4>
+                      </div>
+                    );
+                  }
+                  /*  audio */
+                  if (x.type === "audio") {
+                    console.log("x audio", x);
+                    // passes the url audio to audio
+                    return (
+                      <div className="video-card">
+                        <audio controls>
+                          {/* Select audio format */}
+                          {x.content.filename === "MP3" && (
+                            <source src={x.content.url} type="audio/mp3" />
+                          )}
+                          {x.content.filename === "WAV" && (
+                            <source src={x.content.url} type="audio/x-wav" />
+                          )}
+                          {x.content.filename === "OGG" && (
+                            <source
+                              src={x.content.url}
+                              type="application/ogg"
+                            />
+                          )}
+                        </audio>
+                        <h3>{x.content.caption?.title}</h3>
+                        <h4>{x.content.caption?.description}</h4>
+                      </div>
+                    );
+                  }
+
+                  /*  text */
+                  if (x.type === "text") {
+                    return (
+                      <Card>
+                        <ReactQuill
+                          className={classes.text}
+                          value={x.content}
+                          readOnly={true}
+                          theme={"bubble"}
+                        />
+                      </Card>
+                    );
+                  }
+                  return null;
+                })}
+              </ParallaxLayer>
+            </Parallax>
+          </div>
+        )}
       </Container>
     </>
   );
