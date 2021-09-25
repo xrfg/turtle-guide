@@ -14,17 +14,14 @@ import { TextField, Typography, makeStyles, Box } from "@material-ui/core";
 import EditSaveButton from "../../Components/Buttons/EditSaveButton";
 
 // * our colors
-import { ourColors } from "../../styles/Theme";
+import { ourColors, ourColorsTwo } from "../../styles/Theme";
 
 const useStyles = makeStyles((theme) => ({
   eventNameContainer: {
     display: "flex",
     alignItems: "center",
-    // padding: "1rem",
-    borderRadius: "8px",
-    // backgroundColor: ourColors.lightGrey,
     width: "100%",
-    marginBottom: "1rem",
+    ...theme.admin.pageTitleContainer,
   },
   nameInput: { marginRight: "1rem" },
   pageTitle: { ...theme.admin.pageTitle, marginBottom: "0" },
@@ -97,6 +94,7 @@ const EventName = (props) => {
             shrink: true,
           }}
           onChange={onChange}
+          color="secondary"
         />
       ) : (
         <Typography

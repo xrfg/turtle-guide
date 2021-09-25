@@ -50,7 +50,26 @@ import {
   DialogTitle,
 } from "@material-ui/core";
 
+// MatUi Style Imports
+import { makeStyles } from "@material-ui/core/styles";
+import { ourColors, theme } from "../../styles/Theme";
+
+import CustomButton from "../Buttons/CustomButtons/CustomButton";
+
+const useStyles = makeStyles((theme) => ({
+  modalBtn: {
+    ...theme.buttons.modalbtn,
+  },
+  delBtn: {
+    backgroundColor: "white",
+    "&:hover": {
+      backgroundColor: "#F06569",
+    },
+  },
+}));
+
 const PopUpDialogBox = (props) => {
+  const classes = useStyles();
   // destru
   const { open, confirmButtonTitle, messageTitle, messageBody } = props;
 
@@ -80,6 +99,7 @@ const PopUpDialogBox = (props) => {
         onClose={toggleMsg}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        className={classes.dialogBox}
       >
         <DialogTitle id="alert-dialog-title">{messageTitle}</DialogTitle>
         <DialogContent>
@@ -88,10 +108,22 @@ const PopUpDialogBox = (props) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={toggleMsg} color="primary" autoFocus>
+          {/* <CustomButton onClickFunc={toggleMsg} autoFocus text="cancel" /> */}
+          <Button
+            onClick={toggleMsg}
+            color="primary"
+            autoFocus
+            className={classes.modalBtn}
+            /* style={{ backgroundColor: ourColors.lightGrey }} */
+          >
             Cancel
           </Button>
-          <Button onClick={onConfirm} color="primary">
+          {/* <CustomButton onClickFunc={onConfirm} text={confirmButtonTitle} /> */}
+          <Button
+            onClick={onConfirm}
+            color="primary"
+            className={`${classes.modalBtn} ${classes.delBtn}`}
+          >
             {confirmButtonTitle}
           </Button>
         </DialogActions>

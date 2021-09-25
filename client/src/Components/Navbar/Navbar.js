@@ -21,7 +21,10 @@ import { ourColors } from "../../styles/Theme";
 const Navbar = () => {
   return (
     <AppBar
-      style={{ backgroundColor: ourColors.lightGrey, position: "relative" }}
+      style={{
+        backgroundColor: ourColors.lightGrey,
+        position: "relative",
+      }}
     >
       <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
         <Link className="navbar-brand" to="/">

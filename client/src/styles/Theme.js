@@ -31,6 +31,22 @@ export const ourColors = {
   lightGrey: "#ededed",
 };
 
+export const ourColorsTwo = {
+  persianIndigo: "#27187E", // blue
+  cornflowerBlue: "#758BFD", // baby blue
+  maxBluePurple: "#AEB8FE", // light blue
+  cultured: "#F1F2F6", // light gray
+  darkOrange: "#FF8600", // deep orange
+};
+
+export const ourColorsThree = {
+  spaceCadet: "#2B2D42", // dark grey
+  manatee: "#8D99AE", // grey
+  aliceBlue: "#EDF2F4", // light grey
+  imperialRed: "#EF233C", // light red
+  amaranthRed: "#D90429", // deep red
+};
+
 export const theme = createTheme({
   // overrides: {
   //   MuiFormLabel: {
@@ -56,7 +72,7 @@ export const theme = createTheme({
       white: `${ourColors.white}`,
     },
     primary: {
-      main: `${ourColors.ming}`,
+      main: `${ourColors.indigoDye}`,
       light: `${ourColors.gainsboro}`,
     },
     secondary: {
@@ -115,10 +131,18 @@ export const theme = createTheme({
     // container maxWidth="md"
     page: {
       background: `linear-gradient(360deg, ${ourColors.lightGrey} 10%, ${ourColors.indigoDye} 360%)`,
+      // backgroundColor: ourColorsTwo.cultured,
     },
     container: {
       minHeight: "calc(100vh - 80px)",
       padding: "2rem",
+    },
+    pageTitleContainer: {
+      // background: `linear-gradient(45deg, ${ourColorsTwo.darkOrange} 30%, transparent 90%)`,
+      // borderRadius: "8px",
+      padding: "1rem",
+      marginBottom: "1rem",
+      // borderBottom: `1px solid ${ourColors.indigoDye}`,
     },
     pageTitle: {
       textAlign: "left",
@@ -127,10 +151,12 @@ export const theme = createTheme({
       letterSpacing: "0px",
       textTransform: "uppercase",
       color: ourColors.indigoDye,
+      // borderRadius: "8px",
+
       // fontWeight: "bold",
-      marginBottom: "1rem",
+
       // borderBottom: `2px solid ${ourColors.jet}`,
-      // textShadow: `1px 2px 2px ${ourColors.indigoDye}`,
+      // textShadow: `1px 2px 2px ${ourColors.jet}`,
       /* textShadow: `-1px -1px 0 ${ourColors.indigoDye},
       1px -1px 0 ${ourColors.indigoDye},
       -1px 1px 0 ${ourColors.indigoDye},
@@ -253,29 +279,29 @@ export const theme = createTheme({
         // color: ourColors.black,
       },
     },
+    btnIcon: { backgroundColor: "transparent", padding: "0.6rem" },
     modalbtn: {
+      marginLeft: "auto",
       fontWeight: 800,
       letterSpacing: "1px",
       textTransform: "uppercase",
-      padding: "0.4rem 0.8rem",
-      background: "transparent",
+      padding: "0.5rem 1rem",
       borderRadius: "5px",
       border: `1px solid ${ourColors.jet}`,
       transition: "all 0.1s",
+      backgroundColor: ourColors.lightGrey,
       "&:hover": {
         cursor: "pointer",
-        background: ourColors.lightGrey,
+        backgroundColor: ourColors.indigoDye,
+        color: "white",
       },
       color: ourColors.jet,
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      position: "absolute",
-      bottom: "0",
-      right: 0,
-      transform: "scale(1.2)",
+      position: "relative",
     },
-    btnIcon: {},
+
     //   btnUpdateItem: {
     //     fontSize: "0.9rem",
     //     textTransform: "uppercase",

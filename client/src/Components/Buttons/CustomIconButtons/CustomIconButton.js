@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
   edit: {
     "&:hover": {
-      color: "#4698f0", // blue
+      color: ourColors.indigoDye, // blue
     },
   },
   save: {
@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
   drag: {
     color: "inherit", // grey
     "&:hover": {
-      color: ourColors.jet, // white},
+      color: ourColors.indigoDye, // white},
     },
   },
   audio: { color: "gray", fontSize: "4rem" },

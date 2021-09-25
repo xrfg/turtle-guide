@@ -9,6 +9,8 @@ import { useHistory } from "react-router-dom";
 import slugify from "react-slugify";
 import { toast } from "react-toastify";
 
+import { Delete } from "@material-ui/icons";
+
 // * REDUX
 import { useSelector, useDispatch } from "react-redux";
 
@@ -58,6 +60,13 @@ const useStyles = makeStyles((theme) => ({
     padding: "1rem 0",
     display: "flex",
     justifyContent: "space-around",
+  },
+  delBtn: {
+    padding: "0.6rem",
+    backgroundColor: "#F06569",
+    color: "white",
+    transition: "all 0.2s",
+    "&:hover": { backgroundColor: "transparent", color: "#F06569" },
   },
   saveDelBtnGrp: {
     // backgroundColor: "red",
@@ -443,26 +452,15 @@ export default function Event(props) {
                 <CustomButton
                   text="Account"
                   startIcon="arrowBack"
+                  style={{ marginBottom: "1rem" }}
                   onClickFunc={() => goBackToPage(needsToSave, history)}
                 />
-                <ButtonGroup className={classes.eventBtnGrp}>
-                  <CustomIconButton
-                    icon="save"
-                    disabled={!needsToSave}
-                    onClickFunc={saveEvent}
-                    // make a focus light so the user knows to save
-                    style={{
-                      backgroundColor: !needsToSave ? "inherit" : "#26b519",
-                    }}
-                  />
-                  {/* // ?  temporarly disabled, to implement? */}
-                  {/* // TODO add check saving */}
-                  <CustomIconButton
-                    color="error"
-                    icon="delete"
-                    onClickFunc={toggleDeleteDialogBox}
-                  />
-                </ButtonGroup>
+                <Button
+                  onClick={toggleDeleteDialogBox}
+                  className={classes.delBtn}
+                >
+                  <Delete />
+                </Button>
               </Grid>
             </Grid>
             {/* // * Header */}
@@ -483,6 +481,17 @@ export default function Event(props) {
                 text="Section"
                 endIcon="add"
                 onClickFunc={() => addToContents()}
+                style={{ marginBottom: "1rem" }}
+              />
+              <CustomIconButton
+                icon="save"
+                disabled={!needsToSave}
+                onClickFunc={saveEvent}
+                // make a focus light so the user knows to save
+                style={{
+                  backgroundColor: !needsToSave ? "#A1FF84" : "#26b519",
+                  borderRadius: "8px",
+                }}
               />
 
               {/* <ButtonGroup

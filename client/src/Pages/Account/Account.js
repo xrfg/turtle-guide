@@ -33,7 +33,13 @@ import CustomIconButton from "../../Components/Buttons/CustomIconButtons/CustomI
 
 const useStyles = makeStyles((theme) => ({
   page: { ...theme.admin.page },
-  container: { ...theme.admin.container }, // main Admin container class
+  container: {
+    ...theme.admin.container,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingBottom: "8rem", // make it go a bit up
+  }, // main Admin container class
   card: {
     // marginTop: "10rem",
     // padding: "1rem",

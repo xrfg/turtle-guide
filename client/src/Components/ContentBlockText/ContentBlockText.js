@@ -183,6 +183,7 @@ const ContentBlockText = (props) => {
       </CardContent>
       <CardActions className={classes.iconsContainer}>
         {/*  // * editing title/description */}
+
         <CustomIconButton
           icon={isEditing ? "save" : "edit"}
           onClickFunc={() => editContent(id)}
@@ -193,10 +194,12 @@ const ContentBlockText = (props) => {
         >
           {props.isDraggable ? <CustomIconButton icon="drag" /> : null}
           {/* //* Sends the id to the parent */}
-          <CustomIconButton
-            icon="delete"
-            onClickFunc={() => removeContent(id)}
-          />
+          {id !== 999999 ? (
+            <CustomIconButton
+              icon="delete"
+              onClickFunc={() => removeContent(id)}
+            />
+          ) : null}
         </ButtonGroup>
       </CardActions>
     </Card>
