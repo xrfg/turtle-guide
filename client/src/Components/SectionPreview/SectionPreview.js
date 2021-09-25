@@ -29,8 +29,7 @@ const windowHeight = window.innerHeight;
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      "& > *": {
-        // margin: theme.spacing(1),
+      "& > div": {
         margin: "0",
         padding: "0",
       },
@@ -39,6 +38,7 @@ const useStyles = makeStyles((theme) =>
       minWidth: "100%",
       minHeight: windowHeight - 70 + "px", // the height of the bottom navbar
       maxWidth: "100%",
+      width: "50px",
       overflow: "hidden",
     },
     introBackground: {
@@ -91,8 +91,20 @@ const useStyles = makeStyles((theme) =>
       // width: "100vw",
     },
     // empty main container to do not use the grandient BG in intro
-    mainContainerIntro: {},
+    mainContainerIntro: {
+      position: "absolute",
+      top: 0,
+      bottom: 0,
+      right: 0,
+      left: 0,
 
+      // margin: "20px",
+    },
+    // To adjust parallax
+    parallaxContainer: {
+      paddingLeft: "20px",
+      paddingRight: "20px",
+    },
     // * Custom CSS
     sectionCoverWrap: {
       // boxShadow: "3px 3px 15px -8px rgba(0,0,0,0.86)",
@@ -310,13 +322,11 @@ const SectionPreview = (props) => {
     <>
       <Container
         maxWidth="xs"
-        className={
-          adminPreview
-            ? classes.adminPreview
-            : // : isIntro
-              // ? classes.introBackground
-              classes.root
+        className={`  
+        ${adminPreview ? classes.adminPreview : classes.root} ${
+          classes.mainContainer
         }
+        `}
         style={
           isIntro
             ? {
@@ -453,18 +463,17 @@ const SectionPreview = (props) => {
             })}
           </div>
         ) : (
-          // {totalParallaxPages === 0 ? (
-          //   <Spinner />
-          // ) : (
-
           <div
-            // ref={mainContainerRef}
             className={`${
               isIntro ? classes.mainContainerIntro : classes.mainContainer
-            }`}
+            } `}
           >
             <Parallax pages={totalParallaxPages}>
-              <ParallaxLayer offset={0} speed={0.5}>
+              <ParallaxLayer
+                offset={0}
+                speed={0.5}
+                className={classes.parallaxContainer}
+              >
                 {sectionCover.url === "" ? (
                   isIntro ? (
                     <h1>No Background image yet, please choose one</h1>
