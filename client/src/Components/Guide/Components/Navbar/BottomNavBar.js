@@ -11,7 +11,7 @@ import { Settings, Map, DirectionsWalk, Home } from "@material-ui/icons";
 // * Custom Hooks
 import useGetEvent from "../../Hooks/useGetEvent";
 
-// react router
+// react router //
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
