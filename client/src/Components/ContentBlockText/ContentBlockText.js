@@ -134,13 +134,6 @@ const ContentBlockText = (props) => {
     setIsEditing((prev) => !prev);
   };
 
-  /**
-   * @desc activate drag
-   *
-   */
-
-  // id: 999999,
-
   return (
     <Card
       className={id === 999999 ? classes.paperDesc : classes.paper}

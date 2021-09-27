@@ -90,10 +90,15 @@ const ContentBlockMedia = (props) => {
 
   // * State
   const [isEditing, setIsEditing] = useState(false);
-  const [mediaCaption, setMediaCaption] = useState({
-    title: "",
-    description: "",
-  });
+  const [mediaCaption, setMediaCaption] = useState(
+    {
+      title: caption.title,
+      description: caption.description,
+    } || {
+      title: "",
+      description: "",
+    }
+  );
 
   // * Functions
   /**
@@ -143,6 +148,8 @@ const ContentBlockMedia = (props) => {
    * @param e
    */
   const handleChange = (e) => {
+    console.log("handleChange", [e.target.name], e.target.value);
+
     // set media caption obj
     setMediaCaption({ ...mediaCaption, [e.target.name]: e.target.value });
   };
@@ -184,12 +191,10 @@ const ContentBlockMedia = (props) => {
               label="Title"
               name="title"
               onChange={handleChange}
-              value={caption?.title || mediaCaption.title}
+              value={mediaCaption.title}
             />
           ) : !isEditing && mediaCaption.title.length !== 0 ? (
-            <span className={classes.imageTitle}>
-              {caption?.title || mediaCaption.title}
-            </span>
+            <span className={classes.imageTitle}>{mediaCaption.title}</span>
           ) : caption?.title ? (
             <span className={classes.imageTitle}>{caption?.title}</span>
           ) : (
@@ -205,11 +210,11 @@ const ContentBlockMedia = (props) => {
               maxRows="2"
               fullWidth
               onChange={handleChange}
-              value={caption?.description || mediaCaption.description}
+              value={mediaCaption.description}
             />
           ) : !isEditing && mediaCaption.description.length !== 0 ? (
             <span className={classes.imageDesc}>
-              {caption?.description || mediaCaption.description}
+              {mediaCaption.description}
             </span>
           ) : caption?.description ? (
             <span className={classes.imageDesc}>{caption?.description}</span>

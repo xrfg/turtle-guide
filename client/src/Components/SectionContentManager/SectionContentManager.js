@@ -440,7 +440,6 @@ export default function SectionContentManager(props) {
    * @desc add media caption to the element into the array (state)
    */
   const addMediaCaption = (id, caption) => {
-    console.log("addMediaCaption", id, caption);
     contents.forEach((x) => {
       if (x.id === id) {
         console.log("adding");
@@ -619,7 +618,6 @@ export default function SectionContentManager(props) {
   const editUserInfo = () => {
     // if is already in editng mode it saves
     if (isEditingUserInfo) {
-      console.log("save editing use rinfo");
       saveContent();
     }
     // set editing
