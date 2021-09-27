@@ -227,7 +227,7 @@ export default function EventSection(props) {
               /* style={{ zIndex: "25" }} */
               value={description}
               readOnly={true}
-              theme={"bubble"}
+              theme={null}
             />
           </Box>
         </CardContent>
