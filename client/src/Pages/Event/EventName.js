@@ -25,9 +25,16 @@ import { ourColors, ourColorsTwo } from "../../styles/Theme";
 const useStyles = makeStyles((theme) => ({
   eventNameContainer: {
     display: "flex",
-    alignItems: "center",
+    flexDirection: "column",
+    alignItems: "flex-start",
     width: "100%",
     ...theme.admin.pageTitleContainer,
+  },
+  nameChangeContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: "1rem",
   },
   nameInput: { marginRight: "1rem" },
   pageTitle: { ...theme.admin.pageTitle, marginBottom: "0" },
@@ -83,7 +90,7 @@ const EventName = (props) => {
 
   return (
     <Grid item xs={12} container className={classes.eventNameContainer}>
-      <Grid item>
+      <Grid item className={classes.nameChangeContainer}>
         {editing ? (
           <TextField
             disabled={editing ? false : true}
@@ -107,16 +114,16 @@ const EventName = (props) => {
           </Typography>
         )}
         <EditSaveButton editStatus={editing} editHandler={handleSaveEditBtn} />
-        <Grid item>
-          <Typography className={classes.nameInput}>
-            <div>
-              The address of your event is:{" "}
-              <a target="_blank" rel="noreferrer" href={`/events/${slug}`}>
-                /{slug}
-              </a>
-            </div>
-          </Typography>
-        </Grid>
+      </Grid>
+      <Grid item>
+        <Typography className={classes.nameInput}>
+          <div>
+            The address of your event is:{" "}
+            <a target="_blank" rel="noreferrer" href={`/events/${slug}`}>
+              /{slug}
+            </a>
+          </div>
+        </Typography>
       </Grid>
     </Grid>
   );

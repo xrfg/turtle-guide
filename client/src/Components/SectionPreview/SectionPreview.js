@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) =>
       //   "linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(170,186,171,1) 100%)", // light green
       // background:
       //   " linear-gradient(0deg, rgba(215,221,232,0.6) 0%, rgba(117,127,154,0.6) 100%)", // blue grey
-      position: "absolute",
+      // position: "absolute",
       top: 0,
       bottom: 0,
       right: 0,

@@ -798,32 +798,16 @@ export default function SectionContentManager(props) {
             {/* // * Do not render title if is about admin */}
             {userInfo.company ? (
               <Grid container className={classes.eventHeaderTab}>
-                <Grid xs={9} className={classes.pageTitleContainer}>
+                <Grid xs={12} className={classes.pageTitleContainer}>
                   <Typography className={classes.pageTitle}>
                     {userInfo.company}
                   </Typography>
                 </Grid>
-                <Grid xs={3} className={classes.pageTitleContainer}>
-                  <CustomButton
-                    startIcon="arrowBack"
-                    text={isAboutAdmin ? "Back" : "Event"}
-                    onClickFunc={() => goBackToPage(needsToSave, history)}
-                    style={{ width: "100%", marginTop: "-1rem" }}
-                  />
-                </Grid>
               </Grid>
             ) : (
               <Grid container className={classes.eventHeaderTab}>
-                <Grid xs={9} className={classes.pageTitleContainer}>
+                <Grid xs={12} className={classes.pageTitleContainer}>
                   <Typography className={classes.pageTitle}>{title}</Typography>
-                </Grid>
-                <Grid xs={2}>
-                  <CustomButton
-                    startIcon="arrowBack"
-                    text={isAboutAdmin ? "Back" : "Event"}
-                    onClickFunc={() => goBackToPage(needsToSave, history)}
-                    style={{ width: "100%", marginTop: "-1rem" }}
-                  />
                 </Grid>
               </Grid>
             )}
@@ -887,6 +871,13 @@ export default function SectionContentManager(props) {
             </Grid>
             {/* // * Buttons Top container */}
             <Grid /* item */ xs={3} className={classes.btnSidebar}>
+              <CustomButton
+                startIcon="arrowBack"
+                text={isAboutAdmin ? "Back" : "Event"}
+                onClickFunc={() => goBackToPage(needsToSave, history)}
+                style={{ marginBottom: "1rem" }}
+              />
+
               <div className={classes.btnGroup}>
                 <CustomButton
                   text="text"

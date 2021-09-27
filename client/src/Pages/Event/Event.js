@@ -453,14 +453,6 @@ export default function Event(props) {
                   justifyContent: "flex-end",
                 }}
               >
-                {/* // ?  temporarly disabled, to implement? */}
-                {/* // TODO add check saving */}
-                <CustomButton
-                  text="Account"
-                  startIcon="arrowBack"
-                  style={{ marginBottom: "1rem" }}
-                  onClickFunc={() => goBackToPage(needsToSave, history)}
-                />
                 <Button
                   onClick={toggleDeleteDialogBox}
                   className={classes.delBtn}
@@ -478,6 +470,12 @@ export default function Event(props) {
         // * Add BTN + Disabled ones
         */}
             <Grid className={classes.btnSidebar} item xs={3}>
+              <CustomButton
+                text="Account"
+                startIcon="arrowBack"
+                style={{ marginBottom: "1rem" }}
+                onClickFunc={() => goBackToPage(needsToSave, history)}
+              />
               {/* <CustomButton
                 text="Intro"
                 endIcon="add"
