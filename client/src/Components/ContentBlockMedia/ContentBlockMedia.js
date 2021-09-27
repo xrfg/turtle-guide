@@ -133,8 +133,8 @@ const ContentBlockMedia = (props) => {
     setIsEditing((prev) => !prev);
     // to save if the caption is added/edited
     if (
-      (!isEditing && mediaCaption.title.length !== 0) ||
-      mediaCaption.description.length !== 0
+      (!isEditing && mediaCaption?.title.length !== 0) ||
+      mediaCaption?.description?.length !== 0
     ) {
       // send mediacaptio and id to the parent
       // the function will pass it as a prop
@@ -192,10 +192,10 @@ const ContentBlockMedia = (props) => {
               name="title"
               onChange={handleChange}
               value={mediaCaption.title}
-              inputProps={{ maxLength: 70 }}
+              // inputProps={{ maxLength: 70 }}
             />
-          ) : !isEditing && mediaCaption.title.length !== 0 ? (
-            <span className={classes.imageTitle}>{mediaCaption.title}</span>
+          ) : !isEditing && mediaCaption?.title.length !== 0 ? (
+            <span className={classes?.imageTitle}>{mediaCaption?.title}</span>
           ) : caption?.title ? (
             <span className={classes.imageTitle}>{caption?.title}</span>
           ) : (
@@ -211,12 +211,12 @@ const ContentBlockMedia = (props) => {
               maxRows="2"
               fullWidth
               onChange={handleChange}
-              value={mediaCaption.description}
+              value={mediaCaption?.description}
               inputProps={{ maxLength: 500 }}
             />
-          ) : !isEditing && mediaCaption.description.length !== 0 ? (
+          ) : !isEditing && mediaCaption?.description.length !== 0 ? (
             <span className={classes.imageDesc}>
-              {mediaCaption.description}
+              {mediaCaption?.description}
             </span>
           ) : caption?.description ? (
             <span className={classes.imageDesc}>{caption?.description}</span>

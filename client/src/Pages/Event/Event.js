@@ -116,7 +116,6 @@ export default function Event(props) {
     // search for the event into redux
     const getEvent = events.find((x) => x.slug === slug);
 
-    console.log("use eff getEvent", getEvent);
     // set the whole event
     setEvent(getEvent);
     // set the sections state for mapping
@@ -124,8 +123,6 @@ export default function Event(props) {
 
     //eslint-disable-next-line
   }, []);
-
-  console.log("event", event);
 
   // fires when the state event is created/ updated
   useEffect(() => {
@@ -399,6 +396,7 @@ export default function Event(props) {
       // new slug
       const slug = slugify(eventName);
       // push new data into event
+
       setEvent({
         ...event,
         title: eventName,
@@ -410,7 +408,7 @@ export default function Event(props) {
       setNeedsToSave(true);
     },
     //eslint-disable-next-line
-    []
+    [event]
   );
 
   // * Listener to avoid the user to go back without saving

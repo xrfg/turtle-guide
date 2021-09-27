@@ -37,7 +37,6 @@ const Menu = () => {
   const history = useHistory();
   const classes = useStyles();
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
-  console.log("isAuthenticated", isAuthenticated);
 
   // states
   const [open, setOpen] = useState(false);

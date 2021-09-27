@@ -31,11 +31,9 @@ export const eventCreate = (obj) => {
       data: obj.event,
       token: obj.token,
     });
-    console.log("objToSend", objToSend);
     try {
       // call api
       const res = await axios(objToSend);
-      console.log("eventCreate", res);
       // res.data.data sends just the event
       await dispatch({ type: EVENT_CREATE, payload: res.data.data });
 
