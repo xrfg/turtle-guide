@@ -35,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
   navWrapper: {
     position: "fixed",
     width: "100%",
-    //height: "70px",
+    height: "90px",
+    marginTop: "-15px",
     // transitionTimingFunction: "ease-in",
     // transition: "all 1s",
     zIndex: "1000",
@@ -59,8 +60,8 @@ const useStyles = makeStyles((theme) => ({
   stepperContainer: {
     // position: "absolute",
     // marginTop: "40px",
-    marginBottom: "15px",
-    marginTop: "-10px",
+    marginBottom: "7px",
+    marginTop: "-23px",
 
     // display: "inline-block",
   },
