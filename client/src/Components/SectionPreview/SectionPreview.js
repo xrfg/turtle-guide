@@ -11,6 +11,7 @@ import React, { useEffect, useState, useCallback } from "react";
 
 // * Imports
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
+import nextId from "react-id-generator";
 
 // * Mat UI
 import { makeStyles, createStyles } from "@material-ui/core/styles";
@@ -293,13 +294,15 @@ const SectionPreview = (props) => {
     // }
 
     if (totalContentPixels / viewPortSize < 2) {
-      pages = totalContentPixels / viewPortSize;
+      pages = Math.ceil(totalContentPixels / viewPortSize) + 1;
       console.log("totalpages 1", pages);
+      // const total = pages + 0.25;
+      // console.log("totalpages 1 total", total);
       return setTotalParallaxPages(pages);
     }
 
     if (totalContentPixels / viewPortSize < 4) {
-      pages = totalContentPixels / viewPortSize + 0.5;
+      pages = Math.ceil(totalContentPixels / viewPortSize) + 1.5;
       console.log("totalpages 2", pages);
       return setTotalParallaxPages(pages);
     }
@@ -397,7 +400,7 @@ const SectionPreview = (props) => {
               /* images */
               if (x.type === "image") {
                 return (
-                  <div className={classes.card}>
+                  <div className={classes.card} key={nextId()}>
                     <img
                       className={classes.image}
                       key={x.content.public_id}
@@ -416,7 +419,7 @@ const SectionPreview = (props) => {
               if (x.type === "video") {
                 // passes the url video to video
                 return (
-                  <div className="video-card">
+                  <div className="video-card" key={nextId()}>
                     <video width="400" controls>
                       <source src={x.content.url} type="video/mp4" />
                     </video>
@@ -429,7 +432,7 @@ const SectionPreview = (props) => {
               if (x.type === "audio") {
                 // passes the url audio to audio
                 return (
-                  <div className="video-card">
+                  <div className="video-card" key={nextId()}>
                     <audio controls>
                       {/* Select audio format */}
                       {x.content.filename === "MP3" && (
@@ -451,7 +454,7 @@ const SectionPreview = (props) => {
               /*  text */
               if (x.type === "text") {
                 return (
-                  <Card>
+                  <Card key={nextId()}>
                     <ReactQuill
                       className={classes.text}
                       value={x.content}
@@ -523,7 +526,7 @@ const SectionPreview = (props) => {
                   /* images */
                   if (x.type === "image") {
                     return (
-                      <div className={classes.card}>
+                      <div className={classes.card} key={nextId()}>
                         <img
                           className={classes.image}
                           key={x.content.public_id}
@@ -542,7 +545,7 @@ const SectionPreview = (props) => {
                   if (x.type === "video") {
                     // passes the url video to video
                     return (
-                      <div className="video-card">
+                      <div className="video-card" key={nextId()}>
                         <video width="400" controls>
                           <source src={x.content.url} type="video/mp4" />
                         </video>
@@ -555,7 +558,7 @@ const SectionPreview = (props) => {
                   if (x.type === "audio") {
                     // passes the url audio to audio
                     return (
-                      <div className="video-card">
+                      <div className="video-card" key={nextId()}>
                         <audio controls>
                           {/* Select audio format */}
                           {x.content.filename === "MP3" && (
@@ -580,7 +583,7 @@ const SectionPreview = (props) => {
                   /*  text */
                   if (x.type === "text") {
                     return (
-                      <Card>
+                      <Card key={nextId()}>
                         <ReactQuill
                           className={classes.text}
                           value={x.content}

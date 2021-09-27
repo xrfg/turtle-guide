@@ -1,18 +1,13 @@
-import { createMuiTheme } from "@material-ui/core/styles"
-import React from "react"
+import { createTheme } from "@material-ui/core/styles";
 
-
-const Theme = createMuiTheme({
-    palette: {
-        primary: {
-            main: "#764abc",
-        }
-
+const Theme = createTheme({
+  palette: {
+    primary: {
+      main: "#764abc",
     },
-    background: {
-        default: "#fff"
-    }
-
-
-})
+  },
+  background: {
+    default: "#fff",
+  },
+});
 export default Theme;
