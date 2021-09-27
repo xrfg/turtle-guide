@@ -196,8 +196,7 @@ export default function SectionContentManager(props) {
     if (!isAboutAdmin) {
       return;
     }
-    // console.log("props.state.", props.state);
-    // setContents(props.state.infoAbout);
+
     console.log("useEf fetchedData", fetchedData);
     // section is into infoAbout
     setUserInfo(fetchedData);
@@ -657,7 +656,7 @@ export default function SectionContentManager(props) {
     content: section?.description, // send current description
   };
 
-  // console.log("userInfo", userInfo);
+  console.log("Object.keys(userInfo).length", userInfo);
 
   return (
     <div className={classes.page}>
@@ -856,7 +855,7 @@ export default function SectionContentManager(props) {
 
               {/* If is editing admin */}
               {/* If is editing about admin do not show */}
-              {Object.keys(userInfo).length !== 0 && (
+              {!isAboutAdmin && (
                 <>
                   {/* Section description Edit */}
                   <ContentBlockText
@@ -926,10 +925,7 @@ export default function SectionContentManager(props) {
               </ToggleButton>
             </Grid>
             {/* if toggleSelected */}
-            {/* // ? Contents container */}
-            {/* // ? Add content */}
             <Grid
-              // item -> is fucking up the styles???
               xs={9}
               className={classes.contentsContainer}
               /* style={{ padding: "0" }} */
