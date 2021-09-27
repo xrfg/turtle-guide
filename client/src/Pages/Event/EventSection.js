@@ -60,11 +60,13 @@ const useStyles = makeStyles((theme) => ({
   },
   quillText: {
     padding: "0.1rem",
-    color: "red",
     letterSpacing: "0.50000px",
-
+    cursor: "pointer !important",
     "& > div": {
-      zIndex: "25", // ! otherwise it goes under
+      zIndex: "9999", // ! otherwise it goes under
+    },
+    "& > p": {
+      cursor: "pointer !important",
     },
   },
   cardDesc: {},
@@ -256,7 +258,7 @@ export default function EventSection(props) {
         </CardContent>
       </CardActionArea>
 
-      {/* // ! all the section is draggable, should only work when dragstart is this button */}
+      {/* all the section is draggable, should only work when dragstart is this button */}
       {isIntro ? null : (
         <CardActions
           style={{

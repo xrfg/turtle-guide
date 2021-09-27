@@ -91,11 +91,10 @@ const ContentBlockMedia = (props) => {
   //   description: ""
   // });
   const [mediaCaption, setMediaCaption] = useState({
-    title: caption.title === 0 ? "" : caption.title,
-    description: caption.description === 0 ? "" : caption.description,
+    title: caption.title === undefined ? "" : caption.title,
+    description: caption.description === undefined ? "" : caption.description,
   });
 
-  console.log("caption.title === 0", caption.title === 0, caption.title);
   // * Functions
   /**
    * @function removeContent
