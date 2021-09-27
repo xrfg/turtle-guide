@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   navWrapper: {
     position: "fixed",
     width: "100%",
-    height: "70px",
+    //height: "70px",
     // transitionTimingFunction: "ease-in",
     // transition: "all 1s",
     zIndex: "1000",
@@ -50,17 +50,18 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: "20px",
+    // marginBottom: "20px",
   },
   sectionTitle: {
     fontSize: "1rem",
     color: ourColors.jet,
   },
   stepperContainer: {
-    position: "absolute",
-    marginTop: "40px",
+    // position: "absolute",
+    // marginTop: "40px",
     marginBottom: "15px",
-    backgroundColor: "transparent",
+    marginTop: "-10px",
+
     // display: "inline-block",
   },
   stepper: {
@@ -102,52 +103,50 @@ const SectionNavBar = () => {
   useGetAndSaveEvent(nameIdentifier, event);
 
   return (
-    <div>
-      <div className={`${classes.navWrapper}`}>
-        <>
-          <div className={classes.nav}>
-            <CustomIconButton
-              // with states goPrev go Next bool values
-              // if is 1 is the intro so do not go
-              disabled={idPrevSection === 1 ? true : false}
-              onClickFunc={() =>
-                goToSection(
-                  history,
-                  idPrevSection,
-                  0,
-                  idCurrentSection,
-                  eventSlug,
-                  nameIdentifier
-                )
-              }
-              icon="prev"
-            />
-            <h4 className={classes.sectionTitle}>{event?.title}</h4>
-            <CustomIconButton
-              disabled={idNextSection === 1 ? true : false}
-              onClickFunc={() =>
-                goToSection(
-                  history,
-                  idNextSection,
-                  0,
-                  idCurrentSection,
-                  eventSlug,
-                  nameIdentifier
-                )
-              }
-              icon="next"
-            />
-          </div>
-          <div className={classes.stepperContainer}>
-            <MobileStepper
-              className={classes.stepper}
-              variant="dots"
-              steps={event.sections.length - 1} // to skip the intro
-              position="static"
-              activeStep={indexCurrentSection - 1}
-            />
-          </div>
-        </>
+    <div className={`${classes.navWrapper}`}>
+      <div className={classes.nav}>
+        <CustomIconButton
+          // with states goPrev go Next bool values
+          // if is 1 is the intro so do not go
+          disabled={idPrevSection === 1 ? true : false}
+          onClickFunc={() =>
+            goToSection(
+              history,
+              idPrevSection,
+              0,
+              idCurrentSection,
+              eventSlug,
+              nameIdentifier
+            )
+          }
+          icon="prev"
+          style={{ marginRight: "1rem", padding: "0" }}
+        />
+        <h4 className={classes.sectionTitle}>{event?.title}</h4>
+        <CustomIconButton
+          disabled={idNextSection === 1 ? true : false}
+          onClickFunc={() =>
+            goToSection(
+              history,
+              idNextSection,
+              0,
+              idCurrentSection,
+              eventSlug,
+              nameIdentifier
+            )
+          }
+          icon="next"
+          style={{ marginLeft: "1rem", padding: "0" }}
+        />
+      </div>
+      <div className={classes.stepperContainer}>
+        <MobileStepper
+          className={classes.stepper}
+          variant="dots"
+          steps={event.sections.length - 1} // to skip the intro
+          position="static"
+          activeStep={indexCurrentSection - 1}
+        />
       </div>
     </div>
   );
