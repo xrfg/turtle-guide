@@ -801,10 +801,20 @@ export default function SectionContentManager(props) {
           <Grid container direction="row" /* spacing={2} */>
             {/* // * Do not render title if is about admin */}
             {userInfo.company ? (
-              <Grid xs={12} className={classes.pageTitleContainer}>
-                <Typography className={classes.pageTitle}>
-                  {userInfo.company}
-                </Typography>
+              <Grid container className={classes.eventHeaderTab}>
+                <Grid xs={9} className={classes.pageTitleContainer}>
+                  <Typography className={classes.pageTitle}>
+                    {userInfo.company}
+                  </Typography>
+                </Grid>
+                <Grid xs={3} className={classes.pageTitleContainer}>
+                  <CustomButton
+                    startIcon="arrowBack"
+                    text={isAboutAdmin ? "Back" : "Event"}
+                    onClickFunc={() => goBackToPage(needsToSave, history)}
+                    style={{ width: "100%", marginTop: "-1rem" }}
+                  />
+                </Grid>
               </Grid>
             ) : (
               <Grid container className={classes.eventHeaderTab}>
