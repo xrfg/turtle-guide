@@ -90,15 +90,10 @@ const ContentBlockMedia = (props) => {
 
   // * State
   const [isEditing, setIsEditing] = useState(false);
-  const [mediaCaption, setMediaCaption] = useState(
-    {
-      title: caption.title,
-      description: caption.description,
-    } || {
-      title: "",
-      description: "",
-    }
-  );
+  const [mediaCaption, setMediaCaption] = useState({
+    title: caption.title === 0 ? "" : caption.title,
+    description: caption.description === 0 ? "" : caption.description,
+  });
 
   // * Functions
   /**
