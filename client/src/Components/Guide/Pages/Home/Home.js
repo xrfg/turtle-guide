@@ -1,10 +1,4 @@
-import React, { useState, useRef, useLayoutEffect, useEffect } from "react";
-// import styles from "./home.css";
-import axios from "axios";
-// import toast from "toast";
-
-// * Components
-import { Link, useHistory } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
 
 // * Components
 import BlockSection from "../../Components/BlockSection/BlockSection";
@@ -12,8 +6,6 @@ import BlockSection from "../../Components/BlockSection/BlockSection";
 // * MatUI
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
-
-import { ourColors, theme } from ".././../../../styles/Theme";
 
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
@@ -149,9 +141,6 @@ export default function Home(props) {
       }
       return pages;
     };
-
-    // console.log("totalpages", pages);
-    // console.log("removedPercentage", removedPercentage(pages));
 
     setTotalParallaxPages(removedPercentage(pages));
 

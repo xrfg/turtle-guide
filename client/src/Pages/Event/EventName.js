@@ -3,24 +3,14 @@
  */
 
 // * react imports
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react";
 
 // * material UI imports Icons
-import {
-  TextField,
-  Typography,
-  makeStyles,
-  Box,
-  Grid,
-} from "@material-ui/core";
+import { TextField, Typography, makeStyles, Grid } from "@material-ui/core";
 // * material UI imports Icons
 
 // * React Components
 import EditSaveButton from "../../Components/Buttons/EditSaveButton";
-
-// * our colors
-import { ourColors, ourColorsTwo } from "../../styles/Theme";
 
 const useStyles = makeStyles((theme) => ({
   eventNameContainer: {
@@ -43,10 +33,6 @@ const EventName = (props) => {
 
   // HOOKS
   const classes = useStyles(props);
-  let history = useHistory();
-
-  // * gives the path we're on -> using it to deal with redirect in the Account page
-  const pathName = window.location.pathname;
 
   // * States
   const [eventName, setEventName] = useState(title);

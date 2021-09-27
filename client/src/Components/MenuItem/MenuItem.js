@@ -8,8 +8,6 @@ import { Link } from "react-router-dom";
 
 import { ourColors } from "../../styles/Theme";
 
-import MenuItem from "@material-ui/core/MenuItem";
-
 const MenuItemCustom = (props) => {
   /**
    * @desc PROPS: path, title (can a String or a Component)

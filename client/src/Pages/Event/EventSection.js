@@ -12,9 +12,6 @@
 
 import React, { useState } from "react";
 
-import { useHistory } from "react-router-dom";
-import slugify from "react-slugify";
-
 // * material UI imports Components
 import {
   Card,
@@ -100,12 +97,10 @@ export default function EventSection(props) {
   const classes = useStyles(props);
 
   // to use history.push(newRoute) on save
-  let history = useHistory();
 
   // * Destructuring props
   let {
     id,
-    order,
     title,
     description,
     sectionCover: { url },
@@ -150,9 +145,10 @@ export default function EventSection(props) {
   const handleTitle = (title) => {
     props.section.title = title;
   };
-  const handleDescription = (description) => {
-    props.section.description = description;
-  };
+  // temp disabled
+  // const handleDescription = (description) => {
+  //   props.section.description = description;
+  // };
 
   /**
    * @function editSection

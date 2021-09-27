@@ -6,15 +6,12 @@
 // TODO Add widget cloudinary transformation
 // TODO move menus to external component that takes props
 // TODO Externalize funcitions
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 // * Mat UI
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import {
-  Button,
-  ButtonGroup,
-  Paper,
   Container,
   Grid,
   Typography,
@@ -60,7 +57,7 @@ import { userUpdate } from "../../store/actions/userActions";
 import { goBackToPage, unBlock } from "../../functions/functions";
 import ImageHoverButton from "../Buttons/ImageHoverButton";
 import CustomButton from "../Buttons/CustomButtons/CustomButton";
-import { ourColors, ourColorsTwo } from "../../styles/Theme";
+import { ourColors } from "../../styles/Theme";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -110,7 +107,12 @@ const useStyles = makeStyles((theme) =>
 export default function SectionContentManager(props) {
   // * Destruc
   const {
-    state: { id, title, slug, nameIdentifier },
+    state: {
+      id,
+      title,
+      // slug,
+      nameIdentifier,
+    },
   } = props;
 
   const {
@@ -276,7 +278,7 @@ export default function SectionContentManager(props) {
       result.info.files.map((x, i) => {
         // TODO TEST undefined
         // if undefined
-        if (x == undefined) {
+        if (x === undefined) {
           return console.log("Upload error");
         }
 

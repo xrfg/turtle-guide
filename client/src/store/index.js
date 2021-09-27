@@ -8,7 +8,6 @@ import ReduxThunk from "redux-thunk";
 import eventsReducer from "./reducers/eventsReducer";
 import userReducer from "./reducers/userReducer";
 
-import throttle from "lodash.throttle";
 import { saveState } from "./localStorage";
 
 const rootReducer = combineReducers({
@@ -31,12 +30,10 @@ const Store = createStore(
 );
 
 Store.subscribe(() => {
-  // throttle(() => {
   saveState({
     events: Store.getState().events,
     user: Store.getState().user,
   });
-  // }, 1000);
 });
 
 export default Store;

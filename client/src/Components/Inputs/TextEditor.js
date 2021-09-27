@@ -8,16 +8,11 @@ import React, { useState, useCallback } from "react";
 import { Save } from "@material-ui/icons";
 
 // * Components
-import ReactQuill, { Quill, Mixin, Toolbar } from "react-quill"; // ES6
+import ReactQuill from "react-quill"; // ES6
 import "react-quill/dist/quill.snow.css"; // ES6
-
-// * Custom Components
-import CustomButton from "../Buttons/CustomButtons/CustomButton";
 
 // MatUi Style Imports
 import { makeStyles } from "@material-ui/core/styles";
-import { theme, ourColors } from "../../styles/Theme"; // our CUSTOM theme
-const myTheme = theme;
 
 const useStyles = makeStyles((theme) => ({
   Modalbtn: {

@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 // * Material UI Imports
 import { AppBar, Toolbar } from "@material-ui/core";
 
-import logoOutlines from "../../assets/images/logo/turtle_logo-outlines.png";
+// import logoOutlines from "../../assets/images/logo/turtle_logo-outlines.png";
 import logoFilled from "../../assets/images/logo/turtle_logo-filled.png";
 
 // * Component Imports

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch,Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 // * Imports
 import { ToastContainer } from "react-toastify";
@@ -17,13 +17,12 @@ import Navbar from "./Components/Navbar/Navbar";
 import AuthRoute from "./Components/AuthRoute/AuthRoute";
 import PageNotFoundAdmin from "./Components/PageNotFoundAdmin/PageNotFoundAdmin";
 
-
 // REDUX
 import { Provider } from "react-redux";
 import Store from "./store/index";
 
 // * Mat UI
-import { makeStyles, CssBaseline } from "@material-ui/core";
+import { CssBaseline } from "@material-ui/core";
 import { theme } from "../src/styles/Theme";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 
@@ -37,16 +36,8 @@ import SignIn from "./Pages/SignIn/SignIn";
 import PageNotFoundGuide from "./Components/Guide/Components/PageNotFoundGuide/PageNotFoundGuide";
 
 // Important for the general styling
-const useStyles = makeStyles((theme) => ({
-  "@global": {
-    body: {
-      margin: 0,
-    },
-  },
-}));
 
 function App() {
-  const classes = useStyles();
   return (
     <Provider store={Store}>
       <MuiThemeProvider theme={theme}>
@@ -83,9 +74,9 @@ function App() {
                 <Route path="/events" component={GuideApp} />
                 <Route path="/subscription" component={Subscription} />
                 <Route path="/signin" component={SignIn} />
-                <Route path="/404admin"  component={PageNotFoundAdmin}/>
-                <Route path="/404guide" component={PageNotFoundGuide}/>
-                <Redirect to="/404admin"/>
+                <Route path="/404admin" component={PageNotFoundAdmin} />
+                <Route path="/404guide" component={PageNotFoundGuide} />
+                <Redirect to="/404admin" />
               </Switch>
               {window.location.pathname.includes("/events") ? null : <Footer />}
             </div>

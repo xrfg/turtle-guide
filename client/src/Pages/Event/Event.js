@@ -29,19 +29,9 @@ import { goBackToPage, unBlock } from "../../functions/functions";
 import "./event.css";
 
 // * material UI imports Components
-import {
-  Container,
-  Grid,
-  CardContent,
-  Typography,
-  Box,
-  Button,
-  ButtonGroup,
-  makeStyles,
-} from "@material-ui/core";
+import { Container, Grid, Button, makeStyles } from "@material-ui/core";
 
 // * material UI imports Icons
-import { Add } from "@material-ui/icons";
 import CustomButton from "../../Components/Buttons/CustomButtons/CustomButton";
 import CustomIconButton from "../../Components/Buttons/CustomIconButtons/CustomIconButton";
 

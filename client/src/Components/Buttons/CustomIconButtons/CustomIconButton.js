@@ -22,8 +22,6 @@ import {
 
 // MatUi Style Imports
 import { makeStyles } from "@material-ui/core/styles";
-import { theme } from "../../../styles/Theme"; // our CUSTOM theme
-const myTheme = theme;
 
 const useStyles = makeStyles((theme) => ({
   btnIcon: {

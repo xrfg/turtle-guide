@@ -4,7 +4,7 @@
  * @param props item
  */
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 
 // * Mat UI
@@ -14,13 +14,9 @@ import {
   Typography,
   Card,
   CardActions,
-  CardMedia,
   CardContent,
   TextField,
 } from "@material-ui/core";
-
-// * Icons
-import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 
 // * Custom Components
 import EditSaveButton from "../Buttons/EditSaveButton";

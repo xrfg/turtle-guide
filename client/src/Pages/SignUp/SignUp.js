@@ -2,27 +2,22 @@
  * @desc Component for the user SignUp
  */
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 
 import { theme } from "../../styles/Theme";
 
 // * Mat UI
 import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
 
 // * REDUX
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { userSignUp } from "../../store/actions/userActions";
 
 import "./signUp.scss";
@@ -68,11 +63,6 @@ export default function SignUp(props) {
   // * Hooks
   const classes = useStyles();
   const dispatch = useDispatch();
-  const history = useHistory();
-
-  // getting states from REDUX
-  // const user = useSelector((state) => state.user);
-  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
   // * States
   const [userData, setUserData] = useState({});

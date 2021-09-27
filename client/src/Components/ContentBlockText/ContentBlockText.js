@@ -4,23 +4,17 @@
  * @param props item
  */
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 
 // * Mat UI
 import {
   ButtonGroup,
-  Grid,
   Typography,
   Card,
   CardActions,
   CardContent,
 } from "@material-ui/core";
-import Paper from "@material-ui/core/Paper";
-
-// * Icons
-import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
-import ShortTextIcon from "@material-ui/icons/ShortText";
 
 // * Components
 import TextEditor from "../Inputs/TextEditor";
@@ -81,8 +75,8 @@ const ContentBlockText = (props) => {
 
   // * State
   const [isEditing, setIsEditing] = useState(false);
-  const [newContent, setNewContent] = useState({ content: "" });
-  const [openModal, setOpenModal] = useState(false);
+  const [setNewContent] = useState({ content: "" });
+  const [setOpenModal] = useState(false);
 
   // * Functions
   /**

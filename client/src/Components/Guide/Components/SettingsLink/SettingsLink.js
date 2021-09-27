@@ -4,14 +4,11 @@ import { Link } from "react-router-dom";
 
 // Component Imports
 import CustomIconButton from "../../../Buttons/CustomIconButtons/CustomIconButton";
-import CustomButton from "../../../Buttons/CustomButtons/CustomButton";
 
 // MatUi Style Imports
 import { Grid } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { ourColors, theme } from "../../../../styles/Theme"; // our CUSTOM theme
-const myTheme = theme;
 
 const useStyles = makeStyles((theme) => ({
   gridSection: {

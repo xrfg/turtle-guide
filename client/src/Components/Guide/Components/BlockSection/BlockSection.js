@@ -9,18 +9,15 @@ import ReactQuill from "react-quill"; // ES6
 
 // * MAT UI
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Container } from "@material-ui/core";
 import { red } from "@material-ui/core/colors";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import CardActions from "@material-ui/core/CardActions";
 
 // * Imports
 import { goToSection } from "../../Functions/functions";
-import { ourColors, theme } from ".././../../../styles/Theme";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -77,18 +74,6 @@ const BlockSection = (props) => {
   // destruc
   const { eventSlug, nameIdentifier, sectionIndex } = props;
   const { title, description, id, order } = props.data;
-
-  // console.log("BlockSection nameIdentifier ", nameIdentifier);
-  // console.log("props.data", props.data);
-
-  // const goToSection = () => {
-  //   history.push(`sections/${id}`, {
-  //     eventSlug: eventSlug,
-  //     nameIdentifier: nameIdentifier,
-  //     id: id,
-  //     // order: order,
-  //   });
-  // };
 
   return (
     <Card

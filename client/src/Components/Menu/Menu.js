@@ -39,7 +39,7 @@ const Menu = () => {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
   // states
-  const [open, setOpen] = useState(false);
+  const [open] = useState(false);
   const anchorRef = useRef(null);
 
   const dispatch = useDispatch();

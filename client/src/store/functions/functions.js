@@ -8,7 +8,13 @@
  * @desc create OBJ to send
  */
 exports.createObj = (objCall) => {
-  const { method, url, data = {}, token = "", params = "" } = objCall;
+  const {
+    method,
+    url,
+    data = {},
+    token = "",
+    // params = ""
+  } = objCall;
 
   // if token is not empty returns header with token
   // else header with out

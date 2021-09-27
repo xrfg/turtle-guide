@@ -52,9 +52,6 @@ import {
 
 // MatUi Style Imports
 import { makeStyles } from "@material-ui/core/styles";
-import { ourColors, theme } from "../../styles/Theme";
-
-import CustomButton from "../Buttons/CustomButtons/CustomButton";
 
 const useStyles = makeStyles((theme) => ({
   modalBtn: {

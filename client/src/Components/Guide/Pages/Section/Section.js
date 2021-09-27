@@ -9,7 +9,7 @@ import {
   extractNameIdentifier,
   getSectionFromAddress,
 } from "../../Functions/functions";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 // * Componentns
 import SectionRender from "../../Components/SectionRender/SectionRender";

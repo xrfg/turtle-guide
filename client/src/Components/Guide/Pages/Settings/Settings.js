@@ -21,8 +21,6 @@ import {
 } from "@material-ui/core";
 import { ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 import { makeStyles } from "@material-ui/core/styles";
-import { ourColors, theme } from "../../../../styles/Theme"; // our CUSTOM theme
-const myTheme = theme;
 
 const useStyles = makeStyles((theme) => ({
   container: { ...theme.guide.container },

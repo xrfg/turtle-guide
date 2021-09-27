@@ -2,7 +2,7 @@
  * @desc Component to insert the name of the event from <Account/>
  */
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import slugify from "react-slugify";
 
 // * material UI imports Icons
@@ -107,10 +107,7 @@ const EventName = (props) => {
       title: eventName,
     });
 
-    const res = await dispatch(
-      eventCreate({ event: createEvent, token: token })
-    );
-    console.log("goToAndSlugify", res);
+    await dispatch(eventCreate({ event: createEvent, token: token }));
 
     history.push(`/admin/event/${slugify(eventName)}`, {
       slug: slugify(eventName),

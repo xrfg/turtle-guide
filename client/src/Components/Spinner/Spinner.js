@@ -15,8 +15,8 @@ const override = css`
 `;
 
 const Spinner = () => {
-  let [loading, setLoading] = useState(true);
-  let [color, setColor] = useState("red");
+  let [loading] = useState(true);
+  let [color] = useState("red");
 
   return (
     <ClipLoader color={color} loading={loading} css={override} size={150} />
