@@ -86,11 +86,16 @@ const ContentBlockMedia = (props) => {
 
   // * State
   const [isEditing, setIsEditing] = useState(false);
+  // const [mediaCaption, setMediaCaption] = useState({
+  //   title: "",
+  //   description: ""
+  // });
   const [mediaCaption, setMediaCaption] = useState({
     title: caption.title === 0 ? "" : caption.title,
     description: caption.description === 0 ? "" : caption.description,
   });
 
+  console.log("caption.title === 0", caption.title === 0, caption.title);
   // * Functions
   /**
    * @function removeContent
@@ -182,7 +187,7 @@ const ContentBlockMedia = (props) => {
               label="Title"
               name="title"
               onChange={handleChange}
-              value={mediaCaption.title}
+              value={mediaCaption?.title}
               // inputProps={{ maxLength: 70 }}
             />
           ) : !isEditing && mediaCaption?.title.length !== 0 ? (
