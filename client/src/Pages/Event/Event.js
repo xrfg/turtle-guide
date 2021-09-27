@@ -115,6 +115,8 @@ export default function Event(props) {
   useEffect(() => {
     // search for the event into redux
     const getEvent = events.find((x) => x.slug === slug);
+
+    console.log("use eff getEvent", getEvent);
     // set the whole event
     setEvent(getEvent);
     // set the sections state for mapping
@@ -122,6 +124,8 @@ export default function Event(props) {
 
     //eslint-disable-next-line
   }, []);
+
+  console.log("event", event);
 
   // fires when the state event is created/ updated
   useEffect(() => {
@@ -391,7 +395,6 @@ export default function Event(props) {
    */
   const eventNameUpdate = useCallback(
     (eventName) => {
-      console.log("eventName", eventName);
       // create a new obj that fires a saving with useEffect
       // new slug
       const slug = slugify(eventName);
