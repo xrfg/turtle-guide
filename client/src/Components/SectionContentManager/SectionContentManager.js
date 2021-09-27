@@ -850,22 +850,24 @@ export default function SectionContentManager(props) {
 
               {/* If is editing admin */}
               {/* If is editing about admin do not show */}
-              {!isAboutAdmin && (
-                <>
-                  {/* Section description Edit */}
-                  <ContentBlockText
-                    isDraggable={false} // to prevent it from being draggable
-                    item={objSectionDecription}
-                    // receives the id of the item to delete
-                    itemToDelete={toggleDeleteDialogBox}
-                    // gets the new content to update
-                    newContent={updateMediaText}
-                    // Handle the drag and drop
-                    handleDrag={handleDrag}
-                    handleDrop={handleDrop}
-                  />
-                </>
-              )}
+              {/* If is editing Intro do not show */}
+              {!isAboutAdmin ||
+                (isIntro && (
+                  <>
+                    {/* Section description Edit */}
+                    <ContentBlockText
+                      isDraggable={false} // to prevent it from being draggable
+                      item={objSectionDecription}
+                      // receives the id of the item to delete
+                      itemToDelete={toggleDeleteDialogBox}
+                      // gets the new content to update
+                      newContent={updateMediaText}
+                      // Handle the drag and drop
+                      handleDrag={handleDrag}
+                      handleDrop={handleDrop}
+                    />
+                  </>
+                ))}
             </Grid>
             {/* // * Header */}
             <Grid item xs={3}></Grid> {/* ! empty for styling purposes */}
