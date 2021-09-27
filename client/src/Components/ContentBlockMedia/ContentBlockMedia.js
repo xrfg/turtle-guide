@@ -192,6 +192,7 @@ const ContentBlockMedia = (props) => {
               name="title"
               onChange={handleChange}
               value={mediaCaption.title}
+              inputProps={{ maxLength: 70 }}
             />
           ) : !isEditing && mediaCaption.title.length !== 0 ? (
             <span className={classes.imageTitle}>{mediaCaption.title}</span>
@@ -211,6 +212,7 @@ const ContentBlockMedia = (props) => {
               fullWidth
               onChange={handleChange}
               value={mediaCaption.description}
+              inputProps={{ maxLength: 500 }}
             />
           ) : !isEditing && mediaCaption.description.length !== 0 ? (
             <span className={classes.imageDesc}>

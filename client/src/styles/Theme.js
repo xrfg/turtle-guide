@@ -197,8 +197,19 @@ export const theme = createTheme({
       marginTop: "1.6rem",
       marginBottom: "1rem",
     },
-    imgTitle: { fontWeight: 800, fontSize: "0.8rem", color: ourColors.jet },
-    imgDesc: { fontWeight: 400, fontSize: "0.8rem", color: ourColors.jet },
+    imgTitle: {
+      fontWeight: 800,
+      fontSize: "0.8rem",
+      color: ourColors.jet,
+      overflowWrap: "anywhere",
+      lineHeight: "10px",
+    },
+    imgDesc: {
+      fontWeight: 400,
+      fontSize: "0.8rem",
+      color: ourColors.jet,
+      overflowWrap: "anywhere",
+    },
   },
   guide: {
     container: { backgroundColor: "white", padding: "0" },

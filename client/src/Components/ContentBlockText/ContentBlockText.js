@@ -175,8 +175,7 @@ const ContentBlockText = (props) => {
         </Typography>
       </CardContent>
       <CardActions className={classes.iconsContainer}>
-        {/*  // * editing title/description */}
-
+        {/*   editing title/description */}
         <CustomIconButton
           icon={isEditing ? "save" : "edit"}
           onClickFunc={() => editContent(id)}
@@ -186,7 +185,7 @@ const ContentBlockText = (props) => {
           aria-label="horizontal button group"
         >
           {props.isDraggable ? <CustomIconButton icon="drag" /> : null}
-          {/* //* Sends the id to the parent */}
+          {/* Sends the id to the parent */}
           {id !== 999999 ? (
             <CustomIconButton
               icon="delete"
