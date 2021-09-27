@@ -381,12 +381,14 @@ const SectionPreview = (props) => {
 
             {!isIntro && (
               <>
-                <ReactQuill
-                  className={classes.sectionDescription}
-                  value={sectionDescription}
-                  readOnly={true}
-                  theme={"bubble"}
-                />
+                <Card>
+                  <ReactQuill
+                    className={classes.sectionDescription}
+                    value={sectionDescription}
+                    readOnly={true}
+                    theme={"bubble"}
+                  />
+                </Card>
               </>
             )}
             {/* // * mapping to render divided by types */}
@@ -507,12 +509,14 @@ const SectionPreview = (props) => {
 
                 {!isIntro && (
                   <>
-                    <ReactQuill
-                      className={classes.sectionDescription}
-                      value={sectionDescription}
-                      readOnly={true}
-                      theme={"bubble"}
-                    />
+                    <Card>
+                      <ReactQuill
+                        className={classes.sectionDescription}
+                        value={sectionDescription}
+                        readOnly={true}
+                        theme={"bubble"}
+                      />
+                    </Card>
                   </>
                 )}
                 {/* // * mapping to render divided by types */}
