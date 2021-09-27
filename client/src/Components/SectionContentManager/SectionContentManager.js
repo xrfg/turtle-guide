@@ -816,16 +816,8 @@ export default function SectionContentManager(props) {
               </Grid>
             ) : (
               <Grid container className={classes.eventHeaderTab}>
-                <Grid item xs={9} className={classes.pageTitleContainer}>
+                <Grid item xs={12} className={classes.pageTitleContainer}>
                   <Typography className={classes.pageTitle}>{title}</Typography>
-                </Grid>
-                <Grid item xs={2}>
-                  <CustomButton
-                    startIcon="arrowBack"
-                    text={isAboutAdmin ? "Back" : "Event"}
-                    onClickFunc={() => goBackToPage(needsToSave, history)}
-                    style={{ width: "100%", marginTop: "-1rem" }}
-                  />
                 </Grid>
               </Grid>
             )}
@@ -889,6 +881,15 @@ export default function SectionContentManager(props) {
             </Grid>
             {/* // * Buttons Top container */}
             <Grid item xs={3} className={classes.btnSidebar}>
+              <CustomButton
+                style={{
+                  marginBottom: "1rem",
+                }}
+                startIcon="arrowBack"
+                text={isAboutAdmin ? "Back" : "Event"}
+                onClickFunc={() => goBackToPage(needsToSave, history)}
+              />
+
               <div className={classes.btnGroup}>
                 <CustomButton
                   text="text"

@@ -47,15 +47,24 @@ const useStyles = makeStyles((theme) => ({
     display: "inline-block",
     zIndex: "15",
   },
-  reactquillthing: {
-    "& > *": {
-      color: "red",
-    },
+  quillContainer: {
+    position: "relative",
+  },
+  quillBg: {
+    backgroundColor: "rgba(255, 255, 255, 0.5)",
+    borderRadius: "8px",
+    position: "absolute",
+    zIndex: "15",
+    height: "100%",
+    width: "100%",
+  },
+  quillText: {
+    padding: "0.1rem",
+    color: "red",
+    letterSpacing: "0.50000px",
+
     "& > div": {
-      zIndex: "1000",
-      "& > *": {
-        color: "!important black",
-      },
+      zIndex: "25", // ! otherwise it goes under
     },
   },
   cardDesc: {},
@@ -234,13 +243,16 @@ export default function EventSection(props) {
             />
           </Box>
 
-          <ReactQuill
-            className={classes.reactquillthing}
-            style={{ zIndex: "25" }}
-            value={description}
-            readOnly={true}
-            theme={"bubble"}
-          />
+          <Box className={classes.quillContainer}>
+            <div className={classes.quillBg}></div>
+            <ReactQuill
+              className={classes.quillText}
+              style={{ zIndex: "25" }}
+              value={description}
+              readOnly={true}
+              theme={null}
+            />
+          </Box>
         </CardContent>
       </CardActionArea>
 
