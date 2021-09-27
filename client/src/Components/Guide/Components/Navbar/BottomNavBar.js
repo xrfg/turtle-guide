@@ -1,4 +1,8 @@
-import React from "react";
+/**
+ * @desc Bottom navbar for the guide, mobile style
+ */
+
+import React, { useState } from "react";
 
 // * Mat Ui Imports
 import { makeStyles } from "@material-ui/core/styles";
@@ -29,7 +33,7 @@ export default function BottomNavBar() {
   const classes = useStyles();
 
   // * States
-  const [value, setValue] = React.useState("event");
+  const [value, setValue] = useState("home");
 
   //* Custom Hooks
   const event = useGetEvent();
@@ -47,7 +51,7 @@ export default function BottomNavBar() {
       <BottomNavigationAction
         // * Intro of the exhibition
         component={Link}
-        to={event && `/events/${event.slug}/sections/1`} // intro is always the first slide
+        to={event && `/events/${event.slug}`} // intro is always the first slide
         label="Home"
         value="home"
         icon={<Home />}
@@ -56,7 +60,7 @@ export default function BottomNavBar() {
       <BottomNavigationAction
         // * Exhibition Main Page
         component={Link}
-        to={event && `/events/${event.slug}`}
+        to={event && `/events/${event.slug}/sections/`}
         label="Event"
         value="event"
         icon={<DirectionsWalk />}

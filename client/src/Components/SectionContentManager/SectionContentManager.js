@@ -65,16 +65,19 @@ const useStyles = makeStyles((theme) =>
     container: { ...theme.admin.container, paddingTop: "3.4rem" }, // main Admin container class
 
     coverImg: {},
-    accordion: { marginBottom: "2rem" },
+    accordion: { marginBottom: "0px", marginTop: "-69px" },
     accordTxtField: { marginBottom: "0.6rem", marginRight: "0.6rem" },
     eventHeaderTab: {
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
+      marginBottom: "-30px",
     },
 
     // Custom margins container buttons
-    pageTitleContainer: { ...theme.admin.pageTitleContainer },
+    pageTitleContainer: {
+      ...theme.admin.pageTitleContainer,
+    },
     pageTitle: {
       ...theme.admin.pageTitle,
       fontSize: "1.6rem",
@@ -800,18 +803,10 @@ export default function SectionContentManager(props) {
             {/* // * Do not render title if is about admin */}
             {userInfo.company ? (
               <Grid container className={classes.eventHeaderTab}>
-                <Grid item xs={9} className={classes.pageTitleContainer}>
+                <Grid item xs={12} className={classes.pageTitleContainer}>
                   <Typography className={classes.pageTitle}>
                     {userInfo.company}
                   </Typography>
-                </Grid>
-                <Grid item xs={3} className={classes.pageTitleContainer}>
-                  <CustomButton
-                    startIcon="arrowBack"
-                    text={isAboutAdmin ? "Back" : "Event"}
-                    onClickFunc={() => goBackToPage(needsToSave, history)}
-                    style={{ width: "100%", marginTop: "-1rem" }}
-                  />
                 </Grid>
               </Grid>
             ) : (

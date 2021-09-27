@@ -1,5 +1,5 @@
 /**
- * @desc Component to create  a section
+ * @desc Component to render a section
  */
 
 import React, { useState, useEffect } from "react";
@@ -21,10 +21,16 @@ import useGetAndSaveEvent from "../../Hooks/useGetAndSaveEvent";
 import useEventSection from "../../Hooks/useEventSection";
 
 const Section = (props) => {
+  // just to load the intro
+  const { isIntro } = props;
+
   const [idSection, setIdSection] = useState(props?.location?.state?.id);
 
   // in case the page is called directly
   useEffect(() => {
+    if (isIntro) {
+      return setIdSection(1);
+    }
     // if the state is not passed by the link sets the extracted link
     if (!props.location.state) {
       const sectionId = getSectionFromAddress(window.location.pathname);

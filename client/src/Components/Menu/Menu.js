@@ -11,6 +11,7 @@ import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 
 // * Redux
+import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../store/actions/userActions";
 
 /**
@@ -20,7 +21,6 @@ import { signOut } from "../../store/actions/userActions";
  */
 import MenuItem from "../MenuItem/MenuItem";
 
-import { useDispatch, useSelector } from "react-redux";
 import { ourColors } from "../../styles/Theme";
 
 const useStyles = makeStyles((theme) => ({
@@ -60,7 +60,6 @@ const Menu = () => {
         {isAuthenticated ? (
           <>
             <MenuItem path={"/admin/account"} title={"Your Account"} />
-
             <Button
               aria-controls="simple-menu"
               aria-haspopup="true"
