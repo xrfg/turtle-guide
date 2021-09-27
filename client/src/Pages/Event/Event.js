@@ -467,11 +467,6 @@ export default function Event(props) {
         // * Add BTN + Disabled ones
         */}
             <Grid className={classes.btnSidebar} item xs={3}>
-              {/* <CustomButton
-                text="Intro"
-                endIcon="add"
-                onClickFunc={() => addIntro()}
-              /> */}
               <CustomButton
                 text="Section"
                 endIcon="add"
@@ -488,17 +483,6 @@ export default function Event(props) {
                   borderRadius: "8px",
                 }}
               />
-
-              {/* <ButtonGroup
-                className={classes.btnGroup}
-                disabled
-                orientation="vertical"
-                aria-label="vertical outlined primary button group"
-              >
-                <Button endIcon={<Add />}>Pay-wall</Button>
-                <Button endIcon={<Add />}>Feedback</Button>
-                <Button endIcon={<Add />}>Map</Button>
-              </ButtonGroup> */}
             </Grid>
             {/* 
         // * SECTIONS CONTAINER -> GUIDE

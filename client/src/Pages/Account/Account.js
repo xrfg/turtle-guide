@@ -7,6 +7,9 @@
 
 import React, { useEffect, useState } from "react";
 
+// * Imports
+import nextId from "react-id-generator";
+
 // * react-router-dom
 import { Link as RouterLink } from "react-router-dom";
 
@@ -120,6 +123,7 @@ const Account = (props) => {
                   events.map((event) => {
                     return (
                       <Link
+                        key={nextId()}
                         component={RouterLink}
                         className={classes.link}
                         to={`/admin/event/${event.slug}`}

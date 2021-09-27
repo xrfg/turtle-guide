@@ -800,12 +800,12 @@ export default function SectionContentManager(props) {
             {/* // * Do not render title if is about admin */}
             {userInfo.company ? (
               <Grid container className={classes.eventHeaderTab}>
-                <Grid xs={9} className={classes.pageTitleContainer}>
+                <Grid item xs={9} className={classes.pageTitleContainer}>
                   <Typography className={classes.pageTitle}>
                     {userInfo.company}
                   </Typography>
                 </Grid>
-                <Grid xs={3} className={classes.pageTitleContainer}>
+                <Grid item xs={3} className={classes.pageTitleContainer}>
                   <CustomButton
                     startIcon="arrowBack"
                     text={isAboutAdmin ? "Back" : "Event"}
@@ -816,10 +816,10 @@ export default function SectionContentManager(props) {
               </Grid>
             ) : (
               <Grid container className={classes.eventHeaderTab}>
-                <Grid xs={9} className={classes.pageTitleContainer}>
+                <Grid item xs={9} className={classes.pageTitleContainer}>
                   <Typography className={classes.pageTitle}>{title}</Typography>
                 </Grid>
-                <Grid xs={2}>
+                <Grid item xs={2}>
                   <CustomButton
                     startIcon="arrowBack"
                     text={isAboutAdmin ? "Back" : "Event"}
@@ -888,7 +888,7 @@ export default function SectionContentManager(props) {
               </h3>
             </Grid>
             {/* // * Buttons Top container */}
-            <Grid /* item */ xs={3} className={classes.btnSidebar}>
+            <Grid item xs={3} className={classes.btnSidebar}>
               <div className={classes.btnGroup}>
                 <CustomButton
                   text="text"
@@ -934,6 +934,7 @@ export default function SectionContentManager(props) {
             </Grid>
             {/* if toggleSelected */}
             <Grid
+              item
               xs={9}
               className={classes.contentsContainer}
               /* style={{ padding: "0" }} */
