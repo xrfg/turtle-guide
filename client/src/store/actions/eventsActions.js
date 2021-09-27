@@ -17,7 +17,7 @@ import { createObj } from "../functions/functions";
 /**
  * @desc BASE URLs
  */
-const BASEurlEvents = "http://localhost:5000/api/events/";
+const BASEurlEvents = "/api/events/";
 
 /**
  * @desc action to create a new event

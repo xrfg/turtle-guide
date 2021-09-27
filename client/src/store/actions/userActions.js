@@ -18,8 +18,8 @@ import { createObj } from "../functions/functions";
  * @desc BASE URLs
  */
 // url TO create a User
-const BASEurlUser = "http://localhost:5000/api/users/";
-const BASEurlAuth = "http://localhost:5000/api/auth/";
+const BASEurlUser = "/api/users/";
+const BASEurlAuth = "/api/auth/";
 
 /**
  * @userSignUp

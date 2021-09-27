@@ -22,8 +22,7 @@ const useGetAndSaveEvent = (eventName, val = null) => {
   const [event, setEvent] = useState(null);
 
   // * base url
-  // TODO change it
-  const baseURL = "http://localhost:5000/api/events/";
+  const baseURL = "/api/events/";
 
   const getEvent = async () => {
     try {
