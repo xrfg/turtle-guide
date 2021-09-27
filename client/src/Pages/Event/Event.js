@@ -2,7 +2,7 @@
  * @desc Event Page at route /admin/event/:slug either for creating a new event or editing an existing one
  */
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 
 // * Imports
@@ -389,21 +389,26 @@ export default function Event(props) {
    * @param eventName comes from <EventName />
    * @desc fired when the event name changed
    */
-  const eventNameUpdate = (eventName) => {
-    // create a new obj that fires a saving with useEffect
-    // new slug
-    const slug = slugify(eventName);
-    // push new data into event
-    setEvent({
-      ...event,
-      title: eventName,
-      slug: slug,
-      nameIdentifier: slug, // new name identifier
-      oldNameIdentifier: event.slug, // old name identifier just for the search
-      sections: [...sections],
-    });
-    setNeedsToSave(true);
-  };
+  const eventNameUpdate = useCallback(
+    (eventName) => {
+      console.log("eventName", eventName);
+      // create a new obj that fires a saving with useEffect
+      // new slug
+      const slug = slugify(eventName);
+      // push new data into event
+      setEvent({
+        ...event,
+        title: eventName,
+        slug: slug,
+        nameIdentifier: slug, // new name identifier
+        oldNameIdentifier: event.slug, // old name identifier just for the search
+        sections: [...sections],
+      });
+      setNeedsToSave(true);
+    },
+    //eslint-disable-next-line
+    []
+  );
 
   // * Listener to avoid the user to go back without saving
   unBlock(needsToSave, history);

@@ -31,8 +31,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// TODO insert a modal that opens the event naming if the event does not exists
-
 const EventName = (props) => {
   // decostru
   const { title, slug } = props;
@@ -106,9 +104,9 @@ const EventName = (props) => {
         </Typography>
       )}
       <EditSaveButton editStatus={editing} editHandler={handleSaveEditBtn} />
-      {/* <Typography className={classes.nameInput}>
+      <Typography className={classes.nameInput}>
         The address of your event is: /{slug}
-      </Typography> */}
+      </Typography>
     </Box>
   );
 };

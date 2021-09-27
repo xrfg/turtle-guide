@@ -107,7 +107,10 @@ const EventName = (props) => {
       title: eventName,
     });
 
-    await dispatch(eventCreate({ event: createEvent, token: token }));
+    const res = await dispatch(
+      eventCreate({ event: createEvent, token: token })
+    );
+    console.log("goToAndSlugify", res);
 
     history.push(`/admin/event/${slugify(eventName)}`, {
       slug: slugify(eventName),
