@@ -22,6 +22,8 @@ import EventSection from "./EventSection";
 import EventName from "./EventName";
 import PopUpDialogBox from "../../Components/PopUpDialogBox/PopUpDialogBox";
 
+import "./event.scss";
+
 // * Functions
 import { goBackToPage, unBlock } from "../../functions/functions";
 

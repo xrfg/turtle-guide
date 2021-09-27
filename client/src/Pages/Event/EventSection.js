@@ -35,6 +35,7 @@ import PopUpDialogBox from "../../Components/PopUpDialogBox/PopUpDialogBox";
 
 // needed to render Rich text
 import ReactQuill from "react-quill"; // ES6
+
 import CustomIconButton from "../../Components/Buttons/CustomIconButtons/CustomIconButton";
 
 import { ourColors } from "../../styles/Theme";
@@ -46,53 +47,34 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1rem",
     fontWeight: "bold",
     color: "black",
-    // backgroundColor: "rgb(53,53,53,0.4)",
     display: "inline-block",
+    zIndex: "5",
+  },
+  quillContainer: {
+    position: "relative",
+  },
+  quillBg: {
+    backgroundColor: "rgba(255, 255, 255, 0.5)",
+    borderRadius: "8px",
+    position: "absolute",
     zIndex: "15",
+    height: "100%",
+    width: "100%",
   },
-  reactquillthing: {
-    "& > *": {
-      color: "red",
-    },
+  quillText: {
+    padding: "0.1rem",
+    color: "red",
+    letterSpacing: "0.50000px",
+
     "& > div": {
-      zIndex: "1000",
-      "& > *": {
-        color: "!important black",
-      },
+      zIndex: "25", // ! otherwise it goes under
     },
   },
+
   cardDesc: {},
   cardContent: { position: "relative" },
   onDrag: { backgroundColor: "green" },
   textField: { display: "block", marginRight: "1rem", zIndex: "15" },
-  // ! change name
-  text: {
-    // zIndex: 10000,
-    // zIndex: 10000,
-    // backgroundColor: "red",
-    padding: "0.1rem",
-    // // fontSize: "1.5rem",
-    // margin: "50px 0  40px 0",
-    color: "#4d4b46",
-    // fontFamily: "raleway",
-    letterSpacing: "0.60000px",
-    // width: "100%",
-    // borderTop: "0.02rem grey solid",
-    // borderBottom: "0.02rem grey solid",
-    "& > div": {
-      zIndex: 10000,
-      opacity: 1,
-      // padding: "2px",
-      // alignSelf: "start",
-      // fontWeight: "400",
-      // fontSize: "1.7rem !important",
-      // fontStyle: "italic",
-      color: "black !important",
-      // fontFamily: "raleway",
-      // letterSpacing: "0.30000px",
-      // overflowWrap: "anywhere",
-    },
-  },
 }));
 
 export default function EventSection(props) {
@@ -206,7 +188,7 @@ export default function EventSection(props) {
               width: "100%",
               position: "absolute",
               opacity: "0.5",
-              zIndex: "5",
+              zIndex: "0",
               top: 0,
               right: 0,
               background:
@@ -238,13 +220,16 @@ export default function EventSection(props) {
             />
           </Box>
 
-          <ReactQuill
-            className={classes.reactquillthing}
-            style={{ zIndex: "25" }}
-            value={description}
-            readOnly={true}
-            theme={"bubble"}
-          />
+          <Box className={classes.quillContainer}>
+            <div className={classes.quillBg}></div>
+            <ReactQuill
+              className={classes.quillText}
+              /* style={{ zIndex: "25" }} */
+              value={description}
+              readOnly={true}
+              theme={null}
+            />
+          </Box>
         </CardContent>
       </CardActionArea>
 
