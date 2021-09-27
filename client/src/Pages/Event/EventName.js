@@ -7,7 +7,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 // * material UI imports Icons
-import { TextField, Typography, makeStyles, Box } from "@material-ui/core";
+import { TextField, Typography, makeStyles, Grid } from "@material-ui/core";
 // * material UI imports Icons
 
 // * React Components
@@ -19,9 +19,16 @@ import { ourColors, ourColorsTwo } from "../../styles/Theme";
 const useStyles = makeStyles((theme) => ({
   eventNameContainer: {
     display: "flex",
-    alignItems: "center",
+    flexDirection: "column",
+    alignItems: "flex-start",
     width: "100%",
     ...theme.admin.pageTitleContainer,
+  },
+  nameChangeContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: "1rem",
   },
   nameInput: { marginRight: "1rem" },
   pageTitle: { ...theme.admin.pageTitle, marginBottom: "0" },
@@ -78,38 +85,45 @@ const EventName = (props) => {
   };
 
   return (
-    <Box className={classes.eventNameContainer}>
-      {editing ? (
-        <TextField
-          disabled={editing ? false : true}
-          id="eventName"
-          type="text"
-          fullWidth
-          required
-          defaultValue={eventName}
-          placeholder="Name for the Event"
-          helperText="This will be the public name of the Event"
-          className={classes.nameInput}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          onChange={onChange}
-          color="secondary"
-        />
-      ) : (
-        <Typography
-          /* component="h2"
+    <Grid item xs={12} className={classes.eventNameContainer}>
+      <Grid item className={classes.nameChangeContainer}>
+        {editing ? (
+          <TextField
+            disabled={editing ? false : true}
+            id="eventName"
+            type="text"
+            fullWidth
+            required
+            defaultValue={eventName}
+            placeholder="Name for the Event"
+            helperText="This will be the public name of the Event"
+            className={classes.nameInput}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            onChange={onChange}
+            color="secondary"
+          />
+        ) : (
+          <Typography
+            /* component="h2"
           variant="h2" */
-          className={`${classes.nameInput} ${classes.pageTitle}`}
-        >
-          {eventName ? eventName : "Event Name"}
-        </Typography>
-      )}
-      <EditSaveButton editStatus={editing} editHandler={handleSaveEditBtn} />
-      {/* <Typography className={classes.nameInput}>
-        The address of your event is: /{slug}
-      </Typography> */}
-    </Box>
+            className={`${classes.nameInput} ${classes.pageTitle}`}
+          >
+            {eventName ? eventName : "Event Name"}
+          </Typography>
+        )}
+        <EditSaveButton editStatus={editing} editHandler={handleSaveEditBtn} />
+      </Grid>
+      <Typography className={classes.nameInput}>
+        <div>
+          The address of your event is:{" "}
+          <a target="_blank" rel="noreferrer" href={`/events/${slug}`}>
+            /{slug}
+          </a>
+        </div>
+      </Typography>
+    </Grid>
   );
 };
 
