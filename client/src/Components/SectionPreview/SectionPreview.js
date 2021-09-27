@@ -450,7 +450,7 @@ const SectionPreview = (props) => {
               /*  text */
               if (x.type === "text") {
                 return (
-                  <Card key={nextId()}>
+                  <Card style={{ marginBottom: "1rem" }} key={nextId()}>
                     <ReactQuill
                       className={classes.text}
                       value={x.content}
@@ -581,7 +581,7 @@ const SectionPreview = (props) => {
                   /*  text */
                   if (x.type === "text") {
                     return (
-                      <Card key={nextId()}>
+                      <Card style={{ marginBottom: "1rem" }} key={nextId()}>
                         <ReactQuill
                           className={classes.text}
                           value={x.content}
