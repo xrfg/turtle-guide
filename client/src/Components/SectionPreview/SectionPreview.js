@@ -15,7 +15,7 @@ import nextId from "react-id-generator";
 
 // * Mat UI
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import { Container, Button, Typography, Card } from "@material-ui/core";
+import { Container, Typography, Card } from "@material-ui/core";
 
 // * Components
 import { ourColors } from "../../styles/Theme";
@@ -274,7 +274,7 @@ const SectionPreview = (props) => {
 
   useEffect(() => {
     // if the pages are already set skips
-    if (totalParallaxPages !== 0) {
+    if (totalParallaxPages !== 0 || totalContentPixels === 0) {
       return null;
     }
     let pages = 0;
@@ -287,17 +287,9 @@ const SectionPreview = (props) => {
     console.log("getViewportSize", viewPortSize);
     console.log("totalPixels", totalContentPixels);
 
-    // if (totalContentPixels / viewPortSize < 1.45) {
-    //   pages = totalContentPixels / viewPortSize;
-    //   console.log("totalpages", pages);
-    //   return setTotalParallaxPages(1);
-    // }
-
+    // after every calc add a margin
     if (totalContentPixels / viewPortSize < 2) {
-      pages = Math.ceil(totalContentPixels / viewPortSize) + 1;
-      console.log("totalpages 1", pages);
-      // const total = pages + 0.25;
-      // console.log("totalpages 1 total", total);
+      pages = Math.ceil(totalContentPixels / viewPortSize) + 0.8;
       return setTotalParallaxPages(pages);
     }
 
@@ -320,6 +312,8 @@ const SectionPreview = (props) => {
 
     //eslint-disable-next-line
   }, [totalContentPixels]);
+
+  console.log("totalParallaxPages", totalParallaxPages);
 
   return (
     <>
