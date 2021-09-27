@@ -117,7 +117,6 @@ export default function Event(props) {
     const getEvent = events.find((x) => x.slug === slug);
     // set the whole event
     setEvent(getEvent);
-
     // set the sections state for mapping
     setSections(getEvent.sections);
 

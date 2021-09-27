@@ -656,8 +656,6 @@ export default function SectionContentManager(props) {
     content: section?.description, // send current description
   };
 
-  console.log("Object.keys(userInfo).length", userInfo);
-
   return (
     <div className={classes.page}>
       <Container maxWidth="md" className={classes.container}>
