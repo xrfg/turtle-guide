@@ -261,7 +261,6 @@ export default function SectionContentManager(props) {
    * @param widget i.e. showCloudinaryWidget(cloudinaryWidget)
    */
   const showCloudinaryWidget = (widget) => {
-    // console.log("isAddingCover", isAddingCover);
     widget.open();
   };
 
@@ -315,23 +314,34 @@ export default function SectionContentManager(props) {
    * @desc to edit a specifi image
    */
 
-  const showCloudinaryMediaEditor = useCallback((imageId) => {
-    const myEditor = window.cloudinary.mediaEditor();
-    myEditor.update({
-      cloudName: "dhdgj2ryu", // cloud name of the account
-      publicIds: [`${imageId}`],
-    });
+  const showCloudinaryMediaEditor = useCallback(
+    (id, imageId) => {
+      const myEditor = window.cloudinary.mediaEditor();
+      myEditor.update({
+        cloudName: "dhdgj2ryu", // cloud name of the account
+        publicIds: [`${imageId}`],
+      });
 
-    myEditor.show();
+      myEditor.show();
 
-    myEditor.on("export", function (data) {
-      console.log("cloudinary", data);
+      myEditor.on("export", function (data) {
+        // 1. find image
+        const newImg = data.assets[0].url;
+        // 2. change data
+        contents.map((x) => {
+          if (x.id === id) {
+            x.content.url = newImg;
+          }
+          return contents;
+        });
 
-      // 1. find image
-      // 2. change data
-      // 3. save
-    });
-  }, []);
+        // 3. save
+        setContents([...contents]);
+        setNeedsToSave(true);
+      });
+    },
+    [contents]
+  );
 
   // * Objects to send functions
   /**
@@ -471,7 +481,6 @@ export default function SectionContentManager(props) {
   const addMediaCaption = (id, caption) => {
     contents.forEach((x) => {
       if (x.id === id) {
-        console.log("adding");
         x.content["caption"] = caption;
       }
     });
@@ -1013,8 +1022,8 @@ export default function SectionContentManager(props) {
                         // Handle the drag and drop
                         handleDrag={handleDrag}
                         handleDrop={handleDrop}
-                        mediaEdit={(imageId) =>
-                          showCloudinaryMediaEditor(imageId)
+                        mediaEdit={(id, imageId) =>
+                          showCloudinaryMediaEditor(id, imageId)
                         }
                       />
                     );

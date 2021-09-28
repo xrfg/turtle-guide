@@ -40,7 +40,7 @@ const Navbar = () => {
             alt="logo"
           />
         </Link>
-        <Typography> Welcome back {userProfile?.firstName}</Typography>
+        {/* <Typography> Welcome back {userProfile?.firstName}</Typography> */}
         {/* has the YOUR ACCOUNT and LOG IN/OUT */}
         <Menu />
       </Toolbar>

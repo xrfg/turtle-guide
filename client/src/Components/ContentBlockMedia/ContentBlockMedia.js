@@ -89,10 +89,7 @@ const ContentBlockMedia = (props) => {
 
   // * State
   const [isEditing, setIsEditing] = useState(false);
-  // const [mediaCaption, setMediaCaption] = useState({
-  //   title: "",
-  //   description: ""
-  // });
+
   const [mediaCaption, setMediaCaption] = useState({
     title: caption.title === undefined ? "" : caption.title,
     description: caption.description === undefined ? "" : caption.description,
@@ -127,7 +124,7 @@ const ContentBlockMedia = (props) => {
    * @param id it takes it from the component
    */
   const sendMediaEdit = () => {
-    props.mediaEdit(public_id);
+    props.mediaEdit(id, public_id);
   };
 
   /**

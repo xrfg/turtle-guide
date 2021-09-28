@@ -105,7 +105,7 @@ const ImageHoverButton = (props) => {
       className={classes.image}
       focusVisibleClassName={classes.focusVisible}
       style={{
-        width: "100%", // ! decide the size of the cover
+        width: "100%", // decides the size of the cover
       }}
       onClick={onClickFunc}
     >
