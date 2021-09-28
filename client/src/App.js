@@ -43,7 +43,7 @@ function App() {
       <MuiThemeProvider theme={theme}>
         <ToastContainer
           position="bottom-left"
-          autoClose={5000}
+          autoClose={2000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick
@@ -51,7 +51,7 @@ function App() {
           pauseOnFocusLoss
           draggable
           pauseOnHover
-          theme="colored"
+          // theme="colored"
         />
         <BrowserRouter>
           <CssBaseline />

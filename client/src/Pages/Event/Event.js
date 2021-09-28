@@ -204,6 +204,7 @@ export default function Event(props) {
 
     setSections([...sections, ...newSectionsArr]);
     setNeedsToSave(true);
+    toast.success("Section added!");
   };
 
   /**
@@ -244,7 +245,7 @@ export default function Event(props) {
       dispatch(eventDelete(objToSend));
       history.goBack();
     }
-
+    toast.warn("Event deleted!");
     toggleDeleteDialogBox();
   };
 
@@ -296,6 +297,7 @@ export default function Event(props) {
     });
 
     setSections(newSectionState);
+    toast.warn("Section moved!");
   };
 
   /**
