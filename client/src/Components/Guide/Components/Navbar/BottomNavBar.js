@@ -2,7 +2,7 @@
  * @desc Bottom navbar for the guide, mobile style
  */
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // * Mat Ui Imports
 import { makeStyles } from "@material-ui/core/styles";
@@ -29,7 +29,8 @@ const useStyles = makeStyles({
   },
 });
 
-export default function BottomNavBar() {
+export default function BottomNavBar(props) {
+  const { position } = props;
   const classes = useStyles();
 
   // * States
@@ -41,6 +42,24 @@ export default function BottomNavBar() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  console.log("event", event);
+
+  // in case loads directly
+  useEffect(() => {
+    console.log("LOAD NAVBAR", position);
+
+    if (!position.includes(event.slug)) {
+      setValue("home");
+    }
+    if (position.includes("sections")) {
+      setValue("event");
+    }
+    if (position.includes("settings")) {
+      setValue("settings");
+    }
+    //eslint-disable-next-line
+  }, [position]);
 
   return (
     <BottomNavigation
@@ -69,7 +88,7 @@ export default function BottomNavBar() {
       <BottomNavigationAction
         // * Exhibition Map Page
         component={Link}
-        to="/events/:name/map"
+        to={event && `/events/${event.slug}/map/`}
         label="Map"
         value="map"
         icon={<Map />}
@@ -78,7 +97,7 @@ export default function BottomNavBar() {
       <BottomNavigationAction
         // * App Settings page
         component={Link}
-        to="/events/settings"
+        to={event && `/events/${event.slug}/settings/`}
         label="Settings"
         value="settings"
         icon={<Settings />}

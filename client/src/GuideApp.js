@@ -20,11 +20,11 @@ export default function GuideApp({ match }) {
   const location = useLocation();
   return (
     <>
-      <BottomNavBar />
+      <BottomNavBar position={window.location.pathname} />
       <AnimatePresence exitBeforeEnter>
         {/* location is important for the animation */}
         <Switch location={location} key={location.key}>
-          <Route exact path="/events/settings" component={Settings} />
+          <Route exact path="/events/:name/settings" component={Settings} />
           <Route exact path="/events/:name/map" component={Map} />
           <Route exact path="/events/:name" component={Intro} />
           <Route exact path="/events/:name/sections/" component={Guide} />

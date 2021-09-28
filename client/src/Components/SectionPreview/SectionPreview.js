@@ -614,7 +614,7 @@ const SectionPreview = (props) => {
                   <Button
                     className={classes.introBtn}
                     component={Link}
-                    to={`/events/${event.slug}`}
+                    to={`/events/${event.slug}/sections/`}
                   >
                     Go to {event.title}
                   </Button>
