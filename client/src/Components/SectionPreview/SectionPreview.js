@@ -9,19 +9,23 @@
 
 import React, { useEffect, useState, useCallback } from "react";
 
+import { Link } from "react-router-dom";
+
 // * Imports
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import nextId from "react-id-generator";
 
 // * Mat UI
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import { Container, Typography, Card } from "@material-ui/core";
+import { Container, Typography, Card, Button } from "@material-ui/core";
 
 // * Components
 import { ourColors } from "../../styles/Theme";
 
 // needed to render Rich text
 import ReactQuill from "react-quill"; // ES6
+
+import useGetEvent from "../Guide/Hooks/useGetEvent";
 
 // CSS vars
 const windowWidth = window.innerWidth;
@@ -222,6 +226,18 @@ const useStyles = makeStyles((theme) =>
     media: {
       height: 140,
     },
+    // intro btn that forwards to the exhibition
+    introBtn: {
+      padding: "0.8rem",
+      width: "100%",
+      backgroundColor: ourColors.indigoDye,
+      color: "white",
+      fontWeight: "bold",
+      "&:hover": {
+        backgroundColor: ourColors.gainsboro,
+        color: ourColors.indigoDye,
+      },
+    },
   })
 );
 
@@ -238,6 +254,10 @@ const SectionPreview = (props) => {
     sectionTitle,
     adminPreview,
   } = props;
+
+  const event = useGetEvent();
+
+  console.log(event);
 
   // * States
   // for parallax
@@ -593,6 +613,15 @@ const SectionPreview = (props) => {
                   }
                   return null;
                 })}
+                {isIntro && (
+                  <Button
+                    className={classes.introBtn}
+                    component={Link}
+                    to={`/events/${event.slug}`}
+                  >
+                    Go to {event.title}
+                  </Button>
+                )}
               </ParallaxLayer>
             </Parallax>
           </div>
