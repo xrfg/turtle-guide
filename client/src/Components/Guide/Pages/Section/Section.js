@@ -54,6 +54,8 @@ const Section = (props) => {
    */
   useGetAndSaveEvent(nameIdentifier, section);
 
+  console.log("section", section);
+
   return (
     <>
       {!section ? (
