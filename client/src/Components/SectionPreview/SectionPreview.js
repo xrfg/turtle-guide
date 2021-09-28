@@ -17,7 +17,7 @@ import nextId from "react-id-generator";
 
 // * Mat UI
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import { Container, Typography, Card, Button } from "@material-ui/core";
+import { Container, Typography, Card, Button, Box } from "@material-ui/core";
 
 // * Components
 import { ourColors } from "../../styles/Theme";
@@ -142,39 +142,40 @@ const useStyles = makeStyles((theme) =>
       marginTop: "-20px",
       // backgroundColor: "white",
       padding: "10px",
+      fontSize: "1.6rem",
       // boxShadow: "5px 3px 15px -13px rgba(0,0,0,0.7)",
       // clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 81%)",
-      paddingBottom: "0px",
+      paddingBottom: "0.4rem",
+      color: ourColors.indigoDye,
     },
     introTitle: {
       marginTop: "20px",
-      marginBottom: "50px",
+      // marginBottom: "20px",
+      borderRadius: "0",
+      borderBottom: "1px solid gray",
       border: "none",
       boxShadow: "none",
-      backgroundColor: "transparent",
-      padding: "15px",
+      backgroundColor: "white",
+      padding: "1rem",
       paddingBottom: "0px",
-      fontSize: "1.5rem",
     },
     sectionDescription: {
-      // margin: "10px 0 40px 0",
+      marginBottom: "3rem",
       fontWeight: "500",
       letterSpacing: "0.400222px",
       color: "#4d4b46",
+      backgroundColor: "white",
+
       // fontFamily: "poppins",
     },
-    // card: {
-    //   width: "89%",
-    //   display: "flex",
-    //   alignItems: "center",
-    //   flexDirection: "column",
-    // },
+    card: { marginBottom: "1.5rem" },
+    videoCard: { marginBottom: "1.5rem", "& > *": { width: "100%" } },
+    audioCard: { marginBottom: "1.5rem", "& > *": { width: "100%" } },
     image: {
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      margin: "10px 0 10px 0",
       width: "100%",
       borderRadius: "3px",
       // boxShadow: "0px 4px 10px 2px rgba(244,234,220,0.9)",
@@ -518,8 +519,8 @@ const SectionPreview = (props) => {
                 <div className={isIntro ? "" : classes.sectionTitleWrap}>
                   <Card className={classes.introTitle}>
                     <Typography
-                      gutterBottom={true}
-                      variant={"h5"}
+                      // gutterBottom={true}
+                      // variant={"h5"}
                       className={isIntro ? "" : classes.sectionTitle}
                     >
                       {sectionTitle}
@@ -529,14 +530,13 @@ const SectionPreview = (props) => {
 
                 {!isIntro && (
                   <>
-                    <Card>
+                    <Box className={classes.sectionDescription}>
                       <ReactQuill
-                        className={classes.sectionDescription}
                         value={sectionDescription}
                         readOnly={true}
-                        theme={"bubble"}
+                        theme={null}
                       />
-                    </Card>
+                    </Box>
                   </>
                 )}
                 {/* // * mapping to render divided by types */}
@@ -563,7 +563,7 @@ const SectionPreview = (props) => {
                   if (x.type === "video") {
                     // passes the url video to video
                     return (
-                      <div className="video-card" key={nextId()}>
+                      <div className={classes.videoCard} key={nextId()}>
                         <video width="400" controls>
                           <source src={x.content.url} type="video/mp4" />
                         </video>
@@ -576,7 +576,7 @@ const SectionPreview = (props) => {
                   if (x.type === "audio") {
                     // passes the url audio to audio
                     return (
-                      <div className="video-card" key={nextId()}>
+                      <div className={classes.audioCard} key={nextId()}>
                         <audio controls>
                           {/* Select audio format */}
                           {x.content.filename === "MP3" && (
