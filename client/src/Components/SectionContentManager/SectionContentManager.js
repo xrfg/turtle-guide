@@ -716,14 +716,6 @@ export default function SectionContentManager(props) {
               // handles the state when the modal is clickes outside the area
               isClose={handleClose}
             />
-            {/* For the cloudinary media widget */}
-            {/* <ModalCustom
-              title={section?.title}
-              content={<CloudinaryMediaEditor />}
-              isOpen={openMediaEditor}
-              // handles the state when the modal is clickes outside the area
-              isClose={handleClose}
-            /> */}
 
             {/* For Preview */}
             <ModalCustom
@@ -941,14 +933,6 @@ export default function SectionContentManager(props) {
                   text="media"
                   endIcon="add"
                   onClickFunc={() => showCloudinaryWidget(cloudinaryWidget)}
-                />
-                <CustomButton
-                  text="Media editor"
-                  endIcon="add"
-                  onClickFunc={() => {
-                    // setOpenMediaEditor(true);
-                    showCloudinaryMediaEditor();
-                  }}
                 />
               </div>
               <CustomIconButton
