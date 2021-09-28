@@ -22,6 +22,7 @@ import { ourColors } from "../../styles/Theme";
 
 // needed to render Rich text
 import ReactQuill from "react-quill"; // ES6
+import { Button } from "react-simple-wysiwyg";
 
 // CSS vars
 const windowWidth = window.innerWidth;
@@ -593,6 +594,7 @@ const SectionPreview = (props) => {
                   }
                   return null;
                 })}
+                {isIntro && <button>INTRO BTN</button>}
               </ParallaxLayer>
             </Parallax>
           </div>
