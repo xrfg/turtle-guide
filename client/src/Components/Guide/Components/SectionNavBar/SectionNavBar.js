@@ -125,7 +125,9 @@ const SectionNavBar = () => {
         />
         <h4 className={classes.sectionTitle}>{event?.title}</h4>
         <CustomIconButton
-          disabled={idNextSection === 1 ? true : false}
+          disabled={
+            idNextSection === 1 || idNextSection === undefined ? true : false
+          }
           onClickFunc={() =>
             goToSection(
               history,
