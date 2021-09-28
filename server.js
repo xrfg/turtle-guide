@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const swaggerUi = require("swagger-ui-express");
+const path = require("path");
 
 // Mongo Connection
 const connectDB = require("./config/db");
