@@ -13,16 +13,19 @@ import useGetEvent from "../../Hooks/useGetEvent";
 
 // react router //
 import { Link } from "react-router-dom";
+import { ourColors } from "../../../../styles/Theme";
 
 const useStyles = makeStyles({
   footer: {
-    height: "70px",
+    height: "60px",
     position: "fixed",
     bottom: "0",
     width: "100%",
-    backgroundColor: "#D9D9D9",
+    backgroundColor: ourColors.gainsboro,
+    borderTop: `1px solid grey`,
     zIndex: "1000", // brings it on top of everything
   },
+  navLink: {},
 });
 
 export default function BottomNavBar() {
@@ -45,6 +48,7 @@ export default function BottomNavBar() {
       className={classes.footer}
     >
       <BottomNavigationAction
+        className={classes.navLink}
         // * Intro of the exhibition
         component={Link}
         to={event && `/events/${event.slug}/sections/1`} // intro is always the first slide
@@ -54,6 +58,7 @@ export default function BottomNavBar() {
       />
 
       <BottomNavigationAction
+        className={classes.navLink}
         // * Exhibition Main Page
         component={Link}
         to={event && `/events/${event.slug}`}
@@ -63,6 +68,7 @@ export default function BottomNavBar() {
       />
 
       <BottomNavigationAction
+        className={classes.navLink}
         // * Exhibition Map Page
         component={Link}
         to="/events/:name/map"
@@ -72,6 +78,7 @@ export default function BottomNavBar() {
       />
 
       <BottomNavigationAction
+        className={classes.navLink}
         // * App Settings page
         component={Link}
         to="/events/settings"
