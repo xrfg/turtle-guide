@@ -75,8 +75,6 @@ const ContentBlockText = (props) => {
 
   // * State
   const [isEditing, setIsEditing] = useState(false);
-  const [setNewContent] = useState({ content: "" });
-  const [setOpenModal] = useState(false);
 
   // * Functions
   /**
@@ -110,27 +108,24 @@ const ContentBlockText = (props) => {
   const closeEditingModal = (state) => {
     if (state) {
       setIsEditing(false);
-      setOpenModal((prev) => !prev);
     }
   };
-  console.log("content", content);
 
   /**
    * @function setMediaText
    * @desc sends back the updated text
    * @param contentToUpdate
    */
-  const setMediaText = (contentToUpdate) => {
-    // set the new content to props
-    props.newContent(id, contentToUpdate);
-
-    console.log("setMediaText content", content);
-    console.log("setMediaText", contentToUpdate);
-    // set the local state
-    setNewContent(contentToUpdate);
-    // fires just the state that with useEffect will send the prop back
-    setIsEditing((prev) => !prev);
-  };
+  const setMediaText = useCallback(
+    (contentToUpdate) => {
+      // set the new content to props
+      props.newContent(id, contentToUpdate);
+      // fires just the state that with useEffect will send the prop back
+      setIsEditing((prev) => !prev);
+    },
+    //eslint-disable-next-line
+    [props.newContent]
+  );
 
   return (
     <Card

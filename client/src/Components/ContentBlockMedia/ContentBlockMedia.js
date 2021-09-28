@@ -132,7 +132,7 @@ const ContentBlockMedia = (props) => {
    * @desc enables edit mode
    * @param id it takes it from the component
    */
-  const editContent = () => {
+  const editContent = useCallback(() => {
     // togle editing
     setIsEditing((prev) => !prev);
     // to save if the caption is added/edited
@@ -144,7 +144,8 @@ const ContentBlockMedia = (props) => {
       // the function will pass it as a prop
       sendMediaCaption();
     }
-  };
+    //eslint-disable-next-line
+  }, [mediaCaption, isEditing]);
 
   /**
    * @function handleChange
@@ -152,8 +153,6 @@ const ContentBlockMedia = (props) => {
    * @param e
    */
   const handleChange = (e) => {
-    console.log("handleChange", [e.target.name], e.target.value);
-
     // set media caption obj
     setMediaCaption({ ...mediaCaption, [e.target.name]: e.target.value });
   };

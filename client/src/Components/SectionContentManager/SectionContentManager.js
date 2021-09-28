@@ -511,28 +511,25 @@ export default function SectionContentManager(props) {
    * @param id coming from the prop of <ContentBlockText />
    * @param newContent coming from the prop of <ContentBlockText />
    */
-  const updateMediaText = useCallback(
-    (id, newContent) => {
-      // check if the text comes from the description
-      // just to update the event description
-      if (id === objSectionDecription.id) {
-        // assign it to section
-        section.description = newContent;
-      }
-      // close modal
-      handleClose();
+  const updateMediaText = (id, newContent) => {
+    // check if the text comes from the description
+    // just to update the event description
+    if (id === objSectionDecription.id) {
+      // assign it to section
+      section.description = newContent;
+    }
+    // close modal
+    handleClose();
 
-      // updates into state/array
-      contents.forEach((x, i) => {
-        if (x.id === id) {
-          return (x.content = newContent);
-        }
-      });
-      // set to save
-      setNeedsToSave(true);
-    },
-    [contents, section]
-  );
+    // updates into state/array
+    contents.forEach((x, i) => {
+      if (x.id === id) {
+        return (x.content = newContent);
+      }
+    });
+    // set to save
+    setNeedsToSave(true);
+  };
 
   /**
    * @function saveContent
