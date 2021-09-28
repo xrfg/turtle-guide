@@ -43,20 +43,21 @@ export default function BottomNavBar(props) {
     setValue(newValue);
   };
 
-  console.log("event", event);
-
   // in case loads directly
+  // sets the navbar icons
+  // fired by props passed from <GuideApp/>
   useEffect(() => {
-    console.log("LOAD NAVBAR", position);
-
-    if (!position.includes(event.slug)) {
-      setValue("home");
-    }
     if (position.includes("sections")) {
       setValue("event");
     }
+    if (position.includes("map")) {
+      setValue("map");
+    }
     if (position.includes("settings")) {
       setValue("settings");
+    }
+    if (!position.includes(event.slug)) {
+      setValue("home");
     }
     //eslint-disable-next-line
   }, [position]);

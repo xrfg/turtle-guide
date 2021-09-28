@@ -20,6 +20,7 @@ export default function GuideApp({ match }) {
   const location = useLocation();
   return (
     <>
+      {/* // to fire the position in the navbar */}
       <BottomNavBar position={window.location.pathname} />
       <AnimatePresence exitBeforeEnter>
         {/* location is important for the animation */}
