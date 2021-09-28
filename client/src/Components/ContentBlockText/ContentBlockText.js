@@ -113,6 +113,7 @@ const ContentBlockText = (props) => {
       setOpenModal((prev) => !prev);
     }
   };
+  console.log("content", content);
 
   /**
    * @function setMediaText
@@ -122,6 +123,9 @@ const ContentBlockText = (props) => {
   const setMediaText = (contentToUpdate) => {
     // set the new content to props
     props.newContent(id, contentToUpdate);
+
+    console.log("setMediaText content", content);
+    console.log("setMediaText", contentToUpdate);
     // set the local state
     setNewContent(contentToUpdate);
     // fires just the state that with useEffect will send the prop back
