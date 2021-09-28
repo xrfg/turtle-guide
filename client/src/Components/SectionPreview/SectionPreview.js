@@ -4,9 +4,6 @@
  * @requires props "contents" <SectionPreview id={id} contents={ } sectionCover={} sectionDescriptio={}/>
  */
 
-// TODO Add video render from cloudinary
-// TODO clean code
-
 import React, { useEffect, useState, useCallback } from "react";
 
 // * Imports
@@ -22,7 +19,6 @@ import { ourColors } from "../../styles/Theme";
 
 // needed to render Rich text
 import ReactQuill from "react-quill"; // ES6
-import { Button } from "react-simple-wysiwyg";
 
 // CSS vars
 const windowWidth = window.innerWidth;

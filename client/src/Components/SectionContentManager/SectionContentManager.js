@@ -6,7 +6,7 @@
 // TODO Add widget cloudinary transformation
 // TODO move menus to external component that takes props
 // TODO Externalize funcitions
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 
 // * Mat UI
@@ -168,6 +168,7 @@ export default function SectionContentManager(props) {
   // for modal
   const [openModalInsertText, setOpenModalInsertText] = useState(false);
   const [openModalPreview, setOpenModalPreview] = useState(false);
+  const [openMediaEditor, setOpenMediaEditor] = useState(false);
 
   // * Life cycles Methods
   // set the section
@@ -202,7 +203,6 @@ export default function SectionContentManager(props) {
       return;
     }
 
-    console.log("useEf fetchedData", fetchedData);
     // section is into infoAbout
     setUserInfo(fetchedData);
     setSection(fetchedData?.infoAbout);
@@ -308,6 +308,30 @@ export default function SectionContentManager(props) {
       });
     }
   };
+
+  /**
+   * @function showCloudinaryMediaEditor
+   * @param imageId the cloudinary imgid
+   * @desc to edit a specifi image
+   */
+
+  const showCloudinaryMediaEditor = useCallback((imageId) => {
+    const myEditor = window.cloudinary.mediaEditor();
+    myEditor.update({
+      cloudName: "dhdgj2ryu", // cloud name of the account
+      publicIds: [`${imageId}`],
+    });
+
+    myEditor.show();
+
+    myEditor.on("export", function (data) {
+      console.log("cloudinary", data);
+
+      // 1. find image
+      // 2. change data
+      // 3. save
+    });
+  }, []);
 
   // * Objects to send functions
   /**
@@ -662,6 +686,7 @@ export default function SectionContentManager(props) {
   return (
     <div className={classes.page}>
       <Container maxWidth="md" className={classes.container}>
+        {/* <div id="my-widget-container"></div> */}
         {/* // * MODAL */}
         {/* content Delete confirmation */}
         {contents.length === 0 && loading ? null : (
@@ -682,6 +707,15 @@ export default function SectionContentManager(props) {
               // handles the state when the modal is clickes outside the area
               isClose={handleClose}
             />
+            {/* For the cloudinary media widget */}
+            {/* <ModalCustom
+              title={section?.title}
+              content={<CloudinaryMediaEditor />}
+              isOpen={openMediaEditor}
+              // handles the state when the modal is clickes outside the area
+              isClose={handleClose}
+            /> */}
+
             {/* For Preview */}
             <ModalCustom
               content={
@@ -899,11 +933,14 @@ export default function SectionContentManager(props) {
                   endIcon="add"
                   onClickFunc={() => showCloudinaryWidget(cloudinaryWidget)}
                 />
-                {/* <CustomButton
-                  text="qrCode"
+                <CustomButton
+                  text="Media editor"
                   endIcon="add"
-                  onClickFunc={() => addToContents(createObj("qrcode"))}
-                /> */}
+                  onClickFunc={() => {
+                    // setOpenMediaEditor(true);
+                    showCloudinaryMediaEditor();
+                  }}
+                />
               </div>
               <CustomIconButton
                 style={{
@@ -925,7 +962,6 @@ export default function SectionContentManager(props) {
                   setToggleSelected(!toggleSelected);
                   // makes btn filled or empty (grey), also activates the toggle "Contents" or "Preview"
                 }}
-                /* onClick={() => handleOpen("preview")} */
               >
                 {toggleSelected ? "Edit" : "Preview"}
               </ToggleButton>
@@ -977,6 +1013,9 @@ export default function SectionContentManager(props) {
                         // Handle the drag and drop
                         handleDrag={handleDrag}
                         handleDrop={handleDrop}
+                        mediaEdit={(imageId) =>
+                          showCloudinaryMediaEditor(imageId)
+                        }
                       />
                     );
                   })

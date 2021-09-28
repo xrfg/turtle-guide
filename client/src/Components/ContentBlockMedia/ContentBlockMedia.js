@@ -5,9 +5,12 @@
  */
 
 import React, { useState, useCallback } from "react";
-import { makeStyles, createStyles } from "@material-ui/core/styles";
+
+// * Imports
+import ImageHoverButtonMedia from "../Buttons/ImageHoverButtonMedia";
 
 // * Mat UI
+import { makeStyles, createStyles } from "@material-ui/core/styles";
 import {
   ButtonGroup,
   Grid,
@@ -81,7 +84,7 @@ const ContentBlockMedia = (props) => {
   let {
     id,
     type,
-    content: { url, url_thumb, original_filename, caption },
+    content: { url, url_thumb, original_filename, caption, public_id },
   } = props.item;
 
   // * State
@@ -116,6 +119,15 @@ const ContentBlockMedia = (props) => {
    */
   const sendMediaCaption = () => {
     props.mediaCaption(id, mediaCaption);
+  };
+
+  /**
+   * @function sendMediaEdit
+   * @desc sends back the selected element to be deleted
+   * @param id it takes it from the component
+   */
+  const sendMediaEdit = () => {
+    props.mediaEdit(public_id);
   };
 
   /**
@@ -162,7 +174,6 @@ const ContentBlockMedia = (props) => {
     >
       <Grid item xs={12} sm container className={classes.mediaContainer}>
         <Grid item>
-          {/* <ButtonBase className={classes.image}> */}
           {/* // * Sets icon if the file is audio */}
           {type === "audio" ? (
             <CustomIconButton icon="audio" disabled={true} />
@@ -173,7 +184,12 @@ const ContentBlockMedia = (props) => {
               src={url_thumb}
             />
           ) : (
-            <img className={classes.img} alt={original_filename} src={url} />
+            <ImageHoverButtonMedia
+              title={"Edit this Image"}
+              onClickFunc={() => sendMediaEdit()}
+              image={url}
+            />
+            // <img className={classes.img} alt={original_filename} src={url} />
           )}
         </Grid>
       </Grid>

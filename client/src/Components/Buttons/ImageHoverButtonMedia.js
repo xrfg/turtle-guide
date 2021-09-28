@@ -1,5 +1,5 @@
 /**
- * @desc Button to use in Image hover JUST on che COVER
+ * @desc Button to use in Image hover JUST on an image
  */
 
 import React from "react";
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) =>
     },
     image: {
       position: "relative",
-      height: 200,
+      //       height: 200,
       [theme.breakpoints.down("xs")]: {
         width: "100% !important", // Overrides inline-style
         height: 100,
@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const ImageHoverButton = (props) => {
+const ImageHoverButtonMedia = (props) => {
   // * Hooks
   const classes = useStyles();
 
@@ -109,12 +109,27 @@ const ImageHoverButton = (props) => {
       }}
       onClick={onClickFunc}
     >
-      <span
-        className={classes.imageSrc}
-        style={{
-          backgroundImage: `url(${image?.url})`,
-        }}
-      />
+      {/*         
+          <span
+            className={classes.imageSrc}
+            style={{
+              backgroundImage: `url(${image?.url})`,
+            }}
+          />
+          <span className={classes.imageBackdrop} />
+          <span className={classes.imageButton}>
+            <Typography
+              component="span"
+              variant="subtitle1"
+              color="inherit"
+              className={classes.imageTitle}
+            >
+              {title}
+              <span className={classes.imageMarked} />
+            </Typography>
+          </span> */}
+
+      <img src={image} alt="to edit" className={classes.img} />
       <span className={classes.imageBackdrop} />
       <span className={classes.imageButton}>
         <Typography
@@ -131,4 +146,4 @@ const ImageHoverButton = (props) => {
   );
 };
 
-export default ImageHoverButton;
+export default ImageHoverButtonMedia;
