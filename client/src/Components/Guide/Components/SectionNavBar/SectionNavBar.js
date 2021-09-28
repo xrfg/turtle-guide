@@ -22,7 +22,8 @@ import { MobileStepper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
 import { ourColors } from "../../../../styles/Theme";
 
-// TODO CSS navbar 60px centered corretly
+// our theme
+import { theme } from "../../../../styles/Theme";
 
 const useStyles = makeStyles((theme) => ({
   // "@global": {
@@ -33,6 +34,8 @@ const useStyles = makeStyles((theme) => ({
   //   },
   // },
   navWrapper: {
+    ...theme.guide.sectionNavbar,
+    // backgroundColor: "white",
     position: "fixed",
     width: "100%",
     height: "90px",
@@ -43,8 +46,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    backgroundColor: ourColors.gainsboro,
-    boxShadow: " 0 3px 9px rgba(0, 0, 0, 0.1)",
     // marginTop: "0px",
   },
   nav: {
@@ -58,18 +59,10 @@ const useStyles = makeStyles((theme) => ({
     color: ourColors.jet,
   },
   stepperContainer: {
-    // position: "absolute",
-    // marginTop: "40px",
     marginBottom: "7px",
     marginTop: "-23px",
-
-    // display: "inline-block",
   },
   stepper: {
-    // position: "absolute",
-    // marginTop: "5px",
-    // marginBottom: "5px",
-    // display: "inline-block",
     backgroundColor: "transparent",
   },
 }));

@@ -18,16 +18,19 @@ import useGetEvent from "../../Hooks/useGetEvent";
 // react router //
 import { Link } from "react-router-dom";
 
-const useStyles = makeStyles({
+// our theme
+import { theme } from "../../../../styles/Theme";
+
+const useStyles = makeStyles((theme) => ({
   footer: {
+    ...theme.guide.bottomNavBar,
     height: "70px",
     position: "fixed",
     bottom: "0",
     width: "100%",
-    backgroundColor: "#D9D9D9",
     zIndex: "1000", // brings it on top of everything
   },
-});
+}));
 
 export default function BottomNavBar(props) {
   const { position } = props;
@@ -75,6 +78,11 @@ export default function BottomNavBar(props) {
         label="Home"
         value="home"
         icon={<Home />}
+        style={
+          value === "home"
+            ? { color: theme.guide.bottomNavBar.iconSelectedColor }
+            : { color: theme.guide.bottomNavBar.iconNormalColor }
+        }
       />
 
       <BottomNavigationAction
@@ -84,6 +92,11 @@ export default function BottomNavBar(props) {
         label="Event"
         value="event"
         icon={<DirectionsWalk />}
+        style={
+          value === "event"
+            ? { color: theme.guide.bottomNavBar.iconSelectedColor }
+            : { color: theme.guide.bottomNavBar.iconNormalColor }
+        }
       />
 
       <BottomNavigationAction
@@ -93,6 +106,11 @@ export default function BottomNavBar(props) {
         label="Map"
         value="map"
         icon={<Map />}
+        style={
+          value === "map"
+            ? { color: theme.guide.bottomNavBar.iconSelectedColor }
+            : { color: theme.guide.bottomNavBar.iconNormalColor }
+        }
       />
 
       <BottomNavigationAction
@@ -102,6 +120,11 @@ export default function BottomNavBar(props) {
         label="Settings"
         value="settings"
         icon={<Settings />}
+        style={
+          value === "settings"
+            ? { color: theme.guide.bottomNavBar.iconSelectedColor }
+            : { color: theme.guide.bottomNavBar.iconNormalColor }
+        }
       />
     </BottomNavigation>
   );

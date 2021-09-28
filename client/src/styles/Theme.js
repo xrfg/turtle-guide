@@ -31,12 +31,17 @@ export const ourColors = {
   lightGrey: "#ededed",
 };
 
+// ! refer to this palette
 export const ourColorsTwo = {
   persianIndigo: "#27187E", // blue
   cornflowerBlue: "#758BFD", // baby blue
   maxBluePurple: "#AEB8FE", // light blue
   cultured: "#F1F2F6", // light gray
   darkOrange: "#FF8600", // deep orange
+  mandarin: "#FC834A", // deep orange
+  englishViolet: "#564256", // violet
+  grayX11: "#A3A3A3", // deep orange
+  platinum: "#F5F5F5", // deep orange
 };
 
 export const ourColorsThree = {
@@ -211,8 +216,19 @@ export const theme = createTheme({
       overflowWrap: "anywhere",
     },
   },
+  // ! refer to ourColorsTwo
   guide: {
     container: { backgroundColor: "white", padding: "0" },
+    globalGradientBg: {
+      background:
+        "linear-gradient(0deg, rgba(242,242,242,0.1) 0%, rgba(219,219,219,1) 68%, rgba(234,234,234,1) 100%)", // zinc
+      // background:
+      //   "linear-gradient(0deg, rgba(207,222,243,1) 0%, rgba(224,234,252,1) 100%)",
+      // background:
+      //   "linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(170,186,171,1) 100%)", // light green
+      // background:
+      //   " linear-gradient(0deg, rgba(215,221,232,0.6) 0%, rgba(117,127,154,0.6) 100%)", // blue grey
+    },
     mainHeader: {
       top: 0,
       // ! define color here just a test
@@ -225,6 +241,67 @@ export const theme = createTheme({
     },
     header: {
       fontWeight: 600,
+    },
+
+    // INTRO
+    introTitleWrap: {
+      marginTop: "20px",
+      marginBottom: "50px",
+      border: "none",
+      boxShadow: "none",
+      backgroundColor: "transparent",
+      padding: "15px",
+      paddingBottom: "0px",
+    },
+    introTitle: {
+      fontSize: "2.5rem",
+      color: `${ourColorsTwo.englishViolet}`,
+      fontWeight: 600,
+      letterSpacing: "3px",
+      lineHeight: "60px",
+      // ! removed span test
+      // "& > span": {
+      //   paddingBottom: "10px",
+      //   paddingTop: "10px",
+      //   paddingRight: "10px",
+      //   paddingLeft: "10px",
+      //   backgroundColor: "white",
+      //   boxShadow: "5px 3px 15px -13px rgba(0,0,0,1)",
+      // },
+    },
+
+    // HOME / EVENTS
+    eventsTitle: {
+      color: `${ourColorsTwo.englishViolet}`,
+      fontSize: "2.5rem",
+      fontWeight: 400,
+      letterSpacing: "3px",
+    },
+
+    // SECTION
+    sectionTitleWrap: {
+      marginTop: "-40px",
+      backgroundColor: "white",
+      boxShadow: "5px 3px 15px -13px rgba(0,0,0,0.7)",
+      // clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 81%)",
+    },
+    sectionTitle: {
+      marginTop: "-15px",
+      padding: "10px",
+      paddingBottom: "0px",
+      color: `${ourColorsTwo.englishViolet}`,
+    },
+    // NAV BARS
+    sectionNavbar: {
+      backgroundColor: `${ourColorsTwo.platinum}`,
+      iconNormalColor: `${ourColorsTwo.grayX11}`,
+      iconSelectedColor: `${ourColorsTwo.mandarin}`,
+      boxShadow: " 0 3px 9px rgba(0, 0, 0, 0.3)",
+    },
+    bottomNavBar: {
+      backgroundColor: `${ourColorsTwo.platinum}`,
+      iconNormalColor: `${ourColorsTwo.grayX11}`,
+      iconSelectedColor: `${ourColorsTwo.mandarin}`,
     },
     settings: {
       header: {
