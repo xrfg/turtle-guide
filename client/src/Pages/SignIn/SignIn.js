@@ -85,7 +85,7 @@ export default function SignIn() {
   // * states
   // ! to remove for development
   // const [loginData, setLoginData] = useState({});
-  const [loginData, setLoginData] = useState(user1);
+  const [loginData, setLoginData] = useState(user3);
 
   //REDUX
   const dispatch = useDispatch();
