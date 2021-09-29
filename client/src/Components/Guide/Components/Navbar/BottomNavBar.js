@@ -25,7 +25,7 @@ import { theme } from "../../../../styles/Theme";
 const useStyles = makeStyles((theme) => ({
   footer: {
     ...theme.guide.bottomNavBar,
-    height: "60px",
+    height: "70px",
     position: "fixed",
     bottom: "0",
     width: "100%",

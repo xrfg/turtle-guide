@@ -254,6 +254,16 @@ export const theme = createTheme({
       paddingBottom: "0px",
     },
     introTitle: {
+      marginTop: "20px",
+      // marginBottom: "20px",
+      borderRadius: "0",
+      borderBottom: "1px solid gray",
+      border: "none",
+      boxShadow: "none",
+      backgroundColor: "white",
+      padding: "1rem",
+      paddingBottom: "0px",
+
       fontSize: "2.5rem",
       color: `${ourColorsTwo.englishViolet}`,
       fontWeight: 600,
@@ -269,7 +279,6 @@ export const theme = createTheme({
       //   boxShadow: "5px 3px 15px -13px rgba(0,0,0,1)",
       // },
     },
-
     // HOME / EVENTS
     eventsTitle: {
       color: `${ourColorsTwo.englishViolet}`,
@@ -286,6 +295,8 @@ export const theme = createTheme({
       // clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 81%)",
     },
     sectionTitle: {
+      fontWeight: 800,
+      fontSize: "1.25rem",
       marginTop: "-15px",
       padding: "10px",
       paddingBottom: "0px",

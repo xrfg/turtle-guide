@@ -162,6 +162,9 @@ const useStyles = makeStyles((theme) =>
         overflowWrap: "anywhere",
       },
     },
+
+    videoCard: { marginBottom: "1.5rem", "& > *": { width: "100%" } },
+    audioCard: { marginBottom: "1.5rem", "& > *": { width: "100%" } },
     text: {
       padding: "0.4rem",
       fontSize: "1.5rem",
@@ -397,7 +400,7 @@ const SectionPreview = (props) => {
               if (x.type === "video") {
                 // passes the url video to video
                 return (
-                  <div className="video-card" key={nextId()}>
+                  <div className={classes.videoCard} key={nextId()}>
                     <video width="400" controls>
                       <source src={x.content.url} type="video/mp4" />
                     </video>
@@ -410,7 +413,7 @@ const SectionPreview = (props) => {
               if (x.type === "audio") {
                 // passes the url audio to audio
                 return (
-                  <div className="video-card" key={nextId()}>
+                  <div className={classes.audioCard} key={nextId()}>
                     <audio controls>
                       {/* Select audio format */}
                       {x.content.filename === "MP3" && (
@@ -526,7 +529,7 @@ const SectionPreview = (props) => {
                   if (x.type === "video") {
                     // passes the url video to video
                     return (
-                      <div className="video-card" key={nextId()}>
+                      <div className={classes.videoCard} key={nextId()}>
                         <video width="400" controls>
                           <source src={x.content.url} type="video/mp4" />
                         </video>
@@ -539,7 +542,7 @@ const SectionPreview = (props) => {
                   if (x.type === "audio") {
                     // passes the url audio to audio
                     return (
-                      <div className="video-card" key={nextId()}>
+                      <div className={classes.audioCard} key={nextId()}>
                         <audio controls>
                           {/* Select audio format */}
                           {x.content.filename === "MP3" && (
