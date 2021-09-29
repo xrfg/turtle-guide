@@ -324,12 +324,28 @@ export default function SectionContentManager(props) {
       myEditor.show();
 
       myEditor.on("export", function (data) {
+        console.log("data", data);
         // 1. find image
         const newImg = data.assets[0].url;
-        // 2. change data
+        const newImgDownload = data.assets[0].downloadUrl;
+        // 2a. if this id is passed updates the section cover
+        if (id === "sectionCover") {
+          console.log("sectionCover", section);
+          setSection({
+            ...section,
+            sectionCover: {
+              ...section.sectionCover,
+              url: newImg,
+              urlDownload: newImgDownload,
+            },
+          });
+          setNeedsToSave(true);
+        }
+        // 2b. change data
         contents.map((x) => {
           if (x.id === id) {
             x.content.url = newImg;
+            x.content.urlDownload = newImgDownload;
           }
           return contents;
         });
@@ -339,8 +355,11 @@ export default function SectionContentManager(props) {
         setNeedsToSave(true);
       });
     },
+    //eslint-disable-next-line
     [contents]
   );
+
+  console.log("section", section);
 
   // * Objects to send functions
   /**
@@ -873,11 +892,30 @@ export default function SectionContentManager(props) {
                   endIcon="add"
                 />
               ) : (
-                <ImageHoverButton
-                  title={"Change Cover Image"}
-                  onClickFunc={addCoverImage}
-                  image={section.sectionCover}
-                />
+                <>
+                  <CustomButton
+                    style={{
+                      transform: "translate(0,-1.4rem)",
+                      marginBottom: "0.6rem",
+                    }}
+                    onClickFunc={addCoverImage}
+                    // if intro changes title
+                    text={
+                      isIntro ? "Change Background Image" : "Change Cover Image"
+                    }
+                    endIcon="add"
+                  />
+                  <ImageHoverButton
+                    title={"Edit Cover"}
+                    onClickFunc={() =>
+                      showCloudinaryMediaEditor(
+                        "sectionCover",
+                        section.sectionCover.public_id
+                      )
+                    }
+                    image={section.sectionCover}
+                  />
+                </>
               )}
               {/* If is editing admin */}
               {/* If is editing about admin do not show */}
