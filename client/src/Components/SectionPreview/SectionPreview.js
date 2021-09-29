@@ -228,6 +228,7 @@ const SectionPreview = (props) => {
     sectionCover,
     sectionDescription,
     sectionTitle,
+
     adminPreview,
   } = props;
 
@@ -353,7 +354,7 @@ const SectionPreview = (props) => {
                     isIntro ? classes.introTitle : classes.sectionTitle
                   }
                 >
-                  <span>{sectionTitle}</span>
+                  {sectionTitle}
                 </Typography>
               </Card>
             </div>
@@ -493,7 +494,7 @@ const SectionPreview = (props) => {
                         isIntro ? classes.introTitle : classes.sectionTitle
                       }
                     >
-                      <span>{sectionTitle}</span>
+                      {sectionTitle}
                     </Typography>
                   </Card>
                 </div>

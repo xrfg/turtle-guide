@@ -1016,7 +1016,7 @@ export default function SectionContentManager(props) {
                   contents={contents}
                   sectionCover={section?.sectionCover}
                   sectionDescription={section?.description}
-                  pageTitle={section?.title}
+                  pageTitle={section.title}
                 />
               ) : (
                 contents

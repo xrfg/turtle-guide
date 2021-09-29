@@ -250,8 +250,9 @@ export const theme = createTheme({
       border: "none",
       boxShadow: "none",
       backgroundColor: "transparent",
-      padding: "15px",
+      // padding: "15px",
       paddingBottom: "0px",
+      paddingTop: "20px",
       borderBottom: `1px solid lightgrey`,
       borderRadius: "0",
     },
@@ -264,23 +265,14 @@ export const theme = createTheme({
 
       boxShadow: "none",
       backgroundColor: "rgba(255, 255, 255, 1)",
-      borderRadius: "8px",
-      padding: "1rem",
+      borderRadius: "3px",
+      padding: "15px",
       fontSize: "2.6rem",
       color: `${ourColorsTwo.englishViolet}`,
       fontWeight: 600,
       letterSpacing: "3px",
       lineHeight: "60px",
-      marginBottom: "3rem",
-      // ! removed span test
-      // "& > span": {
-      //   paddingBottom: "10px",
-      //   paddingTop: "10px",
-      //   paddingRight: "10px",
-      //   paddingLeft: "10px",
-      //   backgroundColor: "white",
-      //   boxShadow: "5px 3px 15px -13px rgba(0,0,0,1)",
-      // },
+      marginBottom: "60px",
     },
     // HOME / EVENTS
     eventsTitle: {
