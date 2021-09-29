@@ -284,7 +284,7 @@ const SectionPreview = (props) => {
     }
 
     if (totalContentPixels / viewPortSize < 6) {
-      pages = totalContentPixels / viewPortSize + 1;
+      pages = totalContentPixels / viewPortSize + 1.8;
       console.log("totalpages 3", pages);
       return setTotalParallaxPages(pages);
     }

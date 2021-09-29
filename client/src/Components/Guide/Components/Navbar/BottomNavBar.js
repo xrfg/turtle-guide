@@ -17,6 +17,7 @@ import useGetEvent from "../../Hooks/useGetEvent";
 
 // react router //
 import { Link } from "react-router-dom";
+import { ourColors } from "../../../../styles/Theme";
 
 // our theme
 import { theme } from "../../../../styles/Theme";
@@ -24,11 +25,12 @@ import { theme } from "../../../../styles/Theme";
 const useStyles = makeStyles((theme) => ({
   footer: {
     ...theme.guide.bottomNavBar,
-    height: "70px",
+    height: "60px",
     position: "fixed",
     bottom: "0",
     width: "100%",
     zIndex: "1000", // brings it on top of everything
+    borderTop: `1px solid grey`,
   },
 }));
 
@@ -72,6 +74,7 @@ export default function BottomNavBar(props) {
       className={classes.footer}
     >
       <BottomNavigationAction
+        className={classes.navLink}
         // * Intro of the exhibition
         component={Link}
         to={event && `/events/${event.slug}`} // intro is always the first slide
@@ -86,6 +89,7 @@ export default function BottomNavBar(props) {
       />
 
       <BottomNavigationAction
+        className={classes.navLink}
         // * Exhibition Main Page
         component={Link}
         to={event && `/events/${event.slug}/sections/`}
@@ -100,6 +104,7 @@ export default function BottomNavBar(props) {
       />
 
       <BottomNavigationAction
+        className={classes.navLink}
         // * Exhibition Map Page
         component={Link}
         to={event && `/events/${event.slug}/map/`}
@@ -114,6 +119,7 @@ export default function BottomNavBar(props) {
       />
 
       <BottomNavigationAction
+        className={classes.navLink}
         // * App Settings page
         component={Link}
         to={event && `/events/${event.slug}/settings/`}
