@@ -252,7 +252,7 @@ export const theme = createTheme({
       backgroundColor: "transparent",
       padding: "15px",
       paddingBottom: "0px",
-      borderBottom: `1px solid ${ourColorsTwo.englishViolet}`,
+      borderBottom: `1px solid lightgrey`,
       borderRadius: "0",
     },
     introTitle: {
@@ -260,17 +260,18 @@ export const theme = createTheme({
       // marginBottom: "20px",
 
       // borderBottom: "1px solid gray",
-      textAlign: "center",
+      // textAlign: "center",
 
       boxShadow: "none",
-      backgroundColor: "rgba(255, 255, 255, 0.7)",
+      backgroundColor: "rgba(255, 255, 255, 1)",
       borderRadius: "8px",
       padding: "1rem",
-      fontSize: "2rem",
+      fontSize: "2.6rem",
       color: `${ourColorsTwo.englishViolet}`,
       fontWeight: 600,
       letterSpacing: "3px",
-      lineHeight: "50px",
+      lineHeight: "60px",
+      marginBottom: "3rem",
       // ! removed span test
       // "& > span": {
       //   paddingBottom: "10px",
