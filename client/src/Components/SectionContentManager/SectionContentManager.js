@@ -168,7 +168,22 @@ export default function SectionContentManager(props) {
   // for modal
   const [openModalInsertText, setOpenModalInsertText] = useState(false);
   const [openModalPreview, setOpenModalPreview] = useState(false);
-  const [openMediaEditor, setOpenMediaEditor] = useState(false);
+
+  const [myEditor, setMyEditor] = useState(window.cloudinary.mediaEditor());
+  // const [cloudinaryWidget, setCloudinaryWidget] = useState(
+  //   window.cloudinary.createUploadWidget(
+  //     {
+  //       cloudName: "dhdgj2ryu", // cloud name of the account
+  //       uploadPreset: "turtle_guide", // name of the created upload
+  //     },
+  //     (error, result) => {
+  //       // if error returns error
+  //       if (error) return console.log("Error on upload", error);
+  //       // calls function
+  //       checkCloudinaryUpload(result);
+  //     }
+  //   )
+  // );
 
   // * Life cycles Methods
   // set the section
@@ -263,6 +278,8 @@ export default function SectionContentManager(props) {
   const showCloudinaryWidget = (widget) => {
     widget.open();
   };
+  // //eslint-disable-next-line
+  // }, []);
 
   /**
    * @function checkCloudinaryUpload
@@ -313,9 +330,10 @@ export default function SectionContentManager(props) {
    * @desc to edit a specifi image
    */
 
+  // const myEditor = window.cloudinary.mediaEditor();
+
   const showCloudinaryMediaEditor = useCallback(
     (id, imageId) => {
-      const myEditor = window.cloudinary.mediaEditor();
       myEditor.update({
         cloudName: "dhdgj2ryu", // cloud name of the account
         publicIds: [`${imageId}`],
@@ -324,10 +342,10 @@ export default function SectionContentManager(props) {
       myEditor.show();
 
       myEditor.on("export", function (data) {
-        console.log("data", data);
         // 1. find image
         const newImg = data.assets[0].url;
         const newImgDownload = data.assets[0].downloadUrl;
+
         // 2a. if this id is passed updates the section cover
         if (id === "sectionCover") {
           console.log("sectionCover", section);
@@ -356,10 +374,8 @@ export default function SectionContentManager(props) {
       });
     },
     //eslint-disable-next-line
-    [contents]
+    [contents, section, myEditor]
   );
-
-  console.log("section", section);
 
   // * Objects to send functions
   /**
