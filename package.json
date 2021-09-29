@@ -41,6 +41,7 @@
     "lodash": "^4.17.21",
     "mongoose": "^5.13.7",
     "react-device-detect": "^2.0.0",
+    "react-full-screen": "^1.1.0",
     "react-simple-wysiwyg": "^1.0.2",
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.1.6",
