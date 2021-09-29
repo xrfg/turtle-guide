@@ -246,29 +246,31 @@ export const theme = createTheme({
     // INTRO
     introTitleWrap: {
       marginTop: "20px",
-      marginBottom: "50px",
+      // marginBottom: "50px",
       border: "none",
       boxShadow: "none",
       backgroundColor: "transparent",
       padding: "15px",
       paddingBottom: "0px",
+      borderBottom: `1px solid ${ourColorsTwo.englishViolet}`,
+      borderRadius: "0",
     },
     introTitle: {
-      marginTop: "20px",
+      // marginTop: "20px",
       // marginBottom: "20px",
-      borderRadius: "0",
-      borderBottom: "1px solid gray",
-      border: "none",
-      boxShadow: "none",
-      backgroundColor: "white",
-      padding: "1rem",
-      paddingBottom: "0px",
 
-      fontSize: "2.5rem",
+      // borderBottom: "1px solid gray",
+      textAlign: "center",
+
+      boxShadow: "none",
+      backgroundColor: "rgba(255, 255, 255, 0.7)",
+      borderRadius: "8px",
+      padding: "1rem",
+      fontSize: "2rem",
       color: `${ourColorsTwo.englishViolet}`,
       fontWeight: 600,
       letterSpacing: "3px",
-      lineHeight: "60px",
+      lineHeight: "50px",
       // ! removed span test
       // "& > span": {
       //   paddingBottom: "10px",

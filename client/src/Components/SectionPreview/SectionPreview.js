@@ -14,10 +14,10 @@ import nextId from "react-id-generator";
 
 // * Mat UI
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import { Container, Typography, Card, Button } from "@material-ui/core";
+import { Container, Typography, Card, Button, Box } from "@material-ui/core";
 
 // * Components
-import { ourColors } from "../../styles/Theme";
+import { ourColors, ourColorsTwo } from "../../styles/Theme";
 
 // needed to render Rich text
 import ReactQuill from "react-quill"; // ES6
@@ -121,11 +121,12 @@ const useStyles = makeStyles((theme) =>
     },
 
     sectionDescription: {
-      // margin: "10px 0 40px 0",
+      marginBottom: "3rem",
       fontWeight: "500",
       letterSpacing: "0.400222px",
       color: "#4d4b46",
       // fontFamily: "poppins",
+      backgroundColor: "white",
     },
     // card: {
     //   width: "89%",
@@ -165,6 +166,14 @@ const useStyles = makeStyles((theme) =>
 
     videoCard: { marginBottom: "1.5rem", "& > *": { width: "100%" } },
     audioCard: { marginBottom: "1.5rem", "& > *": { width: "100%" } },
+    audioTextBox: {
+      borderBottom: `1px solid ${ourColorsTwo.englishViolet}`,
+      padding: "0.5rem 1rem",
+      fontSize: "0.8rem",
+      color: ourColors.jet,
+    },
+    audioTitle: { display: "block", fontWeight: "bold" },
+    audioDesc: {},
     text: {
       padding: "0.4rem",
       fontSize: "1.5rem",
@@ -197,12 +206,12 @@ const useStyles = makeStyles((theme) =>
     introBtn: {
       padding: "0.8rem",
       width: "100%",
-      backgroundColor: ourColors.indigoDye,
+      backgroundColor: ourColorsTwo.englishViolet,
       color: "white",
       fontWeight: "bold",
       "&:hover": {
         backgroundColor: ourColors.gainsboro,
-        color: ourColors.indigoDye,
+        color: ourColorsTwo.englishViolet,
       },
     },
   })
@@ -364,14 +373,13 @@ const SectionPreview = (props) => {
 
             {!isIntro && (
               <>
-                <Card>
+                <Box className={classes.sectionDescription}>
                   <ReactQuill
-                    className={classes.sectionDescription}
                     value={sectionDescription}
                     readOnly={true}
                     theme={"bubble"}
                   />
-                </Card>
+                </Box>
               </>
             )}
             {/* // * mapping to render divided by types */}
@@ -402,8 +410,14 @@ const SectionPreview = (props) => {
                     <video width="400" controls>
                       <source src={x.content.url} type="video/mp4" />
                     </video>
-                    <h3>{x.content.caption?.title}</h3>
-                    <h4>{x.content.caption?.description}</h4>
+                    <div className={classes.audioTextBox}>
+                      <span className={classes.audioTitle}>
+                        {x.content.caption?.title}
+                      </span>
+                      <span className={classes.audioDesc}>
+                        {x.content.caption?.description}
+                      </span>
+                    </div>
                   </div>
                 );
               }
@@ -424,8 +438,14 @@ const SectionPreview = (props) => {
                         <source src={x.content.url} type="application/ogg" />
                       )}
                     </audio>
-                    <h3>{x.content.caption?.title}</h3>
-                    <h4>{x.content.caption?.description}</h4>
+                    <div className={classes.audioTextBox}>
+                      <span className={classes.audioTitle}>
+                        {x.content.caption?.title}
+                      </span>
+                      <span className={classes.audioDesc}>
+                        {x.content.caption?.description}
+                      </span>
+                    </div>
                   </div>
                 );
               }
@@ -493,14 +513,13 @@ const SectionPreview = (props) => {
 
                 {!isIntro && (
                   <>
-                    <Card>
+                    <Box className={classes.sectionDescription}>
                       <ReactQuill
-                        className={classes.sectionDescription}
                         value={sectionDescription}
                         readOnly={true}
                         theme={"bubble"}
                       />
-                    </Card>
+                    </Box>
                   </>
                 )}
                 {/* // * mapping to render divided by types */}
@@ -531,8 +550,14 @@ const SectionPreview = (props) => {
                         <video width="400" controls>
                           <source src={x.content.url} type="video/mp4" />
                         </video>
-                        <h3>{x.content.caption?.title}</h3>
-                        <h4>{x.content.caption?.description}</h4>
+                        <div className={classes.audioTextBox}>
+                          <span className={classes.audioTitle}>
+                            {x.content.caption?.title}
+                          </span>
+                          <span className={classes.audioDesc}>
+                            {x.content.caption?.description}
+                          </span>
+                        </div>
                       </div>
                     );
                   }
@@ -556,8 +581,14 @@ const SectionPreview = (props) => {
                             />
                           )}
                         </audio>
-                        <h3>{x.content.caption?.title}</h3>
-                        <h4>{x.content.caption?.description}</h4>
+                        <div className={classes.audioTextBox}>
+                          <span className={classes.audioTitle}>
+                            {x.content.caption?.title}
+                          </span>
+                          <span className={classes.audioDesc}>
+                            {x.content.caption?.description}
+                          </span>
+                        </div>
                       </div>
                     );
                   }

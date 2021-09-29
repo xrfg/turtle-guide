@@ -161,7 +161,7 @@ const ContentBlockText = (props) => {
             <ReactQuill
               value={content}
               readOnly={true}
-              theme={"bubble"}
+              theme={null}
               // className={classes.descriptionContainer}
             />
           )}

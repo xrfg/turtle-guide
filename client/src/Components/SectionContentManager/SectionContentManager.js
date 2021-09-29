@@ -86,6 +86,10 @@ const useStyles = makeStyles((theme) =>
     },
     contentsContainer: {
       ...theme.admin.sectionsContentsContainer,
+      position: "relative",
+    },
+    contentsContainerPreview: {
+      height: "700px",
     },
     btnSidebar: {
       ...theme.admin.btnSidebar,
@@ -922,7 +926,7 @@ export default function SectionContentManager(props) {
               {/* If is editing admin */}
               {/* If is editing about admin do not show */}
               {/* If is editing Intro do not show */}
-              {isAboutAdmin || isIntro ? null : (
+              {isAboutAdmin ? null : (
                 <>
                   {/* Section description Edit */}
                   <ContentBlockText
@@ -998,7 +1002,11 @@ export default function SectionContentManager(props) {
             <Grid
               item
               xs={9}
-              className={classes.contentsContainer}
+              className={
+                toggleSelected
+                  ? `${classes.contentsContainer} ${classes.contentsContainerPreview}`
+                  : classes.contentsContainer
+              }
               /* style={{ padding: "0" }} */
             >
               {toggleSelected ? (
