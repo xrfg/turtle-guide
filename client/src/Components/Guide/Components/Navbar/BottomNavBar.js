@@ -102,7 +102,7 @@ export default function BottomNavBar(props) {
             : { color: theme.guide.bottomNavBar.iconNormalColor }
         }
       />
-
+      {/* 
       <BottomNavigationAction
         className={classes.navLink}
         // * Exhibition Map Page
@@ -116,7 +116,7 @@ export default function BottomNavBar(props) {
             ? { color: theme.guide.bottomNavBar.iconSelectedColor }
             : { color: theme.guide.bottomNavBar.iconNormalColor }
         }
-      />
+      /> */}
 
       <BottomNavigationAction
         className={classes.navLink}
