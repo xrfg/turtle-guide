@@ -224,8 +224,6 @@ const SectionPreview = (props) => {
 
   const event = useGetEvent();
 
-  console.log(event);
-
   // * States
   // for parallax
   const [totalParallaxPages, setTotalParallaxPages] = useState(0);

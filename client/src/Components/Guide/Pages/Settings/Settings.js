@@ -69,8 +69,6 @@ export default function Settings() {
   //food and Beverages
   // Photography Policy
 
-  console.log(event);
-
   return (
     <Container className={classes.container} maxWidth="sm">
       <Grid container direction="row">

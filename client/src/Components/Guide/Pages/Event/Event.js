@@ -12,7 +12,6 @@ export default function Event() {
     setLoading(true);
     try {
       const eventData = await axios.get(baseURL + "/events/" + id);
-      console.log(eventData.data);
       setEvent(eventData.data);
       setLoading(false);
     } catch (err) {
@@ -24,9 +23,8 @@ export default function Event() {
   //geting the Event's data only once
   useEffect(() => {
     getEvent();
+    //eslint-disable-next-line
   }, []);
-
-  console.log(event);
 
   return <div>im an exhibition</div>;
 }

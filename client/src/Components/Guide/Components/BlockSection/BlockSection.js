@@ -102,7 +102,11 @@ const BlockSection = (props) => {
           <Typography variant="body2" component="p">
             <ReactQuill
               className={classes.cardDesc}
-              value={description}
+              value={
+                description.substring(0, 100).length > 99
+                  ? description.substring(0, 100) + "..."
+                  : description.substring(0, 100)
+              }
               readOnly={true}
               theme={"bubble"}
             />

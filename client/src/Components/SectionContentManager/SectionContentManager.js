@@ -278,7 +278,6 @@ export default function SectionContentManager(props) {
       let arrTemp = [];
       // map and send objects IMAGE
       result.info.files.map((x, i) => {
-        // TODO TEST undefined
         // if undefined
         if (x === undefined) {
           return console.log("Upload error");
@@ -880,7 +879,6 @@ export default function SectionContentManager(props) {
                   image={section.sectionCover}
                 />
               )}
-              {console.log("isIntro", isIntro)}
               {/* If is editing admin */}
               {/* If is editing about admin do not show */}
               {/* If is editing Intro do not show */}
