@@ -273,14 +273,6 @@ const SectionPreview = (props) => {
     }
     let pages = 0;
 
-    console.log(
-      "totalContentPixels / viewPortSize",
-      totalContentPixels / viewPortSize
-    );
-
-    console.log("getViewportSize", viewPortSize);
-    console.log("totalPixels", totalContentPixels);
-
     // after every calc add a margin
     if (totalContentPixels / viewPortSize < 2) {
       pages = Math.ceil(totalContentPixels / viewPortSize) + 0.8;
@@ -289,25 +281,20 @@ const SectionPreview = (props) => {
 
     if (totalContentPixels / viewPortSize < 4) {
       pages = Math.ceil(totalContentPixels / viewPortSize) + 1.5;
-      console.log("totalpages 2", pages);
       return setTotalParallaxPages(pages);
     }
 
     if (totalContentPixels / viewPortSize < 6) {
       pages = totalContentPixels / viewPortSize + 1.8;
-      console.log("totalpages 3", pages);
       return setTotalParallaxPages(pages);
     }
 
     pages = Math.ceil(totalContentPixels / viewPortSize) + 1.25;
-    console.log("totalpages 4", pages);
 
     return setTotalParallaxPages(pages);
 
     //eslint-disable-next-line
   }, [totalContentPixels]);
-
-  console.log("totalParallaxPages", totalParallaxPages);
 
   return (
     <>
