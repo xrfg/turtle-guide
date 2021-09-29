@@ -67,19 +67,12 @@ const useStyles = makeStyles((theme) => ({
 
   eventsTitle: {
     ...theme.guide.eventsTitle,
-    // // ! changed from fixed
     position: "relative",
     display: "flex",
     alignItems: "end",
     width: "100%",
     zIndex: "10000",
-    // // ! removed background and bar
-    // maxHeight: "100px",
-    // height: "3.7rem",
-    // backgroundColor: ourColors.gainsboro,
-    // boxShadow: "-2px 2px 8px 1px rgba(127,127,127,0.88)",
     margin: "0 0 0 0",
-    // color: ourColors.indigoDye,
     padding: "20px",
   },
 }));

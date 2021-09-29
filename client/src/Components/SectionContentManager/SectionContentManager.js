@@ -77,8 +77,10 @@ const useStyles = makeStyles((theme) =>
     // Custom margins container buttons
     pageTitleContainer: {
       ...theme.admin.pageTitleContainer,
+      marginTop: "-20px",
     },
     pageTitle: {
+      marginBottom: "20px",
       ...theme.admin.pageTitle,
       fontSize: "1.6rem",
     },

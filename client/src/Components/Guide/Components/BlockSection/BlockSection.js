@@ -21,10 +21,10 @@ import { goToSection } from "../../Functions/functions";
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    maxWidth: 450,
+    maxWidth: 480,
     height: 385, // must be fixed
     margin: "0 0 4rem 0",
-    width: "80%",
+    width: "90%",
   },
   cardContent: {
     margin: "0 0 0 0",
