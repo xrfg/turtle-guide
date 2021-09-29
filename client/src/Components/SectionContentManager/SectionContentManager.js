@@ -884,7 +884,7 @@ export default function SectionContentManager(props) {
               {/* If is editing admin */}
               {/* If is editing about admin do not show */}
               {/* If is editing Intro do not show */}
-              {isAboutAdmin || isIntro ? null : (
+              {isAboutAdmin ? null : (
                 <>
                   {/* Section description Edit */}
                   <ContentBlockText
