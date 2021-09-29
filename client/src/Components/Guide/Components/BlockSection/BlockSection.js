@@ -103,9 +103,9 @@ const BlockSection = (props) => {
             <ReactQuill
               className={classes.cardDesc}
               value={
-                description.substring(0, 100).length > 99
-                  ? description.substring(0, 100) + "..."
-                  : description.substring(0, 100)
+                description.substring(0, 70).length > 69
+                  ? description.substring(0, 70) + "..."
+                  : description.substring(0, 70)
               }
               readOnly={true}
               theme={"bubble"}
