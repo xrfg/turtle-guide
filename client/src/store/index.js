@@ -20,12 +20,13 @@ const rootReducer = combineReducers({
 const Store = createStore(
   rootReducer,
   compose(
-    applyMiddleware(ReduxThunk), // insert Thunk as middleware for async calls
+    applyMiddleware(ReduxThunk) // insert Thunk as middleware for async calls
     // add redux toll
-    window.navigator.userAgent.includes("Chrome")
-      ? window.__REDUX_DEVTOOLS_EXTENSION__ &&
-          window.__REDUX_DEVTOOLS_EXTENSION__()
-      : compose
+    // removed for heroku
+    // // window.navigator.userAgent.includes("Chrome")
+    // //   ? window.__REDUX_DEVTOOLS_EXTENSION__ &&
+    // //       window.__REDUX_DEVTOOLS_EXTENSION__()
+    // //   : compose
   )
 );
 
