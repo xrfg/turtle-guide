@@ -170,20 +170,6 @@ export default function SectionContentManager(props) {
   const [openModalPreview, setOpenModalPreview] = useState(false);
 
   const [myEditor, setMyEditor] = useState(window.cloudinary.mediaEditor());
-  // const [cloudinaryWidget, setCloudinaryWidget] = useState(
-  //   window.cloudinary.createUploadWidget(
-  //     {
-  //       cloudName: "dhdgj2ryu", // cloud name of the account
-  //       uploadPreset: "turtle_guide", // name of the created upload
-  //     },
-  //     (error, result) => {
-  //       // if error returns error
-  //       if (error) return console.log("Error on upload", error);
-  //       // calls function
-  //       checkCloudinaryUpload(result);
-  //     }
-  //   )
-  // );
 
   // * Life cycles Methods
   // set the section
@@ -278,8 +264,6 @@ export default function SectionContentManager(props) {
   const showCloudinaryWidget = (widget) => {
     widget.open();
   };
-  // //eslint-disable-next-line
-  // }, []);
 
   /**
    * @function checkCloudinaryUpload
