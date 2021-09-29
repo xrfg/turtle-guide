@@ -84,6 +84,10 @@ const useStyles = makeStyles((theme) =>
     },
     contentsContainer: {
       ...theme.admin.sectionsContentsContainer,
+      position: "relative",
+    },
+    contentsContainerPreview: {
+      height: "700px",
     },
     btnSidebar: {
       ...theme.admin.btnSidebar,
@@ -960,7 +964,11 @@ export default function SectionContentManager(props) {
             <Grid
               item
               xs={9}
-              className={classes.contentsContainer}
+              className={
+                toggleSelected
+                  ? `${classes.contentsContainer} ${classes.contentsContainerPreview}`
+                  : classes.contentsContainer
+              }
               /* style={{ padding: "0" }} */
             >
               {toggleSelected ? (
