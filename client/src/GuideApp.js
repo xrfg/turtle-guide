@@ -18,6 +18,7 @@ import { AnimatePresence } from "framer-motion";
 export default function GuideApp({ match }) {
   // * Hooks
   const location = useLocation();
+
   return (
     <>
       {/* // to fire the position in the navbar */}
