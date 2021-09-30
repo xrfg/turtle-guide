@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: "0.50000px",
     cursor: "pointer !important",
     "& > div": {
-      zIndex: "9999", // ! otherwise it goes under
+      zIndex: 999, // ! otherwise it goes under
     },
     "& > p": {
       cursor: "pointer !important",
@@ -88,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
     // borderTop: "0.02rem grey solid",
     // borderBottom: "0.02rem grey solid",
     "& > div": {
-      zIndex: 10000,
+      zIndex: 9999,
       opacity: 1,
       // padding: "2px",
       // alignSelf: "start",
@@ -100,6 +100,9 @@ const useStyles = makeStyles((theme) => ({
       // letterSpacing: "0.30000px",
       // overflowWrap: "anywhere",
     },
+  },
+  dialogBox: {
+    zIndex: "100000 !important",
   },
 }));
 
@@ -192,6 +195,7 @@ export default function EventSection(props) {
       onDrop={isIntro ? null : props.handleDrop}
     >
       <PopUpDialogBox
+        className={classes.dialogBox}
         open={openDeleteDialogBox}
         isClose={toggleDeleteDialogBox}
         confirm={removeSection}

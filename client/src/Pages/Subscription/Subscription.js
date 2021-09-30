@@ -171,7 +171,7 @@ function GetStepContent(props) {
                   <CardActionArea>
                     <CardMedia
                       className={classes.media}
-                      image="https://museen-in-hessen.de/medien/1429173538-4223-990.jpg"
+                      image="https://ichef.bbci.co.uk/news/976/cpsprodpb/14F7D/production/_112158858_germanmuseumgetty2.jpg"
                       title="Contemplative Reptile"
                     />
                     <CardContent>

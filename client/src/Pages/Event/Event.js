@@ -417,6 +417,7 @@ export default function Event(props) {
             <Grid container className={classes.eventHeaderTab}>
               <Grid item xs={9}>
                 <PopUpDialogBox
+                  className={classes.dialogBox}
                   open={openDeleteDialogBox}
                   isClose={toggleDeleteDialogBox}
                   confirm={deleteEvent}
